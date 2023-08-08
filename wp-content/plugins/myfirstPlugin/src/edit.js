@@ -38,6 +38,7 @@ export default function Edit({ attributes, isSelected, setAttributes }) {
 					label="Gutenpride Block"
 					instructions="Add your message"
 				>
+					{console.log(attributes.message)}
 					<TextControl
 						value={attributes.message}
 						onChange={(val) =>

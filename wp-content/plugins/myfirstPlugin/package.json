@@ -15,6 +15,10 @@
 		"start": "wp-scripts start"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^26.9.0"
+		"@wordpress/scripts": "^26.9.0",
+		"svg-loader": "^0.0.2"
+	},
+	"dependencies": {
+		"fs-extra": "^11.1.1"
 	}
 }

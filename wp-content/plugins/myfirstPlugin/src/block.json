@@ -20,6 +20,5 @@
 	"textdomain": "my-first-plugin",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"icons": "file:./static/img"
+	"style": "file:./style-index.css"
 }

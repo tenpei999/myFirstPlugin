@@ -59,7 +59,6 @@ function enqueue_scripts_with_data()
 	foreach ($script_handles as $handle) {
 		
 		wp_script_add_data($handle, 'type', 'module');
-		var_dump($script_handles);
 
 		// 各スクリプトにデータを提供
 		wp_localize_script($handle, 'myPluginData', array(

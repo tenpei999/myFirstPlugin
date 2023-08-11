@@ -267,19 +267,11 @@ const getDates = () => {
   }
   return dates;
 };
-const weatherAndTemp = [{
-  name: "Takashi",
-  age: 19,
-  country: "Japan"
-}, {
-  name: "Jane",
-  age: 28,
-  country: "UK",
-  color: "red"
-}];
+const datesForWeek = getDates();
 function Edit() {
   const [data1, setData1] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [data2, setData2] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [dailyWeather, setDailyWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     // 1つ目のAPIリクエスト
     const request1 = fetch('https://weather.tsukumijima.net/api/forecast/city/130010').then(response => response.json());
@@ -308,14 +300,21 @@ function Edit() {
           return dayForecast.chanceOfRain[timeFrame];
         });
       });
+      const dailyData = weatherNamesForWeek.map((name, index) => ({
+        name,
+        image: weatherImageForWeek[index],
+        highestTemperature: highestTemperatureForWeek[index],
+        lowestTemperature: lowestTemperatureForWeek[index],
+        temperatureDifference: temperatureDifferencesForWeek[index],
+        rainProbability: threeDayRainProbability[index]
+      }));
+      setDailyWeather(dailyData);
+      console.log(dailyData);
     }).catch(error => {
       console.error('APIの呼び出しに失敗:', error);
     });
   }, []); // 空の依存配列を指定して、コンポーネントのマウント時にのみ実行
 
-  const weatherInformation = [{
-    name: today
-  }];
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)()
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_5__.CurrentWeather, {

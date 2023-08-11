@@ -46,18 +46,15 @@ const getDates = () => {
 
 		dates.push(`${month}/${day}`);
 	}
-
 	return dates;
 };
+const datesForWeek = getDates();
 
-const weatherAndTemp = [
-	{ name: "Takashi", age: 19, country: "Japan" },
-	{ name: "Jane", age: 28, country: "UK", color: "red" },
-];
 export default function Edit() {
 
 	const [data1, setData1] = useState(null);
 	const [data2, setData2] = useState(null);
+	const [dailyWeather, setDailyWeather] = useState([]);
 
 	useEffect(() => {
 		// 1つ目のAPIリクエスト
@@ -90,17 +87,24 @@ export default function Edit() {
 						return dayForecast.chanceOfRain[timeFrame];
 					});
 				});
+
+				const dailyData = weatherNamesForWeek.map((name, index) => ({
+					name,
+					image: weatherImageForWeek[index],
+					highestTemperature: highestTemperatureForWeek[index],
+					lowestTemperature: lowestTemperatureForWeek[index],
+					temperatureDifference: temperatureDifferencesForWeek[index],
+					rainProbability: threeDayRainProbability[index]
+				}));
+
+				setDailyWeather(dailyData);
+				console.log(dailyData)
 			})
 			.catch(error => {
 				console.error('APIの呼び出しに失敗:', error);
 			});
 
 	}, []); // 空の依存配列を指定して、コンポーネントのマウント時にのみ実行
-
-	const weatherInformation = [
-		{ name: today,  },
-	];
-
 
 
 	return (

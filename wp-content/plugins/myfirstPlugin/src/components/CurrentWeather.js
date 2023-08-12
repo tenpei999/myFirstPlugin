@@ -9,8 +9,8 @@ const CurrentWeather = ({weather}) => {
     <article>
       <p>{weather.name}</p>
       <img src={weather.image}/>
-      <Temp />
-      <TimeZone />
+      <Temp weather={weather} />
+      <TimeZone weather={weather} />
     </article>
   )
 }

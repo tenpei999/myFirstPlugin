@@ -77,11 +77,30 @@ export default function Edit() {
 				const weatherImageForWeek = weatherCodesForWeek.map(code => getWeatherInfo(code).icon);
 				const highestTemperatureForWeek = data[1].daily.temperature_2m_max.slice(0, 7); // 本日から6日後までの天気コード
 				const lowestTemperatureForWeek = data[1].daily.temperature_2m_min.slice(0, 7); // 本日から6日後までの天気コード
-				const temperatureDifferencesForWeek = highestTemperatureForWeek.map((maxTemp, index) => {
-					const difference = maxTemp - lowestTemperatureForWeek[index];
-					return Math.ceil(difference * 10) / 10; // 小数点第二位以下を切り上げ
-				});
 
+				// 1週間分の当日の最高気温と前日の最高気温の差分
+				const highestTemperatureDifferencesForWeek = [];
+
+				for (let i = 0; i < highestTemperatureForWeek.length; i++) {
+					const todayMaxTemperature = highestTemperatureForWeek[i];
+					const yesterdayMaxTemperature = (i > 0) ? highestTemperatureForWeek[i - 1] : todayMaxTemperature;
+					const temperatureDifference = Math.ceil((todayMaxTemperature - yesterdayMaxTemperature) * 10) / 10;
+					const formattedDifference = (temperatureDifference >= 0) ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
+
+					highestTemperatureDifferencesForWeek.push(formattedDifference);
+				}
+
+				// 1週間分の当日の最低気温と前日の最低気温の差分
+				const lowestTemperatureDifferencesForWeek = [];
+
+				for (let i = 0; i < lowestTemperatureForWeek.length; i++) {
+					const todayMinTemperature = lowestTemperatureForWeek[i];
+					const yesterdayMinTemperature = (i > 0) ? lowestTemperatureForWeek[i - 1] : todayMinTemperature;
+					const temperatureDifference = Math.ceil((todayMinTemperature - yesterdayMinTemperature) * 10) / 10;
+					const formattedDifference = (temperatureDifference >= 0) ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
+
+					lowestTemperatureDifferencesForWeek.push(formattedDifference);
+				}
 				/* 時間帯毎の天気 */
 				const timeFrames = ['T00_06', 'T06_12', 'T12_18', 'T18_24'];
 				const threeDayRainProbability = data[0].forecasts.slice(0, 3).map(dayForecast => {
@@ -96,11 +115,12 @@ export default function Edit() {
 					image: weatherImageForWeek[index],
 					highestTemperature: highestTemperatureForWeek[index],
 					lowestTemperature: lowestTemperatureForWeek[index],
-					temperatureDifference: temperatureDifferencesForWeek[index],
+					maximumTemperatureComparison: highestTemperatureDifferencesForWeek[index],
+					lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index],
 					rainProbability: threeDayRainProbability[index]
 				}));
 
-				// console.log(dailyData);
+				console.log(dailyData);
 
 				// 今日と明日の天気データをセット
 				setTodayWeather(dailyData[0]);

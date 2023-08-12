@@ -58,7 +58,11 @@ const CurrentWeather = ({
   if (!weather) return null;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: weather.image
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Temp__WEBPACK_IMPORTED_MODULE_1__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_TimeZone__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Temp__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    weather: weather
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_TimeZone__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    weather: weather
+  }));
 };
 
 
@@ -77,34 +81,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 
-const Temp = () => {
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
-    class: "c-weather__temp--wrapper"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-    class: "c-weather__temp--left"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    class: "max"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    id: "todaysTempMax"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    class: "celsius"
-  }, "\u2103")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    id: "DBRTodaysMax",
-    class: "dbr-max"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-    class: "c-weather__temp--right"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    class: "min"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    id: "todaysTempMin"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    class: "celsius"
-  }, "\u2103")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    id: "DBRTodayMin",
-    class: "dbr-min"
-  })));
+const Temp = ({
+  weather
+}) => {
+  if (!weather) return null;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.highestTemperature, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "\u2103")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "\u2103")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null)));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Temp);
+{/* <ul class="c-weather__temp--wrapper">
+ <li class="c-weather__temp--left">
+  <p class="max"><span id="todaysTempMax"></span><span class="celsius">℃</span></p>
+  <p id="DBRTodaysMax" class="dbr-max"></p>
+ </li>
+ <li class="c-weather__temp--right">
+  <p class="min"><span id="todaysTempMin"></span><span class="celsius">℃</span></p>
+  <p id="DBRTodayMin" class="dbr-min"></p>
+ </li>
+ </ul> */}
 
 /***/ }),
 
@@ -286,11 +279,26 @@ function Edit() {
       const weatherImageForWeek = weatherCodesForWeek.map(code => (0,_hooks_getWeatherInfo__WEBPACK_IMPORTED_MODULE_4__["default"])(code).icon);
       const highestTemperatureForWeek = data[1].daily.temperature_2m_max.slice(0, 7); // 本日から6日後までの天気コード
       const lowestTemperatureForWeek = data[1].daily.temperature_2m_min.slice(0, 7); // 本日から6日後までの天気コード
-      const temperatureDifferencesForWeek = highestTemperatureForWeek.map((maxTemp, index) => {
-        const difference = maxTemp - lowestTemperatureForWeek[index];
-        return Math.ceil(difference * 10) / 10; // 小数点第二位以下を切り上げ
-      });
 
+      // 1週間分の当日の最高気温と前日の最高気温の差分
+      const highestTemperatureDifferencesForWeek = [];
+      for (let i = 0; i < highestTemperatureForWeek.length; i++) {
+        const todayMaxTemperature = highestTemperatureForWeek[i];
+        const yesterdayMaxTemperature = i > 0 ? highestTemperatureForWeek[i - 1] : todayMaxTemperature;
+        const temperatureDifference = Math.ceil((todayMaxTemperature - yesterdayMaxTemperature) * 10) / 10;
+        const formattedDifference = temperatureDifference >= 0 ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
+        highestTemperatureDifferencesForWeek.push(formattedDifference);
+      }
+
+      // 1週間分の当日の最低気温と前日の最低気温の差分
+      const lowestTemperatureDifferencesForWeek = [];
+      for (let i = 0; i < lowestTemperatureForWeek.length; i++) {
+        const todayMinTemperature = lowestTemperatureForWeek[i];
+        const yesterdayMinTemperature = i > 0 ? lowestTemperatureForWeek[i - 1] : todayMinTemperature;
+        const temperatureDifference = Math.ceil((todayMinTemperature - yesterdayMinTemperature) * 10) / 10;
+        const formattedDifference = temperatureDifference >= 0 ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
+        lowestTemperatureDifferencesForWeek.push(formattedDifference);
+      }
       /* 時間帯毎の天気 */
       const timeFrames = ['T00_06', 'T06_12', 'T12_18', 'T18_24'];
       const threeDayRainProbability = data[0].forecasts.slice(0, 3).map(dayForecast => {
@@ -304,11 +312,11 @@ function Edit() {
         image: weatherImageForWeek[index],
         highestTemperature: highestTemperatureForWeek[index],
         lowestTemperature: lowestTemperatureForWeek[index],
-        temperatureDifference: temperatureDifferencesForWeek[index],
+        maximumTemperatureComparison: highestTemperatureDifferencesForWeek[index],
+        lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index],
         rainProbability: threeDayRainProbability[index]
       }));
-
-      // console.log(dailyData);
+      console.log(dailyData);
 
       // 今日と明日の天気データをセット
       setTodayWeather(dailyData[0]);

@@ -1,0 +1,1424 @@
+[12-Aug-2023 05:33:47 UTC] Debugging $image_urls: 
+[12-Aug-2023 05:34:47 UTC] Debugging $image_urls: 
+[12-Aug-2023 05:44:42 UTC] Debugging $image_urls: Array
+(
+)
+
+[12-Aug-2023 05:46:56 UTC] Debugging $image_urls: Array
+(
+)
+
+[12-Aug-2023 05:48:19 UTC] Debugging $image_urls: Array
+(
+)
+
+[12-Aug-2023 05:48:19 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/images/*.{jpg,png,svg,webp}
+[12-Aug-2023 05:49:11 UTC] Debugging $image_urls: Array
+(
+)
+
+[12-Aug-2023 05:49:11 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img*.{jpg,png,svg,webp}
+[12-Aug-2023 05:49:48 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 05:49:48 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 05:56:53 UTC] PHP Notice:  パス /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/build/block.json の JSON ファイルのデコード中にエラーが発生しました: Syntax error in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 4558
+[12-Aug-2023 05:57:35 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 05:57:35 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 06:51:19 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 06:51:19 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 06:53:53 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 06:53:53 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 06:54:59 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 06:54:59 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 06:55:37 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 06:55:37 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 06:57:04 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 06:57:04 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 06:58:04 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 06:58:04 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 09:18:06 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 09:18:06 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 09:18:08 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 09:18:08 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 09:18:10 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 09:18:10 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 09:30:29 UTC] Debugging $image_urls: Array
+(
+)
+
+[12-Aug-2023 09:30:29 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/../src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 09:30:53 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 09:30:53 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:01:58 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:01:58 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:04:22 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:04:22 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:07:08 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:07:08 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:07:43 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:07:43 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:08:17 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:08:17 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:08:20 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:08:20 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:09:52 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:09:52 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:10:30 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:10:30 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:11:01 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:11:01 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:11:04 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:11:04 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:11:06 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:11:06 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:11:57 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:11:57 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:12:27 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:12:27 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:13:40 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:13:40 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:14:28 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:14:28 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:21:50 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:21:50 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:22:39 UTC] Debugging $image_urls: Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 10:22:39 UTC] Debugging image search path: /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/src/static/img/*.{jpg,png,svg,webp}
+[12-Aug-2023 10:25:43 UTC] PHP Warning:  Undefined variable $image_urls in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 56
+[12-Aug-2023 10:25:43 UTC] Debugging $image_urls: 
+[12-Aug-2023 10:28:20 UTC] Before wp_localize_script $handle: index - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 10:28:20 UTC] After wp_localize_script $handle: index - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 10:29:33 UTC] Before wp_localize_script $handle: index - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 10:29:33 UTC] After wp_localize_script $handle: index - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 10:37:41 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 10:37:41 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 10:39:46 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 10:39:46 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 10:42:05 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 10:42:05 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 10:44:12 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 10:44:12 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 10:54:05 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 10:54:05 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:49:00 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:49:00 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:49:04 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:49:04 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:54:20 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:54:20 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:54:21 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:54:21 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:55:14 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:55:14 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:56:34 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:56:34 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:57:02 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:57:02 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:57:49 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:57:49 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:58:36 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:58:36 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:59:25 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:59:25 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:59:27 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 11:59:27 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:00:02 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:00:02 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:00:28 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:00:28 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:00:50 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:00:50 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:01:13 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:01:13 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:03:05 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:03:05 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:03:42 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:03:42 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:04:40 UTC] Before wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:04:40 UTC] After wp_localize_script $handle: editorScript - myPluginData: Array
+(
+    [imageUrls] => Array
+        (
+            [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+            [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+            [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+            [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+            [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+            [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+            [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+            [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+        )
+
+)
+
+[12-Aug-2023 12:16:18 UTC] PHP Parse error:  Unclosed '{' on line 31 in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:16:21 UTC] PHP Parse error:  Unclosed '{' on line 31 in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:16:21 UTC] PHP Notice:  関数 is_embed が<strong>誤って</strong>呼び出されました。条件付きクエリータグは、クエリーが実行される前には機能しません。それ以前では、常に false を返します。 詳しくは <a href="https://ja.wordpress.org/support/article/debugging-in-wordpress/">WordPress のデバッグ</a>をご覧ください。 (このメッセージはバージョン 3.1.0 で追加されました) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 12:16:21 UTC] PHP Notice:  関数 is_search が<strong>誤って</strong>呼び出されました。条件付きクエリータグは、クエリーが実行される前には機能しません。それ以前では、常に false を返します。 詳しくは <a href="https://ja.wordpress.org/support/article/debugging-in-wordpress/">WordPress のデバッグ</a>をご覧ください。 (このメッセージはバージョン 3.1.0 で追加されました) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 12:16:22 UTC] PHP Parse error:  Unclosed '{' on line 31 in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:16:22 UTC] PHP Notice:  関数 is_embed が<strong>誤って</strong>呼び出されました。条件付きクエリータグは、クエリーが実行される前には機能しません。それ以前では、常に false を返します。 詳しくは <a href="https://ja.wordpress.org/support/article/debugging-in-wordpress/">WordPress のデバッグ</a>をご覧ください。 (このメッセージはバージョン 3.1.0 で追加されました) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 12:16:22 UTC] PHP Notice:  関数 is_search が<strong>誤って</strong>呼び出されました。条件付きクエリータグは、クエリーが実行される前には機能しません。それ以前では、常に false を返します。 詳しくは <a href="https://ja.wordpress.org/support/article/debugging-in-wordpress/">WordPress のデバッグ</a>をご覧ください。 (このメッセージはバージョン 3.1.0 で追加されました) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 12:43:11 UTC] myPluginData has been localized.
+[12-Aug-2023 12:45:01 UTC] myPluginData has been localized.
+[12-Aug-2023 12:55:04 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 51
+[12-Aug-2023 12:55:04 UTC] 
+[12-Aug-2023 12:55:36 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:55:36 UTC] 
+[12-Aug-2023 12:55:38 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:55:38 UTC] 
+[12-Aug-2023 12:55:40 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:55:40 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:55:40 UTC] 
+[12-Aug-2023 12:55:40 UTC] 
+[12-Aug-2023 12:55:40 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:55:40 UTC] 
+[12-Aug-2023 12:55:40 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:55:40 UTC] 
+[12-Aug-2023 12:55:41 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:55:41 UTC] 
+[12-Aug-2023 12:55:41 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:55:41 UTC] 
+[12-Aug-2023 12:55:43 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:55:43 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:55:43 UTC] 
+[12-Aug-2023 12:55:43 UTC] 
+[12-Aug-2023 12:55:43 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:55:43 UTC] 
+[12-Aug-2023 12:56:30 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "myPluginData" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php:53
+Stack trace:
+#0 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-settings.php(453): include_once()
+#1 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-config.php(104): require_once('/Users/tsuruoka...')
+#2 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-load.php(50): require_once('/Users/tsuruoka...')
+#3 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-admin/admin-ajax.php(22): require_once('/Users/tsuruoka...')
+#4 {main}
+  thrown in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:56:31 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "myPluginData" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php:53
+Stack trace:
+#0 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-settings.php(453): include_once()
+#1 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-config.php(104): require_once('/Users/tsuruoka...')
+#2 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-load.php(50): require_once('/Users/tsuruoka...')
+#3 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-admin/admin.php(34): require_once('/Users/tsuruoka...')
+#4 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-admin/post.php(12): require_once('/Users/tsuruoka...')
+#5 {main}
+  thrown in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:56:31 UTC] PHP Notice:  関数 is_embed が<strong>誤って</strong>呼び出されました。条件付きクエリータグは、クエリーが実行される前には機能しません。それ以前では、常に false を返します。 詳しくは <a href="https://ja.wordpress.org/support/article/debugging-in-wordpress/">WordPress のデバッグ</a>をご覧ください。 (このメッセージはバージョン 3.1.0 で追加されました) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 12:56:31 UTC] PHP Notice:  関数 is_search が<strong>誤って</strong>呼び出されました。条件付きクエリータグは、クエリーが実行される前には機能しません。それ以前では、常に false を返します。 詳しくは <a href="https://ja.wordpress.org/support/article/debugging-in-wordpress/">WordPress のデバッグ</a>をご覧ください。 (このメッセージはバージョン 3.1.0 で追加されました) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 12:56:31 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "myPluginData" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php:53
+Stack trace:
+#0 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-settings.php(453): include_once()
+#1 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-config.php(104): require_once('/Users/tsuruoka...')
+#2 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-load.php(50): require_once('/Users/tsuruoka...')
+#3 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-blog-header.php(13): require_once('/Users/tsuruoka...')
+#4 /Users/tsuruokatenpei/Local Sites/hoge/app/public/index.php(17): require('/Users/tsuruoka...')
+#5 {main}
+  thrown in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:56:31 UTC] PHP Notice:  関数 is_embed が<strong>誤って</strong>呼び出されました。条件付きクエリータグは、クエリーが実行される前には機能しません。それ以前では、常に false を返します。 詳しくは <a href="https://ja.wordpress.org/support/article/debugging-in-wordpress/">WordPress のデバッグ</a>をご覧ください。 (このメッセージはバージョン 3.1.0 で追加されました) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 12:56:31 UTC] PHP Notice:  関数 is_search が<strong>誤って</strong>呼び出されました。条件付きクエリータグは、クエリーが実行される前には機能しません。それ以前では、常に false を返します。 詳しくは <a href="https://ja.wordpress.org/support/article/debugging-in-wordpress/">WordPress のデバッグ</a>をご覧ください。 (このメッセージはバージョン 3.1.0 で追加されました) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 12:56:44 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:56:44 UTC] 
+[12-Aug-2023 12:56:46 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:56:46 UTC] 
+[12-Aug-2023 12:56:46 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:56:46 UTC] 
+[12-Aug-2023 12:56:46 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:56:46 UTC] 
+[12-Aug-2023 12:56:46 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:56:46 UTC] 
+[12-Aug-2023 12:56:46 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:56:46 UTC] 
+[12-Aug-2023 12:56:47 UTC] PHP Warning:  Undefined variable $myPluginData in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/myfirstPlugin.php on line 53
+[12-Aug-2023 12:56:47 UTC] 
+[12-Aug-2023 12:57:51 UTC] Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 12:57:51 UTC] myPluginData has been localized.
+[12-Aug-2023 13:12:55 UTC] Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 13:12:55 UTC] myPluginData has been localized.
+[12-Aug-2023 13:13:32 UTC] Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 13:13:32 UTC] myPluginData has been localized.
+[12-Aug-2023 13:13:57 UTC] Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 13:13:57 UTC] myPluginData has been localized.
+[12-Aug-2023 13:16:42 UTC] Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 13:16:42 UTC] myPluginData has been localized.
+[12-Aug-2023 13:18:13 UTC] Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 13:18:13 UTC] myPluginData has been localized.
+[12-Aug-2023 13:29:26 UTC] Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 13:29:26 UTC] myPluginData has been localized.
+[12-Aug-2023 13:36:38 UTC] Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 13:36:38 UTC] myPluginData has been localized.
+[12-Aug-2023 13:42:06 UTC] Array
+(
+    [0] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/100.svg
+    [1] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/101.svg
+    [2] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/200.svg
+    [3] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/202.svg
+    [4] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/300.svg
+    [5] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/302.svg
+    [6] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/400.svg
+    [7] => http://hoge.local/wp-content/plugins/myfirstPlugin/images/img_loader.svg
+)
+
+[12-Aug-2023 13:42:06 UTC] myPluginData has been localized.
+[12-Aug-2023 14:56:12 UTC] MY_PLUGIN_IMAGE_PATH: http://hoge.local/wp-content/plugins/myfirstPlugin/images/
+[12-Aug-2023 14:58:23 UTC] MY_PLUGIN_IMAGE_PATH: http://hoge.local/wp-content/plugins/myfirstPlugin/images/
+[12-Aug-2023 14:58:55 UTC] MY_PLUGIN_IMAGE_PATH: http://hoge.local/wp-content/plugins/myfirstPlugin/images/
+[12-Aug-2023 14:59:16 UTC] MY_PLUGIN_IMAGE_PATH: http://hoge.local/wp-content/plugins/myfirstPlugin/images/
+[12-Aug-2023 15:00:22 UTC] MY_PLUGIN_IMAGE_PATH: http://hoge.local/wp-content/plugins/myfirstPlugin/images/
+[12-Aug-2023 15:02:08 UTC] MY_PLUGIN_IMAGE_PATH: http://hoge.local/wp-content/plugins/myfirstPlugin/images/
+[12-Aug-2023 15:02:52 UTC] MY_PLUGIN_IMAGE_PATH: http://hoge.local/wp-content/plugins/myfirstPlugin/images/
+[12-Aug-2023 15:03:15 UTC] MY_PLUGIN_IMAGE_PATH: http://hoge.local/wp-content/plugins/myfirstPlugin/images/
+[12-Aug-2023 15:03:37 UTC] MY_PLUGIN_IMAGE_PATH: http://hoge.local/wp-content/plugins/myfirstPlugin/images/
+[12-Aug-2023 15:05:35 UTC] const MY_PLUGIN_IMAGE_PATH = "http://hoge.local/wp-content/plugins/myfirstPlugin/images/";
+[12-Aug-2023 15:06:02 UTC] const MY_PLUGIN_IMAGE_PATH = "http://hoge.local/wp-content/plugins/myfirstPlugin/images/";
+[12-Aug-2023 15:06:25 UTC] const MY_PLUGIN_IMAGE_PATH = "http://hoge.local/wp-content/plugins/myfirstPlugin/images/";
+[12-Aug-2023 15:08:06 UTC] Inline Script Contents: const MY_PLUGIN_IMAGE_PATH = "http://hoge.local/wp-content/plugins/myfirstPlugin/images/";
+[12-Aug-2023 15:14:34 UTC] PHP Notice:  Function wp_add_inline_script was called <strong>incorrectly</strong>. Scripts and styles should not be registered or enqueued until the <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code>, or <code>login_enqueue_scripts</code> hooks. This notice was triggered by the <code>editorScript</code> handle. Please see <a href="https://wordpress.org/documentation/article/debugging-in-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 3.3.0.) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 15:14:35 UTC] PHP Notice:  Function wp_add_inline_script was called <strong>incorrectly</strong>. Scripts and styles should not be registered or enqueued until the <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code>, or <code>login_enqueue_scripts</code> hooks. This notice was triggered by the <code>editorScript</code> handle. Please see <a href="https://wordpress.org/documentation/article/debugging-in-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 3.3.0.) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 15:14:38 UTC] PHP Notice:  Function wp_add_inline_script was called <strong>incorrectly</strong>. Scripts and styles should not be registered or enqueued until the <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code>, or <code>login_enqueue_scripts</code> hooks. This notice was triggered by the <code>editorScript</code> handle. Please see <a href="https://wordpress.org/documentation/article/debugging-in-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 3.3.0.) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 15:14:38 UTC] PHP Notice:  Function wp_add_inline_script was called <strong>incorrectly</strong>. Scripts and styles should not be registered or enqueued until the <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code>, or <code>login_enqueue_scripts</code> hooks. This notice was triggered by the <code>editorScript</code> handle. Please see <a href="https://wordpress.org/documentation/article/debugging-in-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 3.3.0.) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 15:14:38 UTC] PHP Notice:  Function wp_add_inline_script was called <strong>incorrectly</strong>. Scripts and styles should not be registered or enqueued until the <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code>, or <code>login_enqueue_scripts</code> hooks. This notice was triggered by the <code>editorScript</code> handle. Please see <a href="https://wordpress.org/documentation/article/debugging-in-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 3.3.0.) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 15:14:39 UTC] PHP Notice:  Function wp_add_inline_script was called <strong>incorrectly</strong>. Scripts and styles should not be registered or enqueued until the <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code>, or <code>login_enqueue_scripts</code> hooks. This notice was triggered by the <code>editorScript</code> handle. Please see <a href="https://wordpress.org/documentation/article/debugging-in-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 3.3.0.) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 15:14:39 UTC] PHP Notice:  Function wp_add_inline_script was called <strong>incorrectly</strong>. Scripts and styles should not be registered or enqueued until the <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code>, or <code>login_enqueue_scripts</code> hooks. This notice was triggered by the <code>editorScript</code> handle. Please see <a href="https://wordpress.org/documentation/article/debugging-in-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 3.3.0.) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 15:14:39 UTC] PHP Notice:  Function wp_add_inline_script was called <strong>incorrectly</strong>. Scripts and styles should not be registered or enqueued until the <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code>, or <code>login_enqueue_scripts</code> hooks. This notice was triggered by the <code>editorScript</code> handle. Please see <a href="https://wordpress.org/documentation/article/debugging-in-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 3.3.0.) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 15:14:39 UTC] PHP Notice:  Function wp_add_inline_script was called <strong>incorrectly</strong>. Scripts and styles should not be registered or enqueued until the <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code>, or <code>login_enqueue_scripts</code> hooks. This notice was triggered by the <code>editorScript</code> handle. Please see <a href="https://wordpress.org/documentation/article/debugging-in-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 3.3.0.) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 15:14:43 UTC] PHP Notice:  Function wp_add_inline_script was called <strong>incorrectly</strong>. Scripts and styles should not be registered or enqueued until the <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code>, or <code>login_enqueue_scripts</code> hooks. This notice was triggered by the <code>editorScript</code> handle. Please see <a href="https://wordpress.org/documentation/article/debugging-in-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 3.3.0.) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 15:14:43 UTC] PHP Notice:  Function wp_add_inline_script was called <strong>incorrectly</strong>. Scripts and styles should not be registered or enqueued until the <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code>, or <code>login_enqueue_scripts</code> hooks. This notice was triggered by the <code>editorScript</code> handle. Please see <a href="https://wordpress.org/documentation/article/debugging-in-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 3.3.0.) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865
+[12-Aug-2023 15:14:44 UTC] PHP Notice:  Function wp_add_inline_script was called <strong>incorrectly</strong>. Scripts and styles should not be registered or enqueued until the <code>wp_enqueue_scripts</code>, <code>admin_enqueue_scripts</code>, or <code>login_enqueue_scripts</code> hooks. This notice was triggered by the <code>editorScript</code> handle. Please see <a href="https://wordpress.org/documentation/article/debugging-in-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 3.3.0.) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5865

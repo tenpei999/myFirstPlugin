@@ -54,7 +54,9 @@ export default function Edit() {
 
 	const [data1, setData1] = useState(null);
 	const [data2, setData2] = useState(null);
-	const [dailyWeather, setDailyWeather] = useState([]);
+	const [todayWeather, setTodayWeather] = useState();
+	const [tomorrowWeather, setTomorrowWeather] = useState();
+	const [weeklyWeather, setWeeklyWeather] = useState([]);
 
 	useEffect(() => {
 		// 1つ目のAPIリクエスト
@@ -89,6 +91,7 @@ export default function Edit() {
 				});
 
 				const dailyData = weatherNamesForWeek.map((name, index) => ({
+					day: datesForWeek[index],
 					name,
 					image: weatherImageForWeek[index],
 					highestTemperature: highestTemperatureForWeek[index],
@@ -97,8 +100,14 @@ export default function Edit() {
 					rainProbability: threeDayRainProbability[index]
 				}));
 
-				setDailyWeather(dailyData);
-				console.log(dailyData)
+				// console.log(dailyData);
+
+				// 今日と明日の天気データをセット
+				setTodayWeather(dailyData[0]);
+				setTomorrowWeather(dailyData[1]);
+
+				// 週間の天気データをセット
+				setWeeklyWeather(dailyData.slice(2));
 			})
 			.catch(error => {
 				console.error('APIの呼び出しに失敗:', error);
@@ -106,13 +115,27 @@ export default function Edit() {
 
 	}, []); // 空の依存配列を指定して、コンポーネントのマウント時にのみ実行
 
+	// 今日、明日、週間の天気データを小コンポーネントに渡す
+	const TodayWeatherComponentProps = {
+		weather: todayWeather,
+	};
+
+	const TomorrowWeatherComponentProps = {
+		weather: tomorrowWeather,
+	};
+
+	const WeeklyWeatherComponentProps = {
+		weather: weeklyWeather,
+	};
 
 	return (
 		<>
 			<div {...useBlockProps()}>
-				<CurrentWeather apiData1={data1} apiData2={data2} />
-				<CurrentWeather apiData1={data1} apiData2={data2} />
-				<WeekWeather apiData1={data1} apiData2={data2} />
+				<CurrentWeather {...TodayWeatherComponentProps} />
+				<CurrentWeather  {...TomorrowWeatherComponentProps} />
+				{weeklyWeather.map((weather, index) => (
+					<WeekWeather key={index} weather={weather} />
+				))}
 			</div>
 		</>
 	);

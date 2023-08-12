@@ -52,19 +52,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const CurrentWeather = props => {
-  const {
-    apiData1,
-    apiData2
-  } = props;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
-    class: "c-weather is-today"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    id: "todaysWeather",
-    class: "c-weather__weather"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    id: "todaysWeatherImg",
-    class: "c-weather__img"
+const CurrentWeather = ({
+  weather
+}) => {
+  if (!weather) return null;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: weather.image
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Temp__WEBPACK_IMPORTED_MODULE_1__["default"], null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_TimeZone__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
@@ -186,7 +179,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _weekcell__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ weekcell */ "./src/components/ weekcell.js");
 
 
-const WeekWeather = () => {
+const WeekWeather = ({
+  weather
+}) => {
+  if (!weather) return null;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
     class: "p-weather--week u-pb80 u-pt80"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -271,7 +267,9 @@ const datesForWeek = getDates();
 function Edit() {
   const [data1, setData1] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [data2, setData2] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const [dailyWeather, setDailyWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [todayWeather, setTodayWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)();
+  const [tomorrowWeather, setTomorrowWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)();
+  const [weeklyWeather, setWeeklyWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     // 1つ目のAPIリクエスト
     const request1 = fetch('https://weather.tsukumijima.net/api/forecast/city/130010').then(response => response.json());
@@ -301,6 +299,7 @@ function Edit() {
         });
       });
       const dailyData = weatherNamesForWeek.map((name, index) => ({
+        day: datesForWeek[index],
         name,
         image: weatherImageForWeek[index],
         highestTemperature: highestTemperatureForWeek[index],
@@ -308,25 +307,40 @@ function Edit() {
         temperatureDifference: temperatureDifferencesForWeek[index],
         rainProbability: threeDayRainProbability[index]
       }));
-      setDailyWeather(dailyData);
-      console.log(dailyData);
+
+      // console.log(dailyData);
+
+      // 今日と明日の天気データをセット
+      setTodayWeather(dailyData[0]);
+      setTomorrowWeather(dailyData[1]);
+
+      // 週間の天気データをセット
+      setWeeklyWeather(dailyData.slice(2));
     }).catch(error => {
       console.error('APIの呼び出しに失敗:', error);
     });
   }, []); // 空の依存配列を指定して、コンポーネントのマウント時にのみ実行
 
+  // 今日、明日、週間の天気データを小コンポーネントに渡す
+  const TodayWeatherComponentProps = {
+    weather: todayWeather
+  };
+  const TomorrowWeatherComponentProps = {
+    weather: tomorrowWeather
+  };
+  const WeeklyWeatherComponentProps = {
+    weather: weeklyWeather
+  };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)()
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_5__.CurrentWeather, {
-    apiData1: data1,
-    apiData2: data2
+    ...TodayWeatherComponentProps
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_5__.CurrentWeather, {
-    apiData1: data1,
-    apiData2: data2
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeathew__WEBPACK_IMPORTED_MODULE_6__.WeekWeather, {
-    apiData1: data1,
-    apiData2: data2
-  })));
+    ...TomorrowWeatherComponentProps
+  }), weeklyWeather.map((weather, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeathew__WEBPACK_IMPORTED_MODULE_6__.WeekWeather, {
+    key: index,
+    weather: weather
+  }))));
 }
 
 /***/ }),
@@ -362,76 +376,76 @@ const getWeatherInfo = weatherCode => {
   if (weatherCode === 0) {
     return {
       label: "快晴",
-      icon: "./static/img/100.svg"
+      icon: pluginImagePath + '100.svg'
     };
   }
   if (weatherCode === 1) {
     return {
       label: "晴れ",
-      icon: "./static/img/100.svg"
+      icon: pluginImagePath + '100.svg'
     };
   }
   // 2 : Partly Cloudy
   if (weatherCode === 2) {
     return {
       label: "一部曇",
-      icon: "./static/img/101.svg"
+      icon: pluginImagePath + '101.svg'
     };
   }
   // 3 : Overcast
   if (weatherCode === 3) {
     return {
       label: "曇り",
-      icon: "./static/img/200.svg"
+      icon: pluginImagePath + '200.svg'
     };
   }
   // 45, 48 : Fog And Depositing Rime Fog
   if (weatherCode <= 49) {
     return {
       label: "霧",
-      icon: "./static/img/200.svg"
+      icon: pluginImagePath + '200.svg'
     };
   }
   // 51, 53, 55 : Drizzle Light, Moderate And Dense Intensity ・ 56, 57 : Freezing Drizzle Light And Dense Intensity
   if (weatherCode <= 59) {
     return {
       label: "霧雨",
-      icon: "./static/img/202.svg"
+      icon: pluginImagePath + '202.svg'
     };
   }
   // 61, 63, 65 : Rain Slight, Moderate And Heavy Intensity ・66, 67 : Freezing Rain Light And Heavy Intensity
   if (weatherCode <= 69) {
     return {
       label: "雨",
-      icon: "./static/img/300.svg"
+      icon: pluginImagePath + '300.svg'
     };
   }
   // 71, 73, 75 : Snow Fall Slight, Moderate And Heavy Intensity ・ 77 : Snow Grains
   if (weatherCode <= 79) {
     return {
       label: "雪",
-      icon: "./static/img/400.svg"
+      icon: pluginImagePath + '400.svg'
     };
   }
   // 80, 81, 82 : Rain Showers Slight, Moderate And Violent
   if (weatherCode <= 84) {
     return {
       label: "俄か雨",
-      icon: "./static/img/302.svg"
+      icon: pluginImagePath + '302.svg'
     };
   }
   // 85, 86 : Snow Showers Slight And Heavy
   if (weatherCode <= 94) {
     return {
       label: "雪・雹",
-      icon: "./static/img/400.svg"
+      icon: pluginImagePath + '400.svg'
     };
   }
   // 95 : Thunderstorm Slight Or Moderate ・ 96, 99 : Thunderstorm With Slight And Heavy Hail
   if (weatherCode <= 99) {
     return {
       label: "雷雨",
-      icon: "./static/img/300.svg"
+      icon: pluginImagePath + '300.svg'
     };
   }
   // その他はエラーとする

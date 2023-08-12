@@ -1,14 +1,14 @@
-import { createElement } from '@wordpress/element';
 import Temp from "./Temp";
 import TimeZone from "./TimeZone";
 
-const CurrentWeather = (props) => {
+const CurrentWeather = ({weather}) => {
 
-  const { apiData1, apiData2 } = props;
+  if (!weather) return null;
+
   return (
-    <article class="c-weather is-today">
-      <p id="todaysWeather" class="c-weather__weather"></p>
-      <span id="todaysWeatherImg" class="c-weather__img"></span>
+    <article>
+      <p>{weather.name}</p>
+      <img src={weather.image}/>
       <Temp />
       <TimeZone />
     </article>

@@ -1,7 +1,10 @@
 import { createElement } from '@wordpress/element';
 import WeekCell from './ weekcell';
 
-const WeekWeather = () => {
+const WeekWeather = ({weather}) => {
+
+  if (!weather) return null;
+
   return (
     <section class="p-weather--week u-pb80 u-pt80">
       <div class="l-inner">

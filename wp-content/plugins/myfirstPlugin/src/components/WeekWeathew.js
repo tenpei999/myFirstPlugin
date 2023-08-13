@@ -1,20 +1,13 @@
-import { createElement } from '@wordpress/element';
-import WeekCell from './ weekcell';
+import WeekCell from './Weekcell';
 
-const WeekWeather = ({weather}) => {
+const WeekWeather = ({ weather }) => {
 
   if (!weather) return null;
 
   return (
     <section class="p-weather--week u-pb80 u-pt80">
       <div class="l-inner">
-        <ul class="p-weather--week__container">
-          <WeekCell />
-          <WeekCell />
-          <WeekCell />
-          <WeekCell />
-          <WeekCell />
-        </ul>
+        <WeekCell weather={weather}/>
       </div>
     </section>
   )

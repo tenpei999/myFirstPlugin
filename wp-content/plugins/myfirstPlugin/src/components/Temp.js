@@ -1,16 +1,16 @@
-const Temp = ({weather}) => {
+const Temp = ({ weather }) => {
 
   if (!weather) return null;
 
   return (
-    <ul>
+    <ul className="temp">
       <li>
-        <p>{weather.highestTemperature}<span></span><span>℃</span></p>
-        <p></p>
+        <p>{weather.highestTemperature}<span>℃</span></p>
+        <p>{weather.maximumTemperatureComparison}</p>
       </li>
       <li>
-        <p><span></span><span>℃</span></p>
-        <p></p>
+        <p>{weather.lowestTemperature}<span>℃</span></p>
+        <p>{weather.lowestTemperatureComparison}</p>
       </li>
     </ul>
   )

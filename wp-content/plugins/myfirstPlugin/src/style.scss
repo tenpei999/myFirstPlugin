@@ -11,7 +11,71 @@
 	font-weight: 700;
 }
 
-.wp-block-create-block-gutenpride {
-	font-family: Gilbert, sans-serif;
-	font-size: 64px;
+
+.my-first-plugin {
+
+	$tablet-breakpoint: 800px;
+	$desktop-breakpoint: 1200px;
+
+	ul {
+		padding-inline-start: 0;
+		padding-left: 0;
+	}
+
+	li {
+		list-style: none;
+	}
+
+	.wp-block-create-block-gutenpride {
+		font-family: Gilbert, sans-serif;
+		font-size: 64px;
+	}
+
+	.layout {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		@media screen and (min-width: $tablet-breakpoint) {
+			flex-direction: row;
+		}
+	}
+
+	.block {
+
+		&--current,
+		&--day {
+			width: 100%;
+			text-align: center;
+			border: solid #888;
+			border-radius: 10px;
+		}
+
+		&--current {
+
+			@media screen and (min-width: $tablet-breakpoint) {
+				width: 50%;
+			}
+		}
+
+		&--weekly {
+			@media screen and (min-width: $tablet-breakpoint) {
+				border: solid #888;
+				border-radius: 10px;
+			}
+		}
+
+		&--day {
+			@media screen and (min-width: $tablet-breakpoint) {
+				border: none;
+			}
+		}
+	}
+
+	.temp,
+	.time-zone {
+		display: flex;
+		justify-content: center;
+		gap: 5px;
+	}
 }

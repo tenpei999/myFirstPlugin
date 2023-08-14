@@ -304,6 +304,65 @@ function Edit() {
 
 /***/ }),
 
+/***/ "./src/hooks/dayWithHoloday.js":
+/*!*************************************!*\
+  !*** ./src/hooks/dayWithHoloday.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const dayWithHoliday = async () => {
+  async function getHolidays() {
+    const response = await fetch('https://holidays-jp.github.io/api/v1/date.json');
+    const holidays = await response.json();
+    return holidays;
+  }
+  function getDateRangeArray(startDate, endDate) {
+    const dateArray = [];
+    let currentDate = new Date(startDate);
+    while (currentDate <= endDate) {
+      dateArray.push(new Date(currentDate));
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    return dateArray;
+  }
+  async function getOneWeekDatesWithHolidays() {
+    const today = new Date();
+    const sixDaysLater = new Date(today);
+    sixDaysLater.setDate(today.getDate() + 6);
+    const oneWeekDates = getDateRangeArray(today, sixDaysLater);
+
+    // Get the holidays
+    const holidays = await getHolidays();
+
+    // Create an array of dates with holidays data included
+    const oneWeekDatesWithHolidays = oneWeekDates.map(date => {
+      const weekDays = ["日", "月", "火", "水", "木", "金", "土"];
+      const dayOfWeek = weekDays[date.getDay()];
+      const formattedDate = `${String(date.getMonth() + 1)}月${String(date.getDate())}日(${dayOfWeek})`;
+      return {
+        date: formattedDate,
+        isHoliday: !!holidays[formattedDate],
+        // this will be true if the date is a holiday, otherwise false
+        holidayName: holidays[formattedDate] || null,
+        // this will have the holiday name if the date is a holiday, otherwise null
+        isSaturday: date.getDay() === 6,
+        isSunday: date.getDate() === 0
+      };
+    });
+
+    // console.log(oneWeekDatesWithHolidays);
+    return oneWeekDatesWithHolidays;
+  }
+  return await getOneWeekDatesWithHolidays();
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dayWithHoliday);
+
+/***/ }),
+
 /***/ "./src/hooks/getWeatherInfo.js":
 /*!*************************************!*\
   !*** ./src/hooks/getWeatherInfo.js ***!
@@ -429,20 +488,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _getWeatherInfo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getWeatherInfo */ "./src/hooks/getWeatherInfo.js");
+/* harmony import */ var _dayWithHoloday__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dayWithHoloday */ "./src/hooks/dayWithHoloday.js");
+
 
 const weatherObject = (setTodayWeather, setTomorrowWeather, setWeeklyWeather) => {
-  /*日付
+  /*日
   -----------------------*/
-  const getDates = () => {
-    const dates = [];
-    for (let i = 0; i <= 6; i++) {
-      const currentDate = new Date();
-      currentDate.setDate(currentDate.getDate() + i);
-      const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // 0から始まるので1を加算
-      const day = String(currentDate.getDate()).padStart(2, '0');
-      dates.push(`${month}/${day}`);
-    }
-    return dates;
+  const getDates = async () => {
+    return await (0,_dayWithHoloday__WEBPACK_IMPORTED_MODULE_1__["default"])();
   };
   const datesForWeek = getDates();
 
@@ -507,8 +560,7 @@ const weatherObject = (setTodayWeather, setTomorrowWeather, setWeeklyWeather) =>
       lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index],
       rainProbability: threeDayRainProbability[index]
     }));
-
-    // console.log(dailyData);
+    console.log(dailyData);
     // 今日と明日の天気データをセット
     setTodayWeather(dailyData[1]);
     setTomorrowWeather(dailyData[2]);

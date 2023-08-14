@@ -1,4 +1,5 @@
 import getWeatherInfo from "./getWeatherInfo";
+import dayWithHoliday from "./dayWithHoloday";
 
 const weatherObject = (
   setTodayWeather,
@@ -6,22 +7,12 @@ const weatherObject = (
   setWeeklyWeather,
 ) => {
 
-    /*日付
-  -----------------------*/
-  const getDates = () => {
-    const dates = [];
-
-    for (let i = 0; i <= 6; i++) {
-      const currentDate = new Date();
-      currentDate.setDate(currentDate.getDate() + i);
-
-      const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // 0から始まるので1を加算
-      const day = String(currentDate.getDate()).padStart(2, '0');
-
-      dates.push(`${month}/${day}`);
-    }
-    return dates;
+  /*日
+-----------------------*/
+  const getDates = async () => {
+    return await dayWithHoliday();
   };
+  
   const datesForWeek = getDates();
 
   // 1つ目のAPIリクエスト
@@ -93,7 +84,7 @@ const weatherObject = (
         rainProbability: threeDayRainProbability[index]
       }));
 
-      // console.log(dailyData);
+      console.log(dailyData);
       // 今日と明日の天気データをセット
       setTodayWeather(dailyData[1]);
       setTomorrowWeather(dailyData[2]);
@@ -104,10 +95,12 @@ const weatherObject = (
 
       // console.log("highestTemperatureForWeek:", highestTemperatureForWeek);
       // console.log("lowestTemperatureForWeek:", lowestTemperatureForWeek);
+
     })
     .catch(error => {
       console.error('APIの呼び出しに失敗:', error);
     });
+
 }
 
 export default weatherObject;

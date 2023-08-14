@@ -9,7 +9,7 @@ const CurrentWeather = ({ weather, title }) => {
   return (
     <article className="block--current">
       <h3>{title}</h3>
-      <h4>{weather.day}</h4>
+      <h4>{weather.day.date}</h4>
       <p>{weather.name}</p>
       <img src={weather.image} />
       <Temp weather={weather} />

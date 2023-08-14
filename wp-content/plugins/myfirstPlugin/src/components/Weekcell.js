@@ -9,7 +9,7 @@ const WeekCell = ({ weather }) => {
       {weather.slice(0, 6).map((dayWeather, index) => (
         <li key={index} className="block--day">
           <h4 id={`dayAfterTommorow_${index}`} class="c-title__weather">
-            {dayWeather.day}
+            {dayWeather.day.date}
           </h4>
           <p id={`dayAfterTommorowWeather_${index}`} class="c-weather__weather">
             {dayWeather.name} {/* 天気名 */}

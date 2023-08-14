@@ -39,7 +39,7 @@ const dayWithHoliday = async () => {
         isHoliday: !!holidays[formattedDate],  // this will be true if the date is a holiday, otherwise false
         holidayName: holidays[formattedDate] || null,  // this will have the holiday name if the date is a holiday, otherwise null
         isSaturday: date.getDay() === 6,
-        isSunday: date.getDate() === 0
+        isSunday: date.getDay() === 0,
       };
     });
 

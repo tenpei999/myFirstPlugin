@@ -26,10 +26,23 @@ const CurrentWeather = ({
   title
 }) => {
   if (!weather) return null;
+  let textColor;
+  if (weather.day.isHoliday || weather.day.isSunday) {
+    textColor = "red";
+  } else if (weather.day.isSaturday) {
+    textColor = "aqua";
+  }
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
     className: "block--current"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, weather.day.date), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: weather.image
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
+    style: {
+      color: textColor
+    }
+  }, weather.day.date), weather.day.isHoliday && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    id: `dayAfterTommorow_${index}`
+  }, weather.day.holidayName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: weather.image,
+    alt: "weather icon"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Temp__WEBPACK_IMPORTED_MODULE_1__["default"], {
     weather: weather
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_TimeZone__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -134,9 +147,9 @@ const TimeZone = ({
 
 /***/ }),
 
-/***/ "./src/components/WeekWeathew.js":
+/***/ "./src/components/WeekWeather.js":
 /*!***************************************!*\
-  !*** ./src/components/WeekWeathew.js ***!
+  !*** ./src/components/WeekWeather.js ***!
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -188,24 +201,37 @@ const WeekCell = ({
   if (!weather) return null;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: "layout block--weekly"
-  }, weather.slice(0, 6).map((dayWeather, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-    key: index,
-    className: "block--day"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
-    id: `dayAfterTommorow_${index}`,
-    class: "c-title__weather"
-  }, dayWeather.day.date), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    id: `dayAfterTommorowWeather_${index}`,
-    class: "c-weather__weather"
-  }, dayWeather.name, " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-    id: `dayAfterTommorowWeatherImg_${index}`,
-    class: "c-weather__img"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: dayWeather.image,
-    alt: "Weather Icon"
-  })), dayWeather.highestTemperature && dayWeather.lowestTemperature && dayWeather.maximumTemperatureComparison && dayWeather.lowestTemperatureComparison && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Temp__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    weather: dayWeather
-  }))));
+  }, weather.slice(0, 6).map((dayWeather, index) => {
+    let textColor;
+    if (dayWeather.day.isHoliday || dayWeather.day.isSunday) {
+      textColor = "red";
+    } else if (dayWeather.day.isSaturday) {
+      textColor = "blue";
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+      key: index,
+      className: "block--day"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
+      id: `dayAfterTommorow_${index}`,
+      class: "c-title__weather",
+      style: {
+        color: textColor
+      }
+    }, dayWeather.day.date), dayWeather.day.isHoliday && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+      id: `dayAfterTommorow_${index}`
+    }, dayWeather.day.holidayName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+      id: `dayAfterTommorowWeather_${index}`,
+      class: "c-weather__weather"
+    }, dayWeather.name, " "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      id: `dayAfterTommorowWeatherImg_${index}`,
+      class: "c-weather__img"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: dayWeather.image,
+      alt: "Weather Icon"
+    })), dayWeather.highestTemperature && dayWeather.lowestTemperature && dayWeather.maximumTemperatureComparison && dayWeather.lowestTemperatureComparison && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Temp__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      weather: dayWeather
+    }));
+  }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WeekCell);
 
@@ -231,7 +257,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var _hooks_weatherObject__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./hooks/weatherObject */ "./src/hooks/weatherObject.js");
 /* harmony import */ var _components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/CurrentWeather */ "./src/components/CurrentWeather.js");
-/* harmony import */ var _components_WeekWeathew__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/WeekWeathew */ "./src/components/WeekWeathew.js");
+/* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
 
 /**
  * WordPress components that create the necessary UI elements for the block
@@ -297,7 +323,7 @@ function Edit() {
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
     ...TomorrowWeatherComponentProps,
     title: "\u660E\u65E5\u306E\u5929\u6C17"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeathew__WEBPACK_IMPORTED_MODULE_7__.WeekWeather, {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__.WeekWeather, {
     ...WeeklyWeatherComponentProps
   }));
 }
@@ -552,7 +578,8 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
       lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index],
       rainProbability: threeDayRainProbability[index]
     }));
-    console.log(dailyData);
+
+    // console.log(dailyData);
     // 今日と明日の天気データをセット
     setTodayWeather(dailyData[1]);
     setTomorrowWeather(dailyData[2]);

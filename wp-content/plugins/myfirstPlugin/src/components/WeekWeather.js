@@ -7,7 +7,7 @@ const WeekWeather = ({ weather }) => {
   return (
     <section class="p-weather--week u-pb80 u-pt80">
       <div class="l-inner">
-        <WeekCell weather={weather}/>
+        <WeekCell weather={weather} />
       </div>
     </section>
   )

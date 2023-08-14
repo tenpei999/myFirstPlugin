@@ -76,7 +76,7 @@ const weatherObject = async (
       rainProbability: threeDayRainProbability[index]
     }));
 
-    console.log(dailyData);
+    // console.log(dailyData);
     // 今日と明日の天気データをセット
     setTodayWeather(dailyData[1]);
     setTomorrowWeather(dailyData[2]);

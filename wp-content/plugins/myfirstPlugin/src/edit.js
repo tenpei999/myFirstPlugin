@@ -18,7 +18,7 @@ import './editor.scss';
 import './style.scss';
 import weatherObject from './hooks/weatherObject';
 import { CurrentWeather } from './components/CurrentWeather';
-import { WeekWeather } from './components/WeekWeathew';
+import { WeekWeather } from './components/WeekWeather';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -70,7 +70,7 @@ export default function Edit() {
 					title="明日の天気"
 				/>
 			</div>
-			<WeekWeather {...WeeklyWeatherComponentProps} />
+			<WeekWeather {...WeeklyWeatherComponentProps}	/>
 		</div>
 	);
 }

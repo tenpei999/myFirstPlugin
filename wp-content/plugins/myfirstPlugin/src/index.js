@@ -35,6 +35,18 @@ registerBlockType(metadata.name, {
 	example: {
 		attributes: {
 			message: 'my-first-plugin',
+			todayWeather: {
+				type: 'object',
+				default: {}
+			},
+			tomorrowWeather: {
+				type: 'object',
+				default: {}
+			},
+			weeklyWeather: {
+				type: 'array',
+				default: []
+			}
 		},
 	},
 	/**

@@ -12,51 +12,51 @@
   src: url(fonts/gilbert-color.02d3d364.otf);
   font-weight: 700;
 }
-.my-first-plugin ul {
+.wp-block-create-block-my-first-plugin ul {
   padding-inline-start: 0;
   padding-left: 0;
 }
-.my-first-plugin li {
+.wp-block-create-block-my-first-plugin li {
   list-style: none;
 }
-.my-first-plugin .wp-block-create-block-gutenpride {
+.wp-block-create-block-my-first-plugin .wp-block-create-block-gutenpride {
   font-family: Gilbert, sans-serif;
   font-size: 64px;
 }
-.my-first-plugin .layout {
+.wp-block-create-block-my-first-plugin .layout {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 @media screen and (min-width: 800px) {
-  .my-first-plugin .layout {
+  .wp-block-create-block-my-first-plugin .layout {
     flex-direction: row;
   }
 }
-.my-first-plugin .block--current, .my-first-plugin .block--day {
+.wp-block-create-block-my-first-plugin .block--current, .wp-block-create-block-my-first-plugin .block--day {
   width: 100%;
   text-align: center;
   border: solid #888;
   border-radius: 10px;
 }
 @media screen and (min-width: 800px) {
-  .my-first-plugin .block--current {
+  .wp-block-create-block-my-first-plugin .block--current {
     width: 50%;
   }
 }
 @media screen and (min-width: 800px) {
-  .my-first-plugin .block--weekly {
+  .wp-block-create-block-my-first-plugin .block--weekly {
     border: solid #888;
     border-radius: 10px;
   }
 }
 @media screen and (min-width: 800px) {
-  .my-first-plugin .block--day {
+  .wp-block-create-block-my-first-plugin .block--day {
     border: none;
   }
 }
-.my-first-plugin .temp,
-.my-first-plugin .time-zone {
+.wp-block-create-block-my-first-plugin .temp,
+.wp-block-create-block-my-first-plugin .time-zone {
   display: flex;
   justify-content: center;
   gap: 5px;

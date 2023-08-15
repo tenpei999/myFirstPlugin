@@ -13,7 +13,7 @@
  */
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 import './editor.scss';
 import './style.scss';
 import weatherObject from './hooks/weatherObject';
@@ -33,35 +33,41 @@ import { WeekWeather } from './components/WeekWeather';
  * @return {WPElement} Element to render.
  */
 
-export default function Edit() {
-
-	const [todayWeather, setTodayWeather] = useState();
-	const [tomorrowWeather, setTomorrowWeather] = useState();
-	const [weeklyWeather, setWeeklyWeather] = useState([]);
+export default function Edit({ attributes, setAttributes }) {
 
 	useEffect(() => {
 		weatherObject(
-			setTodayWeather,
-			setTomorrowWeather,
-			setWeeklyWeather,
+			(todayData) => {
+				setAttributes({ todayWeather: todayData });
+			},
+			(tomorrowData) => {
+				setAttributes({ tomorrowWeather: tomorrowData });
+			},
+			(weeklyData) => {
+				setAttributes({ weeklyWeather: weeklyData });
+			}
 		);
 	}, []); // 空の依存配列を指定して、コンポーネントのマウント時にのみ実行
 
 	// 今日、明日、週間の天気データを小コンポーネントに渡す
 	const TodayWeatherComponentProps = {
-		weather: todayWeather,
+		weather: attributes.todayWeather,
 	};
 
 	const TomorrowWeatherComponentProps = {
-		weather: tomorrowWeather,
+		weather: attributes.tomorrowWeather,
 	};
 
 	const WeeklyWeatherComponentProps = {
-		weather: weeklyWeather,
+		weather: attributes.weeklyWeather,
 	};
 
+	const blockProps = useBlockProps({
+		className: 'my-first-plugin'
+});
+
 	return (
-		<div {...useBlockProps()} className='my-first-plugin'>
+		<div {...blockProps}>
 			<div className="layout" >
 				<CurrentWeather {...TodayWeatherComponentProps}
 					title="今日の天気"
@@ -70,7 +76,7 @@ export default function Edit() {
 					title="明日の天気"
 				/>
 			</div>
-			<WeekWeather {...WeeklyWeatherComponentProps}	/>
+			<WeekWeather {...WeeklyWeatherComponentProps} />
 		</div>
 	);
 }

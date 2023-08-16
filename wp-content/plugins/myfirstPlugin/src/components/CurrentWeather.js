@@ -4,10 +4,12 @@ import '../style.scss';
 
 const CurrentWeather = ({ weather, title }) => {
 
-  if (!weather) return null;
+  if (!weather || !weather.day) return null; // weather と weather.day の存在を確認
+
+  const isHoliday = weather.day.isHoliday;
 
   let textColor;
-  if (weather.day.isHoliday || weather.day.isSunday) {
+  if (isHoliday  || weather.day.isSunday) {
     textColor = "red";
   } else if (weather.day.isSaturday) {
     textColor = "aqua";

@@ -25,9 +25,11 @@ const CurrentWeather = ({
   weather,
   title
 }) => {
-  if (!weather) return null;
+  if (!weather || !weather.day) return null; // weather と weather.day の存在を確認
+
+  const isHoliday = weather.day.isHoliday;
   let textColor;
-  if (weather.day.isHoliday || weather.day.isSunday) {
+  if (isHoliday || weather.day.isSunday) {
     textColor = "red";
   } else if (weather.day.isSaturday) {
     textColor = "aqua";
@@ -202,6 +204,7 @@ const WeekCell = ({
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: "layout block--weekly"
   }, weather.slice(0, 6).map((dayWeather, index) => {
+    if (!dayWeather || !dayWeather.day) return null;
     let textColor;
     if (dayWeather.day.isHoliday || dayWeather.day.isSunday) {
       textColor = "red";
@@ -253,11 +256,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
-/* harmony import */ var _hooks_weatherObject__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./hooks/weatherObject */ "./src/hooks/weatherObject.js");
-/* harmony import */ var _components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/CurrentWeather */ "./src/components/CurrentWeather.js");
-/* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+/* harmony import */ var _hooks_weatherObject__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./hooks/weatherObject */ "./src/hooks/weatherObject.js");
+/* harmony import */ var _components_CurrentWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/CurrentWeather */ "./src/components/CurrentWeather.js");
+/* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
 
 /**
  * WordPress components that create the necessary UI elements for the block
@@ -281,40 +286,67 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @param {Object}   props               Properties passed to the function.
- * @param {Object}   props.attributes    Available block attributes.
- * @param {Function} props.setAttributes Function that updates individual attributes.
- *
- * @return {WPElement} Element to render.
- */
-
 function Edit({
   attributes,
   setAttributes
 }) {
+  const [showSelection, setShowSelection] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+
+  // 新しいキャッシュ用のステートを追加
+  const [cachedWeather, setCachedWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    today: null,
+    tomorrow: null,
+    weekly: null
+  });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    (0,_hooks_weatherObject__WEBPACK_IMPORTED_MODULE_5__["default"])(todayData => {
+    const handleDocumentClick = e => {
+      if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox') {
+        return; // もしクリックされた要素がチェックボックスのinputタグであれば、早期に関数を終了します
+      }
+
+      // ブロックの外をクリックすると、天気情報を表示する画面に切り替わる
+      if (!e.target.closest('.my-first-plugin')) {
+        setShowSelection(false);
+      }
+    };
+    document.addEventListener('mousedown', handleDocumentClick);
+    return () => {
+      document.removeEventListener('mousedown', handleDocumentClick);
+    };
+  }, []);
+  const handleLayoutClick = e => {
+    e.stopPropagation();
+    if (!showSelection) {
+      setShowSelection(true);
+    }
+  };
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    (0,_hooks_weatherObject__WEBPACK_IMPORTED_MODULE_6__["default"])(todayData => {
+      setCachedWeather(prev => ({
+        ...prev,
+        today: todayData
+      }));
       setAttributes({
         todayWeather: todayData
       });
     }, tomorrowData => {
+      setCachedWeather(prev => ({
+        ...prev,
+        tomorrow: tomorrowData
+      }));
       setAttributes({
         tomorrowWeather: tomorrowData
       });
     }, weeklyData => {
+      setCachedWeather(prev => ({
+        ...prev,
+        weekly: weeklyData
+      }));
       setAttributes({
         weeklyWeather: weeklyData
       });
     });
-  }, []); // 空の依存配列を指定して、コンポーネントのマウント時にのみ実行
-
-  // 今日、明日、週間の天気データを小コンポーネントに渡す
+  }, []);
   const TodayWeatherComponentProps = {
     weather: attributes.todayWeather
   };
@@ -330,14 +362,35 @@ function Edit({
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "layout"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
+    className: "layout",
+    onClick: handleLayoutClick
+  }, showSelection ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "checkbox-wrapper"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
+    label: "\u4ECA\u65E5\u306E\u5929\u6C17\u3092\u8868\u793A",
+    checked: attributes.todayWeather !== null,
+    onChange: checked => setAttributes({
+      todayWeather: checked ? cachedWeather.today : null
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
+    label: "\u660E\u65E5\u306E\u5929\u6C17\u3092\u8868\u793A",
+    checked: attributes.tomorrowWeather !== null,
+    onChange: checked => setAttributes({
+      tomorrowWeather: checked ? cachedWeather.tomorrow : null
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
+    label: "\u9031\u9593\u306E\u5929\u6C17\u3092\u8868\u793A",
+    checked: attributes.weeklyWeather !== null,
+    onChange: checked => setAttributes({
+      weeklyWeather: checked ? cachedWeather.weekly : null
+    })
+  })) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, attributes.todayWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_7__.CurrentWeather, {
     ...TodayWeatherComponentProps,
     title: "\u4ECA\u65E5\u306E\u5929\u6C17"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
+  }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_7__.CurrentWeather, {
     ...TomorrowWeatherComponentProps,
     title: "\u660E\u65E5\u306E\u5929\u6C17"
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__.WeekWeather, {
+  }))), !showSelection && attributes.weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_8__.WeekWeather, {
     ...WeeklyWeatherComponentProps
   }));
 }
@@ -808,6 +861,16 @@ module.exports = window["wp"]["blockEditor"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["blocks"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["components"];
 
 /***/ }),
 

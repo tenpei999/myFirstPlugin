@@ -7,13 +7,14 @@ const WeekCell = ({ weather }) => {
   return (
     <ul className="layout block--weekly">
       {weather.slice(0, 6).map((dayWeather, index) => {
+        if (!dayWeather || !dayWeather.day) return null;
+
         let textColor;
         if (dayWeather.day.isHoliday || dayWeather.day.isSunday) {
           textColor = "red";
         } else if (dayWeather.day.isSaturday) {
           textColor = "blue";
         }
-
         return (
           <li key={index} className="block--day">
             <h4 id={`dayAfterTommorow_${index}`} class="c-title__weather" style={{ color: textColor }}>
@@ -34,7 +35,7 @@ const WeekCell = ({ weather }) => {
               <Temp weather={dayWeather} />
             )}
           </li>
-        );
+        )
       })}
     </ul>
   );

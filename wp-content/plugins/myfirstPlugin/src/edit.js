@@ -13,45 +13,24 @@
  */
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect, useRef } from '@wordpress/element';
 import { CheckboxControl } from '@wordpress/components';
 import './editor.scss';
 import './style.scss';
 import weatherObject from './hooks/weatherObject';
 import { CurrentWeather } from './components/CurrentWeather';
 import { WeekWeather } from './components/WeekWeather';
+import { useOutsideClick } from './components/useOutsideClick';
+import { useWeatherData } from './components/useWeatherData';
 
 export default function Edit({ attributes, setAttributes }) {
 	const [showSelection, setShowSelection] = useState(false);
 	const [showHoliday, setShowHoliday] = useState(true);
 	const [showPrecipitation, setShowPrecipitation] = useState(true);
+	const ref = useRef(null);
+	useOutsideClick(ref, () => setShowSelection(false));
 
-	// 新しいキャッシュ用のステートを追加
-	const [cachedWeather, setCachedWeather] = useState({
-		today: null,
-		tomorrow: null,
-		weekly: null
-	});
-
-	useEffect(() => {
-		const handleDocumentClick = (e) => {
-			if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox') {
-				return; // もしクリックされた要素がチェックボックスのinputタグであれば、早期に関数を終了します
-			}
-
-			// ブロックの外をクリックすると、天気情報を表示する画面に切り替わる
-			if (!e.target.closest('.my-first-plugin')) {
-				setShowSelection(false);
-			}
-		};
-
-		document.addEventListener('mousedown', handleDocumentClick);
-
-		return () => {
-			document.removeEventListener('mousedown', handleDocumentClick);
-		};
-
-	}, []);
+	const cachedWeather = useWeatherData(setAttributes);
 
 	const handleLayoutClick = (e) => {
 		e.stopPropagation();
@@ -60,22 +39,6 @@ export default function Edit({ attributes, setAttributes }) {
 		}
 	};
 
-	useEffect(() => {
-		weatherObject(
-			(todayData) => {
-				setCachedWeather(prev => ({ ...prev, today: todayData }));
-				setAttributes({ todayWeather: todayData });
-			},
-			(tomorrowData) => {
-				setCachedWeather(prev => ({ ...prev, tomorrow: tomorrowData }));
-				setAttributes({ tomorrowWeather: tomorrowData });
-			},
-			(weeklyData) => {
-				setCachedWeather(prev => ({ ...prev, weekly: weeklyData }));
-				setAttributes({ weeklyWeather: weeklyData });
-			}
-		);
-	}, []);
 
 	const TodayWeatherComponentProps = {
 		weather: attributes.todayWeather,
@@ -94,11 +57,10 @@ export default function Edit({ attributes, setAttributes }) {
 	});
 
 	return (
-		<div {...blockProps}>
+		<div {...blockProps} ref={ref}>
 			<div className="layout" onClick={handleLayoutClick}>
 				{showSelection ? (
 					<div className="checkbox-wrapper">
-						{/* 既存のチェックボックス... */}
 						<div className="detail-settings">
 							<CheckboxControl
 								label="今日の天気を表示"

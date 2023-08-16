@@ -78,8 +78,8 @@ const weatherObject = async (
 
     // console.log(dailyData);
     // 今日と明日の天気データをセット
-    setTodayWeather(dailyData[1]);
-    setTomorrowWeather(dailyData[2]);
+    setTodayWeather(dailyData[0]);
+    setTomorrowWeather(dailyData[1]);
 
     // 週間の天気データをセット
     setWeeklyWeather(dailyData.slice(2, 8));

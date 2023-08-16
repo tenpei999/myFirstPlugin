@@ -23,6 +23,8 @@ import { WeekWeather } from './components/WeekWeather';
 
 export default function Edit({ attributes, setAttributes }) {
 	const [showSelection, setShowSelection] = useState(false);
+	const [showHoliday, setShowHoliday] = useState(true);
+	const [showPrecipitation, setShowPrecipitation] = useState(true);
 
 	// 新しいキャッシュ用のステートを追加
 	const [cachedWeather, setCachedWeather] = useState({
@@ -32,31 +34,31 @@ export default function Edit({ attributes, setAttributes }) {
 	});
 
 	useEffect(() => {
-    const handleDocumentClick = (e) => {
-        if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox') {
-            return; // もしクリックされた要素がチェックボックスのinputタグであれば、早期に関数を終了します
-        }
-        
-        // ブロックの外をクリックすると、天気情報を表示する画面に切り替わる
-        if (!e.target.closest('.my-first-plugin')) {
-            setShowSelection(false);
-        }
-    };
+		const handleDocumentClick = (e) => {
+			if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox') {
+				return; // もしクリックされた要素がチェックボックスのinputタグであれば、早期に関数を終了します
+			}
 
-    document.addEventListener('mousedown', handleDocumentClick);
+			// ブロックの外をクリックすると、天気情報を表示する画面に切り替わる
+			if (!e.target.closest('.my-first-plugin')) {
+				setShowSelection(false);
+			}
+		};
 
-    return () => {
-        document.removeEventListener('mousedown', handleDocumentClick);
-    };
+		document.addEventListener('mousedown', handleDocumentClick);
 
-}, []);
+		return () => {
+			document.removeEventListener('mousedown', handleDocumentClick);
+		};
 
-const handleLayoutClick = (e) => {
-    e.stopPropagation();
-    if (!showSelection) {
-        setShowSelection(true);
-    }
-};
+	}, []);
+
+	const handleLayoutClick = (e) => {
+		e.stopPropagation();
+		if (!showSelection) {
+			setShowSelection(true);
+		}
+	};
 
 	useEffect(() => {
 		weatherObject(
@@ -96,31 +98,56 @@ const handleLayoutClick = (e) => {
 			<div className="layout" onClick={handleLayoutClick}>
 				{showSelection ? (
 					<div className="checkbox-wrapper">
-						<CheckboxControl
-							label="今日の天気を表示"
-							checked={attributes.todayWeather !== null}
-							onChange={(checked) => setAttributes({ todayWeather: checked ? cachedWeather.today : null })}
-						/>
-						<CheckboxControl
-							label="明日の天気を表示"
-							checked={attributes.tomorrowWeather !== null}
-							onChange={(checked) => setAttributes({ tomorrowWeather: checked ? cachedWeather.tomorrow : null })}
-						/>
-						<CheckboxControl
-							label="週間の天気を表示"
-							checked={attributes.weeklyWeather !== null}
-							onChange={(checked) => setAttributes({ weeklyWeather: checked ? cachedWeather.weekly : null })}
-						/>
+						{/* 既存のチェックボックス... */}
+						<div className="detail-settings">
+							<CheckboxControl
+								label="今日の天気を表示"
+								checked={attributes.todayWeather !== null}
+								onChange={(checked) => setAttributes({ todayWeather: checked ? cachedWeather.today : null })}
+							/>
+							<CheckboxControl
+								label="明日の天気を表示"
+								checked={attributes.tomorrowWeather !== null}
+								onChange={(checked) => setAttributes({ tomorrowWeather: checked ? cachedWeather.tomorrow : null })}
+							/>
+							<CheckboxControl
+								label="週間の天気を表示"
+								checked={attributes.weeklyWeather !== null}
+								onChange={(checked) => setAttributes({ weeklyWeather: checked ? cachedWeather.weekly : null })}
+							/>
+							<h4>詳細設定</h4>
+							<CheckboxControl
+								label="祝日を表示"
+								checked={showHoliday}
+								onChange={setShowHoliday}
+							/>
+							<CheckboxControl
+								label="降水確率を表示"
+								checked={showPrecipitation}
+								onChange={setShowPrecipitation}
+							/>
+						</div>
 					</div>
 				) : (
 					<>
-						{attributes.todayWeather && <CurrentWeather {...TodayWeatherComponentProps} title="今日の天気" />}
-						{attributes.tomorrowWeather && <CurrentWeather {...TomorrowWeatherComponentProps} title="明日の天気" />}
+						{attributes.todayWeather &&
+							<CurrentWeather
+								{...TodayWeatherComponentProps}
+								title="今日の天気"
+								showHoliday={showHoliday}
+								showPrecipitation={showPrecipitation}
+							/>}
+						{attributes.tomorrowWeather &&
+							<CurrentWeather
+								{...TomorrowWeatherComponentProps}
+								title="明日の天気"
+								showHoliday={showHoliday}
+								showPrecipitation={showPrecipitation}
+							/>}
 					</>
 				)}
 			</div>
 			{!showSelection && attributes.weeklyWeather && <WeekWeather {...WeeklyWeatherComponentProps} />}
 		</div>
 	);
-
 }

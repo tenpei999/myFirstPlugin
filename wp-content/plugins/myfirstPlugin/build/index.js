@@ -23,7 +23,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const CurrentWeather = ({
   weather,
-  title
+  title,
+  showPrecipitation,
+  showHoliday
 }) => {
   if (!weather || !weather.day) return null; // weather と weather.day の存在を確認
 
@@ -40,14 +42,12 @@ const CurrentWeather = ({
     style: {
       color: textColor
     }
-  }, weather.day.date), weather.day.isHoliday && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    id: `dayAfterTommorow_${index}`
-  }, weather.day.holidayName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+  }, weather.day.date), showHoliday && weather.day.isHoliday && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.day.holidayName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: weather.image,
     alt: "weather icon"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Temp__WEBPACK_IMPORTED_MODULE_1__["default"], {
     weather: weather
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_TimeZone__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }), showPrecipitation && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_TimeZone__WEBPACK_IMPORTED_MODULE_2__["default"], {
     weather: weather
   }));
 };
@@ -291,6 +291,8 @@ function Edit({
   setAttributes
 }) {
   const [showSelection, setShowSelection] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [showHoliday, setShowHoliday] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
+  const [showPrecipitation, setShowPrecipitation] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
 
   // 新しいキャッシュ用のステートを追加
   const [cachedWeather, setCachedWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
@@ -366,6 +368,8 @@ function Edit({
     onClick: handleLayoutClick
   }, showSelection ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "checkbox-wrapper"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "detail-settings"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
     label: "\u4ECA\u65E5\u306E\u5929\u6C17\u3092\u8868\u793A",
     checked: attributes.todayWeather !== null,
@@ -384,12 +388,24 @@ function Edit({
     onChange: checked => setAttributes({
       weeklyWeather: checked ? cachedWeather.weekly : null
     })
-  })) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, attributes.todayWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_7__.CurrentWeather, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "\u8A73\u7D30\u8A2D\u5B9A"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
+    label: "\u795D\u65E5\u3092\u8868\u793A",
+    checked: showHoliday,
+    onChange: setShowHoliday
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
+    label: "\u964D\u6C34\u78BA\u7387\u3092\u8868\u793A",
+    checked: showPrecipitation,
+    onChange: setShowPrecipitation
+  }))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, attributes.todayWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_7__.CurrentWeather, {
     ...TodayWeatherComponentProps,
-    title: "\u4ECA\u65E5\u306E\u5929\u6C17"
+    title: "\u4ECA\u65E5\u306E\u5929\u6C17",
+    showHoliday: showHoliday,
+    showPrecipitation: showPrecipitation
   }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_7__.CurrentWeather, {
     ...TomorrowWeatherComponentProps,
-    title: "\u660E\u65E5\u306E\u5929\u6C17"
+    title: "\u660E\u65E5\u306E\u5929\u6C17",
+    showHoliday: showHoliday,
+    showPrecipitation: showPrecipitation
   }))), !showSelection && attributes.weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_8__.WeekWeather, {
     ...WeeklyWeatherComponentProps
   }));
@@ -648,8 +664,8 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
 
     // console.log(dailyData);
     // 今日と明日の天気データをセット
-    setTodayWeather(dailyData[1]);
-    setTomorrowWeather(dailyData[2]);
+    setTodayWeather(dailyData[0]);
+    setTomorrowWeather(dailyData[1]);
 
     // 週間の天気データをセット
     setWeeklyWeather(dailyData.slice(2, 8));

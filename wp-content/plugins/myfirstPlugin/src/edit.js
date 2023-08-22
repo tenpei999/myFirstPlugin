@@ -13,24 +13,25 @@
  */
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect, useRef } from '@wordpress/element';
+import { useState, useRef, useEffect } from '@wordpress/element';
 import { CheckboxControl } from '@wordpress/components';
 import './editor.scss';
 import './style.scss';
-import weatherObject from './hooks/weatherObject';
 import { CurrentWeather } from './components/CurrentWeather';
-import { WeekWeather } from './components/WeekWeather';
-import { useOutsideClick } from './components/useOutsideClick';
-import { useWeatherData } from './components/useWeatherData';
+import WeekWeather from './components/WeekWeather';
+import { useOutsideClick } from './hooks/useOutsideClick';
+import { useWeatherData } from './hooks/useWeatherData';
+import useResize from './hooks/useResize';
 
 export default function Edit({ attributes, setAttributes }) {
 	const [showSelection, setShowSelection] = useState(false);
 	const [showHoliday, setShowHoliday] = useState(true);
 	const [showPrecipitation, setShowPrecipitation] = useState(true);
 	const ref = useRef(null);
-	useOutsideClick(ref, () => setShowSelection(false));
-
+	const windowWidth = useResize();
 	const cachedWeather = useWeatherData(setAttributes);
+
+	useOutsideClick(ref, () => setShowSelection(false));
 
 	const handleLayoutClick = (e) => {
 		e.stopPropagation();
@@ -57,8 +58,8 @@ export default function Edit({ attributes, setAttributes }) {
 	});
 
 	return (
-		<div {...blockProps} ref={ref}>
-			<div className="layout" onClick={handleLayoutClick}>
+		<div {...blockProps} ref={ref} onClick={handleLayoutClick}>
+			<div>
 				{showSelection ? (
 					<div className="checkbox-wrapper">
 						<div className="detail-settings">
@@ -91,7 +92,7 @@ export default function Edit({ attributes, setAttributes }) {
 						</div>
 					</div>
 				) : (
-					<>
+					<div className="layout">
 						{attributes.todayWeather &&
 							<CurrentWeather
 								{...TodayWeatherComponentProps}
@@ -106,10 +107,10 @@ export default function Edit({ attributes, setAttributes }) {
 								showHoliday={showHoliday}
 								showPrecipitation={showPrecipitation}
 							/>}
-					</>
+						{!showSelection && attributes.weeklyWeather && <WeekWeather {...WeeklyWeatherComponentProps} windowWidth={windowWidth} />}
+					</div>
 				)}
 			</div>
-			{!showSelection && attributes.weeklyWeather && <WeekWeather {...WeeklyWeatherComponentProps} />}
 		</div>
 	);
 }

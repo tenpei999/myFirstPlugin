@@ -23,26 +23,13 @@
   font-family: Gilbert, sans-serif;
   font-size: 64px;
 }
-.wp-block-create-block-my-first-plugin .layout {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-@media screen and (min-width: 800px) {
-  .wp-block-create-block-my-first-plugin .layout {
-    flex-direction: row;
-  }
-}
 .wp-block-create-block-my-first-plugin .block--current, .wp-block-create-block-my-first-plugin .block--day {
-  width: 100%;
   text-align: center;
   border: solid #888;
   border-radius: 10px;
 }
-@media screen and (min-width: 800px) {
-  .wp-block-create-block-my-first-plugin .block--current {
-    width: 50%;
-  }
+.wp-block-create-block-my-first-plugin .block--weekly {
+  display: flex;
 }
 @media screen and (min-width: 800px) {
   .wp-block-create-block-my-first-plugin .block--weekly {

@@ -31,34 +31,18 @@
 		font-size: 64px;
 	}
 
-	.layout {
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
-
-		@media screen and (min-width: $tablet-breakpoint) {
-			flex-direction: row;
-		}
-	}
-
 	.block {
 
 		&--current,
 		&--day {
-			width: 100%;
 			text-align: center;
 			border: solid #888;
 			border-radius: 10px;
 		}
 
-		&--current {
-
-			@media screen and (min-width: $tablet-breakpoint) {
-				width: 50%;
-			}
-		}
-
 		&--weekly {
+			display: flex;
+
 			@media screen and (min-width: $tablet-breakpoint) {
 				border: solid #888;
 				border-radius: 10px;

@@ -5,11 +5,7 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
-import { useEffect } from '@wordpress/element';
-import './editor.scss';
 import './style.scss';
-import weatherObject from './hooks/weatherObject';
 import { CurrentWeather } from './components/CurrentWeather';
 import { WeekWeather } from './components/WeekWeather';
 
@@ -24,32 +20,33 @@ import { WeekWeather } from './components/WeekWeather';
  * @param {Object} props.attributes Available block attributes.
  * @return {WPElement} Element to render.
  */
+
 export default function save({ attributes }) {
-	const blockProps = useBlockProps.save();
+	const blockProps = useBlockProps.save({
+		className: 'wp-block-create-block-my-first-plugin my-first-plugin'
+	});
 
-	const TodayWeatherComponentProps = {
-		weather: attributes.todayWeather,
-	};
-
-	const TomorrowWeatherComponentProps = {
-		weather: attributes.tomorrowWeather,
-	};
-
-	const WeeklyWeatherComponentProps = {
-		weather: attributes.weeklyWeather,
-	};
 	return (
 		<div {...blockProps}>
 			<div className="layout">
-				<CurrentWeather {...TodayWeatherComponentProps}
-					title="今日の天気"
-				/>
-				<CurrentWeather  {...TomorrowWeatherComponentProps}
-					title="明日の天気"
-				/>
+				{attributes.todayWeather && (
+					<CurrentWeather
+						weather={attributes.todayWeather}
+						title="今日の天気"
+						showHoliday={attributes.showHoliday}
+						showPrecipitation={attributes.showPrecipitation}
+					/>
+				)}
+				{attributes.tomorrowWeather && (
+					<CurrentWeather
+						weather={attributes.tomorrowWeather}
+						title="明日の天気"
+						showHoliday={attributes.showHoliday}
+						showPrecipitation={attributes.showPrecipitation}
+					/>
+				)}
+				{attributes.weeklyWeather && <WeekWeather weather={attributes.weeklyWeather} />}
 			</div>
-			<WeekWeather {...WeeklyWeatherComponentProps} />
 		</div>
 	);
-	
 }

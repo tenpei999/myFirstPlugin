@@ -159,18 +159,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const WeekWeather = ({
-  weather,
-  windowWidth
+  weather
 }) => {
   if (!weather) return null;
-  const blockStyle = windowWidth >= 800 ? {
-    flexDirection: 'row'
-  } : {
-    flexDirection: 'column'
-  };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
-    className: "block--weekly",
-    style: blockStyle
+    className: "block--weekly weather-layout"
   }, weather.slice(0, 6).map(dayWeather => {
     if (!dayWeather || !dayWeather.day) return null;
     let textColor;
@@ -219,13 +212,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
-/* harmony import */ var _components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/CurrentWeather */ "./src/components/CurrentWeather.js");
-/* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
-/* harmony import */ var _hooks_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./hooks/useOutsideClick */ "./src/hooks/useOutsideClick.js");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+/* harmony import */ var _components_CurrentWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/CurrentWeather */ "./src/components/CurrentWeather.js");
+/* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
 /* harmony import */ var _hooks_useWeatherData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./hooks/useWeatherData */ "./src/hooks/useWeatherData.js");
 /* harmony import */ var _hooks_useResize__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./hooks/useResize */ "./src/hooks/useResize.js");
 
@@ -251,25 +245,40 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import { useOutsideClick } from './hooks/useOutsideClick';
 
 
 function Edit({
   attributes,
   setAttributes
 }) {
-  const [showSelection, setShowSelection] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [showHoliday, setShowHoliday] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const [showPrecipitation, setShowPrecipitation] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const windowWidth = (0,_hooks_useResize__WEBPACK_IMPORTED_MODULE_10__["default"])();
   const cachedWeather = (0,_hooks_useWeatherData__WEBPACK_IMPORTED_MODULE_9__.useWeatherData)(setAttributes);
-  (0,_hooks_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__.useOutsideClick)(ref, () => setShowSelection(false));
+  const [showSelection, setShowSelection] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const handleLayoutClick = e => {
     e.stopPropagation();
     if (!showSelection) {
       setShowSelection(true);
     }
   };
+  let previouslySelectedBlockId = null;
+  (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.subscribe)(() => {
+    const selectedBlockId = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.select)('core/block-editor').getSelectedBlockClientId();
+
+    // 新しくブロックが選択された場合
+    if (selectedBlockId && previouslySelectedBlockId !== selectedBlockId) {
+      setShowSelection(true);
+    }
+
+    // ブロックの選択が解除された場合
+    if (!selectedBlockId && previouslySelectedBlockId) {
+      setShowSelection(false);
+    }
+    previouslySelectedBlockId = selectedBlockId;
+  });
   const TodayWeatherComponentProps = {
     weather: attributes.todayWeather
   };
@@ -283,54 +292,56 @@ function Edit({
     className: 'my-first-plugin'
   });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...blockProps,
-    ref: ref,
-    onClick: handleLayoutClick
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, showSelection ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...blockProps
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    onClick: handleLayoutClick,
+    ref: ref
+  }, showSelection ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "checkbox-wrapper"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "detail-settings"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
     label: "\u4ECA\u65E5\u306E\u5929\u6C17\u3092\u8868\u793A",
     checked: attributes.todayWeather !== null,
     onChange: checked => setAttributes({
       todayWeather: checked ? cachedWeather.today : null
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
     label: "\u660E\u65E5\u306E\u5929\u6C17\u3092\u8868\u793A",
     checked: attributes.tomorrowWeather !== null,
     onChange: checked => setAttributes({
       tomorrowWeather: checked ? cachedWeather.tomorrow : null
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
     label: "\u9031\u9593\u306E\u5929\u6C17\u3092\u8868\u793A",
     checked: attributes.weeklyWeather !== null,
     onChange: checked => setAttributes({
       weeklyWeather: checked ? cachedWeather.weekly : null
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "\u8A73\u7D30\u8A2D\u5B9A"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "\u8A73\u7D30\u8A2D\u5B9A"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
     label: "\u795D\u65E5\u3092\u8868\u793A",
     checked: showHoliday,
     onChange: setShowHoliday
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
     label: "\u964D\u6C34\u78BA\u7387\u3092\u8868\u793A",
     checked: showPrecipitation,
     onChange: setShowPrecipitation
   }))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "layout"
-  }, attributes.todayWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "today-and-tomorrow weather-layout"
+  }, attributes.todayWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_7__.CurrentWeather, {
     ...TodayWeatherComponentProps,
     title: "\u4ECA\u65E5\u306E\u5929\u6C17",
     showHoliday: showHoliday,
     showPrecipitation: showPrecipitation
-  }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
+  }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_7__.CurrentWeather, {
     ...TomorrowWeatherComponentProps,
     title: "\u660E\u65E5\u306E\u5929\u6C17",
     showHoliday: showHoliday,
     showPrecipitation: showPrecipitation
-  }), !showSelection && attributes.weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    ...WeeklyWeatherComponentProps,
-    windowWidth: windowWidth
+  })), !showSelection && attributes.weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    ...WeeklyWeatherComponentProps
   }))));
 }
 
@@ -506,35 +517,6 @@ const getWeatherInfo = weatherCode => {
   };
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getWeatherInfo);
-
-/***/ }),
-
-/***/ "./src/hooks/useOutsideClick.js":
-/*!**************************************!*\
-  !*** ./src/hooks/useOutsideClick.js ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   useOutsideClick: () => (/* binding */ useOutsideClick)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-
-const useOutsideClick = (ref, callback) => {
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    const handleClickOutside = e => {
-      if (ref.current && !ref.current.contains(e.target)) {
-        callback();
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [ref, callback]);
-};
 
 /***/ }),
 
@@ -778,6 +760,14 @@ __webpack_require__.r(__webpack_exports__);
       weeklyWeather: {
         type: 'array',
         default: []
+      },
+      showHoliday: {
+        type: 'boolean',
+        default: true
+      },
+      showPrecipitation: {
+        type: 'boolean',
+        default: true
       }
     }
   },
@@ -844,6 +834,8 @@ function save({
     ...blockProps
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "layout"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "today-and-tomorrow"
   }, attributes.todayWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_3__.CurrentWeather, {
     weather: attributes.todayWeather,
     title: "\u4ECA\u65E5\u306E\u5929\u6C17",
@@ -854,7 +846,7 @@ function save({
     title: "\u660E\u65E5\u306E\u5929\u6C17",
     showHoliday: attributes.showHoliday,
     showPrecipitation: attributes.showPrecipitation
-  }), attributes.weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_4__.WeekWeather, {
+  })), attributes.weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_4__.WeekWeather, {
     weather: attributes.weeklyWeather
   })));
 }
@@ -912,6 +904,16 @@ module.exports = window["wp"]["blocks"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["data"];
 
 /***/ }),
 

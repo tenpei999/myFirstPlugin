@@ -2,15 +2,12 @@ import Temp from './Temp';
 import '../editor.scss';
 import '../style.scss';
 
-const WeekWeather = ({ weather, windowWidth }) => {
+const WeekWeather = ({ weather}) => {
 
   if (!weather) return null;
   
-  const blockStyle = windowWidth >= 800
-  ? { flexDirection: 'row' }
-  : { flexDirection: 'column' };
   return (
-    <ul className="block--weekly" style={blockStyle}>
+    <ul className="block--weekly weather-layout">
       {weather.slice(0, 6).map((dayWeather) => {
         if (!dayWeather || !dayWeather.day) return null;
 

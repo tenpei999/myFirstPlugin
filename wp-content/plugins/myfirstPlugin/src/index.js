@@ -46,7 +46,15 @@ registerBlockType(metadata.name, {
 			weeklyWeather: {
 				type: 'array',
 				default: []
-			}
+			},
+			showHoliday: {
+				type: 'boolean',
+				default: true,
+			},
+			showPrecipitation: {
+				type: 'boolean',
+				default: true,
+			},
 		},
 	},
 	/**

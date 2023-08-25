@@ -28,6 +28,14 @@
   border: solid #888;
   border-radius: 10px;
 }
+.wp-block-create-block-my-first-plugin .block--current {
+  width: 100%;
+}
+@media screen and (min-width: 800px) {
+  .wp-block-create-block-my-first-plugin .block--current {
+    width: 47.7%;
+  }
+}
 .wp-block-create-block-my-first-plugin .block--weekly {
   display: flex;
 }
@@ -47,6 +55,20 @@
   display: flex;
   justify-content: center;
   gap: 5px;
+}
+.wp-block-create-block-my-first-plugin .weather-layout {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 800px) {
+  .wp-block-create-block-my-first-plugin .weather-layout {
+    flex-direction: row;
+  }
+}
+@media screen and (min-width: 800px) {
+  .wp-block-create-block-my-first-plugin .today-and-tomorrow {
+    gap: 5%;
+  }
 }
 
 /*# sourceMappingURL=style-index.css.map*/

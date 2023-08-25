@@ -40,6 +40,13 @@
 			border-radius: 10px;
 		}
 
+		&--current {
+			width: 100%;
+			@media screen and (min-width: $tablet-breakpoint) {
+				width: 47.7%;
+			}
+		}
+
 		&--weekly {
 			display: flex;
 
@@ -61,5 +68,18 @@
 		display: flex;
 		justify-content: center;
 		gap: 5px;
+	}
+
+	.weather-layout {
+		display: flex;
+		flex-direction: column;
+		@media (min-width: 800px) {
+			flex-direction: row;
+		}
+	}
+	.today-and-tomorrow {
+		@media screen and (min-width: $tablet-breakpoint) {
+			gap: 5%;
+		}
 	}
 }

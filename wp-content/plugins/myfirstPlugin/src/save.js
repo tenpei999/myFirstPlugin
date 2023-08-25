@@ -29,22 +29,24 @@ export default function save({ attributes }) {
 	return (
 		<div {...blockProps}>
 			<div className="layout">
-				{attributes.todayWeather && (
-					<CurrentWeather
-						weather={attributes.todayWeather}
-						title="今日の天気"
-						showHoliday={attributes.showHoliday}
-						showPrecipitation={attributes.showPrecipitation}
-					/>
-				)}
-				{attributes.tomorrowWeather && (
-					<CurrentWeather
-						weather={attributes.tomorrowWeather}
-						title="明日の天気"
-						showHoliday={attributes.showHoliday}
-						showPrecipitation={attributes.showPrecipitation}
-					/>
-				)}
+				<div className="today-and-tomorrow">
+					{attributes.todayWeather && (
+						<CurrentWeather
+							weather={attributes.todayWeather}
+							title="今日の天気"
+							showHoliday={attributes.showHoliday}
+							showPrecipitation={attributes.showPrecipitation}
+						/>
+					)}
+					{attributes.tomorrowWeather && (
+						<CurrentWeather
+							weather={attributes.tomorrowWeather}
+							title="明日の天気"
+							showHoliday={attributes.showHoliday}
+							showPrecipitation={attributes.showPrecipitation}
+						/>
+					)}
+				</div>
 				{attributes.weeklyWeather && <WeekWeather weather={attributes.weeklyWeather} />}
 			</div>
 		</div>

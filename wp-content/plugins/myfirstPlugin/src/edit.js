@@ -13,51 +13,23 @@
  */
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { useState, useRef, useEffect } from '@wordpress/element';
-import { select, subscribe } from '@wordpress/data';
+import { useState, useRef } from '@wordpress/element';
 import { CheckboxControl } from '@wordpress/components';
 import './editor.scss';
 import './style.scss';
 import { CurrentWeather } from './components/CurrentWeather';
 import WeekWeather from './components/WeekWeather';
-// import { useOutsideClick } from './hooks/useOutsideClick';
+import useBlockSelection from './hooks/useBlockSelection';
 import { useWeatherData } from './hooks/useWeatherData';
-import useResize from './hooks/useResize';
 
 export default function Edit({ attributes, setAttributes }) {
 
 	const [showHoliday, setShowHoliday] = useState(true);
 	const [showPrecipitation, setShowPrecipitation] = useState(true);
 	const ref = useRef(null);
-	const windowWidth = useResize();
 	const cachedWeather = useWeatherData(setAttributes);
-	const [showSelection, setShowSelection] = useState(false);
 
-	
-	const handleLayoutClick = (e) => {
-		e.stopPropagation();
-		if (!showSelection) {
-			setShowSelection(true);
-		}
-	};
-
-	let previouslySelectedBlockId = null;
-
-	subscribe(() => {
-		const selectedBlockId = select('core/block-editor').getSelectedBlockClientId();
-	
-		// 新しくブロックが選択された場合
-		if (selectedBlockId && previouslySelectedBlockId !== selectedBlockId) {
-			setShowSelection(true);
-		}
-	
-		// ブロックの選択が解除された場合
-		if (!selectedBlockId && previouslySelectedBlockId) {
-			setShowSelection(false);
-		}
-	
-		previouslySelectedBlockId = selectedBlockId;
-	});
+	const { showSelection, handleLayoutClick } = useBlockSelection();
 
 	const TodayWeatherComponentProps = {
 		weather: attributes.todayWeather,

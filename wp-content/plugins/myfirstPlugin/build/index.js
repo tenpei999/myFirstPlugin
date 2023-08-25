@@ -212,16 +212,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
-/* harmony import */ var _components_CurrentWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/CurrentWeather */ "./src/components/CurrentWeather.js");
-/* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+/* harmony import */ var _components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/CurrentWeather */ "./src/components/CurrentWeather.js");
+/* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
+/* harmony import */ var _hooks_useBlockSelection__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./hooks/useBlockSelection */ "./src/hooks/useBlockSelection.js");
 /* harmony import */ var _hooks_useWeatherData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./hooks/useWeatherData */ "./src/hooks/useWeatherData.js");
-/* harmony import */ var _hooks_useResize__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./hooks/useResize */ "./src/hooks/useResize.js");
 
 /**
  * WordPress components that create the necessary UI elements for the block
@@ -245,8 +243,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import { useOutsideClick } from './hooks/useOutsideClick';
-
 
 function Edit({
   attributes,
@@ -255,30 +251,11 @@ function Edit({
   const [showHoliday, setShowHoliday] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const [showPrecipitation, setShowPrecipitation] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const windowWidth = (0,_hooks_useResize__WEBPACK_IMPORTED_MODULE_10__["default"])();
   const cachedWeather = (0,_hooks_useWeatherData__WEBPACK_IMPORTED_MODULE_9__.useWeatherData)(setAttributes);
-  const [showSelection, setShowSelection] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const handleLayoutClick = e => {
-    e.stopPropagation();
-    if (!showSelection) {
-      setShowSelection(true);
-    }
-  };
-  let previouslySelectedBlockId = null;
-  (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.subscribe)(() => {
-    const selectedBlockId = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.select)('core/block-editor').getSelectedBlockClientId();
-
-    // 新しくブロックが選択された場合
-    if (selectedBlockId && previouslySelectedBlockId !== selectedBlockId) {
-      setShowSelection(true);
-    }
-
-    // ブロックの選択が解除された場合
-    if (!selectedBlockId && previouslySelectedBlockId) {
-      setShowSelection(false);
-    }
-    previouslySelectedBlockId = selectedBlockId;
-  });
+  const {
+    showSelection,
+    handleLayoutClick
+  } = (0,_hooks_useBlockSelection__WEBPACK_IMPORTED_MODULE_8__["default"])();
   const TodayWeatherComponentProps = {
     weather: attributes.todayWeather
   };
@@ -300,29 +277,29 @@ function Edit({
     className: "checkbox-wrapper"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "detail-settings"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
     label: "\u4ECA\u65E5\u306E\u5929\u6C17\u3092\u8868\u793A",
     checked: attributes.todayWeather !== null,
     onChange: checked => setAttributes({
       todayWeather: checked ? cachedWeather.today : null
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
     label: "\u660E\u65E5\u306E\u5929\u6C17\u3092\u8868\u793A",
     checked: attributes.tomorrowWeather !== null,
     onChange: checked => setAttributes({
       tomorrowWeather: checked ? cachedWeather.tomorrow : null
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
     label: "\u9031\u9593\u306E\u5929\u6C17\u3092\u8868\u793A",
     checked: attributes.weeklyWeather !== null,
     onChange: checked => setAttributes({
       weeklyWeather: checked ? cachedWeather.weekly : null
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "\u8A73\u7D30\u8A2D\u5B9A"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "\u8A73\u7D30\u8A2D\u5B9A"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
     label: "\u795D\u65E5\u3092\u8868\u793A",
     checked: showHoliday,
     onChange: setShowHoliday
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.CheckboxControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
     label: "\u964D\u6C34\u78BA\u7387\u3092\u8868\u793A",
     checked: showPrecipitation,
     onChange: setShowPrecipitation
@@ -330,17 +307,17 @@ function Edit({
     className: "layout"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "today-and-tomorrow weather-layout"
-  }, attributes.todayWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_7__.CurrentWeather, {
+  }, attributes.todayWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
     ...TodayWeatherComponentProps,
     title: "\u4ECA\u65E5\u306E\u5929\u6C17",
     showHoliday: showHoliday,
     showPrecipitation: showPrecipitation
-  }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_7__.CurrentWeather, {
+  }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
     ...TomorrowWeatherComponentProps,
     title: "\u660E\u65E5\u306E\u5929\u6C17",
     showHoliday: showHoliday,
     showPrecipitation: showPrecipitation
-  })), !showSelection && attributes.weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  })), !showSelection && attributes.weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
     ...WeeklyWeatherComponentProps
   }))));
 }
@@ -520,10 +497,10 @@ const getWeatherInfo = weatherCode => {
 
 /***/ }),
 
-/***/ "./src/hooks/useResize.js":
-/*!********************************!*\
-  !*** ./src/hooks/useResize.js ***!
-  \********************************/
+/***/ "./src/hooks/useBlockSelection.js":
+/*!****************************************!*\
+  !*** ./src/hooks/useBlockSelection.js ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -532,21 +509,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__);
 
-function useResize() {
-  const [windowWidth, setWindowWidth] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(window.innerWidth);
+
+function useBlockSelection() {
+  const [showSelection, setShowSelection] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  let previouslySelectedBlockId = null;
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    const unsubscribe = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.subscribe)(() => {
+      const selectedBlockId = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.select)('core/block-editor').getSelectedBlockClientId();
+
+      // 新しくブロックが選択された場合
+      if (selectedBlockId && previouslySelectedBlockId !== selectedBlockId) {
+        setShowSelection(true);
+      }
+
+      // ブロックの選択が解除された場合
+      if (!selectedBlockId && previouslySelectedBlockId) {
+        setShowSelection(false);
+      }
+      previouslySelectedBlockId = selectedBlockId;
+    });
+
+    // コンポーネントのクリーンアップ時に購読を解除する
+    return () => unsubscribe();
   }, []);
-  return windowWidth;
+  const handleLayoutClick = e => {
+    e.stopPropagation();
+    if (!showSelection) {
+      setShowSelection(true);
+    }
+  };
+  return {
+    showSelection,
+    handleLayoutClick
+  };
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useResize);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useBlockSelection);
 
 /***/ }),
 

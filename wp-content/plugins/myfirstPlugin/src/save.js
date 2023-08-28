@@ -5,9 +5,7 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps } from '@wordpress/block-editor';
-import './style.scss';
-import { CurrentWeather } from './components/CurrentWeather';
-import { WeekWeather } from './components/WeekWeather';
+
 
 /**
  * The save function defines the way in which the different attributes should
@@ -21,33 +19,49 @@ import { WeekWeather } from './components/WeekWeather';
  * @return {WPElement} Element to render.
  */
 
-export default function save({ attributes }) {
+import { CurrentWeather } from './components/CurrentWeather';
+import WeekWeather from './components/WeekWeather';
+import './style.scss';
+
+export default function Save({ attributes }) {
+
+
+	const TodayWeatherComponentProps = {
+		weather: attributes.todayWeather,
+	};
+
+	const TomorrowWeatherComponentProps = {
+		weather: attributes.tomorrowWeather,
+	};
+
+	const WeeklyWeatherComponentProps = {
+		weather: attributes.weeklyWeather,
+	};
+
 	const blockProps = useBlockProps.save({
-		className: 'wp-block-create-block-my-first-plugin my-first-plugin'
+		className: 'my-first-plugin'
 	});
+
+	if (!TodayWeatherComponentProps) return null; 
+	if (!TomorrowWeatherComponentProps) return null; 
+	if (!WeeklyWeatherComponentProps) return null; 
 
 	return (
 		<div {...blockProps}>
 			<div className="layout">
-				<div className="today-and-tomorrow">
-					{attributes.todayWeather && (
+				<div className="today-and-tomorrow weather-layout">
+					{attributes.todayWeather &&
 						<CurrentWeather
-							weather={attributes.todayWeather}
+							{...TodayWeatherComponentProps}
 							title="今日の天気"
-							showHoliday={attributes.showHoliday}
-							showPrecipitation={attributes.showPrecipitation}
-						/>
-					)}
-					{attributes.tomorrowWeather && (
+						/>}
+					{attributes.tomorrowWeather &&
 						<CurrentWeather
-							weather={attributes.tomorrowWeather}
+							{...TomorrowWeatherComponentProps}
 							title="明日の天気"
-							showHoliday={attributes.showHoliday}
-							showPrecipitation={attributes.showPrecipitation}
-						/>
-					)}
+						/>}
 				</div>
-				{attributes.weeklyWeather && <WeekWeather weather={attributes.weeklyWeather} />}
+				{attributes.weeklyWeather && <WeekWeather {...WeeklyWeatherComponentProps} />}
 			</div>
 		</div>
 	);

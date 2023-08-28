@@ -100,39 +100,39 @@ const TimeZone = ({
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: "time-zone"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-    class: "c-weather__chanceOfRain-index"
+    className: "c-weather__chanceOfRain-index"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    class: "time"
+    className: "time"
   }, "\u6642\u9593"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    class: "rain"
+    className: "rain"
   }, "\u964D\u6C34")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-    class: "c-weather__chanceOfRain-timezone1"
+    className: "c-weather__chanceOfRain-timezone1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    class: "time"
+    className: "time"
   }, "0-6\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     id: "todayschanceOfRain1",
-    class: "rain"
+    className: "rain"
   }, weather.rainProbability[0])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-    class: "c-weather__chanceOfRain-timezone2"
+    className: "c-weather__chanceOfRain-timezone2"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    class: "time"
+    className: "time"
   }, "6-12\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     id: "todayschanceOfRain2",
-    class: "rain"
+    className: "rain"
   }, weather.rainProbability[1])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-    class: "c-weather__chanceOfRain-timezone3"
+    className: "c-weather__chanceOfRain-timezone3"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    class: "time"
+    className: "time"
   }, "12-18\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     id: "todayschanceOfRain3",
-    class: "rain"
+    className: "rain"
   }, weather.rainProbability[2])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-    class: "c-weather__chanceOfRain-timezone4"
+    className: "c-weather__chanceOfRain-timezone4"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    class: "time"
+    className: "time"
   }, "18-24\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     id: "todayschanceOfRain4",
-    class: "rain"
+    className: "rain"
   }, weather.rainProbability[3])));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TimeZone);
@@ -218,7 +218,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var _components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/CurrentWeather */ "./src/components/CurrentWeather.js");
 /* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
-/* harmony import */ var _hooks_useBlockSelection__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./hooks/useBlockSelection */ "./src/hooks/useBlockSelection.js");
+/* harmony import */ var _hooks_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./hooks/useOutsideClick */ "./src/hooks/useOutsideClick.js");
 /* harmony import */ var _hooks_useWeatherData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./hooks/useWeatherData */ "./src/hooks/useWeatherData.js");
 
 /**
@@ -255,7 +255,7 @@ function Edit({
   const {
     showSelection,
     handleLayoutClick
-  } = (0,_hooks_useBlockSelection__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  } = (0,_hooks_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__["default"])();
   const TodayWeatherComponentProps = {
     weather: attributes.todayWeather
   };
@@ -497,10 +497,10 @@ const getWeatherInfo = weatherCode => {
 
 /***/ }),
 
-/***/ "./src/hooks/useBlockSelection.js":
-/*!****************************************!*\
-  !*** ./src/hooks/useBlockSelection.js ***!
-  \****************************************/
+/***/ "./src/hooks/useOutsideClick.js":
+/*!**************************************!*\
+  !*** ./src/hooks/useOutsideClick.js ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -710,8 +710,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/edit.js");
-/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./save */ "./src/save.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./block.json */ "./src/block.json");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/block.json");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -735,6 +734,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+// import save from './save';
 
 
 /**
@@ -742,7 +742,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_5__.name, {
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
   /**
    * Used to construct a preview for the block to be shown in the block inserter.
    */
@@ -760,14 +760,6 @@ __webpack_require__.r(__webpack_exports__);
       weeklyWeather: {
         type: 'array',
         default: []
-      },
-      showHoliday: {
-        type: 'boolean',
-        default: true
-      },
-      showPrecipitation: {
-        type: 'boolean',
-        default: true
       }
     }
   },
@@ -778,78 +770,10 @@ __webpack_require__.r(__webpack_exports__);
   /**
    * @see ./save.js
    */
-  save: _save__WEBPACK_IMPORTED_MODULE_4__["default"]
+  save() {
+    return null;
+  }
 });
-
-/***/ }),
-
-/***/ "./src/save.js":
-/*!*********************!*\
-  !*** ./src/save.js ***!
-  \*********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ save)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
-/* harmony import */ var _components_CurrentWeather__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/CurrentWeather */ "./src/components/CurrentWeather.js");
-/* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
-
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-
-
-
-
-
-/**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
- *
- * @param {Object} props            Properties passed to the function.
- * @param {Object} props.attributes Available block attributes.
- * @return {WPElement} Element to render.
- */
-
-function save({
-  attributes
-}) {
-  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: 'wp-block-create-block-my-first-plugin my-first-plugin'
-  });
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...blockProps
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "layout"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "today-and-tomorrow"
-  }, attributes.todayWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_3__.CurrentWeather, {
-    weather: attributes.todayWeather,
-    title: "\u4ECA\u65E5\u306E\u5929\u6C17",
-    showHoliday: attributes.showHoliday,
-    showPrecipitation: attributes.showPrecipitation
-  }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_3__.CurrentWeather, {
-    weather: attributes.tomorrowWeather,
-    title: "\u660E\u65E5\u306E\u5929\u6C17",
-    showHoliday: attributes.showHoliday,
-    showPrecipitation: attributes.showPrecipitation
-  })), attributes.weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_4__.WeekWeather, {
-    weather: attributes.weeklyWeather
-  })));
-}
 
 /***/ }),
 
@@ -943,7 +867,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"message":{"type":"string","source":"text","selector":"div"}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"showHoliday":{"type":"boolean","default":true},"showPrecipitation":{"type":"boolean","default":true},"tomorrowWeather":{"type":"object","default":{}},"weeklyWeather":{"type":"array","default":[]},"todayWeather":{"type":"object","default":{}}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

@@ -23,8 +23,14 @@
  */
 function create_block_gutenpride_block_init()
 {
-	register_block_type(__DIR__ . '/build');
+	register_block_type(
+		__DIR__ . '/build',
+		[
+			'render_callback' => 'myfirstplugin_render_block'
+		]
+	);
 }
+
 add_action('init', 'create_block_gutenpride_block_init');
 
 function enqueue_scripts_with_data()
@@ -48,3 +54,5 @@ function enqueue_scripts_with_data()
 	echo $inline_script;
 }
 add_action('admin_enqueue_scripts', 'enqueue_scripts_with_data');
+
+include dirname(__FILE__) . '/render-blocks.php';

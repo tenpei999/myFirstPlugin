@@ -19,8 +19,9 @@ import './editor.scss';
 /**
  * Internal dependencies
  */
+
 import Edit from './edit';
-import save from './save';
+// import save from './save';
 import metadata from './block.json';
 
 /**
@@ -47,14 +48,6 @@ registerBlockType(metadata.name, {
 				type: 'array',
 				default: []
 			},
-			showHoliday: {
-				type: 'boolean',
-				default: true,
-			},
-			showPrecipitation: {
-				type: 'boolean',
-				default: true,
-			},
 		},
 	},
 	/**
@@ -65,5 +58,7 @@ registerBlockType(metadata.name, {
 	/**
 	 * @see ./save.js
 	 */
-	save,
+	save() {
+		return null;
+	},
 });

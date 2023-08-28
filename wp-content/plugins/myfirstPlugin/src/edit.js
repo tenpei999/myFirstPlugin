@@ -19,7 +19,7 @@ import './editor.scss';
 import './style.scss';
 import { CurrentWeather } from './components/CurrentWeather';
 import WeekWeather from './components/WeekWeather';
-import useBlockSelection from './hooks/useBlockSelection';
+import useBlockSelection from './hooks/useOutsideClick';
 import { useWeatherData } from './hooks/useWeatherData';
 
 export default function Edit({ attributes, setAttributes }) {

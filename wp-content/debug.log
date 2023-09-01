@@ -1489,3 +1489,247 @@ Stack trace:
 [28-Aug-2023 14:55:34 UTC] PHP Parse error:  syntax error, unexpected token "if", expecting variable or "{" or "$" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 12
 [28-Aug-2023 14:57:35 UTC] PHP Parse error:  syntax error, unexpected variable "$output" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 11
 [28-Aug-2023 15:04:39 UTC] PHP Parse error:  syntax error, unexpected token "}" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 19
+[29-Aug-2023 11:19:12 UTC] PHP Notice:  関数 register_rest_route が<strong>誤って</strong>呼び出されました。REST API ルート定義 <code>my-weather-plugin/save-data</code> に必須の引数 <code>permission_callback</code> がありません。public REST API ルートに対してはパーミッションコールバックとして <code>__return_true</code> を使用してください。 詳しくは <a href="https://ja.wordpress.org/support/article/debugging-in-wordpress/">WordPress のデバッグ</a>をご覧ください。 (このメッセージはバージョン 5.5.0 で追加されました) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5905
+[29-Aug-2023 11:19:17 UTC] PHP Notice:  関数 register_rest_route が<strong>誤って</strong>呼び出されました。REST API ルート定義 <code>my-weather-plugin/save-data</code> に必須の引数 <code>permission_callback</code> がありません。public REST API ルートに対してはパーミッションコールバックとして <code>__return_true</code> を使用してください。 詳しくは <a href="https://ja.wordpress.org/support/article/debugging-in-wordpress/">WordPress のデバッグ</a>をご覧ください。 (このメッセージはバージョン 5.5.0 で追加されました) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5905
+[29-Aug-2023 11:19:56 UTC] PHP Notice:  関数 register_rest_route が<strong>誤って</strong>呼び出されました。REST API ルート定義 <code>my-weather-plugin/save-data</code> に必須の引数 <code>permission_callback</code> がありません。public REST API ルートに対してはパーミッションコールバックとして <code>__return_true</code> を使用してください。 詳しくは <a href="https://ja.wordpress.org/support/article/debugging-in-wordpress/">WordPress のデバッグ</a>をご覧ください。 (このメッセージはバージョン 5.5.0 で追加されました) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/functions.php on line 5905
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:40 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php:42) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-admin/admin-header.php on line 9
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php:42) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/option.php on line 1171
+[29-Aug-2023 11:35:43 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php:42) in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/option.php on line 1172
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:35:50 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:25 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:36:45 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "date" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:39:41 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "date[1]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "date[1]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "date[1]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "date[1]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "date[1]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "date[1]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "date[1]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 11:40:05 UTC] PHP Warning:  Undefined array key "temp" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 46
+[29-Aug-2023 12:39:33 UTC] PHP Warning:  Undefined array key "name[0]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 12:39:33 UTC] PHP Warning:  Undefined array key "name[0]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 12:39:33 UTC] PHP Warning:  Undefined array key "name[0]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 12:39:33 UTC] PHP Warning:  Undefined array key "name[0]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 12:39:33 UTC] PHP Warning:  Undefined array key "name[0]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 12:39:33 UTC] PHP Warning:  Undefined array key "name[0]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 12:39:33 UTC] PHP Warning:  Undefined array key "name[0]" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 42
+[29-Aug-2023 13:25:02 UTC] PHP Warning:  Undefined array key "rainProbability" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 44
+[29-Aug-2023 13:26:04 UTC] PHP Warning:  Undefined array key "rainProbability" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 44
+[29-Aug-2023 13:26:04 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 44
+[29-Aug-2023 13:28:04 UTC] PHP Warning:  Undefined array key "rainProbability" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 44
+[29-Aug-2023 13:28:46 UTC] PHP Warning:  Undefined array key "rainProbability" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 44
+[29-Aug-2023 13:29:18 UTC] PHP Warning:  Undefined array key "data" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 44
+[29-Aug-2023 13:30:27 UTC] PHP Warning:  Undefined array key "day" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 44
+[29-Aug-2023 13:31:11 UTC] PHP Warning:  Undefined array key "day" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 44
+[29-Aug-2023 13:31:25 UTC] PHP Warning:  Undefined array key "day" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 44
+[29-Aug-2023 14:12:26 UTC] PHP Warning:  Undefined array key "day" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 22
+[29-Aug-2023 14:12:26 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 22
+[29-Aug-2023 14:12:26 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 22
+[29-Aug-2023 14:13:32 UTC] PHP Warning:  Undefined array key "name" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 22
+[29-Aug-2023 14:13:53 UTC] PHP Fatal error:  Uncaught TypeError: Illegal offset type in isset or empty in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/translations.php:92
+Stack trace:
+#0 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/translations.php(107): Translations->translate_entry(Object(Translation_Entry))
+#1 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/l10n.php(186): Translations->translate(Array)
+#2 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/l10n.php(297): translate(Array, 'default')
+#3 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php(22): __(Array)
+#4 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-block.php(258): myfirstplugin_render_block(Array, '', Object(WP_Block))
+#5 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1133): WP_Block->render()
+#6 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1171): render_block(Array)
+#7 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-hook.php(310): do_blocks('<!-- wp:paragra...')
+#8 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:paragra...', Array)
+#9 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks/post-content.php(54): apply_filters('the_content', '<!-- wp:paragra...')
+#10 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-block.php(258): render_block_core_post_content(Array, '<!-- wp:paragra...', Object(WP_Block))
+#11 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-block.php(244): WP_Block->render()
+#12 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1133): WP_Block->render()
+#13 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1171): render_block(Array)
+#14 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/block-template.php(231): do_blocks('<!-- wp:templat...')
+#15 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/template-canvas.php(12): get_the_block_template_html()
+#16 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/template-loader.php(106): include('/Users/tsuruoka...')
+#17 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-blog-header.php(19): require_once('/Users/tsuruoka...')
+#18 /Users/tsuruokatenpei/Local Sites/hoge/app/public/index.php(17): require('/Users/tsuruoka...')
+#19 {main}
+  thrown in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/translations.php on line 92
+[29-Aug-2023 14:13:56 UTC] PHP Fatal error:  Uncaught TypeError: Illegal offset type in isset or empty in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/translations.php:92
+Stack trace:
+#0 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/translations.php(107): Translations->translate_entry(Object(Translation_Entry))
+#1 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/l10n.php(186): Translations->translate(Array)
+#2 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/l10n.php(297): translate(Array, 'default')
+#3 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php(22): __(Array)
+#4 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-block.php(258): myfirstplugin_render_block(Array, '', Object(WP_Block))
+#5 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1133): WP_Block->render()
+#6 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1171): render_block(Array)
+#7 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-hook.php(310): do_blocks('<!-- wp:paragra...')
+#8 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:paragra...', Array)
+#9 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks/post-content.php(54): apply_filters('the_content', '<!-- wp:paragra...')
+#10 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-block.php(258): render_block_core_post_content(Array, '<!-- wp:paragra...', Object(WP_Block))
+#11 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-block.php(244): WP_Block->render()
+#12 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1133): WP_Block->render()
+#13 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1171): render_block(Array)
+#14 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/block-template.php(231): do_blocks('<!-- wp:templat...')
+#15 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/template-canvas.php(12): get_the_block_template_html()
+#16 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/template-loader.php(106): include('/Users/tsuruoka...')
+#17 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-blog-header.php(19): require_once('/Users/tsuruoka...')
+#18 /Users/tsuruokatenpei/Local Sites/hoge/app/public/index.php(17): require('/Users/tsuruoka...')
+#19 {main}
+  thrown in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/translations.php on line 92
+[29-Aug-2023 14:14:03 UTC] PHP Warning:  Array to string conversion in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/entry.php on line 100
+[29-Aug-2023 14:14:03 UTC] PHP Warning:  Array to string conversion in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/entry.php on line 100
+[29-Aug-2023 14:14:03 UTC] PHP Fatal error:  Uncaught TypeError: Illegal offset type in isset or empty in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/translations.php:92
+Stack trace:
+#0 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/translations.php(107): Translations->translate_entry(Object(Translation_Entry))
+#1 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/l10n.php(186): Translations->translate(Array)
+#2 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/l10n.php(297): translate(Array, 'default')
+#3 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php(22): __(Array)
+#4 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-block.php(258): myfirstplugin_render_block(Array, '', Object(WP_Block))
+#5 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1133): WP_Block->render()
+#6 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1171): render_block(Array)
+#7 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-hook.php(310): do_blocks('<!-- wp:paragra...')
+#8 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:paragra...', Array)
+#9 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks/post-content.php(54): apply_filters('the_content', '<!-- wp:paragra...')
+#10 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-block.php(258): render_block_core_post_content(Array, '<!-- wp:paragra...', Object(WP_Block))
+#11 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-block.php(244): WP_Block->render()
+#12 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1133): WP_Block->render()
+#13 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1171): render_block(Array)
+#14 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/block-template.php(231): do_blocks('<!-- wp:templat...')
+#15 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/template-canvas.php(12): get_the_block_template_html()
+#16 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/template-loader.php(106): include('/Users/tsuruoka...')
+#17 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-blog-header.php(19): require_once('/Users/tsuruoka...')
+#18 /Users/tsuruokatenpei/Local Sites/hoge/app/public/index.php(17): require('/Users/tsuruoka...')
+#19 {main}
+  thrown in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/translations.php on line 92
+[29-Aug-2023 14:14:08 UTC] PHP Warning:  Array to string conversion in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/entry.php on line 100
+[29-Aug-2023 14:14:08 UTC] PHP Warning:  Array to string conversion in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/entry.php on line 100
+[29-Aug-2023 14:14:08 UTC] PHP Fatal error:  Uncaught TypeError: Illegal offset type in isset or empty in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/translations.php:92
+Stack trace:
+#0 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/translations.php(107): Translations->translate_entry(Object(Translation_Entry))
+#1 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/l10n.php(186): Translations->translate(Array)
+#2 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/l10n.php(297): translate(Array, 'default')
+#3 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php(22): __(Array)
+#4 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-block.php(258): myfirstplugin_render_block(Array, '', Object(WP_Block))
+#5 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1133): WP_Block->render()
+#6 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1171): render_block(Array)
+#7 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-hook.php(310): do_blocks('<!-- wp:paragra...')
+#8 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:paragra...', Array)
+#9 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks/post-content.php(54): apply_filters('the_content', '<!-- wp:paragra...')
+#10 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-block.php(258): render_block_core_post_content(Array, '<!-- wp:paragra...', Object(WP_Block))
+#11 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wp-block.php(244): WP_Block->render()
+#12 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1133): WP_Block->render()
+#13 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/blocks.php(1171): render_block(Array)
+#14 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/block-template.php(231): do_blocks('<!-- wp:templat...')
+#15 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/template-canvas.php(12): get_the_block_template_html()
+#16 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/template-loader.php(106): include('/Users/tsuruoka...')
+#17 /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-blog-header.php(19): require_once('/Users/tsuruoka...')
+#18 /Users/tsuruokatenpei/Local Sites/hoge/app/public/index.php(17): require('/Users/tsuruoka...')
+#19 {main}
+  thrown in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/pomo/translations.php on line 92
+[29-Aug-2023 14:14:17 UTC] PHP Warning:  Array to string conversion in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 22
+[29-Aug-2023 14:14:56 UTC] PHP Warning:  Undefined array key "day" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 22
+[29-Aug-2023 15:12:56 UTC] PHP Parse error:  syntax error, unexpected token ">" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 24
+[29-Aug-2023 15:29:59 UTC] PHP Parse error:  syntax error, unexpected token ")", expecting variable or "{" or "$" in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-content/plugins/myfirstPlugin/render-blocks.php on line 23
+[30-Aug-2023 12:07:09 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No such file or directory in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wpdb.php on line 2035
+[30-Aug-2023 12:07:09 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No such file or directory in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wpdb.php on line 2035
+[30-Aug-2023 12:07:09 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No such file or directory in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wpdb.php on line 2035
+[30-Aug-2023 12:07:15 UTC] PHP Deprecated:  Return type of WP_CLI\Iterators\Transform::current() should either be compatible with IteratorIterator::current(): mixed, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in phar:///Applications/Local.app/Contents/Resources/extraResources/bin/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/Iterators/Transform.php on line 18
+[31-Aug-2023 13:58:39 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No such file or directory in /Users/tsuruokatenpei/Local Sites/hoge/app/public/wp-includes/class-wpdb.php on line 2035
+[31-Aug-2023 13:58:45 UTC] PHP Deprecated:  Return type of WP_CLI\Iterators\Transform::current() should either be compatible with IteratorIterator::current(): mixed, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in phar:///Applications/Local.app/Contents/Resources/extraResources/bin/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/Iterators/Transform.php on line 18

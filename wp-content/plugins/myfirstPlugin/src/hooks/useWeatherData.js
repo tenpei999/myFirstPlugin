@@ -5,7 +5,9 @@ export const useWeatherData = (setAttributes) => {
     const [cachedWeather, setCachedWeather] = useState({
         today: null,
         tomorrow: null,
-        weekly: null
+        weekly: null,
+        holiday: null,
+        precipitation: null,
     });
 
     useEffect(() => {
@@ -21,9 +23,18 @@ export const useWeatherData = (setAttributes) => {
             (weeklyData) => {
                 setCachedWeather(prev => ({ ...prev, weekly: weeklyData }));
                 setAttributes({ weeklyWeather: weeklyData });
+            },
+            (holidayData) => {
+                setCachedWeather(prev => ({ ...prev, holiday: holidayData }));
+                setAttributes({ showHoliday: holidayData });
+            },
+            (precipitationData) => {
+                setCachedWeather(prev => ({ ...prev, precipitation: precipitationData }));
+                setAttributes({ showPrecipitation: precipitationData });
             }
-        );
-    }, [setAttributes]);
+            );
+        }, [setAttributes]);
+        console.log(cachedWeather);
 
     return cachedWeather;
 };

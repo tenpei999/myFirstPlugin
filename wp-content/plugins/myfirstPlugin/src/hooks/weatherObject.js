@@ -76,6 +76,38 @@ const weatherObject = async (
       rainProbability: threeDayRainProbability[index]
     }));
 
+    // WordPress REST APIエンドポイントにデータをPOST
+    fetch('/wp-json/my-weather-plugin/save-data/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',  // JSON形式でデータを送信
+        // 必要であれば認証ヘッダーを追加
+      },
+      body: JSON.stringify({ dailyData: dailyData })
+    })
+
+      // .then(response => {
+      //   console.log(response.status, response.statusText);
+      //   return response.text(); // 一時的にテキストとしてレスポンスを読み取る
+      // })
+      // .then(text => {
+      //   console.log(text); // レスポンスの内容を確認
+      // })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      // .then(response => response.json())
+      // .then(result => {
+      //   console.log(result.message);  // ここで"Success"が表示されれば成功
+      // })
+      // .catch(error => {
+      //   console.error('Error:', error);
+      // });
+
+
     // console.log(dailyData);
     // 今日と明日の天気データをセット
     setTodayWeather(dailyData[0]);

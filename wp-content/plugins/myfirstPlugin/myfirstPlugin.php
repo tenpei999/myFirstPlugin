@@ -56,3 +56,25 @@ function enqueue_scripts_with_data()
 add_action('admin_enqueue_scripts', 'enqueue_scripts_with_data');
 
 include dirname(__FILE__) . '/render-blocks.php';
+
+add_action('rest_api_init', function () {
+	register_rest_route('my-weather-plugin', '/save-data/', array(
+		'methods' => 'POST',
+		'callback' => 'save_weather_data',
+		'permission_callback' => '__return_true' 
+	));
+});
+
+function save_weather_data(WP_REST_Request $request)
+{
+	$data = $request->get_param('dailyData');
+
+	// JSONデータをWordPressオプションとして保存します。
+	if ($data) {
+		update_option('my_weather_data', json_encode($data));
+	} else {
+		return new WP_REST_Response('Error: Data not provided', 400);
+	}
+
+	return new WP_REST_Response(array('message' => 'Success'), 200);
+}

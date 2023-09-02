@@ -117,15 +117,15 @@ function myfirstplugin_render_block($attr, $content)
 
     if ($weeklyWeather) {
       $output .= '<ul class="block--weekly weather-layout">';
-      if (isset($weather_data[$i]['day']['isHoliday']) && $weather_data[$i]['day']['isHoliday'] || isset($weather_data[$i]['day']['isSunday']) && $weather_data[$i]['day']['isSunday']) {
-        $textColor = ' style="color: red"';
-      } elseif (isset($weather_data[$i]['day']['isSaturday']) && $weather_data[$i]['day']['isSaturday']) {
-        $textColor = ' style="color: aqua"';
-      } else {
-        $textColor = ''; // その他の日には何もスタイルを設定しない
-      }
-
+      
       for ($i = 2; $i <= 6; $i++) {
+        if (isset($weather_data[$i]['day']['isHoliday']) && $weather_data[$i]['day']['isHoliday'] || isset($weather_data[$i]['day']['isSunday']) && $weather_data[$i]['day']['isSunday']) {
+          $textColor = ' style="color: red"';
+        } elseif (isset($weather_data[$i]['day']['isSaturday']) && $weather_data[$i]['day']['isSaturday']) {
+          $textColor = ' style="color: aqua"';
+        } else {
+          $textColor = ''; // その他の日には何もスタイルを設定しない
+        }
         $output .= '<li class="block--day">';
         $output .= '<h4' . $textColor . '>' . $weather_data[$i]['day']['date'] . '</h4>';
         $output .= '<p class="c-title__weather">' . $weather_data[$i]['name'] . '</p>';

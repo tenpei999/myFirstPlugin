@@ -13,26 +13,27 @@ const weatherObject = async (
       .then(response => response.json());
 
     // 2つ目のAPIリクエスト
-    const request2 = fetch('https://api.open-meteo.com/v1/forecast?latitude=35.69&longitude=139.69&hourly=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&past_days=1&timezone=Asia%2FTokyo')
+    const request2 = fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=1&forecast_days=14')
       .then(response => response.json());
 
     const [data1, data2] = await Promise.all([request1, request2]);
     const datesForWeek = await dayWithHoliday();
 
-    const weatherCodesForWeek = data2.daily.weathercode.slice(0, 7); // 本日から6日後までの天気コード
+    const weatherCodesForWeek = data2.daily.weathercode; // 本日から6日後までの天気コード
 
     // 天気コードを天気名に変換
     const weatherNamesForWeek = weatherCodesForWeek.map(code => getWeatherInfo(code).label);
     const weatherImageForWeek = weatherCodesForWeek.map(code => getWeatherInfo(code).icon);
-    const highestTemperatureForWeek = data2.daily.temperature_2m_max.slice(0, 8); // 昨日から6日後までの天気コード
-    const lowestTemperatureForWeek = data2.daily.temperature_2m_min.slice(0, 8); // 昨日から6日後までの天気コード
+    const highestTemperatureForWeek = data2.daily.temperature_2m_max; // 昨日から6日後までの天気コード
+    const highestTemperatureForWeek2 = data2.daily.temperature_2m_max; // 昨日から6日後までの天気コード
+    const lowestTemperatureForWeek = data2.daily.temperature_2m_min; // 昨日から6日後までの天気コード
     // console.log("昨日から6日後までの当日の最高気温と前日の最高気温の差分:");
 
     const highestTemperatureDifferencesForWeek = [];
 
-    for (let i = 1; i < highestTemperatureForWeek.length; i++) {
-      const todayMaxTemperature = highestTemperatureForWeek[i];
-      const yesterdayMaxTemperature = highestTemperatureForWeek[i - 1];
+    for (let i = -1; i < highestTemperatureForWeek.length; i++) {
+      const todayMaxTemperature = highestTemperatureForWeek[i + 1];
+      const yesterdayMaxTemperature = highestTemperatureForWeek[i];
       const temperatureDifference = Math.ceil((todayMaxTemperature - yesterdayMaxTemperature) * 10) / 10;
       const formattedDifference = (temperatureDifference >= 0) ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
 
@@ -41,17 +42,21 @@ const weatherObject = async (
       // console.log(`Day ${i + 2}: ${todayMaxTemperature} ℃ (昨日との差分: ${formattedDifference} ℃)`);
     }
 
+    console.log(highestTemperatureForWeek)
+
     // console.log("昨日から6日後までの当日の最低気温と前日の最低気温の差分:");
 
     const lowestTemperatureDifferencesForWeek = [];
 
-    for (let i = 1; i < lowestTemperatureForWeek.length; i++) {
-      const todayMinTemperature = lowestTemperatureForWeek[i];
-      const yesterdayMinTemperature = lowestTemperatureForWeek[i - 1];
+    for (let i = -1; i < lowestTemperatureForWeek.length; i++) {
+      const todayMinTemperature = lowestTemperatureForWeek[i + 1];
+      const yesterdayMinTemperature = lowestTemperatureForWeek[i];
       const temperatureDifference = Math.ceil((todayMinTemperature - yesterdayMinTemperature) * 10) / 10;
       const formattedDifference = (temperatureDifference >= 0) ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
 
       lowestTemperatureDifferencesForWeek.push(formattedDifference);
+
+      console.log(data2.daily)
 
       // console.log(`Day ${i + 2}: ${todayMinTemperature} ℃ (昨日との差分: ${formattedDifference} ℃)`);
     }
@@ -68,12 +73,12 @@ const weatherObject = async (
     const dailyData = weatherNamesForWeek.map((name, index) => ({
       day: datesForWeek[index],
       name,
-      image: weatherImageForWeek[index],
-      highestTemperature: highestTemperatureForWeek[index],
-      lowestTemperature: lowestTemperatureForWeek[index],
-      maximumTemperatureComparison: highestTemperatureDifferencesForWeek[index],
-      lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index],
-      rainProbability: threeDayRainProbability[index]
+      image: weatherImageForWeek[index + 1],
+      highestTemperature: highestTemperatureForWeek[index + 1],
+      lowestTemperature: lowestTemperatureForWeek[index + 1],
+      maximumTemperatureComparison: highestTemperatureDifferencesForWeek[index + 1],
+      lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index + 1],
+      rainProbability: threeDayRainProbability[index + 1]
     }));
 
     // WordPress REST APIエンドポイントにデータをPOST

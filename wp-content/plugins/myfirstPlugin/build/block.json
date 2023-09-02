@@ -10,11 +10,11 @@
   "attributes": {
     "showHoliday": {
       "type": "boolean",
-      "default": false
+      "default": true
     },
     "showPrecipitation": {
       "type": "boolean",
-      "default": false
+      "default": true
     },
     "tomorrowWeather": {
       "type": "object",

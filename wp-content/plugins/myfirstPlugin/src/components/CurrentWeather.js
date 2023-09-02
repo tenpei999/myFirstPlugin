@@ -12,7 +12,7 @@ const CurrentWeather = ({ weather, title, showPrecipitation, showHoliday }) => {
   if (isHoliday || weather.day.isSunday) {
     textColor = "red";
   } else if (weather.day.isSaturday) {
-    textColor = "aqua";
+    textColor = "blue";
   }
 
   return (

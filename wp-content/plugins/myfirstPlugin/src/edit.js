@@ -25,8 +25,8 @@ import { useWeatherData } from './hooks/useWeatherData';
 export default function Edit({ attributes, setAttributes }) {
 
 	// 他の状態変数とともに、これらを初期化します：
-	const [showHoliday, setShowHoliday] = useState(!!attributes.showHoliday);
-	const [showPrecipitation, setShowPrecipitation] = useState(!!attributes.showPrecipitation);
+	const [showHoliday, setShowHoliday] = useState(attributes.showHoliday);
+	const [showPrecipitation, setShowPrecipitation] = useState(attributes.showPrecipitation);
 	const ref = useRef(null);
 	const cachedWeather = useWeatherData(setAttributes);
 

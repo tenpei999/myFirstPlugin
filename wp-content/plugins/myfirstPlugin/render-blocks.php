@@ -22,7 +22,7 @@ function myfirstplugin_render_block($attr, $content)
       if (isset($weather_data[0]['day']['isHoliday']) && $weather_data[0]['day']['isHoliday'] || isset($weather_data[0]['day']['isSunday']) && $weather_data[0]['day']['isSunday']) {
         $textColor = ' style="color: red"';
       } elseif (isset($weather_data[0]['day']['isSaturday']) && $weather_data[0]['day']['isSaturday']) {
-        $textColor = ' style="color: aqua"';
+        $textColor = ' style="color: blue"';
       }
 
       $output .= '<div class="block--current">';
@@ -73,7 +73,7 @@ function myfirstplugin_render_block($attr, $content)
       if (isset($weather_data[1]['day']['isHoliday']) && $weather_data[1]['day']['isHoliday'] || isset($weather_data[1]['day']['isSunday']) && $weather_data[1]['day']['isSunday']) {
         $textColor = ' style="color: red"';
       } elseif (isset($weather_data[1]['day']['isSaturday']) && $weather_data[1]['day']['isSaturday']) {
-        $textColor = ' style="color: aqua"';
+        $textColor = ' style="color: blue"';
       }
 
       $output .= '<div class="block--current">';
@@ -122,7 +122,7 @@ function myfirstplugin_render_block($attr, $content)
         if (isset($weather_data[$i]['day']['isHoliday']) && $weather_data[$i]['day']['isHoliday'] || isset($weather_data[$i]['day']['isSunday']) && $weather_data[$i]['day']['isSunday']) {
           $textColor = ' style="color: red"';
         } elseif (isset($weather_data[$i]['day']['isSaturday']) && $weather_data[$i]['day']['isSaturday']) {
-          $textColor = ' style="color: aqua"';
+          $textColor = ' style="color: blue"';
         } else {
           $textColor = ''; // その他の日には何もスタイルを設定しない
         }

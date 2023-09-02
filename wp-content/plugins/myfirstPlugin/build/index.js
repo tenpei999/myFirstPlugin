@@ -34,7 +34,7 @@ const CurrentWeather = ({
   if (isHoliday || weather.day.isSunday) {
     textColor = "red";
   } else if (weather.day.isSaturday) {
-    textColor = "aqua";
+    textColor = "blue";
   }
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
     className: "block--current"
@@ -249,8 +249,8 @@ function Edit({
   setAttributes
 }) {
   // 他の状態変数とともに、これらを初期化します：
-  const [showHoliday, setShowHoliday] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(!!attributes.showHoliday);
-  const [showPrecipitation, setShowPrecipitation] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(!!attributes.showPrecipitation);
+  const [showHoliday, setShowHoliday] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showHoliday);
+  const [showPrecipitation, setShowPrecipitation] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showPrecipitation);
   const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const cachedWeather = (0,_hooks_useWeatherData__WEBPACK_IMPORTED_MODULE_9__.useWeatherData)(setAttributes);
   console.log(cachedWeather);
@@ -659,22 +659,23 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
     const request1 = fetch('https://weather.tsukumijima.net/api/forecast/city/130010').then(response => response.json());
 
     // 2つ目のAPIリクエスト
-    const request2 = fetch('https://api.open-meteo.com/v1/forecast?latitude=35.69&longitude=139.69&hourly=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&past_days=1&timezone=Asia%2FTokyo').then(response => response.json());
+    const request2 = fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=1&forecast_days=14').then(response => response.json());
     const [data1, data2] = await Promise.all([request1, request2]);
     const datesForWeek = await (0,_dayWithHoloday__WEBPACK_IMPORTED_MODULE_1__["default"])();
-    const weatherCodesForWeek = data2.daily.weathercode.slice(0, 7); // 本日から6日後までの天気コード
+    const weatherCodesForWeek = data2.daily.weathercode; // 本日から6日後までの天気コード
 
     // 天気コードを天気名に変換
     const weatherNamesForWeek = weatherCodesForWeek.map(code => (0,_getWeatherInfo__WEBPACK_IMPORTED_MODULE_0__["default"])(code).label);
     const weatherImageForWeek = weatherCodesForWeek.map(code => (0,_getWeatherInfo__WEBPACK_IMPORTED_MODULE_0__["default"])(code).icon);
-    const highestTemperatureForWeek = data2.daily.temperature_2m_max.slice(0, 8); // 昨日から6日後までの天気コード
-    const lowestTemperatureForWeek = data2.daily.temperature_2m_min.slice(0, 8); // 昨日から6日後までの天気コード
+    const highestTemperatureForWeek = data2.daily.temperature_2m_max; // 昨日から6日後までの天気コード
+    const highestTemperatureForWeek2 = data2.daily.temperature_2m_max; // 昨日から6日後までの天気コード
+    const lowestTemperatureForWeek = data2.daily.temperature_2m_min; // 昨日から6日後までの天気コード
     // console.log("昨日から6日後までの当日の最高気温と前日の最高気温の差分:");
 
     const highestTemperatureDifferencesForWeek = [];
-    for (let i = 1; i < highestTemperatureForWeek.length; i++) {
-      const todayMaxTemperature = highestTemperatureForWeek[i];
-      const yesterdayMaxTemperature = highestTemperatureForWeek[i - 1];
+    for (let i = -1; i < highestTemperatureForWeek.length; i++) {
+      const todayMaxTemperature = highestTemperatureForWeek[i + 1];
+      const yesterdayMaxTemperature = highestTemperatureForWeek[i];
       const temperatureDifference = Math.ceil((todayMaxTemperature - yesterdayMaxTemperature) * 10) / 10;
       const formattedDifference = temperatureDifference >= 0 ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
       highestTemperatureDifferencesForWeek.push(formattedDifference);
@@ -682,15 +683,18 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
       // console.log(`Day ${i + 2}: ${todayMaxTemperature} ℃ (昨日との差分: ${formattedDifference} ℃)`);
     }
 
+    console.log(highestTemperatureForWeek);
+
     // console.log("昨日から6日後までの当日の最低気温と前日の最低気温の差分:");
 
     const lowestTemperatureDifferencesForWeek = [];
-    for (let i = 1; i < lowestTemperatureForWeek.length; i++) {
-      const todayMinTemperature = lowestTemperatureForWeek[i];
-      const yesterdayMinTemperature = lowestTemperatureForWeek[i - 1];
+    for (let i = -1; i < lowestTemperatureForWeek.length; i++) {
+      const todayMinTemperature = lowestTemperatureForWeek[i + 1];
+      const yesterdayMinTemperature = lowestTemperatureForWeek[i];
       const temperatureDifference = Math.ceil((todayMinTemperature - yesterdayMinTemperature) * 10) / 10;
       const formattedDifference = temperatureDifference >= 0 ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
       lowestTemperatureDifferencesForWeek.push(formattedDifference);
+      console.log(data2.daily);
 
       // console.log(`Day ${i + 2}: ${todayMinTemperature} ℃ (昨日との差分: ${formattedDifference} ℃)`);
     }
@@ -707,12 +711,12 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
     const dailyData = weatherNamesForWeek.map((name, index) => ({
       day: datesForWeek[index],
       name,
-      image: weatherImageForWeek[index],
-      highestTemperature: highestTemperatureForWeek[index],
-      lowestTemperature: lowestTemperatureForWeek[index],
-      maximumTemperatureComparison: highestTemperatureDifferencesForWeek[index],
-      lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index],
-      rainProbability: threeDayRainProbability[index]
+      image: weatherImageForWeek[index + 1],
+      highestTemperature: highestTemperatureForWeek[index + 1],
+      lowestTemperature: lowestTemperatureForWeek[index + 1],
+      maximumTemperatureComparison: highestTemperatureDifferencesForWeek[index + 1],
+      lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index + 1],
+      rainProbability: threeDayRainProbability[index + 1]
     }));
 
     // WordPress REST APIエンドポイントにデータをPOST
@@ -937,7 +941,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"showHoliday":{"type":"boolean","default":false},"showPrecipitation":{"type":"boolean","default":false},"tomorrowWeather":{"type":"object","default":{}},"weeklyWeather":{"type":"array","default":[]},"todayWeather":{"type":"object","default":{}}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./style-index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"showHoliday":{"type":"boolean","default":true},"showPrecipitation":{"type":"boolean","default":true},"tomorrowWeather":{"type":"object","default":{}},"weeklyWeather":{"type":"array","default":[]},"todayWeather":{"type":"object","default":{}}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./style-index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

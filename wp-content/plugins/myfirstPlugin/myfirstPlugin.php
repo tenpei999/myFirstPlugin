@@ -23,10 +23,11 @@
  */
 function create_block_gutenpride_block_init()
 {
+
 	register_block_type(
 		__DIR__ . '/build',
 		[
-			'render_callback' => 'myfirstplugin_render_block'
+			'render_callback' => 'myfirstplugin_render_block',
 		]
 	);
 }
@@ -61,7 +62,7 @@ add_action('rest_api_init', function () {
 	register_rest_route('my-weather-plugin', '/save-data/', array(
 		'methods' => 'POST',
 		'callback' => 'save_weather_data',
-		'permission_callback' => '__return_true' 
+		'permission_callback' => '__return_true'
 	));
 });
 
@@ -78,3 +79,11 @@ function save_weather_data(WP_REST_Request $request)
 
 	return new WP_REST_Response(array('message' => 'Success'), 200);
 }
+
+function enqueue_block_styles() {
+	// 注：正しいCSSファイルへのパスを確認してください。
+	wp_enqueue_style('block-style', WP_PLUGIN_DIR  . '/myfirstPlugin/build/style-index.css', array(), '1.0.0');
+}
+add_action('enqueue_block_assets', 'enqueue_block_styles');
+
+

@@ -34,7 +34,6 @@ export const useWeatherData = (setAttributes) => {
             }
             );
         }, [setAttributes]);
-        console.log(cachedWeather);
 
     return cachedWeather;
 };

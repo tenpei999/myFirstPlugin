@@ -80,10 +80,5 @@ function save_weather_data(WP_REST_Request $request)
 	return new WP_REST_Response(array('message' => 'Success'), 200);
 }
 
-function enqueue_block_styles() {
-	// 注：正しいCSSファイルへのパスを確認してください。
-	wp_enqueue_style('block-style', WP_PLUGIN_DIR  . '/myfirstPlugin/build/style-index.css', array(), '1.0.0');
-}
-add_action('enqueue_block_assets', 'enqueue_block_styles');
 
 

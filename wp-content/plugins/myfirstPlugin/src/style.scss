@@ -17,6 +17,11 @@
 	$tablet-breakpoint: 800px;
 	$desktop-breakpoint: 1200px;
 
+	p {
+		margin-block-start: 0;
+		margin-block-end: 0;
+	}
+
 	ul {
 		padding-inline-start: 0;
 		padding-left: 0;
@@ -42,6 +47,7 @@
 
 		&--current {
 			width: 100%;
+
 			@media screen and (min-width: $tablet-breakpoint) {
 				width: 47.7%;
 			}
@@ -70,16 +76,42 @@
 		gap: 5px;
 	}
 
+	.temp {
+		margin: 18px 0;
+	}
+
+	.time {
+		letter-spacing: -1px;
+	}
+
 	.weather-layout {
 		display: flex;
 		flex-direction: column;
+
 		@media (min-width: 800px) {
 			flex-direction: row;
 		}
 	}
+
 	.today-and-tomorrow {
 		@media screen and (min-width: $tablet-breakpoint) {
 			gap: 5%;
 		}
+	}
+
+	.c-weather {
+		&__chanceOfRain {
+			&-index {
+				padding-right: 0.5rem;
+				.time, 
+				.rain {
+					color: #333;
+				}
+			}
+		}
+	}
+
+	.celsius {
+		font-size: 1rem;
 	}
 }

@@ -42,8 +42,6 @@ const weatherObject = async (
       // console.log(`Day ${i + 2}: ${todayMaxTemperature} ℃ (昨日との差分: ${formattedDifference} ℃)`);
     }
 
-    console.log(highestTemperatureForWeek)
-
     // console.log("昨日から6日後までの当日の最低気温と前日の最低気温の差分:");
 
     const lowestTemperatureDifferencesForWeek = [];
@@ -55,8 +53,6 @@ const weatherObject = async (
       const formattedDifference = (temperatureDifference >= 0) ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
 
       lowestTemperatureDifferencesForWeek.push(formattedDifference);
-
-      console.log(data2.daily)
 
       // console.log(`Day ${i + 2}: ${todayMinTemperature} ℃ (昨日との差分: ${formattedDifference} ℃)`);
     }

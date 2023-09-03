@@ -5,11 +5,11 @@ const Temp = ({ weather }) => {
   return (
     <ul className="temp">
       <li>
-        <p>{weather.highestTemperature}<span>℃</span></p>
+        <p>{weather.highestTemperature}<span className="celsius">℃</span></p>
         <p>{weather.maximumTemperatureComparison}</p>
       </li>
       <li>
-        <p>{weather.lowestTemperature}<span>℃</span></p>
+        <p>{weather.lowestTemperature}<span className="celsius">℃</span></p>
         <p>{weather.lowestTemperatureComparison}</p>
       </li>
     </ul>

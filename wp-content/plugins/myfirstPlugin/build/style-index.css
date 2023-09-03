@@ -12,6 +12,10 @@
   src: url(fonts/gilbert-color.02d3d364.otf);
   font-weight: 700;
 }
+.wp-block-create-block-my-first-plugin p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
 .wp-block-create-block-my-first-plugin ul {
   padding-inline-start: 0;
   padding-left: 0;
@@ -56,6 +60,12 @@
   justify-content: center;
   gap: 5px;
 }
+.wp-block-create-block-my-first-plugin .temp {
+  margin: 18px 0;
+}
+.wp-block-create-block-my-first-plugin .time {
+  letter-spacing: -1px;
+}
 .wp-block-create-block-my-first-plugin .weather-layout {
   display: flex;
   flex-direction: column;
@@ -69,6 +79,16 @@
   .wp-block-create-block-my-first-plugin .today-and-tomorrow {
     gap: 5%;
   }
+}
+.wp-block-create-block-my-first-plugin .c-weather__chanceOfRain-index {
+  padding-right: 0.5rem;
+}
+.wp-block-create-block-my-first-plugin .c-weather__chanceOfRain-index .time,
+.wp-block-create-block-my-first-plugin .c-weather__chanceOfRain-index .rain {
+  color: #333;
+}
+.wp-block-create-block-my-first-plugin .celsius {
+  font-size: 1rem;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

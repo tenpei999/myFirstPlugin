@@ -33,11 +33,11 @@ function myfirstplugin_render_block($attr, $content)
       $output .= '</span>';
       $output .= '<ul class="temp">';
       $output .= '<li>';
-      $output .= '<p>' . $weather_data[0]['highestTemperature'] . '<span>℃</span></p>';
+      $output .= '<p>' . $weather_data[0]['highestTemperature'] . '<span class="celsius">℃</span></p>';
       $output .= '<p>' . $weather_data[0]['maximumTemperatureComparison'] . '</p>';
       $output .= '</li>';
       $output .= '<li>';
-      $output .= '<p>' . $weather_data[0]['lowestTemperature'] . '<span>℃</span></p>';
+      $output .= '<p>' . $weather_data[0]['lowestTemperature'] . '<span class="celsius">℃</span></p>';
       $output .= '<p>' . $weather_data[0]['lowestTemperatureComparison'] . '</p>';
       $output .= '</li>';
       $output .= '</ul>';
@@ -68,6 +68,9 @@ function myfirstplugin_render_block($attr, $content)
     // print_r($weather_data[0]['image']);
     // echo '</pre>';
 
+
+$textColor = ''; 
+
     if ($tomorrowWeather) {
 
       if (isset($weather_data[1]['day']['isHoliday']) && $weather_data[1]['day']['isHoliday'] || isset($weather_data[1]['day']['isSunday']) && $weather_data[1]['day']['isSunday']) {
@@ -82,11 +85,11 @@ function myfirstplugin_render_block($attr, $content)
       $output .= "<img src=\"{$weather_data[1]['image']}\" alt=\"weather icon\">";
       $output .= '<ul class="temp">';
       $output .= '<li>';
-      $output .= '<p>' . $weather_data[1]['highestTemperature'] . '<span>℃</span></p>';
+      $output .= '<p>' . $weather_data[1]['highestTemperature'] . '<span class="celsius">℃</span></p>';
       $output .= '<p>' . $weather_data[1]['maximumTemperatureComparison'] . '</p>';
       $output .= '</li>';
       $output .= '<li>';
-      $output .= '<p>' . $weather_data[1]['lowestTemperature'] . '<span>℃</span></p>';
+      $output .= '<p>' . $weather_data[1]['lowestTemperature'] . '<span class="celsius">℃</span></p>';
       $output .= '<p>' . $weather_data[1]['lowestTemperatureComparison'] . '</p>';
       $output .= '</li>';
       $output .= '</ul>';
@@ -117,7 +120,7 @@ function myfirstplugin_render_block($attr, $content)
 
     if ($weeklyWeather) {
       $output .= '<ul class="block--weekly weather-layout">';
-      
+
       for ($i = 2; $i <= 6; $i++) {
         if (isset($weather_data[$i]['day']['isHoliday']) && $weather_data[$i]['day']['isHoliday'] || isset($weather_data[$i]['day']['isSunday']) && $weather_data[$i]['day']['isSunday']) {
           $textColor = ' style="color: red"';
@@ -134,11 +137,11 @@ function myfirstplugin_render_block($attr, $content)
         $output .= '</span>';
         $output .= '<ul class="temp">'; // 修正: classNameをclassに変更しました
         $output .= '<li>';
-        $output .= '<p>' . $weather_data[$i]['highestTemperature'] . '<span>℃</span></p>';
+        $output .= '<p>' . $weather_data[$i]['highestTemperature'] . '<span class="celsius">℃</span></p>';
         $output .= '<p>' . $weather_data[$i]['maximumTemperatureComparison'] . '</p>';
         $output .= '</li>';
         $output .= '<li>';
-        $output .= '<p>' . $weather_data[$i]['lowestTemperature'] . '<span>℃</span></p>';
+        $output .= '<p>' . $weather_data[$i]['lowestTemperature'] . '<span class="celsius">℃</span></p>';
         $output .= '<p>' . $weather_data[$i]['lowestTemperatureComparison'] . '</p>';
         $output .= '</li>';
         $output .= '</ul>';

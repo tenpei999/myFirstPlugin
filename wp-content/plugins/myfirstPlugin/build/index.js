@@ -74,7 +74,11 @@ const Temp = ({
   if (!weather) return null;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: "temp"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.highestTemperature, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "\u2103")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.maximumTemperatureComparison)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.lowestTemperature, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "\u2103")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.lowestTemperatureComparison)));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.highestTemperature, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "celsius"
+  }, "\u2103")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.maximumTemperatureComparison)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.lowestTemperature, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "celsius"
+  }, "\u2103")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.lowestTemperatureComparison)));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Temp);
 
@@ -253,8 +257,10 @@ function Edit({
   const [showPrecipitation, setShowPrecipitation] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showPrecipitation);
   const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const cachedWeather = (0,_hooks_useWeatherData__WEBPACK_IMPORTED_MODULE_9__.useWeatherData)(setAttributes);
-  console.log(cachedWeather);
-  console.log(attributes);
+
+  // console.log(cachedWeather);
+  // console.log(attributes);
+
   const {
     showSelection,
     handleLayoutClick
@@ -633,7 +639,6 @@ const useWeatherData = setAttributes => {
       });
     });
   }, [setAttributes]);
-  console.log(cachedWeather);
   return cachedWeather;
 };
 
@@ -683,8 +688,6 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
       // console.log(`Day ${i + 2}: ${todayMaxTemperature} ℃ (昨日との差分: ${formattedDifference} ℃)`);
     }
 
-    console.log(highestTemperatureForWeek);
-
     // console.log("昨日から6日後までの当日の最低気温と前日の最低気温の差分:");
 
     const lowestTemperatureDifferencesForWeek = [];
@@ -694,7 +697,6 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
       const temperatureDifference = Math.ceil((todayMinTemperature - yesterdayMinTemperature) * 10) / 10;
       const formattedDifference = temperatureDifference >= 0 ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
       lowestTemperatureDifferencesForWeek.push(formattedDifference);
-      console.log(data2.daily);
 
       // console.log(`Day ${i + 2}: ${todayMinTemperature} ℃ (昨日との差分: ${formattedDifference} ℃)`);
     }

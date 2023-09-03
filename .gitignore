@@ -7,6 +7,7 @@ bundle.js
 package-lock.json
 .DS_Store
 Thumbs.db
+debug.log
 
 /*.php
 /*.html

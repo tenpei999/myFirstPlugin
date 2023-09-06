@@ -432,85 +432,87 @@ __webpack_require__.r(__webpack_exports__);
 * @param {number} weatherCode WMOに基づくweatherCode
 * @returns {Object<label<String>, icon<String>>} weatherコードに対応するラベルとアイコンを格納したオブジェクト
 */
+
 const getWeatherInfo = weatherCode => {
+  const pluginImagePaths = myPluginData.pluginImagePath;
+
   // 0 : Clear Sky
   if (weatherCode === 0) {
     return {
       label: "快晴",
-      icon: pluginImagePath + '100.svg'
+      icon: pluginImagePaths + '100.svg'
     };
   }
   if (weatherCode === 1) {
     return {
       label: "晴れ",
-      icon: pluginImagePath + '100.svg'
+      icon: pluginImagePaths + '100.svg'
     };
   }
   // 2 : Partly Cloudy
   if (weatherCode === 2) {
     return {
       label: "一部曇",
-      icon: pluginImagePath + '101.svg'
+      icon: pluginImagePaths + '101.svg'
     };
   }
   // 3 : Overcast
   if (weatherCode === 3) {
     return {
       label: "曇り",
-      icon: pluginImagePath + '200.svg'
+      icon: pluginImagePaths + '200.svg'
     };
   }
   // 45, 48 : Fog And Depositing Rime Fog
   if (weatherCode <= 49) {
     return {
       label: "霧",
-      icon: pluginImagePath + '200.svg'
+      icon: pluginImagePaths + '200.svg'
     };
   }
   // 51, 53, 55 : Drizzle Light, Moderate And Dense Intensity ・ 56, 57 : Freezing Drizzle Light And Dense Intensity
   if (weatherCode <= 59) {
     return {
       label: "霧雨",
-      icon: pluginImagePath + '202.svg'
+      icon: pluginImagePaths + '202.svg'
     };
   }
   // 61, 63, 65 : Rain Slight, Moderate And Heavy Intensity ・66, 67 : Freezing Rain Light And Heavy Intensity
   if (weatherCode <= 69) {
     return {
       label: "雨",
-      icon: pluginImagePath + '300.svg'
+      icon: pluginImagePaths + '300.svg'
     };
   }
   // 71, 73, 75 : Snow Fall Slight, Moderate And Heavy Intensity ・ 77 : Snow Grains
   if (weatherCode <= 79) {
     return {
       label: "雪",
-      icon: pluginImagePath + '400.svg'
+      icon: pluginImagePaths + '400.svg'
     };
   }
   // 80, 81, 82 : Rain Showers Slight, Moderate And Violent
   if (weatherCode <= 84) {
     return {
       label: "俄か雨",
-      icon: pluginImagePath + '302.svg'
+      icon: pluginImagePaths + '302.svg'
     };
   }
   // 85, 86 : Snow Showers Slight And Heavy
   if (weatherCode <= 94) {
     return {
       label: "雪・雹",
-      icon: pluginImagePath + '400.svg'
+      icon: pluginImagePaths + '400.svg'
     };
   }
   // 95 : Thunderstorm Slight Or Moderate ・ 96, 99 : Thunderstorm With Slight And Heavy Hail
   if (weatherCode <= 99) {
     return {
       label: "雷雨",
-      icon: pluginImagePath + '300.svg'
+      icon: pluginImagePaths + '300.svg'
     };
   }
   // その他はエラーとする
-  console.log(weatherCode[0]);
   return {
     label: "ERROR",
     icon: ""
@@ -659,24 +661,36 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeather) => {
+  console.log("Testing getWeatherInfo with code 0:", (0,_getWeatherInfo__WEBPACK_IMPORTED_MODULE_0__["default"])(0).label);
   try {
+    console.log('weatherObject function started'); // 関数が開始されたことを示す
+
+    // apiUrlの定義を追加
+    const apiUrl = myPluginData.siteUrl + '/wp-json/my-weather-plugin/save-data/';
+
     // 1つ目のAPIリクエスト
-    const request1 = fetch('https://weather.tsukumijima.net/api/forecast/city/130010').then(response => response.json());
+    const request1 = fetch('https://weather.tsukumijima.net/api/forecast/city/130010').then(response => {
+      console.log('Response from API 1:', response); // 1つ目のAPIからのレスポンス
+      return response.json();
+    });
 
     // 2つ目のAPIリクエスト
-    const request2 = fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=1&forecast_days=14').then(response => response.json());
+    const request2 = fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=1&forecast_days=14').then(response => {
+      console.log('Response from API 2:', response); // 2つ目のAPIからのレスポンス
+      return response.json();
+    });
     const [data1, data2] = await Promise.all([request1, request2]);
+    console.log('Both API requests completed');
     const datesForWeek = await (0,_dayWithHoloday__WEBPACK_IMPORTED_MODULE_1__["default"])();
     const weatherCodesForWeek = data2.daily.weathercode; // 本日から6日後までの天気コード
+    console.log("weatherCodesForWeek:", weatherCodesForWeek);
 
     // 天気コードを天気名に変換
     const weatherNamesForWeek = weatherCodesForWeek.map(code => (0,_getWeatherInfo__WEBPACK_IMPORTED_MODULE_0__["default"])(code).label);
+    console.log("weatherNamesForWeek:", weatherNamesForWeek);
     const weatherImageForWeek = weatherCodesForWeek.map(code => (0,_getWeatherInfo__WEBPACK_IMPORTED_MODULE_0__["default"])(code).icon);
     const highestTemperatureForWeek = data2.daily.temperature_2m_max; // 昨日から6日後までの天気コード
-    const highestTemperatureForWeek2 = data2.daily.temperature_2m_max; // 昨日から6日後までの天気コード
     const lowestTemperatureForWeek = data2.daily.temperature_2m_min; // 昨日から6日後までの天気コード
-    // console.log("昨日から6日後までの当日の最高気温と前日の最高気温の差分:");
-
     const highestTemperatureDifferencesForWeek = [];
     for (let i = -1; i < highestTemperatureForWeek.length; i++) {
       const todayMaxTemperature = highestTemperatureForWeek[i + 1];
@@ -684,12 +698,9 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
       const temperatureDifference = Math.ceil((todayMaxTemperature - yesterdayMaxTemperature) * 10) / 10;
       const formattedDifference = temperatureDifference >= 0 ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
       highestTemperatureDifferencesForWeek.push(formattedDifference);
-
-      // console.log(`Day ${i + 2}: ${todayMaxTemperature} ℃ (昨日との差分: ${formattedDifference} ℃)`);
+      console.log(`Day ${i + 2}: ${todayMaxTemperature} ℃ (昨日との差分: ${formattedDifference} ℃)`);
     }
-
-    // console.log("昨日から6日後までの当日の最低気温と前日の最低気温の差分:");
-
+    console.log("昨日から6日後までの当日の最低気温と前日の最低気温の差分:");
     const lowestTemperatureDifferencesForWeek = [];
     for (let i = -1; i < lowestTemperatureForWeek.length; i++) {
       const todayMinTemperature = lowestTemperatureForWeek[i + 1];
@@ -697,8 +708,7 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
       const temperatureDifference = Math.ceil((todayMinTemperature - yesterdayMinTemperature) * 10) / 10;
       const formattedDifference = temperatureDifference >= 0 ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
       lowestTemperatureDifferencesForWeek.push(formattedDifference);
-
-      // console.log(`Day ${i + 2}: ${todayMinTemperature} ℃ (昨日との差分: ${formattedDifference} ℃)`);
+      console.log(`Day ${i + 2}: ${todayMinTemperature} ℃ (昨日との差分: ${formattedDifference} ℃)`);
     }
 
     /* 時間帯毎の天気 */
@@ -722,7 +732,7 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
     }));
 
     // WordPress REST APIエンドポイントにデータをPOST
-    fetch('/wp-json/my-weather-plugin/save-data/', {
+    const postResponse = await fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json' // JSON形式でデータを送信
@@ -732,39 +742,23 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
       body: JSON.stringify({
         dailyData: dailyData
       })
-    })
-
-    // .then(response => {
-    //   console.log(response.status, response.statusText);
-    //   return response.text(); // 一時的にテキストとしてレスポンスを読み取る
-    // })
-    // .then(text => {
-    //   console.log(text); // レスポンスの内容を確認
-    // })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
     });
-    // .then(response => response.json())
-    // .then(result => {
-    //   console.log(result.message);  // ここで"Success"が表示されれば成功
-    // })
-    // .catch(error => {
-    //   console.error('Error:', error);
-    // });
+    console.log('POST request status:', postResponse.status, postResponse.statusText); // POSTリクエストのステータスとテキストを表示
+    if (!postResponse.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const postResponseBody = await postResponse.json();
+    console.log('POST request response:', postResponseBody); // POSTリクエストのレスポンスボディを表示
 
-    // console.log(dailyData);
+    console.log(dailyData);
     // 今日と明日の天気データをセット
     setTodayWeather(dailyData[0]);
     setTomorrowWeather(dailyData[1]);
 
     // 週間の天気データをセット
     setWeeklyWeather(dailyData.slice(2, 8));
-
-    // console.log("highestTemperatureForWeek:", highestTemperatureForWeek);
-    // console.log("lowestTemperatureForWeek:", lowestTemperatureForWeek);
+    console.log("highestTemperatureForWeek:", highestTemperatureForWeek);
+    console.log("lowestTemperatureForWeek:", lowestTemperatureForWeek);
   } catch (error) {
     console.error('APIの呼び出しに失敗:', error);
   }
@@ -786,8 +780,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/edit.js");
-/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./save */ "./src/save.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./block.json */ "./src/block.json");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/block.json");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -811,6 +804,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+// import save from './save';
 
 
 /**
@@ -818,13 +812,25 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_5__.name, {
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
   /**
    * Used to construct a preview for the block to be shown in the block inserter.
    */
   example: {
     attributes: {
-      message: 'my-first-plugin'
+      message: 'my-first-plugin',
+      todayWeather: {
+        type: 'object',
+        default: {}
+      },
+      tomorrowWeather: {
+        type: 'object',
+        default: {}
+      },
+      weeklyWeather: {
+        type: 'array',
+        default: []
+      }
     }
   },
   /**
@@ -834,53 +840,10 @@ __webpack_require__.r(__webpack_exports__);
   /**
    * @see ./save.js
    */
-  save: _save__WEBPACK_IMPORTED_MODULE_4__["default"]
+  save() {
+    return null;
+  }
 });
-
-/***/ }),
-
-/***/ "./src/save.js":
-/*!*********************!*\
-  !*** ./src/save.js ***!
-  \*********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ save)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-
-
-/**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
- *
- * @param {Object} props            Properties passed to the function.
- * @param {Object} props.attributes Available block attributes.
- * @return {WPElement} Element to render.
- */
-function save({
-  attributes
-}) {
-  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save();
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...blockProps
-  }, attributes.message);
-}
 
 /***/ }),
 

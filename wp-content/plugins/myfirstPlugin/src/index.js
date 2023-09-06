@@ -62,3 +62,4 @@ registerBlockType(metadata.name, {
 		return null;
 	},
 });
+

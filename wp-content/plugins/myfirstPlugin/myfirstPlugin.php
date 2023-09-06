@@ -14,16 +14,8 @@
  * @package           create-block
  */
 
-/**
- * Registers the block using the metadata loaded from the `block.json` file.
- * Behind the scenes, it registers also all assets so they can be enqueued
- * through the block editor in the corresponding context.
- *
- * @see https://developer.wordpress.org/reference/functions/register_block_type/
- */
 function create_block_gutenpride_block_init()
 {
-
 	register_block_type(
 		__DIR__ . '/build',
 		[
@@ -34,27 +26,20 @@ function create_block_gutenpride_block_init()
 
 add_action('init', 'create_block_gutenpride_block_init');
 
-function enqueue_scripts_with_data()
+function print_my_plugin_data()
 {
-	$script_handles = ['editorScript'];
+	$plugin_data = array(
+		'pluginImagePath' => plugins_url('images/', __FILE__),
+		'restUrl' => rest_url('my-weather-plugin/save-data/'),
+		'siteUrl' => get_site_url()  // WordPressのサイトURLを取得
+	);
 
-	foreach ($script_handles as $handle) {
-		wp_script_add_data($handle, 'type', 'module');
-	}
-
-	// プラグイン内の images フォルダへのパスを定義
-	$plugin_image_path = plugins_url('images/', __FILE__);
-	// インラインスクリプト内で変数を使用する
-	$inline_script = "
-        <script>
-            const pluginImagePath = '{$plugin_image_path}';
-        </script>
-    ";
-
-	// スクリプトを出力
-	echo $inline_script;
+	echo '<script type="text/javascript">';
+	echo 'var myPluginData = ' . json_encode($plugin_data) . ';';
+	echo '</script>';
 }
-add_action('admin_enqueue_scripts', 'enqueue_scripts_with_data');
+
+add_action('admin_footer', 'print_my_plugin_data');
 
 include dirname(__FILE__) . '/render-blocks.php';
 
@@ -68,17 +53,21 @@ add_action('rest_api_init', function () {
 
 function save_weather_data(WP_REST_Request $request)
 {
+	error_log('[Debug] save_weather_data - Start');
+	error_log('[Debug] Request Parameters: ' . print_r($request->get_params(), true));
 	$data = $request->get_param('dailyData');
-
-	// JSONデータをWordPressオプションとして保存します。
 	if ($data) {
-		update_option('my_weather_data', json_encode($data));
+		error_log('[Debug] Data to be saved: ' . print_r($data, true));
 	} else {
+		error_log('[Debug] No dailyData parameter found in the request.');
+	}
+	if ($data) {
+		$result = update_option('my_weather_data', json_encode($data));
+		error_log('[Debug] Update Option Result: ' . ($result ? 'Success' : 'Failed'));
+	} else {
+		error_log('[Debug] Data not provided');
 		return new WP_REST_Response('Error: Data not provided', 400);
 	}
-
+	error_log('[Debug] save_weather_data - End');
 	return new WP_REST_Response(array('message' => 'Success'), 200);
 }
-
-
-

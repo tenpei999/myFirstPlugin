@@ -53,21 +53,21 @@ add_action('rest_api_init', function () {
 
 function save_weather_data(WP_REST_Request $request)
 {
-	error_log('[Debug] save_weather_data - Start');
-	error_log('[Debug] Request Parameters: ' . print_r($request->get_params(), true));
+	// error_log('[Debug] save_weather_data - Start');
+	// error_log('[Debug] Request Parameters: ' . print_r($request->get_params(), true));
 	$data = $request->get_param('dailyData');
 	if ($data) {
-		error_log('[Debug] Data to be saved: ' . print_r($data, true));
+		// error_log('[Debug] Data to be saved: ' . print_r($data, true));
 	} else {
-		error_log('[Debug] No dailyData parameter found in the request.');
+		// error_log('[Debug] No dailyData parameter found in the request.');
 	}
 	if ($data) {
 		$result = update_option('my_weather_data', json_encode($data));
-		error_log('[Debug] Update Option Result: ' . ($result ? 'Success' : 'Failed'));
+		// error_log('[Debug] Update Option Result: ' . ($result ? 'Success' : 'Failed'));
 	} else {
-		error_log('[Debug] Data not provided');
+		// error_log('[Debug] Data not provided');
 		return new WP_REST_Response('Error: Data not provided', 400);
 	}
-	error_log('[Debug] save_weather_data - End');
+	// error_log('[Debug] save_weather_data - End');
 	return new WP_REST_Response(array('message' => 'Success'), 200);
 }

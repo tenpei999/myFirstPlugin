@@ -107,7 +107,7 @@ function generateWeatherOutput($data, $textColor, $time_ranges, $showHoliday, $s
 
 function generateWeeklyWeatherOutput($data, $textColor)
 {
-  $output = '<li class="c-weather__weekly-item">';
+  $output = '<li class="block--day">';
   $output .= '<h4' . $textColor . '>' . ($data['day']['date'] ?? '') . '</h4>';
   $output .= '<span class="c-weather__weather">';
   $output .= "<img src=\"{$data['image']}\" alt=\"weather icon\">";

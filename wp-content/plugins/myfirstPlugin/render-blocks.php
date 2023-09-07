@@ -16,7 +16,7 @@ function myfirstplugin_render_block($attr, $content)
   $weather_data = json_decode(get_option('my_weather_data'), true);
 
   // 1. オプションデータの取得デバッグ
-  error_log('Debug: Weather Data - ' . print_r($weather_data, true));
+  // error_log('Debug: Weather Data - ' . print_r($weather_data, true));
 
   // 天気データがnullかチェック
   if ($weather_data === null) {
@@ -56,7 +56,7 @@ function myfirstplugin_render_block($attr, $content)
     for ($i = 2; $i <= 6; $i++) {
       if (isset($weather_data[$i])) {
         $textColor = setTextColor($weather_data[$i]['day'] ?? []);
-        $output .= generateWeeklyWeatherOutput($weather_data[$i], $textColor);
+        $output .= generateWeeklyWeatherOutput($weather_data[$i], $textColor, $showHoliday);
       }
     }
 
@@ -73,6 +73,9 @@ function generateWeatherOutput($data, $textColor, $time_ranges, $showHoliday, $s
   $output = '<div class="block--current">';
   $output .= '<h3>' . $title . '</h3>';
   $output .= '<h4' . $textColor . '>'  . ($data['day']['date'] ?? '') . '</h4>';
+  if ($showHoliday) {
+    $output .= '<p>' . esc_html($data['day']['holidayName'] ?? '') . '</p>';
+  }
   $output .= '<p>' . ($data['name'] ?? '')  . '</p>';
   $output .= "<img src=\"{$data['image']}\" alt=\"weather icon\">";
   $output .= '<ul class="temp">';
@@ -85,9 +88,6 @@ function generateWeatherOutput($data, $textColor, $time_ranges, $showHoliday, $s
   $output .= '<p>' . ($data['lowestTemperatureComparison'] ?? '') . '</p>';
   $output .= '</li>';
   $output .= '</ul>';
-  if ($showHoliday) {
-    $output .= '<p>' . esc_html($data['day']['date'] ?? '') . '</p>';
-  }
   if ($showPrecipitation && isset($data['rainProbability']) && is_array($data['rainProbability'])) {
     $output .= '<ul class="time-zone">';
     $output .= '<li class="c-weather__chanceOfRain-index"><p class="time">時間</p><p class="rain">降水</p></li>';
@@ -104,10 +104,13 @@ function generateWeatherOutput($data, $textColor, $time_ranges, $showHoliday, $s
   return $output;
 }
 
-function generateWeeklyWeatherOutput($data, $textColor)
+function generateWeeklyWeatherOutput($data, $textColor, $showHoliday)
 {
   $output = '<li class="block--day">';
   $output .= '<h4' . $textColor . '>' . ($data['day']['date'] ?? '') . '</h4>';
+  if ($showHoliday) {
+    $output .= '<p>' . esc_html($data['day']['holidayName'] ?? '') . '</p>';
+  }
   $output .= '<p>' . ($data['name'] ?? '')  . '</p>';
   $output .= "<img src=\"{$data['image']}\" alt=\"weather icon\">";
   $output .= '<ul class="temp">';

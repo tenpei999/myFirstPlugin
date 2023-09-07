@@ -30,9 +30,6 @@ export default function Edit({ attributes, setAttributes }) {
 	const ref = useRef(null);
 	const cachedWeather = useWeatherData(setAttributes);
 
-	// console.log(cachedWeather);
-	// console.log(attributes);
-
 	const { showSelection, handleLayoutClick } = useBlockSelection();
 
 	const TodayWeatherComponentProps = {

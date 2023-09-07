@@ -42,8 +42,6 @@ const dayWithHoliday = async () => {
         isSunday: date.getDay() === 0,
       };
     });
-
-    // console.log(oneWeekDatesWithHolidays);
     return oneWeekDatesWithHolidays;
   }
 

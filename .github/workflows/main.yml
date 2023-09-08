@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ssh and deploy
-        uses: appleboy/ssh-action@master # １
-        with: # ２ アクションの入力パラメータを指定
-          host: ${{ secrets.SSH_HOST }} # ホスト名
-          username: ${{ secrets.SSH_USERNAME }} # SSH ユーザ名
-          key: ${{ secrets.SSH_PRIVATE_KEY }} # 秘密鍵の内容
-          port: ${{ secrets.SSH_PORT }} # ポート番号
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
-          　　　　cd ${{ secrets.SERVER_DEPLOY_DIR }}:
-            git switch main
+            cd ${{ secrets.SERVER_DEPLOY_DIR }}
+            git checkout main
             git pull origin main
             php artisan migrate --force

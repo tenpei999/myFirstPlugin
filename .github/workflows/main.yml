@@ -1,0 +1,23 @@
+name: Release to Production Environment
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job1:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: ssh and deploy
+        uses: appleboy/ssh-action@master # １
+        with: # ２ アクションの入力パラメータを指定
+          host: ${{ secrets.SSH_HOST }} # ホスト名
+          username: ${{ secrets.SSH_USERNAME }} # SSH ユーザ名
+          key: ${{ secrets.SSH_PRIVATE_KEY }} # 秘密鍵の内容
+          port: ${{ secrets.SSH_PORT }} # ポート番号
+          script: |
+            cd /path/to/git_current
+            git switch main
+            git pull origin main
+            php artisan migrate --force

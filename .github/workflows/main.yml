@@ -1,24 +1,23 @@
-name: Release to Production Environment
+name: sakura
+
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
-  job1:
-    name: Deploy
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: ssh and deploy
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }} 
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            cd ${{ secrets.SERVER_DEPLOY_DIR }}
-            git checkout main
-            git pull origin main
-            php artisan migrate --force
+     - name: Checkout Repository
+       uses: actions/checkout@v3
+     - name: Deploy
+       uses: appleboy/ssh-action@master
+       with:
+         host: ${{ secrets.SSH_HOST }}
+         username: ${{ secrets.SSH_USERNAME }}
+         password: ${{ secrets.SERVER_PASS }}
+         script: |
+           cd ${{ secrets.SERVER_DEPLOY_DIR }}
+           git pull origin main   

@@ -14,7 +14,7 @@ jobs:
         with: # ２ アクションの入力パラメータを指定
           host: ${{ secrets.SSH_HOST }} # ホスト名
           username: ${{ secrets.SSH_USERNAME }} # SSH ユーザ名
-          password: ${{ secrets.SERVER_PASS }} 
+          password: ${{ secrets.SSH_PASSWORD }} 
           key: ${{ secrets.SSH_PRIVATE_KEY }} # 秘密鍵の内容
           port: ${{ secrets.SSH_PORT }} # ポート番号
           script: |

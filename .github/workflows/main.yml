@@ -19,6 +19,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}  # 秘密鍵のパスフレーズを指定
           script: |
+            ls -li
             # cd ${{ secrets.SERVER_DEPLOY_DIR }}
             cd ./www/tsuruten-web123.com/plugin_test
             pwd  # 追加: 現在のディレクトリの絶対パスを表示

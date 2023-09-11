@@ -23,7 +23,7 @@ jobs:
             ls -la /home/***/www
             pwd  # 追加: 現在のディレクトリの絶対パスを表示
             # cd ${{ secrets.SERVER_DEPLOY_DIR }}
-            cd /home/tanpanda969/www/tsuruten-web123.com
+            cd www/tsuruten-web123.com
             git switch main
             git pull origin main
             php artisan migrate --force

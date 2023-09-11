@@ -24,7 +24,7 @@ import Edit from './edit';
 // import save from './save';
 import metadata from './block.json';
 
-console.log("自動デプロイ成功!!wwwやねん");
+console.log("自動デプロイ成功!!");
 
 /**
  * Every block starts by registering a new block type definition.

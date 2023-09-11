@@ -1,4 +1,5 @@
 name: Release to Production Environment
+
 on:
   push:
     branches:
@@ -19,6 +20,7 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}  # 秘密鍵のパスフレーズを指定
           script: |
             cd ${{ secrets.SERVER_DEPLOY_DIR }}
+            pwd  # 追加: 現在のディレクトリの絶対パスを表示
             git switch main
             git pull origin main
             php artisan migrate --force

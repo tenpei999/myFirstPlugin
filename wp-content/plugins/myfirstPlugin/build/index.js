@@ -781,7 +781,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // import save from './save';
 
-console.log("自動デプロイ成功!!");
+console.log("自動デプロイ成功!!おめでとう");
 
 /**
  * Every block starts by registering a new block type definition.

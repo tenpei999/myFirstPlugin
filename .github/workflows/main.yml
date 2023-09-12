@@ -23,7 +23,7 @@ jobs:
             # ls -la /home/***/www
             # pwd  # 追加: 現在のディレクトリの絶対パスを表示
             cd ${{ secrets.SERVER_DEPLOY_DIR }}/plugin_test
-            git status
+            # git status
             git checkout -b main
             git remote add origin git@github.com:tenpei999/myFirstPlugin.git
             git branch -a

@@ -25,6 +25,7 @@ jobs:
             cd ${{ secrets.SERVER_DEPLOY_DIR }}/plugin_test
             git status
             git checkout -b main
+            git remote add origin git@github.com:tenpei999/myFirstPlugin.git
             git branch -a
             git remote -v
             git switch main

@@ -29,5 +29,4 @@ jobs:
             # git remote -v
             git switch main
             git pull origin main
-            php artisan migrate --force
 

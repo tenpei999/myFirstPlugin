@@ -24,7 +24,7 @@ jobs:
             # pwd  # 追加: 現在のディレクトリの絶対パスを表示
             cd ${{ secrets.SERVER_DEPLOY_DIR }}/plugin_test
             git status
-            git branch
+            git branch -a
             git remote -v
             git switch main
             git pull origin main

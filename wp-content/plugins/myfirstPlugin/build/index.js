@@ -400,6 +400,26 @@ const dayWithHoliday = async () => {
 
 /***/ }),
 
+/***/ "./src/hooks/getSpotWeather.js":
+/*!*************************************!*\
+  !*** ./src/hooks/getSpotWeather.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   city1: () => (/* binding */ city1),
+/* harmony export */   city2: () => (/* binding */ city2)
+/* harmony export */ });
+const city1 = {
+  tokyo: 'https://weather.tsukumijima.net/api/forecast/city/130010'
+};
+const city2 = {
+  tokyo: 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=1&forecast_days=14'
+};
+
+/***/ }),
+
 /***/ "./src/hooks/getWeatherInfo.js":
 /*!*************************************!*\
   !*** ./src/hooks/getWeatherInfo.js ***!
@@ -652,6 +672,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _getWeatherInfo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getWeatherInfo */ "./src/hooks/getWeatherInfo.js");
 /* harmony import */ var _dayWithHoloday__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dayWithHoloday */ "./src/hooks/dayWithHoloday.js");
+/* harmony import */ var _getSpotWeather__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getSpotWeather */ "./src/hooks/getSpotWeather.js");
+
 
 
 const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeather) => {
@@ -659,13 +681,15 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
     // apiUrlの定義を追加
     const apiUrl = myPluginData.siteUrl + '/wp-json/my-weather-plugin/save-data/';
 
+    // const tokyo1 = 'https://weather.tsukumijima.net/api/forecast/city/130010';
     // 1つ目のAPIリクエスト
-    const request1 = fetch('https://weather.tsukumijima.net/api/forecast/city/130010').then(response => {
+    const request1 = fetch(_getSpotWeather__WEBPACK_IMPORTED_MODULE_2__.city1.tokyo).then(response => {
       return response.json();
     });
 
+    // const tokyo2 = 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=1&forecast_days=14';
     // 2つ目のAPIリクエスト
-    const request2 = fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=1&forecast_days=14').then(response => {
+    const request2 = fetch(_getSpotWeather__WEBPACK_IMPORTED_MODULE_2__.city2.tokyo).then(response => {
       return response.json();
     });
     const [data1, data2] = await Promise.all([request1, request2]);

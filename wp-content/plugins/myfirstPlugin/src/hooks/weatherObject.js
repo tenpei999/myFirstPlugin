@@ -1,5 +1,6 @@
 import getWeatherInfo from "./getWeatherInfo";
 import dayWithHoliday from "./dayWithHoloday";
+import { city1, city2 } from "./getSpotWeather";
 
 const weatherObject = async (
   setTodayWeather,
@@ -12,14 +13,16 @@ const weatherObject = async (
     // apiUrlの定義を追加
     const apiUrl = myPluginData.siteUrl + '/wp-json/my-weather-plugin/save-data/';
 
+    // const tokyo1 = 'https://weather.tsukumijima.net/api/forecast/city/130010';
     // 1つ目のAPIリクエスト
-    const request1 = fetch('https://weather.tsukumijima.net/api/forecast/city/130010')
+    const request1 = fetch(city1.tokyo)
       .then(response => {
         return response.json();
       });
 
+    // const tokyo2 = 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=1&forecast_days=14';
     // 2つ目のAPIリクエスト
-    const request2 = fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=1&forecast_days=14')
+    const request2 = fetch(city2.tokyo)
       .then(response => {
         return response.json();
       });

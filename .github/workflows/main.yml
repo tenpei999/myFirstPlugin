@@ -24,10 +24,8 @@ jobs:
             # pwd  # 追加: 現在のディレクトリの絶対パスを表示
             cd ${{ secrets.SERVER_DEPLOY_DIR }}/plugin_test
             git status
-            # main ブランチが存在するかを確認
-            if git rev-parse --verify main > /dev/null 2>&1; then
-            else
             git checkout -b main
+            git branch -a
             git remote -v
             git switch main
             git pull origin main

@@ -27,6 +27,8 @@ const weatherObject = async (
         return response.json();
       });
 
+    console.log(request2)
+
     const [data1, data2] = await Promise.all([request1, request2]);
     const datesForWeek = await dayWithHoliday();
     const weatherCodesForWeek = data2.daily.weathercode; // 本日から6日後までの天気コード
@@ -65,6 +67,22 @@ const weatherObject = async (
         return dayForecast.chanceOfRain[timeFrame];
       });
     });
+
+    const rainProbability = {};
+
+    for (let i = 0; i <= 6; i++) {
+      let baseTime = i === 0 ? 0 : 24 * (i + 1);
+      rainProbability[i] = [];
+    
+      for (let j = 0; j < 4; j++) {
+        rainProbability[i].push({
+          time: data2.hourly.time[baseTime + j * 6],
+          precipitation_probability: data2.hourly.precipitation_probability[baseTime + j * 6]
+        });
+      }
+    }
+
+    console.log(rainProbability);
 
     const dailyData = weatherNamesForWeek.map((name, index) => ({
       day: datesForWeek[index],

@@ -1,13 +1,4 @@
-export const city1 =  {
-  sapporo: 'https://weather.tsukumijima.net/api/forecast/city/016010',
-  akita: 'https://weather.tsukumijima.net/api/forecast/city/050010',
-  kanazawa: 'https://weather.tsukumijima.net/api/forecast/city/170010',
-  tokyo: 'https://weather.tsukumijima.net/api/forecast/city/130010',
-  omiya: 'https://weather.tsukumijima.net/api/forecast/city110010',
-  nagoya: 'https://weather.tsukumijima.net/api/forecast/city230010',
-  osaka: 'https://weather.tsukumijima.net/api/forecast/city270000',
-} 
-export const city2 =  {
+export const city =  {
   // https://open-meteo.com/en/docs
   // Daily Weather Variables Weathercode / Maximum Temperature (2 m) / Minimum Temperature (2 m) / Past days 1
 

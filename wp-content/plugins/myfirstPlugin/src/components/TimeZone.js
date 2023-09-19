@@ -1,4 +1,4 @@
-const TimeZone = ({weather}) => {
+const TimeZone = ({ weather }) => {
 
   if (!weather) return null;
 
@@ -9,24 +9,24 @@ const TimeZone = ({weather}) => {
         <p className="rain">降水</p>
       </li>
       <li className="c-weather__chanceOfRain-timezone1">
-        <p className="time">0-6時</p>
-        <p id="todayschanceOfRain1" className="rain">{weather.rainProbability[0]
-}</p>
+        <p className="time">0時</p>
+        <p id="todayschanceOfRain1" className="rain">{weather.rainProbability[0].precipitation_probability
+        }</p>
       </li>
       <li className="c-weather__chanceOfRain-timezone2">
-        <p className="time">6-12時</p>
-        <p id="todayschanceOfRain2" className="rain">{weather.rainProbability[1]
-}</p>
+        <p className="time">6時</p>
+        <p id="todayschanceOfRain2" className="rain">{weather.rainProbability[1].precipitation_probability
+        }</p>
       </li>
       <li className="c-weather__chanceOfRain-timezone3">
-        <p className="time">12-18時</p>
-        <p id="todayschanceOfRain3" className="rain">{weather.rainProbability[2]
-}</p>
+        <p className="time">12時</p>
+        <p id="todayschanceOfRain3" className="rain">{weather.rainProbability[2].precipitation_probability
+        }</p>
       </li>
       <li className="c-weather__chanceOfRain-timezone4">
-        <p className="time">18-24時</p>
-        <p id="todayschanceOfRain4" className="rain">{weather.rainProbability[3]
-}</p>
+        <p className="time">18時</p>
+        <p id="todayschanceOfRain4" className="rain">{weather.rainProbability[3].precipitation_probability
+        }</p>
       </li>
     </ul>
   )

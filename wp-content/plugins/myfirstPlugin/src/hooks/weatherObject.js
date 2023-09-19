@@ -1,6 +1,6 @@
 import getWeatherInfo from "./getWeatherInfo";
 import dayWithHoliday from "./dayWithHoloday";
-import { city1, city2 } from "./getSpotWeather";
+import { city } from "./getSpotWeather";
 
 const weatherObject = async (
   setTodayWeather,
@@ -9,27 +9,20 @@ const weatherObject = async (
 ) => {
 
   try {
+    console.log(city)
 
     // apiUrlの定義を追加
     const apiUrl = myPluginData.siteUrl + '/wp-json/my-weather-plugin/save-data/';
 
-    // const tokyo1 = 'https://weather.tsukumijima.net/api/forecast/city/130010';
-    // 1つ目のAPIリクエスト
-    const request1 = fetch(city1.tokyo)
-      .then(response => {
-        return response.json();
-      });
-
-    // const tokyo2 = 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=1&forecast_days=14';
     // 2つ目のAPIリクエスト
-    const request2 = fetch(city2.tokyo)
+    const request2 = fetch(city.tokyo)
       .then(response => {
         return response.json();
       });
 
     console.log(request2)
 
-    const [data1, data2] = await Promise.all([request1, request2]);
+    const [data2] = await Promise.all([request2]);
     const datesForWeek = await dayWithHoliday();
     const weatherCodesForWeek = data2.daily.weathercode; // 本日から6日後までの天気コード
 
@@ -60,29 +53,21 @@ const weatherObject = async (
       lowestTemperatureDifferencesForWeek.push(formattedDifference);
     }
 
-    /* 時間帯毎の天気 */
-    const timeFrames = ['T00_06', 'T06_12', 'T12_18', 'T18_24'];
-    const threeDayRainProbability = data1.forecasts.slice(0, 3).map(dayForecast => {
-      return timeFrames.map(timeFrame => {
-        return dayForecast.chanceOfRain[timeFrame];
-      });
-    });
-
-    const rainProbability = {};
+    const rainProbability1 = {};
 
     for (let i = 0; i <= 6; i++) {
       let baseTime = i === 0 ? 0 : 24 * (i + 1);
-      rainProbability[i] = [];
-    
+      rainProbability1[i] = [];
+
       for (let j = 0; j < 4; j++) {
-        rainProbability[i].push({
+        rainProbability1[i].push({
           time: data2.hourly.time[baseTime + j * 6],
           precipitation_probability: data2.hourly.precipitation_probability[baseTime + j * 6]
         });
       }
     }
 
-    console.log(rainProbability);
+    console.log(rainProbability1[0][0].precipitation_probability)
 
     const dailyData = weatherNamesForWeek.map((name, index) => ({
       day: datesForWeek[index],
@@ -92,8 +77,9 @@ const weatherObject = async (
       lowestTemperature: lowestTemperatureForWeek[index + 1],
       maximumTemperatureComparison: highestTemperatureDifferencesForWeek[index + 1],
       lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index + 1],
-      rainProbability: threeDayRainProbability[index + 1]
+      rainProbability: rainProbability1[index + 1],
     }));
+
 
     // WordPress REST APIエンドポイントにデータをPOST
     const postResponse = await fetch(apiUrl, {

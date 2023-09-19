@@ -113,31 +113,31 @@ const TimeZone = ({
     className: "c-weather__chanceOfRain-timezone1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "time"
-  }, "0-6\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, "0\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     id: "todayschanceOfRain1",
     className: "rain"
-  }, weather.rainProbability[0])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+  }, weather.rainProbability[0].precipitation_probability)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     className: "c-weather__chanceOfRain-timezone2"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "time"
-  }, "6-12\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, "6\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     id: "todayschanceOfRain2",
     className: "rain"
-  }, weather.rainProbability[1])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+  }, weather.rainProbability[1].precipitation_probability)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     className: "c-weather__chanceOfRain-timezone3"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "time"
-  }, "12-18\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, "12\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     id: "todayschanceOfRain3",
     className: "rain"
-  }, weather.rainProbability[2])), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+  }, weather.rainProbability[2].precipitation_probability)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     className: "c-weather__chanceOfRain-timezone4"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "time"
-  }, "18-24\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, "18\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     id: "todayschanceOfRain4",
     className: "rain"
-  }, weather.rainProbability[3])));
+  }, weather.rainProbability[3].precipitation_probability)));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TimeZone);
 
@@ -408,19 +408,9 @@ const dayWithHoliday = async () => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   city1: () => (/* binding */ city1),
-/* harmony export */   city2: () => (/* binding */ city2)
+/* harmony export */   city: () => (/* binding */ city)
 /* harmony export */ });
-const city1 = {
-  sapporo: 'https://weather.tsukumijima.net/api/forecast/city/016010',
-  akita: 'https://weather.tsukumijima.net/api/forecast/city/050010',
-  kanazawa: 'https://weather.tsukumijima.net/api/forecast/city/170010',
-  tokyo: 'https://weather.tsukumijima.net/api/forecast/city/130010',
-  omiya: 'https://weather.tsukumijima.net/api/forecast/city110010',
-  nagoya: 'https://weather.tsukumijima.net/api/forecast/city230010',
-  osaka: 'https://weather.tsukumijima.net/api/forecast/city270000'
-};
-const city2 = {
+const city = {
   // https://open-meteo.com/en/docs
   // Daily Weather Variables Weathercode / Maximum Temperature (2 m) / Minimum Temperature (2 m) / Past days 1
 
@@ -700,22 +690,17 @@ __webpack_require__.r(__webpack_exports__);
 
 const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeather) => {
   try {
+    console.log(_getSpotWeather__WEBPACK_IMPORTED_MODULE_2__.city);
+
     // apiUrlの定義を追加
     const apiUrl = myPluginData.siteUrl + '/wp-json/my-weather-plugin/save-data/';
 
-    // const tokyo1 = 'https://weather.tsukumijima.net/api/forecast/city/130010';
-    // 1つ目のAPIリクエスト
-    const request1 = fetch(_getSpotWeather__WEBPACK_IMPORTED_MODULE_2__.city1.tokyo).then(response => {
-      return response.json();
-    });
-
-    // const tokyo2 = 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=GMT&past_days=1&forecast_days=14';
     // 2つ目のAPIリクエスト
-    const request2 = fetch(_getSpotWeather__WEBPACK_IMPORTED_MODULE_2__.city2.tokyo).then(response => {
+    const request2 = fetch(_getSpotWeather__WEBPACK_IMPORTED_MODULE_2__.city.tokyo).then(response => {
       return response.json();
     });
     console.log(request2);
-    const [data1, data2] = await Promise.all([request1, request2]);
+    const [data2] = await Promise.all([request2]);
     const datesForWeek = await (0,_dayWithHoloday__WEBPACK_IMPORTED_MODULE_1__["default"])();
     const weatherCodesForWeek = data2.daily.weathercode; // 本日から6日後までの天気コード
 
@@ -740,26 +725,18 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
       const formattedDifference = temperatureDifference >= 0 ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
       lowestTemperatureDifferencesForWeek.push(formattedDifference);
     }
-
-    /* 時間帯毎の天気 */
-    const timeFrames = ['T00_06', 'T06_12', 'T12_18', 'T18_24'];
-    const threeDayRainProbability = data1.forecasts.slice(0, 3).map(dayForecast => {
-      return timeFrames.map(timeFrame => {
-        return dayForecast.chanceOfRain[timeFrame];
-      });
-    });
-    const rainProbability = {};
+    const rainProbability1 = {};
     for (let i = 0; i <= 6; i++) {
       let baseTime = i === 0 ? 0 : 24 * (i + 1);
-      rainProbability[i] = [];
+      rainProbability1[i] = [];
       for (let j = 0; j < 4; j++) {
-        rainProbability[i].push({
+        rainProbability1[i].push({
           time: data2.hourly.time[baseTime + j * 6],
           precipitation_probability: data2.hourly.precipitation_probability[baseTime + j * 6]
         });
       }
     }
-    console.log(rainProbability);
+    console.log(rainProbability1[0][0].precipitation_probability);
     const dailyData = weatherNamesForWeek.map((name, index) => ({
       day: datesForWeek[index],
       name,
@@ -768,7 +745,7 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
       lowestTemperature: lowestTemperatureForWeek[index + 1],
       maximumTemperatureComparison: highestTemperatureDifferencesForWeek[index + 1],
       lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index + 1],
-      rainProbability: threeDayRainProbability[index + 1]
+      rainProbability: rainProbability1[index + 1]
     }));
 
     // WordPress REST APIエンドポイントにデータをPOST

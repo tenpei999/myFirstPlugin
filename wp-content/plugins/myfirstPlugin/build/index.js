@@ -116,28 +116,28 @@ const TimeZone = ({
   }, "0\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     id: "todayschanceOfRain1",
     className: "rain"
-  }, weather.rainProbability[0].precipitation_probability)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+  }, weather.rainProbability[0].precipitation_probability, "%")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     className: "c-weather__chanceOfRain-timezone2"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "time"
   }, "6\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     id: "todayschanceOfRain2",
     className: "rain"
-  }, weather.rainProbability[1].precipitation_probability)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+  }, weather.rainProbability[1].precipitation_probability, "%")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     className: "c-weather__chanceOfRain-timezone3"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "time"
   }, "12\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     id: "todayschanceOfRain3",
     className: "rain"
-  }, weather.rainProbability[2].precipitation_probability)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+  }, weather.rainProbability[2].precipitation_probability, "%")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
     className: "c-weather__chanceOfRain-timezone4"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "time"
   }, "18\u6642"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     id: "todayschanceOfRain4",
     className: "rain"
-  }, weather.rainProbability[3].precipitation_probability)));
+  }, weather.rainProbability[3].precipitation_probability, "%")));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TimeZone);
 
@@ -726,8 +726,8 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
       lowestTemperatureDifferencesForWeek.push(formattedDifference);
     }
     const rainProbability1 = {};
-    for (let i = 0; i <= 6; i++) {
-      let baseTime = i === 0 ? 0 : 24 * (i + 1);
+    for (let i = 1; i <= 7; i++) {
+      let baseTime = i === 0 ? 0 : 24 * i;
       rainProbability1[i] = [];
       for (let j = 0; j < 4; j++) {
         rainProbability1[i].push({
@@ -736,7 +736,7 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
         });
       }
     }
-    console.log(rainProbability1[0][0].precipitation_probability);
+    console.log(rainProbability1);
     const dailyData = weatherNamesForWeek.map((name, index) => ({
       day: datesForWeek[index],
       name,

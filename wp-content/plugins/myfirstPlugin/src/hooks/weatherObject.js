@@ -55,8 +55,8 @@ const weatherObject = async (
 
     const rainProbability1 = {};
 
-    for (let i = 0; i <= 6; i++) {
-      let baseTime = i === 0 ? 0 : 24 * (i + 1);
+    for (let i = 1; i <= 7; i++) {
+      let baseTime = i === 0 ? 0 : 24 * (i);
       rainProbability1[i] = [];
 
       for (let j = 0; j < 4; j++) {
@@ -67,7 +67,7 @@ const weatherObject = async (
       }
     }
 
-    console.log(rainProbability1[0][0].precipitation_probability)
+    console.log(rainProbability1)
 
     const dailyData = weatherNamesForWeek.map((name, index) => ({
       day: datesForWeek[index],

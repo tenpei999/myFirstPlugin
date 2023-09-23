@@ -13,40 +13,82 @@
  */
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { useState, useRef } from '@wordpress/element';
-import { CheckboxControl } from '@wordpress/components';
+import { useState, useRef, useEffect } from '@wordpress/element';
+import { CheckboxControl, SelectControl } from '@wordpress/components';
 import './editor.scss';
 import './style.scss';
 import { CurrentWeather } from './components/CurrentWeather';
 import WeekWeather from './components/WeekWeather';
 import useBlockSelection from './hooks/useOutsideClick';
 import { useWeatherData } from './hooks/useWeatherData';
+import weatherObject from './hooks/weatherObject';
+import { city } from './hooks/getSpotWeather';
 
 export default function Edit({ attributes, setAttributes }) {
 
 	// 他の状態変数とともに、これらを初期化します：
 	const [showHoliday, setShowHoliday] = useState(attributes.showHoliday);
 	const [showPrecipitation, setShowPrecipitation] = useState(attributes.showPrecipitation);
+	const [selectedCity, setSelectedCity] = useState('tokyo'); // 初期値として'tokyo'をセット
 	const ref = useRef(null);
 	const cachedWeather = useWeatherData(setAttributes);
+
+	const [todayWeather, setTodayWeather] = useState(null);
+	const [tomorrowWeather, setTomorrowWeather] = useState(null);
+	const [weeklyWeather, setWeeklyWeather] = useState([]);
+
+
+	// useEffect内：
+	useEffect(() => {
+		async function fetchData() {
+			const cityurl = city[selectedCity];
+			if (cityurl) {
+				await weatherObject(
+					cityurl,
+					setTodayWeather,
+					setTomorrowWeather,
+					setWeeklyWeather,
+				);
+			} else {
+				console.error(`No URL found for city: ${selectedCity}`);
+			}
+			console.log(cityurl);
+		}
+
+		fetchData();
+	}, [selectedCity]);
+
 
 	const { showSelection, handleLayoutClick } = useBlockSelection();
 
 	const TodayWeatherComponentProps = {
-		weather: attributes.todayWeather,
+		weather: todayWeather, // attributes.todayWeather の代わり
 	};
 
 	const TomorrowWeatherComponentProps = {
-		weather: attributes.tomorrowWeather,
+		weather: tomorrowWeather, // attributes.tomorrowWeather の代わり
 	};
 
 	const WeeklyWeatherComponentProps = {
-		weather: attributes.weeklyWeather,
+		weather: weeklyWeather, // attributes.weeklyWeather の代わり
 	};
+
 
 	const blockProps = useBlockProps({
 		className: 'my-first-plugin'
 	});
+
+	// `city`オブジェクトから都市名を抽出してSelectControlに適切な形式で変換
+	const cityOptions = Object.keys(city).map(cityName => ({
+		label: cityName.charAt(0).toUpperCase() + cityName.slice(1), // 都市名の最初の文字を大文字に
+		value: cityName
+	}));
+
+	//attributesの変更を監視する一つのuseEffectを追加します：
+	useEffect(() => {
+		console.log("Attributes updated:", attributes);
+	}, [attributes]);
+
 
 	return (
 		<div {...blockProps} >
@@ -54,12 +96,24 @@ export default function Edit({ attributes, setAttributes }) {
 				{showSelection ? (
 					<div className="checkbox-wrapper">
 						<div className="detail-settings">
+							<SelectControl
+								label="都市を選択"
+								value={selectedCity}
+								options={cityOptions}
+								onChange={(value) => setSelectedCity(value)}
+							/>
 							<CheckboxControl
 								label="今日の天気を表示"
 								checked={attributes.todayWeather !== null}
 								// onChange={(checked) => setAttributes({ todayWeather: checked ? cachedWeather.today : null })}
 								onChange={(checked) => {
-									setAttributes({ tomorrowWeather: checked ? cachedWeather.tomorrow : null });
+									if (checked) {
+										setAttributes({ todayWeather: cachedWeather.today });
+										setTodayWeather(cachedWeather.today);
+									} else {
+										setAttributes({ todayWeather: null });
+										setTodayWeather(null);
+									}
 								}}
 							/>
 							<CheckboxControl
@@ -109,7 +163,7 @@ export default function Edit({ attributes, setAttributes }) {
 									showPrecipitation={attributes.showPrecipitation}
 								/>}
 						</div>
-						{!showSelection && attributes.weeklyWeather && <WeekWeather {...WeeklyWeatherComponentProps} />}
+						{!showSelection && weeklyWeather && <WeekWeather {...WeeklyWeatherComponentProps} />}
 					</div>
 				)}
 			</div>

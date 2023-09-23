@@ -224,6 +224,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
 /* harmony import */ var _hooks_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./hooks/useOutsideClick */ "./src/hooks/useOutsideClick.js");
 /* harmony import */ var _hooks_useWeatherData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./hooks/useWeatherData */ "./src/hooks/useWeatherData.js");
+/* harmony import */ var _hooks_weatherObject__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./hooks/weatherObject */ "./src/hooks/weatherObject.js");
+/* harmony import */ var _hooks_getSpotWeather__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./hooks/getSpotWeather */ "./src/hooks/getSpotWeather.js");
 
 /**
  * WordPress components that create the necessary UI elements for the block
@@ -248,6 +250,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 function Edit({
   attributes,
   setAttributes
@@ -255,24 +259,57 @@ function Edit({
   // 他の状態変数とともに、これらを初期化します：
   const [showHoliday, setShowHoliday] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showHoliday);
   const [showPrecipitation, setShowPrecipitation] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showPrecipitation);
+  const [selectedCity, setSelectedCity] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('tokyo'); // 初期値として'tokyo'をセット
   const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const cachedWeather = (0,_hooks_useWeatherData__WEBPACK_IMPORTED_MODULE_9__.useWeatherData)(setAttributes);
+  const [todayWeather, setTodayWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [tomorrowWeather, setTomorrowWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [weeklyWeather, setWeeklyWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+
+  // useEffect内：
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    async function fetchData() {
+      const cityurl = _hooks_getSpotWeather__WEBPACK_IMPORTED_MODULE_11__.city[selectedCity];
+      if (cityurl) {
+        await (0,_hooks_weatherObject__WEBPACK_IMPORTED_MODULE_10__["default"])(cityurl, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
+      } else {
+        console.error(`No URL found for city: ${selectedCity}`);
+      }
+      console.log(cityurl);
+    }
+    fetchData();
+  }, [selectedCity]);
   const {
     showSelection,
     handleLayoutClick
   } = (0,_hooks_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__["default"])();
   const TodayWeatherComponentProps = {
-    weather: attributes.todayWeather
+    weather: todayWeather // attributes.todayWeather の代わり
   };
+
   const TomorrowWeatherComponentProps = {
-    weather: attributes.tomorrowWeather
+    weather: tomorrowWeather // attributes.tomorrowWeather の代わり
   };
+
   const WeeklyWeatherComponentProps = {
-    weather: attributes.weeklyWeather
+    weather: weeklyWeather // attributes.weeklyWeather の代わり
   };
+
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
     className: 'my-first-plugin'
   });
+
+  // `city`オブジェクトから都市名を抽出してSelectControlに適切な形式で変換
+  const cityOptions = Object.keys(_hooks_getSpotWeather__WEBPACK_IMPORTED_MODULE_11__.city).map(cityName => ({
+    label: cityName.charAt(0).toUpperCase() + cityName.slice(1),
+    // 都市名の最初の文字を大文字に
+    value: cityName
+  }));
+
+  //attributesの変更を監視する一つのuseEffectを追加します：
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    console.log("Attributes updated:", attributes);
+  }, [attributes]);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -282,15 +319,28 @@ function Edit({
     className: "checkbox-wrapper"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "detail-settings"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: "\u90FD\u5E02\u3092\u9078\u629E",
+    value: selectedCity,
+    options: cityOptions,
+    onChange: value => setSelectedCity(value)
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
     label: "\u4ECA\u65E5\u306E\u5929\u6C17\u3092\u8868\u793A",
     checked: attributes.todayWeather !== null
     // onChange={(checked) => setAttributes({ todayWeather: checked ? cachedWeather.today : null })}
     ,
     onChange: checked => {
-      setAttributes({
-        tomorrowWeather: checked ? cachedWeather.tomorrow : null
-      });
+      if (checked) {
+        setAttributes({
+          todayWeather: cachedWeather.today
+        });
+        setTodayWeather(cachedWeather.today);
+      } else {
+        setAttributes({
+          todayWeather: null
+        });
+        setTodayWeather(null);
+      }
     }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
     label: "\u660E\u65E5\u306E\u5929\u6C17\u3092\u8868\u793A",
@@ -336,7 +386,7 @@ function Edit({
     title: "\u660E\u65E5\u306E\u5929\u6C17",
     showHoliday: attributes.showHoliday,
     showPrecipitation: attributes.showPrecipitation
-  })), !showSelection && attributes.weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  })), !showSelection && weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
     ...WeeklyWeatherComponentProps
   }))));
 }
@@ -414,7 +464,7 @@ const city = {
   // https://open-meteo.com/en/docs
   // Daily Weather Variables Weathercode / Maximum Temperature (2 m) / Minimum Temperature (2 m) / Past days 1
 
-  sapporo: 'https://api.open-meteo.com/v1/forecast?latitude=43.0667&longitude=141.35&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+  sapporo: 'https://api.open-meteo.com/v1/forecast?latitude=43.0667&longitude=141.35&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
   akita: 'https://api.open-meteo.com/v1/forecast?latitude=39.7167&longitude=140.1167&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
   kanazawa: 'https://api.open-meteo.com/v1/forecast?latitude=36.6&longitude=136.6167&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
   tokyo: 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&hourly=precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
@@ -620,18 +670,19 @@ const useWeatherData = setAttributes => {
   const [cachedWeather, setCachedWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
     today: null,
     tomorrow: null,
-    weekly: null,
-    holiday: null,
-    precipitation: null
+    weekly: null
   });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    (0,_weatherObject__WEBPACK_IMPORTED_MODULE_1__["default"])(todayData => {
+    const cityurl = 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&hourly=precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14';
+    (0,_weatherObject__WEBPACK_IMPORTED_MODULE_1__["default"])(cityurl, todayData => {
       setCachedWeather(prev => ({
         ...prev,
         today: todayData
       }));
       setAttributes({
-        todayWeather: todayData
+        todayWeather: todayData,
+        showHoliday: todayData.day.isHoliday,
+        showPrecipitation: todayData.rainProbability
       });
     }, tomorrowData => {
       setCachedWeather(prev => ({
@@ -639,31 +690,19 @@ const useWeatherData = setAttributes => {
         tomorrow: tomorrowData
       }));
       setAttributes({
-        tomorrowWeather: tomorrowData
+        tomorrowWeather: tomorrowData,
+        showHoliday: tomorrowData.day.isHoliday,
+        showPrecipitation: tomorrowData.rainProbability
       });
     }, weeklyData => {
+      const weeklyHolidays = weeklyData.map(data => data.day);
       setCachedWeather(prev => ({
         ...prev,
         weekly: weeklyData
       }));
       setAttributes({
-        weeklyWeather: weeklyData
-      });
-    }, holidayData => {
-      setCachedWeather(prev => ({
-        ...prev,
-        holiday: holidayData
-      }));
-      setAttributes({
-        showHoliday: holidayData
-      });
-    }, precipitationData => {
-      setCachedWeather(prev => ({
-        ...prev,
-        precipitation: precipitationData
-      }));
-      setAttributes({
-        showPrecipitation: precipitationData
+        weeklyWeather: weeklyData,
+        showHoliday: weeklyHolidays
       });
     });
   }, [setAttributes]);
@@ -688,20 +727,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeather) => {
+const weatherObject = async (cityurl, setTodayWeather, setTomorrowWeather, setWeeklyWeather) => {
   try {
-    console.log(_getSpotWeather__WEBPACK_IMPORTED_MODULE_2__.city);
-
-    // apiUrlの定義を追加
+    if (!cityurl) {
+      throw new Error(`City "${cityurl}" does not exist in the city object.`);
+    }
+    console.log(cityurl);
+    if (!cityurl) {
+      throw new Error(`URL not found for city "${cityurl}".`);
+    }
     const apiUrl = myPluginData.siteUrl + '/wp-json/my-weather-plugin/save-data/';
-
-    // 2つ目のAPIリクエスト
-    const request2 = fetch(_getSpotWeather__WEBPACK_IMPORTED_MODULE_2__.city.tokyo).then(response => {
-      return response.json();
-    });
-    console.log(request2);
-    const [data2] = await Promise.all([request2]);
+    const response = await fetch(cityurl);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data for city: ${cityurl}. Status: ${response.status}`);
+    }
+    const data2 = await response.json();
+    console.log(data2);
+    if (!data2 || !data2.daily) {
+      throw new Error("Unexpected data format received from the weather API.");
+    }
     const datesForWeek = await (0,_dayWithHoloday__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    if (!datesForWeek || datesForWeek.length !== 7) {
+      throw new Error("Unexpected date array length from dayWithHoliday.");
+    }
     const weatherCodesForWeek = data2.daily.weathercode; // 本日から6日後までの天気コード
 
     // 天気コードを天気名に変換
@@ -725,6 +773,9 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
       const formattedDifference = temperatureDifference >= 0 ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
       lowestTemperatureDifferencesForWeek.push(formattedDifference);
     }
+    console.log(lowestTemperatureDifferencesForWeek);
+    console.log('もみじ饅頭');
+    console.log(data2);
     const rainProbability1 = {};
     for (let i = 1; i <= 7; i++) {
       let baseTime = i === 0 ? 0 : 24 * i;
@@ -735,8 +786,8 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
           precipitation_probability: data2.hourly.precipitation_probability[baseTime + j * 6]
         });
       }
+      console.log(rainProbability1);
     }
-    console.log(rainProbability1);
     const dailyData = weatherNamesForWeek.map((name, index) => ({
       day: datesForWeek[index],
       name,
@@ -747,33 +798,36 @@ const weatherObject = async (setTodayWeather, setTomorrowWeather, setWeeklyWeath
       lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index + 1],
       rainProbability: rainProbability1[index + 1]
     }));
+    console.log(dailyData);
 
     // WordPress REST APIエンドポイントにデータをPOST
     const postResponse = await fetch(apiUrl, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json' // JSON形式でデータを送信
-        // 必要であれば認証ヘッダーを追加
+        'Content-Type': 'application/json'
       },
-
       body: JSON.stringify({
         dailyData: dailyData
       })
     });
     if (!postResponse.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error(`Failed to post data to ${apiUrl}. Status: ${postResponse.status}`);
     }
-
-    // 今日と明日の天気データをセット
+    if (typeof setTodayWeather !== 'function') {
+      throw new Error('setTodayWeather is not a function.');
+    }
+    if (typeof setTomorrowWeather !== 'function') {
+      throw new Error('setTomorrowWeather is not a function.');
+    }
+    if (typeof setWeeklyWeather !== 'function') {
+      throw new Error('setWeeklyWeather is not a function.');
+    }
     setTodayWeather(dailyData[0]);
     setTomorrowWeather(dailyData[1]);
-
-    // 週間の天気データをセット
-    setWeeklyWeather(dailyData.slice(2, 8));
+    setWeeklyWeather(dailyData.slice(2, 7));
   } catch (error) {
     console.error('APIの呼び出しに失敗:', error);
   }
-  ;
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (weatherObject);
 

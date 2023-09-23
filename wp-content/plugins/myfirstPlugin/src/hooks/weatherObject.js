@@ -3,27 +3,39 @@ import dayWithHoliday from "./dayWithHoloday";
 import { city } from "./getSpotWeather";
 
 const weatherObject = async (
+  cityurl,
   setTodayWeather,
   setTomorrowWeather,
   setWeeklyWeather,
 ) => {
-
   try {
-    console.log(city)
+    if (!cityurl) {
+      throw new Error(`City "${cityurl}" does not exist in the city object.`);
+    }
 
-    // apiUrlの定義を追加
+    console.log(cityurl)
+    if (!cityurl) {
+      throw new Error(`URL not found for city "${cityurl}".`);
+    }
+
+
     const apiUrl = myPluginData.siteUrl + '/wp-json/my-weather-plugin/save-data/';
 
-    // 2つ目のAPIリクエスト
-    const request2 = fetch(city.tokyo)
-      .then(response => {
-        return response.json();
-      });
+    const response = await fetch(cityurl);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data for city: ${cityurl}. Status: ${response.status}`);
+    }
 
-    console.log(request2)
+    const data2 = await response.json();
+    console.log(data2)
+    if (!data2 || !data2.daily) {
+      throw new Error("Unexpected data format received from the weather API.");
+    }
 
-    const [data2] = await Promise.all([request2]);
     const datesForWeek = await dayWithHoliday();
+    if (!datesForWeek || datesForWeek.length !== 7) {
+      throw new Error("Unexpected date array length from dayWithHoliday.");
+    }
     const weatherCodesForWeek = data2.daily.weathercode; // 本日から6日後までの天気コード
 
     // 天気コードを天気名に変換
@@ -53,6 +65,10 @@ const weatherObject = async (
       lowestTemperatureDifferencesForWeek.push(formattedDifference);
     }
 
+    console.log(lowestTemperatureDifferencesForWeek)
+    console.log('もみじ饅頭')
+    console.log(data2)
+
     const rainProbability1 = {};
 
     for (let i = 1; i <= 7; i++) {
@@ -65,9 +81,9 @@ const weatherObject = async (
           precipitation_probability: data2.hourly.precipitation_probability[baseTime + j * 6]
         });
       }
+      console.log(rainProbability1);
     }
 
-    console.log(rainProbability1)
 
     const dailyData = weatherNamesForWeek.map((name, index) => ({
       day: datesForWeek[index],
@@ -80,31 +96,38 @@ const weatherObject = async (
       rainProbability: rainProbability1[index + 1],
     }));
 
+    console.log(dailyData);
 
     // WordPress REST APIエンドポイントにデータをPOST
     const postResponse = await fetch(apiUrl, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',  // JSON形式でデータを送信
-        // 必要であれば認証ヘッダーを追加
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ dailyData: dailyData })
-    })
+    });
 
     if (!postResponse.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error(`Failed to post data to ${apiUrl}. Status: ${postResponse.status}`);
     }
 
-    // 今日と明日の天気データをセット
+    if (typeof setTodayWeather !== 'function') {
+      throw new Error('setTodayWeather is not a function.');
+    }
+    if (typeof setTomorrowWeather !== 'function') {
+      throw new Error('setTomorrowWeather is not a function.');
+    }
+    if (typeof setWeeklyWeather !== 'function') {
+      throw new Error('setWeeklyWeather is not a function.');
+    }
+
     setTodayWeather(dailyData[0]);
     setTomorrowWeather(dailyData[1]);
-
-    // 週間の天気データをセット
-    setWeeklyWeather(dailyData.slice(2, 8));
+    setWeeklyWeather(dailyData.slice(2, 7));
 
   } catch (error) {
     console.error('APIの呼び出しに失敗:', error);
-  };
+  }
 }
 
 export default weatherObject;

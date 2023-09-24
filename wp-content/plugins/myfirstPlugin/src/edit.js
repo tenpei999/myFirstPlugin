@@ -3,7 +3,6 @@
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-components/
  */
-// import { Placeholder, TextControl } from '@wordpress/components';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -29,7 +28,7 @@ export default function Edit({ attributes, setAttributes }) {
 	// 他の状態変数とともに、これらを初期化します：
 	const [showHoliday, setShowHoliday] = useState(attributes.showHoliday);
 	const [showPrecipitation, setShowPrecipitation] = useState(attributes.showPrecipitation);
-	const [selectedCity, setSelectedCity] = useState('tokyo'); // 初期値として'tokyo'をセット
+	const [selectedCity, setSelectedCity] = useState('東京'); // 初期値として'東京'をセット
 	const ref = useRef(null);
 	const cachedWeather = useWeatherData(setAttributes);
 

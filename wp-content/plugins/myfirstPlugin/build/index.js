@@ -232,7 +232,6 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-components/
  */
-// import { Placeholder, TextControl } from '@wordpress/components';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -259,7 +258,7 @@ function Edit({
   // 他の状態変数とともに、これらを初期化します：
   const [showHoliday, setShowHoliday] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showHoliday);
   const [showPrecipitation, setShowPrecipitation] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showPrecipitation);
-  const [selectedCity, setSelectedCity] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('tokyo'); // 初期値として'tokyo'をセット
+  const [selectedCity, setSelectedCity] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('東京'); // 初期値として'東京'をセット
   const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const cachedWeather = (0,_hooks_useWeatherData__WEBPACK_IMPORTED_MODULE_9__.useWeatherData)(setAttributes);
   const [todayWeather, setTodayWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);

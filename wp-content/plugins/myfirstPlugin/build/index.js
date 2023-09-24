@@ -553,7 +553,6 @@ function useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWee
       } else {
         console.error(`No URL found for city: ${selectedCity}`);
       }
-      console.log(cityurl);
     }
     fetchData();
   }, [selectedCity]);
@@ -829,7 +828,6 @@ const weatherObject = async (cityurl, setTodayWeather, setTomorrowWeather, setWe
     if (!cityurl) {
       throw new Error(`City "${cityurl}" does not exist in the city object.`);
     }
-    console.log(cityurl);
     if (!cityurl) {
       throw new Error(`URL not found for city "${cityurl}".`);
     }
@@ -839,7 +837,6 @@ const weatherObject = async (cityurl, setTodayWeather, setTomorrowWeather, setWe
       throw new Error(`Failed to fetch data for city: ${cityurl}. Status: ${response.status}`);
     }
     const data2 = await response.json();
-    console.log(data2);
     if (!data2 || !data2.daily) {
       throw new Error("Unexpected data format received from the weather API.");
     }
@@ -870,9 +867,6 @@ const weatherObject = async (cityurl, setTodayWeather, setTomorrowWeather, setWe
       const formattedDifference = temperatureDifference >= 0 ? `(+${temperatureDifference})` : `(-${Math.abs(temperatureDifference)})`;
       lowestTemperatureDifferencesForWeek.push(formattedDifference);
     }
-    console.log(lowestTemperatureDifferencesForWeek);
-    console.log('もみじ饅頭');
-    console.log(data2);
     const rainProbability1 = {};
     for (let i = 1; i <= 7; i++) {
       let baseTime = i === 0 ? 0 : 24 * i;
@@ -883,7 +877,6 @@ const weatherObject = async (cityurl, setTodayWeather, setTomorrowWeather, setWe
           precipitation_probability: data2.hourly.precipitation_probability[baseTime + j * 6]
         });
       }
-      console.log(rainProbability1);
     }
     const dailyData = weatherNamesForWeek.map((name, index) => ({
       day: datesForWeek[index],
@@ -895,7 +888,6 @@ const weatherObject = async (cityurl, setTodayWeather, setTomorrowWeather, setWe
       lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index + 1],
       rainProbability: rainProbability1[index + 1]
     }));
-    console.log(dailyData);
 
     // WordPress REST APIエンドポイントにデータをPOST
     const postResponse = await fetch(apiUrl, {

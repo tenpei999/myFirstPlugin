@@ -1,5 +1,5 @@
 import getWeatherInfo from "../data/getWeatherInfo";
-import dayWithHoliday from "./dayWithHoloday"
+import dayWithHoliday from "./dayWithHoloday";
 
 const weatherObject = async (
   cityurl,
@@ -12,11 +12,9 @@ const weatherObject = async (
       throw new Error(`City "${cityurl}" does not exist in the city object.`);
     }
 
-    console.log(cityurl)
     if (!cityurl) {
       throw new Error(`URL not found for city "${cityurl}".`);
     }
-
 
     const apiUrl = myPluginData.siteUrl + '/wp-json/my-weather-plugin/save-data/';
 
@@ -26,7 +24,7 @@ const weatherObject = async (
     }
 
     const data2 = await response.json();
-    console.log(data2)
+
     if (!data2 || !data2.daily) {
       throw new Error("Unexpected data format received from the weather API.");
     }
@@ -64,10 +62,6 @@ const weatherObject = async (
       lowestTemperatureDifferencesForWeek.push(formattedDifference);
     }
 
-    console.log(lowestTemperatureDifferencesForWeek)
-    console.log('もみじ饅頭')
-    console.log(data2)
-
     const rainProbability1 = {};
 
     for (let i = 1; i <= 7; i++) {
@@ -80,9 +74,7 @@ const weatherObject = async (
           precipitation_probability: data2.hourly.precipitation_probability[baseTime + j * 6]
         });
       }
-      console.log(rainProbability1);
     }
-
 
     const dailyData = weatherNamesForWeek.map((name, index) => ({
       day: datesForWeek[index],
@@ -94,8 +86,6 @@ const weatherObject = async (
       lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index + 1],
       rainProbability: rainProbability1[index + 1],
     }));
-
-    console.log(dailyData);
 
     // WordPress REST APIエンドポイントにデータをPOST
     const postResponse = await fetch(apiUrl, {

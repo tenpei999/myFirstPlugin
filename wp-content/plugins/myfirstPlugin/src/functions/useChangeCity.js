@@ -15,7 +15,6 @@ export function useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather,
       } else {
         console.error(`No URL found for city: ${selectedCity}`);
       }
-      console.log(cityurl);
     }
 
     fetchData();

@@ -18,10 +18,10 @@ import './editor.scss';
 import './style.scss';
 import { CurrentWeather } from './components/CurrentWeather';
 import WeekWeather from './components/WeekWeather';
-import useBlockSelection from './hooks/useOutsideClick';
-import { useWeatherData } from './hooks/useWeatherData';
-import { useChangeCity } from './hooks/useChangeCity';
-import { city } from './hooks/getSpotWeather';
+import useBlockSelection from './functions/useOutsideClick';
+import { useWeatherData } from './functions/useWeatherData';
+import { useChangeCity } from './functions/useChangeCity';
+import { city } from './data/getSpotWeather';
 
 export default function Edit({ attributes, setAttributes }) {
 

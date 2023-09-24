@@ -1,5 +1,5 @@
 import { useState, useEffect } from '@wordpress/element';
-import weatherObject from './weatherObject';
+import weatherObject from '../objects/weatherObject';
 
 export const useWeatherData = (setAttributes) => {
     const [cachedWeather, setCachedWeather] = useState({

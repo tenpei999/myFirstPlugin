@@ -1,6 +1,5 @@
-import getWeatherInfo from "./getWeatherInfo";
-import dayWithHoliday from "./dayWithHoloday";
-import { city } from "./getSpotWeather";
+import getWeatherInfo from "../data/getWeatherInfo";
+import dayWithHoliday from "./dayWithHoloday"
 
 const weatherObject = async (
   cityurl,

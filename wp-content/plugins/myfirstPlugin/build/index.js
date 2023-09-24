@@ -224,7 +224,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
 /* harmony import */ var _hooks_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./hooks/useOutsideClick */ "./src/hooks/useOutsideClick.js");
 /* harmony import */ var _hooks_useWeatherData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./hooks/useWeatherData */ "./src/hooks/useWeatherData.js");
-/* harmony import */ var _hooks_weatherObject__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./hooks/weatherObject */ "./src/hooks/weatherObject.js");
+/* harmony import */ var _hooks_useChangeCity__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./hooks/useChangeCity */ "./src/hooks/useChangeCity.js");
 /* harmony import */ var _hooks_getSpotWeather__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./hooks/getSpotWeather */ "./src/hooks/getSpotWeather.js");
 
 /**
@@ -264,24 +264,11 @@ function Edit({
   const [todayWeather, setTodayWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [tomorrowWeather, setTomorrowWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [weeklyWeather, setWeeklyWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-
-  // useEffect内：
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    async function fetchData() {
-      const cityurl = _hooks_getSpotWeather__WEBPACK_IMPORTED_MODULE_11__.city[selectedCity];
-      if (cityurl) {
-        await (0,_hooks_weatherObject__WEBPACK_IMPORTED_MODULE_10__["default"])(cityurl, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
-      } else {
-        console.error(`No URL found for city: ${selectedCity}`);
-      }
-      console.log(cityurl);
-    }
-    fetchData();
-  }, [selectedCity]);
   const {
     showSelection,
     handleLayoutClick
   } = (0,_hooks_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  (0,_hooks_useChangeCity__WEBPACK_IMPORTED_MODULE_10__.useChangeCity)(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
   const TodayWeatherComponentProps = {
     weather: todayWeather // attributes.todayWeather の代わり
   };
@@ -305,7 +292,7 @@ function Edit({
     value: cityName
   }));
 
-  //attributesの変更を監視する一つのuseEffectを追加します：
+  //attributesの変更を監視するuseEffect：
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     console.log("Attributes updated:", attributes);
   }, [attributes]);
@@ -594,6 +581,40 @@ const getWeatherInfo = weatherCode => {
   };
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getWeatherInfo);
+
+/***/ }),
+
+/***/ "./src/hooks/useChangeCity.js":
+/*!************************************!*\
+  !*** ./src/hooks/useChangeCity.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useChangeCity: () => (/* binding */ useChangeCity)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _weatherObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./weatherObject */ "./src/hooks/weatherObject.js");
+/* harmony import */ var _getSpotWeather__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getSpotWeather */ "./src/hooks/getSpotWeather.js");
+
+
+
+function useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather) {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    async function fetchData() {
+      const cityurl = _getSpotWeather__WEBPACK_IMPORTED_MODULE_2__.city[selectedCity];
+      if (cityurl) {
+        await (0,_weatherObject__WEBPACK_IMPORTED_MODULE_1__["default"])(cityurl, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
+      } else {
+        console.error(`No URL found for city: ${selectedCity}`);
+      }
+      console.log(cityurl);
+    }
+    fetchData();
+  }, [selectedCity]);
+}
 
 /***/ }),
 

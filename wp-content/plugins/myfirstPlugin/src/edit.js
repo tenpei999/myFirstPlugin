@@ -20,7 +20,7 @@ import { CurrentWeather } from './components/CurrentWeather';
 import WeekWeather from './components/WeekWeather';
 import useBlockSelection from './hooks/useOutsideClick';
 import { useWeatherData } from './hooks/useWeatherData';
-import weatherObject from './hooks/weatherObject';
+import { useChangeCity } from './hooks/useChangeCity';
 import { city } from './hooks/getSpotWeather';
 
 export default function Edit({ attributes, setAttributes }) {
@@ -35,30 +35,10 @@ export default function Edit({ attributes, setAttributes }) {
 	const [todayWeather, setTodayWeather] = useState(null);
 	const [tomorrowWeather, setTomorrowWeather] = useState(null);
 	const [weeklyWeather, setWeeklyWeather] = useState([]);
-
-
-	// useEffect内：
-	useEffect(() => {
-		async function fetchData() {
-			const cityurl = city[selectedCity];
-			if (cityurl) {
-				await weatherObject(
-					cityurl,
-					setTodayWeather,
-					setTomorrowWeather,
-					setWeeklyWeather,
-				);
-			} else {
-				console.error(`No URL found for city: ${selectedCity}`);
-			}
-			console.log(cityurl);
-		}
-
-		fetchData();
-	}, [selectedCity]);
-
-
 	const { showSelection, handleLayoutClick } = useBlockSelection();
+
+	useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
+
 
 	const TodayWeatherComponentProps = {
 		weather: todayWeather, // attributes.todayWeather の代わり
@@ -72,7 +52,6 @@ export default function Edit({ attributes, setAttributes }) {
 		weather: weeklyWeather, // attributes.weeklyWeather の代わり
 	};
 
-
 	const blockProps = useBlockProps({
 		className: 'my-first-plugin'
 	});
@@ -83,11 +62,10 @@ export default function Edit({ attributes, setAttributes }) {
 		value: cityName
 	}));
 
-	//attributesの変更を監視する一つのuseEffectを追加します：
+	//attributesの変更を監視するuseEffect：
 	useEffect(() => {
 		console.log("Attributes updated:", attributes);
 	}, [attributes]);
-
 
 	return (
 		<div {...blockProps} >

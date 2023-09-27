@@ -16,7 +16,7 @@ function myfirstplugin_render_block($attr, $content)
   $weather_data = json_decode(get_option('my_weather_data'), true);
 
   // 1. オプションデータの取得デバッグ
-  // error_log('Debug: Weather Data - ' . print_r($weather_data, true));
+  error_log('Debug: Weather Data - ' . print_r($weather_data, true));
 
   // 天気データがnullかチェック
   if ($weather_data === null) {
@@ -94,7 +94,7 @@ function generateWeatherOutput($data, $textColor, $time_ranges, $showHoliday, $s
     for ($i = 0; $i < 4; $i++) {
       $output .= '<li class="c-weather__chanceOfRain-timezone' . ($i + 1) . '">';
       $output .= '<p class="time">' . $time_ranges[$i] . '</p>';
-      $output .= '<p class="rain">' . ($data['rainProbability'][$i] ?? '') . '</p>';
+      $output .= '<p class="rain">' . ($data['rainProbability'][$i]['precipitation_probability'] ?? '') . '%</p>';
       $output .= '</li>';
     }
     $output .= '</ul>';
@@ -116,9 +116,11 @@ function generateWeeklyWeatherOutput($data, $textColor, $showHoliday)
   $output .= '<ul class="temp">';
   $output .= '<li>';
   $output .= '<p>' . ($data['highestTemperature'] ?? '') . '<span class="celsius">℃</span></p>';
+  $output .= '<p>' . ($data['maximumTemperatureComparison'] ?? '') . '</p>';
   $output .= '</li>';
   $output .= '<li>';
   $output .= '<p>' . ($data['lowestTemperature'] ?? '') . '<span class="celsius">℃</span></p>';
+  $output .= '<p>' . ($data['lowestTemperatureComparison'] ?? '') . '</p>';
   $output .= '</li>';
   $output .= '</ul>';
   $output .= '</li>';

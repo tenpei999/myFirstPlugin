@@ -2,7 +2,13 @@ import Temp from "./Temp";
 import TimeZone from "./TimeZone";
 import '../style.scss';
 
-const CurrentWeather = ({ weather, title, showPrecipitation, showHoliday }) => {
+const CurrentWeather = ({
+  borderWidth,
+  weather,
+  title,
+  showPrecipitation,
+  showHoliday
+}) => {
 
   if (!weather || !weather.day) return null; // weather と weather.day の存在を確認
 
@@ -16,7 +22,7 @@ const CurrentWeather = ({ weather, title, showPrecipitation, showHoliday }) => {
   }
 
   return (
-    <article className="block--current">
+    <article className="block--current" style={{ borderWidth: borderWidth }}>
       <h3>{title}</h3>
       <h4 style={{ color: textColor }}>{weather.day.date}</h4>
 

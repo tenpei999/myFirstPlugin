@@ -13,7 +13,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { useState, useRef, useEffect } from '@wordpress/element';
-import { CheckboxControl, SelectControl } from '@wordpress/components';
+import { CheckboxControl, SelectControl, __experimentalUnitControl as UnitControl, } from '@wordpress/components';
 import './editor.scss';
 import './style.scss';
 import { CurrentWeather } from './components/CurrentWeather';
@@ -36,6 +36,8 @@ export default function Edit({ attributes, setAttributes }) {
 	const [tomorrowWeather, setTomorrowWeather] = useState(null);
 	const [weeklyWeather, setWeeklyWeather] = useState([]);
 	const { showSelection, handleLayoutClick } = useBlockSelection();
+	const [borderValue, setBorderValue] = useState('1px');
+	console.log(setBorderValue)
 
 	useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
 
@@ -120,6 +122,10 @@ export default function Edit({ attributes, setAttributes }) {
 									setAttributes({ showPrecipitation: checked });
 								}}
 							/>
+							<UnitControl
+								onChange={setBorderValue}
+								value={borderValue}
+							/>
 						</div>
 					</div>
 				) : (
@@ -131,6 +137,7 @@ export default function Edit({ attributes, setAttributes }) {
 									title="今日の天気"
 									showHoliday={attributes.showHoliday}
 									showPrecipitation={attributes.showPrecipitation}
+									borderWidth={borderValue}
 								/>}
 							{attributes.tomorrowWeather &&
 								<CurrentWeather
@@ -138,9 +145,13 @@ export default function Edit({ attributes, setAttributes }) {
 									title="明日の天気"
 									showHoliday={attributes.showHoliday}
 									showPrecipitation={attributes.showPrecipitation}
+									borderWidth={borderValue}
 								/>}
 						</div>
-						{!showSelection && weeklyWeather && <WeekWeather {...WeeklyWeatherComponentProps} />}
+						{!showSelection && weeklyWeather && <WeekWeather
+							{...WeeklyWeatherComponentProps}
+							borderWidth={borderValue}
+						/>}
 					</div>
 				)}
 			</div>

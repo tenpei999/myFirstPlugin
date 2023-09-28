@@ -2,12 +2,12 @@ import Temp from './Temp';
 import '../editor.scss';
 import '../style.scss';
 
-const WeekWeather = ({ weather}) => {
+const WeekWeather = ({ borderWidth, weather}) => {
 
   if (!weather) return null;
   
   return (
-    <ul className="block--weekly weather-layout">
+    <ul className="block--weekly weather-layout" style={{ borderWidth: borderWidth }}>
       {weather.slice(0, 6).map((dayWeather) => {
         if (!dayWeather || !dayWeather.day) return null;
 

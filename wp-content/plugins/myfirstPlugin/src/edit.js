@@ -36,8 +36,6 @@ export default function Edit({ attributes, setAttributes }) {
 	const [tomorrowWeather, setTomorrowWeather] = useState(null);
 	const [weeklyWeather, setWeeklyWeather] = useState([]);
 	const { showSelection, handleLayoutClick } = useBlockSelection();
-	const [borderValue, setBorderValue] = useState('1px');
-	console.log(setBorderValue)
 
 	useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
 
@@ -123,8 +121,8 @@ export default function Edit({ attributes, setAttributes }) {
 								}}
 							/>
 							<UnitControl
-								onChange={setBorderValue}
-								value={borderValue}
+								onChange={(value) => setAttributes({ borderValue: value })}
+								value={attributes.borderValue}
 							/>
 						</div>
 					</div>
@@ -137,7 +135,7 @@ export default function Edit({ attributes, setAttributes }) {
 									title="今日の天気"
 									showHoliday={attributes.showHoliday}
 									showPrecipitation={attributes.showPrecipitation}
-									borderWidth={borderValue}
+									borderWidth={attributes.borderValue}
 								/>}
 							{attributes.tomorrowWeather &&
 								<CurrentWeather
@@ -145,12 +143,12 @@ export default function Edit({ attributes, setAttributes }) {
 									title="明日の天気"
 									showHoliday={attributes.showHoliday}
 									showPrecipitation={attributes.showPrecipitation}
-									borderWidth={borderValue}
+									borderWidth={attributes.borderValue}
 								/>}
 						</div>
 						{!showSelection && weeklyWeather && <WeekWeather
 							{...WeeklyWeatherComponentProps}
-							borderWidth={borderValue}
+							borderWidth={attributes.borderValue}
 						/>}
 					</div>
 				)}

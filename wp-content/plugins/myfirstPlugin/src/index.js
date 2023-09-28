@@ -48,6 +48,10 @@ registerBlockType(metadata.name, {
 				type: 'array',
 				default: []
 			},
+			borderValue: {
+				type: 'string',
+				default: '1px'
+			},
 		},
 	},
 	/**

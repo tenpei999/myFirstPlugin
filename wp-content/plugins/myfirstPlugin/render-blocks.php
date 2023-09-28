@@ -33,6 +33,7 @@ function myfirstplugin_render_block($attr, $content)
   $weeklyWeather = $attr['weeklyWeather'] ?? null;
   $showHoliday = $attr['showHoliday'] ?? null;
   $showPrecipitation = $attr['showPrecipitation'] ?? null;
+  $borderValue = $attr['borderValue'] ?? '1px'; // デフォルト値は'1px'
 
   $output = '<div class="wp-block-create-block-my-first-plugin"><div class="layout"><div class="today-and-tomorrow weather-layout">';
 
@@ -48,6 +49,7 @@ function myfirstplugin_render_block($attr, $content)
     $output .= generateWeatherOutput($weather_data[1], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('明日の天気', 'myfirstPlugin'));
   }
 
+  $output .= "<!-- Borderの値: $borderValue -->";
   $output .= '</div>';
 
   if ($weeklyWeather) {
@@ -70,7 +72,7 @@ function myfirstplugin_render_block($attr, $content)
 
 function generateWeatherOutput($data, $textColor, $time_ranges, $showHoliday, $showPrecipitation, $title)
 {
-  $output = '<div class="block--current">';
+  $output = '<div class="block--current" >';
   $output .= '<h3>' . $title . '</h3>';
   $output .= '<h4' . $textColor . '>'  . ($data['day']['date'] ?? '') . '</h4>';
   if ($showHoliday) {

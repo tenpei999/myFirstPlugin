@@ -13,7 +13,13 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { useState, useRef, useEffect } from '@wordpress/element';
-import { CheckboxControl, SelectControl, __experimentalUnitControl as UnitControl, } from '@wordpress/components';
+import {
+	CheckboxControl,
+	SelectControl,
+	__experimentalUnitControl as UnitControl,
+	__experimentalBorderBoxControl as BorderBoxControl,
+}
+	from '@wordpress/components';
 import './editor.scss';
 import './style.scss';
 import { CurrentWeather } from './components/CurrentWeather';
@@ -66,6 +72,43 @@ export default function Edit({ attributes, setAttributes }) {
 	useEffect(() => {
 		console.log("Attributes updated:", attributes);
 	}, [attributes]);
+
+	const colors = [
+		{ name: 'Blue 20', color: '#72aee6' },
+		// ...
+	];
+	const defaultBorder = {
+		color: '#72aee6',
+		style: 'dashed',
+		width: '1px',
+	};
+	const [borders, setBorders] = useState(attributes.borders || {
+		top: defaultBorder,
+		right: defaultBorder,
+		bottom: defaultBorder,
+		left: defaultBorder,
+	});
+	const onChange = (newBorders) => {
+		console.log('New borders from BorderBoxControl:', newBorders);
+
+		const updatedBorders = {
+			top: { ...borders.top, ...newBorders },
+			right: { ...borders.right, ...newBorders },
+			bottom: { ...borders.bottom, ...newBorders },
+			left: { ...borders.left, ...newBorders }
+		};
+
+		setAttributes({ ...attributes, borders: updatedBorders });
+		setBorders(updatedBorders);
+	};
+
+	useEffect(() => {
+		if (attributes.borders) {
+			setBorders(attributes.borders);
+		}
+	}, [attributes.borders]);
+
+	console.log(borders)
 
 	return (
 		<div {...blockProps} >
@@ -121,8 +164,14 @@ export default function Edit({ attributes, setAttributes }) {
 								}}
 							/>
 							<UnitControl
-								onChange={(value) => setAttributes({ borderValue: value })}
-								value={attributes.borderValue}
+								onChange={(value) => setAttributes({ borderWidthValue: value })}
+								value={attributes.borderWidthValue}
+							/>
+							<BorderBoxControl
+								colors={colors}
+								label={__('Borders')}
+								onChange={onChange}
+								value={attributes.borders} // ここを変更
 							/>
 						</div>
 					</div>
@@ -135,7 +184,8 @@ export default function Edit({ attributes, setAttributes }) {
 									title="今日の天気"
 									showHoliday={attributes.showHoliday}
 									showPrecipitation={attributes.showPrecipitation}
-									borderWidth={attributes.borderValue}
+									borderWidth={attributes.borderWidthValue}
+									borders={attributes.borders}
 								/>}
 							{attributes.tomorrowWeather &&
 								<CurrentWeather
@@ -143,12 +193,14 @@ export default function Edit({ attributes, setAttributes }) {
 									title="明日の天気"
 									showHoliday={attributes.showHoliday}
 									showPrecipitation={attributes.showPrecipitation}
-									borderWidth={attributes.borderValue}
+									borderWidth={attributes.borderWidthValue}
+									borders={attributes.borders}
 								/>}
 						</div>
 						{!showSelection && weeklyWeather && <WeekWeather
 							{...WeeklyWeatherComponentProps}
-							borderWidth={attributes.borderValue}
+							borderWidth={attributes.borderWidthValue}
+							borders={attributes.borders}
 						/>}
 					</div>
 				)}

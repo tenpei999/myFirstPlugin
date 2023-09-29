@@ -22,12 +22,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const CurrentWeather = ({
+  borders,
   borderWidth,
   weather,
   title,
   showPrecipitation,
   showHoliday
 }) => {
+  console.log(borders);
   if (!weather || !weather.day) return null; // weather と weather.day の存在を確認
 
   const isHoliday = weather.day.isHoliday;
@@ -37,10 +39,17 @@ const CurrentWeather = ({
   } else if (weather.day.isSaturday) {
     textColor = "blue";
   }
+  const borderStyles = {
+    borderTop: `${borders.top.width} ${borders.top.style} ${borders.top.color}`,
+    borderRight: `${borders.right.width} ${borders.right.style} ${borders.right.color}`,
+    borderBottom: `${borders.bottom.width} ${borders.bottom.style} ${borders.bottom.color}`,
+    borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
+  };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
     className: "block--current",
     style: {
-      borderWidth: borderWidth
+      borderWidth: borderWidth,
+      borderStyles
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     style: {
@@ -159,13 +168,22 @@ __webpack_require__.r(__webpack_exports__);
 
 const WeekWeather = ({
   borderWidth,
+  borders,
   weather
 }) => {
   if (!weather) return null;
+  console.log(borders);
+  const borderStyles = {
+    borderTop: `${borders.top.width} ${borders.top.style} ${borders.top.color}`,
+    borderRight: `${borders.right.width} ${borders.right.style} ${borders.right.color}`,
+    borderBottom: `${borders.bottom.width} ${borders.bottom.style} ${borders.bottom.color}`,
+    borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
+  };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: "block--weekly weather-layout",
     style: {
-      borderWidth: borderWidth
+      borderWidth: borderWidth,
+      borderStyles
     }
   }, weather.slice(0, 6).map(dayWeather => {
     if (!dayWeather || !dayWeather.day) return null;
@@ -440,6 +458,56 @@ function Edit({
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     console.log("Attributes updated:", attributes);
   }, [attributes]);
+  const colors = [{
+    name: 'Blue 20',
+    color: '#72aee6'
+  }
+  // ...
+  ];
+
+  const defaultBorder = {
+    color: '#72aee6',
+    style: 'dashed',
+    width: '1px'
+  };
+  const [borders, setBorders] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.borders || {
+    top: defaultBorder,
+    right: defaultBorder,
+    bottom: defaultBorder,
+    left: defaultBorder
+  });
+  const onChange = newBorders => {
+    console.log('New borders from BorderBoxControl:', newBorders);
+    const updatedBorders = {
+      top: {
+        ...borders.top,
+        ...newBorders
+      },
+      right: {
+        ...borders.right,
+        ...newBorders
+      },
+      bottom: {
+        ...borders.bottom,
+        ...newBorders
+      },
+      left: {
+        ...borders.left,
+        ...newBorders
+      }
+    };
+    setAttributes({
+      ...attributes,
+      borders: updatedBorders
+    });
+    setBorders(updatedBorders);
+  };
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (attributes.borders) {
+      setBorders(attributes.borders);
+    }
+  }, [attributes.borders]);
+  console.log(borders);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -504,9 +572,14 @@ function Edit({
     }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalUnitControl, {
     onChange: value => setAttributes({
-      borderValue: value
+      borderWidthValue: value
     }),
-    value: attributes.borderValue
+    value: attributes.borderWidthValue
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalBorderBoxControl, {
+    colors: colors,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Borders'),
+    onChange: onChange,
+    value: attributes.borders // ここを変更
   }))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "layout"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -516,16 +589,19 @@ function Edit({
     title: "\u4ECA\u65E5\u306E\u5929\u6C17",
     showHoliday: attributes.showHoliday,
     showPrecipitation: attributes.showPrecipitation,
-    borderWidth: attributes.borderValue
+    borderWidth: attributes.borderWidthValue,
+    borders: attributes.borders
   }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
     ...TomorrowWeatherComponentProps,
     title: "\u660E\u65E5\u306E\u5929\u6C17",
     showHoliday: attributes.showHoliday,
     showPrecipitation: attributes.showPrecipitation,
-    borderWidth: attributes.borderValue
+    borderWidth: attributes.borderWidthValue,
+    borders: attributes.borders
   })), !showSelection && weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
     ...WeeklyWeatherComponentProps,
-    borderWidth: attributes.borderValue
+    borderWidth: attributes.borderWidthValue,
+    borders: attributes.borders
   }))));
 }
 
@@ -718,10 +794,16 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
+const defaultBorder = {
+  color: '#72aee6',
+  style: 'dashed',
+  width: '10px'
+};
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
   /**
    * Used to construct a preview for the block to be shown in the block inserter.
    */
+
   example: {
     attributes: {
       message: 'my-first-plugin',
@@ -737,9 +819,18 @@ __webpack_require__.r(__webpack_exports__);
         type: 'array',
         default: []
       },
-      borderValue: {
+      borderWidthValue: {
         type: 'string',
         default: '1px'
+      },
+      borders: {
+        type: 'object',
+        default: {
+          top: defaultBorder,
+          right: defaultBorder,
+          bottom: defaultBorder,
+          left: defaultBorder
+        }
       }
     }
   },
@@ -1011,7 +1102,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"showHoliday":{"type":"boolean","default":true},"showPrecipitation":{"type":"boolean","default":true},"tomorrowWeather":{"type":"object","default":{}},"weeklyWeather":{"type":"array","default":[]},"todayWeather":{"type":"object","default":{}},"borderValue":{"type":"string","default":"1px"}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./style-index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"showHoliday":{"type":"boolean","default":true},"showPrecipitation":{"type":"boolean","default":true},"tomorrowWeather":{"type":"object","default":{}},"weeklyWeather":{"type":"array","default":[]},"todayWeather":{"type":"object","default":{}},"borderWidthValue":{"type":"string","default":"1px"},"borders":{"type":"object","default":{"top":{"color":"#72aee6","style":"dashed","width":"1px"},"right":{"color":"#72aee6","style":"dashed","width":"1px"},"bottom":{"color":"#72aee6","style":"dashed","width":"1px"},"left":{"color":"#72aee6","style":"dashed","width":"1px"}}}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./style-index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

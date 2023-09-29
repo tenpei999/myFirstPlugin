@@ -33,8 +33,8 @@ function myfirstplugin_render_block($attr, $content)
   $weeklyWeather = $attr['weeklyWeather'] ?? null;
   $showHoliday = $attr['showHoliday'] ?? null;
   $showPrecipitation = $attr['showPrecipitation'] ?? null;
-  $borderValue = $attr['borderValue'] ?? '1px'; // デフォルト値は'1px'
-  $borderStyle = ' style="border-width: ' . esc_attr($borderValue) . ';"';
+  $borderWidthValue = $attr['borderWidthValue'] ?? '1px'; // デフォルト値は'1px'
+  $borderStyle = ' style="border-width: ' . esc_attr($borderWidthValue) . ';"';
 
   $output = '<div class="wp-block-create-block-my-first-plugin"><div class="layout"><div class="today-and-tomorrow weather-layout">';
 

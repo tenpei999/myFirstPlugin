@@ -28,9 +28,34 @@
 			"type": "object",
 			"default": {}
 		},
-		"borderValue": {
+		"borderWidthValue": {
 			"type": "string",
 			"default": "1px"
+		},
+		"borders": {
+			"type": "object",
+			"default": {
+				"top": {
+					"color": "#72aee6",
+					"style": "dashed",
+					"width": "1px"
+				},
+				"right": {
+					"color": "#72aee6",
+					"style": "dashed",
+					"width": "1px"
+				},
+				"bottom": {
+					"color": "#72aee6",
+					"style": "dashed",
+					"width": "1px"
+				},
+				"left": {
+					"color": "#72aee6",
+					"style": "dashed",
+					"width": "1px"
+				}
+			}
 		}
 	},
 	"supports": {

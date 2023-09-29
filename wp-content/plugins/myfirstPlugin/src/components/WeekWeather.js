@@ -2,12 +2,29 @@ import Temp from './Temp';
 import '../editor.scss';
 import '../style.scss';
 
-const WeekWeather = ({ borderWidth, weather}) => {
+const WeekWeather = ({
+  borderWidth,
+  borders,
+  weather,
+}) => {
 
   if (!weather) return null;
-  
+
+  console.log(borders)
+
+  const borderStyles = {
+    borderTop: `${borders.top.width} ${borders.top.style} ${borders.top.color}`,
+    borderRight: `${borders.right.width} ${borders.right.style} ${borders.right.color}`,
+    borderBottom: `${borders.bottom.width} ${borders.bottom.style} ${borders.bottom.color}`,
+    borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
+  };
+
   return (
-    <ul className="block--weekly weather-layout" style={{ borderWidth: borderWidth }}>
+    <ul className="block--weekly weather-layout"
+      style={{
+        borderWidth: borderWidth,
+        borderStyles
+      }}>
       {weather.slice(0, 6).map((dayWeather) => {
         if (!dayWeather || !dayWeather.day) return null;
 

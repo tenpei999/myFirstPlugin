@@ -34,6 +34,7 @@ function myfirstplugin_render_block($attr, $content)
   $showHoliday = $attr['showHoliday'] ?? null;
   $showPrecipitation = $attr['showPrecipitation'] ?? null;
   $borderValue = $attr['borderValue'] ?? '1px'; // デフォルト値は'1px'
+  $borderStyle = ' style="border-width: ' . esc_attr($borderValue) . ';"';
 
   $output = '<div class="wp-block-create-block-my-first-plugin"><div class="layout"><div class="today-and-tomorrow weather-layout">';
 
@@ -41,19 +42,18 @@ function myfirstplugin_render_block($attr, $content)
 
   if ($todayWeather && isset($weather_data[0])) {
     $textColor = setTextColor($weather_data[0]['day'] ?? []);
-    $output .= generateWeatherOutput($weather_data[0], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('今日の天気', 'myfirstPlugin'));
+    $output .= generateWeatherOutput($weather_data[0], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('今日の天気', 'myfirstPlugin'), $borderStyle);
   }
 
   if ($tomorrowWeather && isset($weather_data[1])) {
     $textColor = setTextColor($weather_data[1]['day'] ?? []);
-    $output .= generateWeatherOutput($weather_data[1], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('明日の天気', 'myfirstPlugin'));
+    $output .= generateWeatherOutput($weather_data[1], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('明日の天気', 'myfirstPlugin'), $borderStyle);
   }
 
-  $output .= "<!-- Borderの値: $borderValue -->";
   $output .= '</div>';
 
   if ($weeklyWeather) {
-    $output .= '<ul class="block--weekly weather-layout">';
+    $output .= '<ul class="block--weekly weather-layout"' . $borderStyle . '>';
 
     for ($i = 2; $i <= 6; $i++) {
       if (isset($weather_data[$i])) {
@@ -70,9 +70,9 @@ function myfirstplugin_render_block($attr, $content)
   return $output;
 }
 
-function generateWeatherOutput($data, $textColor, $time_ranges, $showHoliday, $showPrecipitation, $title)
+function generateWeatherOutput($data, $textColor, $time_ranges, $showHoliday, $showPrecipitation, $title, $borderStyle = '')
 {
-  $output = '<div class="block--current" >';
+  $output = '<div class="block--current"' . $borderStyle . '>';
   $output .= '<h3>' . $title . '</h3>';
   $output .= '<h4' . $textColor . '>'  . ($data['day']['date'] ?? '') . '</h4>';
   if ($showHoliday) {

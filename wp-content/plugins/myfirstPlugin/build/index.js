@@ -517,6 +517,29 @@ function Edit({
     }
   }, [attributes.borders]);
   console.log(borders);
+  const units = [{
+    label: 'Pixels (px)',
+    value: 'px'
+  }, {
+    label: 'Percentage (%)',
+    value: '%'
+  }];
+  const handleRangeChange = newValue => {
+    const currentUnit = attributes.rangeValue?.replace(/[0-9]/g, '') || 'px';
+    if (!isNaN(newValue)) {
+      setAttributes({
+        ...attributes,
+        rangeValue: `${newValue}${currentUnit}`
+      });
+    }
+  };
+  const handleUnitChange = newUnit => {
+    const currentValue = parseInt(attributes.rangeValue || '0', 10);
+    setAttributes({
+      ...attributes,
+      rangeValue: `${currentValue}${newUnit}`
+    });
+  };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -579,17 +602,25 @@ function Edit({
         showPrecipitation: checked
       });
     }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalUnitControl, {
-    onChange: value => setAttributes({
-      borderWidthValue: value
-    }),
-    value: attributes.borderWidthValue
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalBorderBoxControl, {
     colors: colors,
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Borders'),
     onChange: onChange,
-    value: attributes.borders // ここを変更
-  }))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    value: attributes.borders
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: "Set your value",
+    value: parseInt(attributes.rangeValue, 10) // ここを変更
+    ,
+    onChange: handleRangeChange,
+    min: 0,
+    max: attributes.rangeValue && attributes.rangeValue.includes('px') ? 1000 : 100 // ここを変更
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: "Select unit",
+    value: attributes.rangeValue && attributes.rangeValue.replace(/[0-9]/g, '') // ここを変更
+    ,
+    options: units,
+    onChange: handleUnitChange
+  })))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "layout"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "today-and-tomorrow weather-layout"

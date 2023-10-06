@@ -16,7 +16,7 @@ import { useState, useRef, useEffect } from '@wordpress/element';
 import {
 	CheckboxControl,
 	SelectControl,
-	__experimentalUnitControl as UnitControl,
+	RangeControl,
 	__experimentalBorderBoxControl as BorderBoxControl,
 }
 	from '@wordpress/components';
@@ -134,6 +134,24 @@ export default function Edit({ attributes, setAttributes }) {
 
 	console.log(borders)
 
+	const units = [
+		{ label: 'Pixels (px)', value: 'px' },
+		{ label: 'Percentage (%)', value: '%' },
+	];
+	const handleRangeChange = (newValue) => {
+		const currentUnit = attributes.rangeValue?.replace(/[0-9]/g, '') || 'px';
+		if (!isNaN(newValue)) {
+			setAttributes({ ...attributes, rangeValue: `${newValue}${currentUnit}` });
+		}
+	};
+
+	const handleUnitChange = (newUnit) => {
+		const currentValue = parseInt(attributes.rangeValue || '0', 10);
+		setAttributes({ ...attributes, rangeValue: `${currentValue}${newUnit}` });
+	};
+
+
+
 	return (
 		<div {...blockProps} >
 			<div onClick={handleLayoutClick} ref={ref}>
@@ -187,16 +205,27 @@ export default function Edit({ attributes, setAttributes }) {
 									setAttributes({ showPrecipitation: checked });
 								}}
 							/>
-							<UnitControl
-								onChange={(value) => setAttributes({ borderWidthValue: value })}
-								value={attributes.borderWidthValue}
-							/>
 							<BorderBoxControl
 								colors={colors}
 								label={__('Borders')}
 								onChange={onChange}
-								value={attributes.borders} // ここを変更
+								value={attributes.borders}
 							/>
+							<div>
+								<RangeControl
+									label="Set your value"
+									value={parseInt(attributes.rangeValue, 10)} // ここを変更
+									onChange={handleRangeChange}
+									min={0}
+									max={(attributes.rangeValue && attributes.rangeValue.includes('px')) ? 1000 : 100} // ここを変更
+								/>
+								<SelectControl
+									label="Select unit"
+									value={attributes.rangeValue && attributes.rangeValue.replace(/[0-9]/g, '')} // ここを変更
+									options={units}
+									onChange={handleUnitChange}
+								/>
+							</div>
 						</div>
 					</div>
 				) : (

@@ -92,10 +92,34 @@ export default function Edit({ attributes, setAttributes }) {
 		console.log('New borders from BorderBoxControl:', newBorders);
 
 		const updatedBorders = {
-			top: { ...borders.top, ...newBorders },
-			right: { ...borders.right, ...newBorders },
-			bottom: { ...borders.bottom, ...newBorders },
-			left: { ...borders.left, ...newBorders }
+			top: {
+				...borders.top,
+				...newBorders,
+				width: newBorders.width || '0px',
+				color: newBorders.color || '#72AEE6',
+				style: newBorders.style || 'dashed'
+			},
+			right: {
+				...borders.right,
+				...newBorders,
+				width: newBorders.width || '0px',
+				color: newBorders.color || '#72AEE6',
+				style: newBorders.style || 'dashed'
+			},
+			bottom: {
+				...borders.bottom,
+				...newBorders,
+				width: newBorders.width || '0px',
+				color: newBorders.color || '#72AEE6',
+				style: newBorders.style || 'dashed'
+			},
+			left: {
+				...borders.left,
+				...newBorders,
+				width: newBorders.width || '0px',
+				color: newBorders.color || '#72AEE6',
+				style: newBorders.style || 'dashed'
+			}
 		};
 
 		setAttributes({ ...attributes, borders: updatedBorders });

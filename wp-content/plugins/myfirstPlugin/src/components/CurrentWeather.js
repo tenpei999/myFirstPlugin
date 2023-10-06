@@ -11,7 +11,6 @@ const CurrentWeather = ({
   showHoliday
 }) => {
 
-  console.log(borders)
 
   if (!weather || !weather.day) return null; // weather と weather.day の存在を確認
 
@@ -31,10 +30,10 @@ const CurrentWeather = ({
     borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
   };
 
+  console.log(borders.top.width)
   return (
     <article className="block--current" style={{
-      borderWidth: borderWidth,
-      borderStyles
+      ...borderStyles
     }}>
       <h3>{title}</h3>
       <h4 style={{ color: textColor }}>{weather.day.date}</h4>

@@ -29,7 +29,6 @@ const CurrentWeather = ({
   showPrecipitation,
   showHoliday
 }) => {
-  console.log(borders);
   if (!weather || !weather.day) return null; // weather と weather.day の存在を確認
 
   const isHoliday = weather.day.isHoliday;
@@ -45,11 +44,11 @@ const CurrentWeather = ({
     borderBottom: `${borders.bottom.width} ${borders.bottom.style} ${borders.bottom.color}`,
     borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
   };
+  console.log(borders.top.width);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
     className: "block--current",
     style: {
-      borderWidth: borderWidth,
-      borderStyles
+      ...borderStyles
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     style: {
@@ -167,7 +166,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const WeekWeather = ({
-  borderWidth,
   borders,
   weather
 }) => {
@@ -182,8 +180,7 @@ const WeekWeather = ({
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: "block--weekly weather-layout",
     style: {
-      borderWidth: borderWidth,
-      borderStyles
+      ...borderStyles
     }
   }, weather.slice(0, 6).map(dayWeather => {
     if (!dayWeather || !dayWeather.day) return null;
@@ -481,19 +478,31 @@ function Edit({
     const updatedBorders = {
       top: {
         ...borders.top,
-        ...newBorders
+        ...newBorders,
+        width: newBorders.width || '0px',
+        color: newBorders.color || '#72AEE6',
+        style: newBorders.style || 'dashed'
       },
       right: {
         ...borders.right,
-        ...newBorders
+        ...newBorders,
+        width: newBorders.width || '0px',
+        color: newBorders.color || '#72AEE6',
+        style: newBorders.style || 'dashed'
       },
       bottom: {
         ...borders.bottom,
-        ...newBorders
+        ...newBorders,
+        width: newBorders.width || '0px',
+        color: newBorders.color || '#72AEE6',
+        style: newBorders.style || 'dashed'
       },
       left: {
         ...borders.left,
-        ...newBorders
+        ...newBorders,
+        width: newBorders.width || '0px',
+        color: newBorders.color || '#72AEE6',
+        style: newBorders.style || 'dashed'
       }
     };
     setAttributes({

@@ -387,7 +387,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./functions/useOutsideClick */ "./src/functions/useOutsideClick.js");
 /* harmony import */ var _functions_useWeatherData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./functions/useWeatherData */ "./src/functions/useWeatherData.js");
 /* harmony import */ var _functions_useChangeCity__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./functions/useChangeCity */ "./src/functions/useChangeCity.js");
-/* harmony import */ var _data_getSpotWeather__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./data/getSpotWeather */ "./src/data/getSpotWeather.js");
+/* harmony import */ var _functions_useBorderControl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./functions/useBorderControl */ "./src/functions/useBorderControl.js");
+/* harmony import */ var _data_getSpotWeather__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./data/getSpotWeather */ "./src/data/getSpotWeather.js");
 
 /**
  * WordPress components that create the necessary UI elements for the block
@@ -401,6 +402,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
+
 
 
 
@@ -448,101 +450,22 @@ function Edit({
   });
 
   // `city`オブジェクトから都市名を抽出してSelectControlに適切な形式で変換
-  const cityOptions = Object.keys(_data_getSpotWeather__WEBPACK_IMPORTED_MODULE_11__.city).map(cityName => ({
+  const cityOptions = Object.keys(_data_getSpotWeather__WEBPACK_IMPORTED_MODULE_12__.city).map(cityName => ({
     label: cityName.charAt(0).toUpperCase() + cityName.slice(1),
     // 都市名の最初の文字を大文字に
     value: cityName
   }));
-
-  //attributesの変更を監視するuseEffect：
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     console.log("Attributes updated:", attributes);
   }, [attributes]);
-  const colors = [{
-    name: 'Blue 20',
-    color: '#72aee6'
-  }
-  // ...
-  ];
-
-  const defaultBorder = {
-    color: '#72aee6',
-    style: 'dashed',
-    width: '1px'
-  };
-  const [borders, setBorders] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.borders || {
-    top: defaultBorder,
-    right: defaultBorder,
-    bottom: defaultBorder,
-    left: defaultBorder
-  });
-  const onChange = newBorders => {
-    console.log('New borders from BorderBoxControl:', newBorders);
-    const updatedBorders = {
-      top: {
-        ...borders.top,
-        ...newBorders,
-        width: newBorders.width || '0px',
-        color: newBorders.color || '#72AEE6',
-        style: newBorders.style || 'dashed'
-      },
-      right: {
-        ...borders.right,
-        ...newBorders,
-        width: newBorders.width || '0px',
-        color: newBorders.color || '#72AEE6',
-        style: newBorders.style || 'dashed'
-      },
-      bottom: {
-        ...borders.bottom,
-        ...newBorders,
-        width: newBorders.width || '0px',
-        color: newBorders.color || '#72AEE6',
-        style: newBorders.style || 'dashed'
-      },
-      left: {
-        ...borders.left,
-        ...newBorders,
-        width: newBorders.width || '0px',
-        color: newBorders.color || '#72AEE6',
-        style: newBorders.style || 'dashed'
-      }
-    };
-    setAttributes({
-      ...attributes,
-      borders: updatedBorders
-    });
-    setBorders(updatedBorders);
-  };
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    if (attributes.borders) {
-      setBorders(attributes.borders);
-    }
-  }, [attributes.borders]);
-  console.log(borders);
-  const units = [{
-    label: 'Pixels (px)',
-    value: 'px'
-  }, {
-    label: 'Percentage (%)',
-    value: '%'
-  }];
-  const handleRangeChange = newValue => {
-    const currentUnit = attributes.borderRadiusValue?.replace(/[0-9]/g, '') || 'px';
-    if (!isNaN(newValue)) {
-      setAttributes({
-        ...attributes,
-        borderRadiusValue: `${newValue}${currentUnit}`
-      });
-    }
-  };
-  const handleUnitChange = newUnit => {
-    const currentValue = parseInt(attributes.borderRadiusValue || '0', 10);
-    setAttributes({
-      ...attributes,
-      borderRadiusValue: `${currentValue}${newUnit}`
-    });
-  };
+  const {
+    borders,
+    onChange,
+    handleRangeChange,
+    handleUnitChange,
+    colors,
+    units
+  } = (0,_functions_useBorderControl__WEBPACK_IMPORTED_MODULE_11__.useBorderControl)(attributes, setAttributes);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -646,6 +569,112 @@ function Edit({
     borderRadius: attributes.borderRadiusValue,
     borders: attributes.borders
   }))));
+}
+
+/***/ }),
+
+/***/ "./src/functions/useBorderControl.js":
+/*!*******************************************!*\
+  !*** ./src/functions/useBorderControl.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useBorderControl: function() { return /* binding */ useBorderControl; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+function useBorderControl(attributes, setAttributes) {
+  const colors = [{
+    name: 'Blue 20',
+    color: '#72aee6'
+  }];
+  const defaultBorder = {
+    color: '#72aee6',
+    style: 'dashed',
+    width: '1px'
+  };
+  const [borders, setBorders] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.borders || {
+    top: defaultBorder,
+    right: defaultBorder,
+    bottom: defaultBorder,
+    left: defaultBorder
+  });
+  const units = [{
+    label: 'Pixels (px)',
+    value: 'px'
+  }, {
+    label: 'Percentage (%)',
+    value: '%'
+  }];
+  const onChange = newBorders => {
+    const updatedBorders = {
+      top: {
+        ...borders.top,
+        ...newBorders,
+        width: newBorders.width || '0px',
+        color: newBorders.color || '#72AEE6',
+        style: newBorders.style || 'dashed'
+      },
+      right: {
+        ...borders.right,
+        ...newBorders,
+        width: newBorders.width || '0px',
+        color: newBorders.color || '#72AEE6',
+        style: newBorders.style || 'dashed'
+      },
+      bottom: {
+        ...borders.bottom,
+        ...newBorders,
+        width: newBorders.width || '0px',
+        color: newBorders.color || '#72AEE6',
+        style: newBorders.style || 'dashed'
+      },
+      left: {
+        ...borders.left,
+        ...newBorders,
+        width: newBorders.width || '0px',
+        color: newBorders.color || '#72AEE6',
+        style: newBorders.style || 'dashed'
+      }
+    };
+    setAttributes({
+      ...attributes,
+      borders: updatedBorders
+    });
+    setBorders(updatedBorders);
+  };
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (attributes.borders) {
+      setBorders(attributes.borders);
+    }
+  }, [attributes.borders]);
+  const handleRangeChange = newValue => {
+    const currentUnit = attributes.borderRadiusValue?.replace(/[0-9]/g, '') || 'px';
+    if (!isNaN(newValue)) {
+      setAttributes({
+        ...attributes,
+        borderRadiusValue: `${newValue}${currentUnit}`
+      });
+    }
+  };
+  const handleUnitChange = newUnit => {
+    const currentValue = parseInt(attributes.borderRadiusValue || '0', 10);
+    setAttributes({
+      ...attributes,
+      borderRadiusValue: `${currentValue}${newUnit}`
+    });
+  };
+  return {
+    borders,
+    onChange,
+    handleRangeChange,
+    handleUnitChange,
+    colors,
+    units
+  };
 }
 
 /***/ }),

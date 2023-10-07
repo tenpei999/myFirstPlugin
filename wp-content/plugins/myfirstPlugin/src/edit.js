@@ -27,6 +27,7 @@ import WeekWeather from './components/WeekWeather';
 import useBlockSelection from './functions/useOutsideClick';
 import { useWeatherData } from './functions/useWeatherData';
 import { useChangeCity } from './functions/useChangeCity';
+import { useBorderControl } from './functions/useBorderControl';
 import { city } from './data/getSpotWeather';
 
 export default function Edit({ attributes, setAttributes }) {
@@ -68,89 +69,18 @@ export default function Edit({ attributes, setAttributes }) {
 		value: cityName
 	}));
 
-	//attributesの変更を監視するuseEffect：
 	useEffect(() => {
 		console.log("Attributes updated:", attributes);
 	}, [attributes]);
 
-	const colors = [
-		{ name: 'Blue 20', color: '#72aee6' },
-		// ...
-	];
-	const defaultBorder = {
-		color: '#72aee6',
-		style: 'dashed',
-		width: '1px',
-	};
-	const [borders, setBorders] = useState(attributes.borders || {
-		top: defaultBorder,
-		right: defaultBorder,
-		bottom: defaultBorder,
-		left: defaultBorder,
-	});
-	const onChange = (newBorders) => {
-		console.log('New borders from BorderBoxControl:', newBorders);
-
-		const updatedBorders = {
-			top: {
-				...borders.top,
-				...newBorders,
-				width: newBorders.width || '0px',
-				color: newBorders.color || '#72AEE6',
-				style: newBorders.style || 'dashed'
-			},
-			right: {
-				...borders.right,
-				...newBorders,
-				width: newBorders.width || '0px',
-				color: newBorders.color || '#72AEE6',
-				style: newBorders.style || 'dashed'
-			},
-			bottom: {
-				...borders.bottom,
-				...newBorders,
-				width: newBorders.width || '0px',
-				color: newBorders.color || '#72AEE6',
-				style: newBorders.style || 'dashed'
-			},
-			left: {
-				...borders.left,
-				...newBorders,
-				width: newBorders.width || '0px',
-				color: newBorders.color || '#72AEE6',
-				style: newBorders.style || 'dashed'
-			}
-		};
-
-		setAttributes({ ...attributes, borders: updatedBorders });
-		setBorders(updatedBorders);
-	};
-
-	useEffect(() => {
-		if (attributes.borders) {
-			setBorders(attributes.borders);
-		}
-	}, [attributes.borders]);
-
-	console.log(borders)
-
-	const units = [
-		{ label: 'Pixels (px)', value: 'px' },
-		{ label: 'Percentage (%)', value: '%' },
-	];
-	const handleRangeChange = (newValue) => {
-		const currentUnit = attributes.borderRadiusValue?.replace(/[0-9]/g, '') || 'px';
-		if (!isNaN(newValue)) {
-			setAttributes({ ...attributes, borderRadiusValue: `${newValue}${currentUnit}` });
-		}
-	};
-
-	const handleUnitChange = (newUnit) => {
-		const currentValue = parseInt(attributes.borderRadiusValue || '0', 10);
-		setAttributes({ ...attributes, borderRadiusValue: `${currentValue}${newUnit}` });
-	};
-
-
+	const {
+		borders,
+		onChange,
+		handleRangeChange,
+		handleUnitChange,
+		colors,
+		units
+	} = useBorderControl(attributes, setAttributes);
 
 	return (
 		<div {...blockProps} >

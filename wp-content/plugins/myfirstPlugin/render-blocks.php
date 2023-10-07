@@ -11,6 +11,23 @@ function setTextColor($day)
   return '';
 }
 
+function generateBorderStyle($borders, $borderRadiusValue)
+{
+  $styles = [];
+
+  if ($borders) {
+    foreach ($borders as $side => $border) {
+      $styles[] = "border-{$side}: {$border['width']} {$border['style']} {$border['color']}";
+    }
+  }
+
+  if ($borderRadiusValue) {
+    $styles[] = "border-radius: {$borderRadiusValue}";
+  }
+
+  return implode('; ', $styles);
+}
+
 function myfirstplugin_render_block($attr, $content)
 {
   $weather_data = json_decode(get_option('my_weather_data'), true);
@@ -33,8 +50,15 @@ function myfirstplugin_render_block($attr, $content)
   $weeklyWeather = $attr['weeklyWeather'] ?? null;
   $showHoliday = $attr['showHoliday'] ?? null;
   $showPrecipitation = $attr['showPrecipitation'] ?? null;
-  $borderWidthValue = $attr['borderWidthValue'] ?? '1px'; // デフォルト値は'1px'
-  $borderStyle = ' style="border-width: ' . esc_attr($borderWidthValue) . ';"';
+  $borders = $attr['borders'] ?? null;
+  $borderRadiusValue = $attr['borderRadiusValue'] ?? null;
+
+      // attributesの内容をログに出力
+      error_log('Debug: Attributes - ' . print_r($attr, true));
+
+  $commonStyle = generateBorderStyle($borders, $borderRadiusValue);
+      // commonStyleの内容をログに出力
+      error_log('Debug: CommonStyle - ' . $commonStyle);
 
   $output = '<div class="wp-block-create-block-my-first-plugin"><div class="layout"><div class="today-and-tomorrow weather-layout">';
 
@@ -42,18 +66,18 @@ function myfirstplugin_render_block($attr, $content)
 
   if ($todayWeather && isset($weather_data[0])) {
     $textColor = setTextColor($weather_data[0]['day'] ?? []);
-    $output .= generateWeatherOutput($weather_data[0], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('今日の天気', 'myfirstPlugin'), $borderStyle);
+    $output .= generateWeatherOutput($weather_data[0], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('今日の天気', 'myfirstPlugin'), $commonStyle );
   }
 
   if ($tomorrowWeather && isset($weather_data[1])) {
     $textColor = setTextColor($weather_data[1]['day'] ?? []);
-    $output .= generateWeatherOutput($weather_data[1], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('明日の天気', 'myfirstPlugin'), $borderStyle);
+    $output .= generateWeatherOutput($weather_data[1], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('明日の天気', 'myfirstPlugin'), $commonStyle );
   }
 
   $output .= '</div>';
 
   if ($weeklyWeather) {
-    $output .= '<ul class="block--weekly weather-layout"' . $borderStyle . '>';
+    $output .= '<ul class="block--weekly weather-layout" style="' . $commonStyle . '">';
 
     for ($i = 2; $i <= 6; $i++) {
       if (isset($weather_data[$i])) {
@@ -70,9 +94,9 @@ function myfirstplugin_render_block($attr, $content)
   return $output;
 }
 
-function generateWeatherOutput($data, $textColor, $time_ranges, $showHoliday, $showPrecipitation, $title, $borderStyle = '')
+function generateWeatherOutput($data, $textColor, $time_ranges, $showHoliday, $showPrecipitation, $title, $commonStyle)
 {
-  $output = '<div class="block--current"' . $borderStyle . '>';
+  $output = '<div class="block--current" style="' . $commonStyle . '">';
   $output .= '<h3>' . $title . '</h3>';
   $output .= '<h4' . $textColor . '>'  . ($data['day']['date'] ?? '') . '</h4>';
   if ($showHoliday) {

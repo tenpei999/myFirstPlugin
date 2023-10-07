@@ -28,9 +28,9 @@
       "type": "object",
       "default": {}
     },
-    "borderWidthValue": {
+    "borderRadiusValue": {
       "type": "string",
-      "default": "1px"
+      "default": "0px"
     },
     "borders": {
       "type": "object",

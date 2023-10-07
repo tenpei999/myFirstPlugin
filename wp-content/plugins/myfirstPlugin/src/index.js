@@ -55,9 +55,9 @@ registerBlockType(metadata.name, {
 				type: 'array',
 				default: []
 			},
-			borderWidthValue: {
+			borderRadiusValue: {
 				type: 'string',
-				default: '1px'
+				default: '0px'
 			},
 			borders: {
 				type: 'object',
@@ -67,7 +67,7 @@ registerBlockType(metadata.name, {
 					bottom: defaultBorder,
 					left: defaultBorder,
 				}
-			}
+			},
 		},
 	},
 	/**

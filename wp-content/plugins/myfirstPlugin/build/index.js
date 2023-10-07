@@ -23,7 +23,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const CurrentWeather = ({
   borders,
-  borderWidth,
+  borderRadius,
   weather,
   title,
   showPrecipitation,
@@ -48,7 +48,8 @@ const CurrentWeather = ({
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
     className: "block--current",
     style: {
-      ...borderStyles
+      ...borderStyles,
+      borderRadius: borderRadius
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     style: {
@@ -167,6 +168,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const WeekWeather = ({
   borders,
+  borderRadius,
   weather
 }) => {
   if (!weather) return null;
@@ -180,7 +182,8 @@ const WeekWeather = ({
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: "block--weekly weather-layout",
     style: {
-      ...borderStyles
+      ...borderStyles,
+      borderRadius: borderRadius
     }
   }, weather.slice(0, 6).map(dayWeather => {
     if (!dayWeather || !dayWeather.day) return null;
@@ -525,19 +528,19 @@ function Edit({
     value: '%'
   }];
   const handleRangeChange = newValue => {
-    const currentUnit = attributes.rangeValue?.replace(/[0-9]/g, '') || 'px';
+    const currentUnit = attributes.borderRadiusValue?.replace(/[0-9]/g, '') || 'px';
     if (!isNaN(newValue)) {
       setAttributes({
         ...attributes,
-        rangeValue: `${newValue}${currentUnit}`
+        borderRadiusValue: `${newValue}${currentUnit}`
       });
     }
   };
   const handleUnitChange = newUnit => {
-    const currentValue = parseInt(attributes.rangeValue || '0', 10);
+    const currentValue = parseInt(attributes.borderRadiusValue || '0', 10);
     setAttributes({
       ...attributes,
-      rangeValue: `${currentValue}${newUnit}`
+      borderRadiusValue: `${currentValue}${newUnit}`
     });
   };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -609,14 +612,14 @@ function Edit({
     value: attributes.borders
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
     label: "Set your value",
-    value: parseInt(attributes.rangeValue, 10) // ここを変更
+    value: parseInt(attributes.borderRadiusValue, 10) // ここを変更
     ,
     onChange: handleRangeChange,
     min: 0,
-    max: attributes.rangeValue && attributes.rangeValue.includes('px') ? 1000 : 100 // ここを変更
+    max: attributes.borderRadiusValue && attributes.borderRadiusValue.includes('px') ? 100 : 100
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     label: "Select unit",
-    value: attributes.rangeValue && attributes.rangeValue.replace(/[0-9]/g, '') // ここを変更
+    value: attributes.borderRadiusValue && attributes.borderRadiusValue.replace(/[0-9]/g, '') // ここを変更
     ,
     options: units,
     onChange: handleUnitChange
@@ -629,18 +632,18 @@ function Edit({
     title: "\u4ECA\u65E5\u306E\u5929\u6C17",
     showHoliday: attributes.showHoliday,
     showPrecipitation: attributes.showPrecipitation,
-    borderWidth: attributes.borderWidthValue,
+    borderRadius: attributes.borderRadiusValue,
     borders: attributes.borders
   }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
     ...TomorrowWeatherComponentProps,
     title: "\u660E\u65E5\u306E\u5929\u6C17",
     showHoliday: attributes.showHoliday,
     showPrecipitation: attributes.showPrecipitation,
-    borderWidth: attributes.borderWidthValue,
+    borderRadius: attributes.borderRadiusValue,
     borders: attributes.borders
   })), !showSelection && weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
     ...WeeklyWeatherComponentProps,
-    borderWidth: attributes.borderWidthValue,
+    borderRadius: attributes.borderRadiusValue,
     borders: attributes.borders
   }))));
 }
@@ -859,9 +862,9 @@ const defaultBorder = {
         type: 'array',
         default: []
       },
-      borderWidthValue: {
+      borderRadiusValue: {
         type: 'string',
-        default: '1px'
+        default: '0px'
       },
       borders: {
         type: 'object',
@@ -1142,7 +1145,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"showHoliday":{"type":"boolean","default":true},"showPrecipitation":{"type":"boolean","default":true},"tomorrowWeather":{"type":"object","default":{}},"weeklyWeather":{"type":"array","default":[]},"todayWeather":{"type":"object","default":{}},"borderWidthValue":{"type":"string","default":"1px"},"borders":{"type":"object","default":{"top":{"color":"#72aee6","style":"dashed","width":"1px"},"right":{"color":"#72aee6","style":"dashed","width":"1px"},"bottom":{"color":"#72aee6","style":"dashed","width":"1px"},"left":{"color":"#72aee6","style":"dashed","width":"1px"}}}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./style-index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"showHoliday":{"type":"boolean","default":true},"showPrecipitation":{"type":"boolean","default":true},"tomorrowWeather":{"type":"object","default":{}},"weeklyWeather":{"type":"array","default":[]},"todayWeather":{"type":"object","default":{}},"borderRadiusValue":{"type":"string","default":"0px"},"borders":{"type":"object","default":{"top":{"color":"#72aee6","style":"dashed","width":"1px"},"right":{"color":"#72aee6","style":"dashed","width":"1px"},"bottom":{"color":"#72aee6","style":"dashed","width":"1px"},"left":{"color":"#72aee6","style":"dashed","width":"1px"}}}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./style-index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

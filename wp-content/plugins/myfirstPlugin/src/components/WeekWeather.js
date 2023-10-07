@@ -4,6 +4,7 @@ import '../style.scss';
 
 const WeekWeather = ({
   borders,
+  borderRadius,
   weather,
 }) => {
 
@@ -21,7 +22,8 @@ const WeekWeather = ({
   return (
     <ul className="block--weekly weather-layout"
       style={{
-        ...borderStyles
+        ...borderStyles,
+        borderRadius: borderRadius
       }}>
       {weather.slice(0, 6).map((dayWeather) => {
         if (!dayWeather || !dayWeather.day) return null;

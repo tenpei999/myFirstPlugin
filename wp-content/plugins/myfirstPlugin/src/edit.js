@@ -139,15 +139,15 @@ export default function Edit({ attributes, setAttributes }) {
 		{ label: 'Percentage (%)', value: '%' },
 	];
 	const handleRangeChange = (newValue) => {
-		const currentUnit = attributes.rangeValue?.replace(/[0-9]/g, '') || 'px';
+		const currentUnit = attributes.borderRadiusValue?.replace(/[0-9]/g, '') || 'px';
 		if (!isNaN(newValue)) {
-			setAttributes({ ...attributes, rangeValue: `${newValue}${currentUnit}` });
+			setAttributes({ ...attributes, borderRadiusValue: `${newValue}${currentUnit}` });
 		}
 	};
 
 	const handleUnitChange = (newUnit) => {
-		const currentValue = parseInt(attributes.rangeValue || '0', 10);
-		setAttributes({ ...attributes, rangeValue: `${currentValue}${newUnit}` });
+		const currentValue = parseInt(attributes.borderRadiusValue || '0', 10);
+		setAttributes({ ...attributes, borderRadiusValue: `${currentValue}${newUnit}` });
 	};
 
 
@@ -214,14 +214,14 @@ export default function Edit({ attributes, setAttributes }) {
 							<div>
 								<RangeControl
 									label="Set your value"
-									value={parseInt(attributes.rangeValue, 10)} // ここを変更
+									value={parseInt(attributes.borderRadiusValue, 10)} // ここを変更
 									onChange={handleRangeChange}
 									min={0}
-									max={(attributes.rangeValue && attributes.rangeValue.includes('px')) ? 1000 : 100} // ここを変更
+									max={(attributes.borderRadiusValue && attributes.borderRadiusValue.includes('px')) ? 100 : 100}
 								/>
 								<SelectControl
 									label="Select unit"
-									value={attributes.rangeValue && attributes.rangeValue.replace(/[0-9]/g, '')} // ここを変更
+									value={attributes.borderRadiusValue && attributes.borderRadiusValue.replace(/[0-9]/g, '')} // ここを変更
 									options={units}
 									onChange={handleUnitChange}
 								/>
@@ -237,7 +237,7 @@ export default function Edit({ attributes, setAttributes }) {
 									title="今日の天気"
 									showHoliday={attributes.showHoliday}
 									showPrecipitation={attributes.showPrecipitation}
-									borderWidth={attributes.borderWidthValue}
+									borderRadius={attributes.borderRadiusValue}
 									borders={attributes.borders}
 								/>}
 							{attributes.tomorrowWeather &&
@@ -246,13 +246,13 @@ export default function Edit({ attributes, setAttributes }) {
 									title="明日の天気"
 									showHoliday={attributes.showHoliday}
 									showPrecipitation={attributes.showPrecipitation}
-									borderWidth={attributes.borderWidthValue}
+									borderRadius={attributes.borderRadiusValue}
 									borders={attributes.borders}
 								/>}
 						</div>
 						{!showSelection && weeklyWeather && <WeekWeather
 							{...WeeklyWeatherComponentProps}
-							borderWidth={attributes.borderWidthValue}
+							borderRadius={attributes.borderRadiusValue}
 							borders={attributes.borders}
 						/>}
 					</div>

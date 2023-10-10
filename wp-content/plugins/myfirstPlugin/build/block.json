@@ -56,6 +56,10 @@
           "width": "1px"
         }
       }
+    },
+    "fontFamily": {
+      "type": "string",
+      "default": "Noto Sans JP, sans-serif"
     }
   },
   "supports": {

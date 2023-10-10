@@ -33,7 +33,7 @@ function myfirstplugin_render_block($attr, $content)
   $weather_data = json_decode(get_option('my_weather_data'), true);
 
   // 1. オプションデータの取得デバッグ
-  error_log('Debug: Weather Data - ' . print_r($weather_data, true));
+  // error_log('Debug: Weather Data - ' . print_r($weather_data, true));
 
   // 天気データがnullかチェック
   if ($weather_data === null) {
@@ -54,7 +54,7 @@ function myfirstplugin_render_block($attr, $content)
   $borderRadiusValue = $attr['borderRadiusValue'] ?? null;
 
       // attributesの内容をログに出力
-      error_log('Debug: Attributes - ' . print_r($attr, true));
+      // error_log('Debug: Attributes - ' . print_r($attr, true));
 
   $commonStyle = generateBorderStyle($borders, $borderRadiusValue);
       // commonStyleの内容をログに出力

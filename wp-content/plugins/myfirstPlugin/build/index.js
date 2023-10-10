@@ -24,6 +24,7 @@ __webpack_require__.r(__webpack_exports__);
 const CurrentWeather = ({
   borders,
   borderRadius,
+  fontFamily,
   weather,
   title,
   showPrecipitation,
@@ -49,7 +50,8 @@ const CurrentWeather = ({
     className: "block--current",
     style: {
       ...borderStyles,
-      borderRadius: borderRadius
+      borderRadius: borderRadius,
+      fontFamily: fontFamily
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     style: {
@@ -169,6 +171,7 @@ __webpack_require__.r(__webpack_exports__);
 const WeekWeather = ({
   borders,
   borderRadius,
+  fontFamily,
   weather
 }) => {
   if (!weather) return null;
@@ -179,11 +182,13 @@ const WeekWeather = ({
     borderBottom: `${borders.bottom.width} ${borders.bottom.style} ${borders.bottom.color}`,
     borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
   };
+  console.log(fontFamily);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: "block--weekly weather-layout",
     style: {
       ...borderStyles,
-      borderRadius: borderRadius
+      borderRadius: borderRadius,
+      fontFamily: fontFamily
     }
   }, weather.slice(0, 6).map(dayWeather => {
     if (!dayWeather || !dayWeather.day) return null;
@@ -389,6 +394,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions_useChangeCity__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./functions/useChangeCity */ "./src/functions/useChangeCity.js");
 /* harmony import */ var _functions_useBorderControl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./functions/useBorderControl */ "./src/functions/useBorderControl.js");
 /* harmony import */ var _data_getSpotWeather__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./data/getSpotWeather */ "./src/data/getSpotWeather.js");
+/* harmony import */ var _functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./functions/useFontFamilyControl */ "./src/functions/useFontFamilyControl.js");
 
 /**
  * WordPress components that create the necessary UI elements for the block
@@ -402,6 +408,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
+
 
 
 
@@ -460,12 +467,16 @@ function Edit({
   }, [attributes]);
   const {
     borders,
-    onChange,
+    onChangeBorder,
     handleRangeChange,
     handleUnitChange,
     colors,
     units
   } = (0,_functions_useBorderControl__WEBPACK_IMPORTED_MODULE_11__.useBorderControl)(attributes, setAttributes);
+  const {
+    fontFamily: selectedFontFamily,
+    onChangeFontFamily
+  } = (0,_functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_13__.useFontFamilyControl)(attributes, setAttributes);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -531,22 +542,45 @@ function Edit({
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalBorderBoxControl, {
     colors: colors,
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Borders'),
-    onChange: onChange,
+    onChange: onChangeBorder,
     value: attributes.borders
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
     label: "Set your value",
-    value: parseInt(attributes.borderRadiusValue, 10) // ここを変更
-    ,
+    value: parseInt(attributes.borderRadiusValue, 10),
     onChange: handleRangeChange,
     min: 0,
     max: attributes.borderRadiusValue && attributes.borderRadiusValue.includes('px') ? 100 : 100
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     label: "Select unit",
-    value: attributes.borderRadiusValue && attributes.borderRadiusValue.replace(/[0-9]/g, '') // ここを変更
-    ,
+    value: attributes.borderRadiusValue && attributes.borderRadiusValue.replace(/[0-9]/g, ''),
     options: units,
     onChange: handleUnitChange
-  })))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: "\u30D5\u30A9\u30F3\u30C8\u30D5\u30A1\u30DF\u30EA\u30FC\u3092\u9078\u629E",
+    value: attributes.fontFamily || selectedFontFamily,
+    options: [{
+      label: 'Noto Sans JP',
+      value: "NotoSans, sans-serif"
+    }, {
+      label: 'Noto Serif JP',
+      value: "NotoSerif, serif"
+    }, {
+      label: 'M PLUS 1p',
+      value: "MPLUS1, sans-serif"
+    }, {
+      label: 'Kosugi Maru',
+      value: "KosugiMaru, sans-serif"
+    }, {
+      label: 'Sawarabi Gothic',
+      value: "SawarabiGothic, sans-serif"
+    }],
+    onChange: newFontFamily => {
+      setAttributes({
+        fontFamily: newFontFamily
+      });
+      onChangeFontFamily(newFontFamily);
+    }
+  }))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "layout"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "today-and-tomorrow weather-layout"
@@ -556,18 +590,21 @@ function Edit({
     showHoliday: attributes.showHoliday,
     showPrecipitation: attributes.showPrecipitation,
     borderRadius: attributes.borderRadiusValue,
-    borders: attributes.borders
+    borders: attributes.borders,
+    fontFamily: attributes.fontFamily
   }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
     ...TomorrowWeatherComponentProps,
     title: "\u660E\u65E5\u306E\u5929\u6C17",
     showHoliday: attributes.showHoliday,
     showPrecipitation: attributes.showPrecipitation,
     borderRadius: attributes.borderRadiusValue,
-    borders: attributes.borders
+    borders: attributes.borders,
+    fontFamily: attributes.fontFamily
   })), !showSelection && weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
     ...WeeklyWeatherComponentProps,
     borderRadius: attributes.borderRadiusValue,
-    borders: attributes.borders
+    borders: attributes.borders,
+    fontFamily: attributes.fontFamily
   }))));
 }
 
@@ -609,7 +646,7 @@ function useBorderControl(attributes, setAttributes) {
     label: 'Percentage (%)',
     value: '%'
   }];
-  const onChange = newBorders => {
+  const onChangeBorder = newBorders => {
     const updatedBorders = {
       top: {
         ...borders.top,
@@ -669,7 +706,7 @@ function useBorderControl(attributes, setAttributes) {
   };
   return {
     borders,
-    onChange,
+    onChangeBorder,
     handleRangeChange,
     handleUnitChange,
     colors,
@@ -708,6 +745,40 @@ function useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWee
     }
     fetchData();
   }, [selectedCity]);
+}
+
+/***/ }),
+
+/***/ "./src/functions/useFontFamilyControl.js":
+/*!***********************************************!*\
+  !*** ./src/functions/useFontFamilyControl.js ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useFontFamilyControl: function() { return /* binding */ useFontFamilyControl; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+function useFontFamilyControl(attributes, setAttributes) {
+  const [fontFamily, setFontFamily] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.fontFamily);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    console.log("Attributes Font Family Updated:", attributes.fontFamily);
+    setFontFamily(attributes.fontFamily);
+  }, [attributes.fontFamily]);
+  const onChangeFontFamily = newFontFamily => {
+    console.log("New Font Family:", newFontFamily);
+    setFontFamily(newFontFamily);
+    setAttributes({
+      fontFamily: newFontFamily
+    });
+  };
+  return {
+    fontFamily,
+    onChangeFontFamily
+  };
 }
 
 /***/ }),
@@ -903,6 +974,10 @@ const defaultBorder = {
           bottom: defaultBorder,
           left: defaultBorder
         }
+      },
+      fontFamily: {
+        type: 'string',
+        default: 'Noto Sans JP, sans-serif'
       }
     }
   },
@@ -1174,7 +1249,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"showHoliday":{"type":"boolean","default":true},"showPrecipitation":{"type":"boolean","default":true},"tomorrowWeather":{"type":"object","default":{}},"weeklyWeather":{"type":"array","default":[]},"todayWeather":{"type":"object","default":{}},"borderRadiusValue":{"type":"string","default":"0px"},"borders":{"type":"object","default":{"top":{"color":"#72aee6","style":"dashed","width":"1px"},"right":{"color":"#72aee6","style":"dashed","width":"1px"},"bottom":{"color":"#72aee6","style":"dashed","width":"1px"},"left":{"color":"#72aee6","style":"dashed","width":"1px"}}}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./style-index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"showHoliday":{"type":"boolean","default":true},"showPrecipitation":{"type":"boolean","default":true},"tomorrowWeather":{"type":"object","default":{}},"weeklyWeather":{"type":"array","default":[]},"todayWeather":{"type":"object","default":{}},"borderRadiusValue":{"type":"string","default":"0px"},"borders":{"type":"object","default":{"top":{"color":"#72aee6","style":"dashed","width":"1px"},"right":{"color":"#72aee6","style":"dashed","width":"1px"},"bottom":{"color":"#72aee6","style":"dashed","width":"1px"},"left":{"color":"#72aee6","style":"dashed","width":"1px"}}},"fontFamily":{"type":"string","default":"Noto Sans JP, sans-serif"}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./style-index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

@@ -29,6 +29,7 @@ import { useWeatherData } from './functions/useWeatherData';
 import { useChangeCity } from './functions/useChangeCity';
 import { useBorderControl } from './functions/useBorderControl';
 import { city } from './data/getSpotWeather';
+import { useFontFamilyControl } from './functions/useFontFamilyControl';
 
 export default function Edit({ attributes, setAttributes }) {
 
@@ -60,7 +61,7 @@ export default function Edit({ attributes, setAttributes }) {
 	};
 
 	const blockProps = useBlockProps({
-		className: 'my-first-plugin'
+		className: 'my-first-plugin',
 	});
 
 	// `city`オブジェクトから都市名を抽出してSelectControlに適切な形式で変換
@@ -75,15 +76,20 @@ export default function Edit({ attributes, setAttributes }) {
 
 	const {
 		borders,
-		onChange,
+		onChangeBorder,
 		handleRangeChange,
 		handleUnitChange,
 		colors,
-		units
+		units,
 	} = useBorderControl(attributes, setAttributes);
 
+	const {
+		fontFamily: selectedFontFamily,
+		onChangeFontFamily
+	} = useFontFamilyControl(attributes, setAttributes);
+
 	return (
-		<div {...blockProps} >
+		<div {...blockProps}  >
 			<div onClick={handleLayoutClick} ref={ref}>
 				{showSelection ? (
 					<div className="checkbox-wrapper">
@@ -138,24 +144,39 @@ export default function Edit({ attributes, setAttributes }) {
 							<BorderBoxControl
 								colors={colors}
 								label={__('Borders')}
-								onChange={onChange}
+								onChange={onChangeBorder}
 								value={attributes.borders}
 							/>
 							<div>
 								<RangeControl
 									label="Set your value"
-									value={parseInt(attributes.borderRadiusValue, 10)} // ここを変更
+									value={parseInt(attributes.borderRadiusValue, 10)}
 									onChange={handleRangeChange}
 									min={0}
 									max={(attributes.borderRadiusValue && attributes.borderRadiusValue.includes('px')) ? 100 : 100}
 								/>
 								<SelectControl
 									label="Select unit"
-									value={attributes.borderRadiusValue && attributes.borderRadiusValue.replace(/[0-9]/g, '')} // ここを変更
+									value={attributes.borderRadiusValue && attributes.borderRadiusValue.replace(/[0-9]/g, '')}
 									options={units}
 									onChange={handleUnitChange}
 								/>
 							</div>
+							<SelectControl
+								label="フォントファミリーを選択"
+								value={attributes.fontFamily || selectedFontFamily}
+								options={[
+									{ label: 'Noto Sans JP', value: "NotoSans, sans-serif" },
+									{ label: 'Noto Serif JP', value: "NotoSerif, serif" },
+									{ label: 'M PLUS 1p', value: "MPLUS1, sans-serif" },
+									{ label: 'Kosugi Maru', value: "KosugiMaru, sans-serif" },
+									{ label: 'Sawarabi Gothic', value: "SawarabiGothic, sans-serif" }
+								]}
+								onChange={newFontFamily => {
+									setAttributes({ fontFamily: newFontFamily });
+									onChangeFontFamily(newFontFamily);
+								}}
+							/>
 						</div>
 					</div>
 				) : (
@@ -169,6 +190,7 @@ export default function Edit({ attributes, setAttributes }) {
 									showPrecipitation={attributes.showPrecipitation}
 									borderRadius={attributes.borderRadiusValue}
 									borders={attributes.borders}
+									fontFamily={attributes.fontFamily}
 								/>}
 							{attributes.tomorrowWeather &&
 								<CurrentWeather
@@ -178,12 +200,14 @@ export default function Edit({ attributes, setAttributes }) {
 									showPrecipitation={attributes.showPrecipitation}
 									borderRadius={attributes.borderRadiusValue}
 									borders={attributes.borders}
+									fontFamily={attributes.fontFamily}
 								/>}
 						</div>
 						{!showSelection && weeklyWeather && <WeekWeather
 							{...WeeklyWeatherComponentProps}
 							borderRadius={attributes.borderRadiusValue}
 							borders={attributes.borders}
+							fontFamily={attributes.fontFamily}
 						/>}
 					</div>
 				)}

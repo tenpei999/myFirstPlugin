@@ -30,9 +30,9 @@ import metadata from './block.json';
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
 const defaultBorder = {
-  color: '#72aee6',
-  style: 'dashed',
-  width: '10px',
+	color: '#72aee6',
+	style: 'dashed',
+	width: '10px',
 };
 
 registerBlockType(metadata.name, {
@@ -68,6 +68,10 @@ registerBlockType(metadata.name, {
 					left: defaultBorder,
 				}
 			},
+			fontFamily: {
+				type: 'string',
+				default: 'Noto Sans JP, sans-serif'
+			}
 		},
 	},
 	/**

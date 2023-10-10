@@ -5,6 +5,7 @@ import '../style.scss';
 const CurrentWeather = ({
   borders,
   borderRadius,
+  fontFamily,
   weather,
   title,
   showPrecipitation,
@@ -34,7 +35,8 @@ const CurrentWeather = ({
   return (
     <article className="block--current" style={{
       ...borderStyles,
-      borderRadius: borderRadius
+      borderRadius: borderRadius,
+      fontFamily: fontFamily,
     }}>
       <h3>{title}</h3>
       <h4 style={{ color: textColor }}>{weather.day.date}</h4>

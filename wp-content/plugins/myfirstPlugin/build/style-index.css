@@ -141,6 +141,9 @@
 .wp-block-create-block-my-first-plugin .EmphasizeTheTemperature.block--current .temp .lowest {
   font-size: 2rem;
 }
+.wp-block-create-block-my-first-plugin .Comfortable img {
+  transform: scale(1.2);
+}
 .wp-block-create-block-my-first-plugin .Comfortable h3 {
   font-size: 1rem;
 }

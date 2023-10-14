@@ -9,7 +9,8 @@ const CurrentWeather = ({
   weather,
   title,
   showPrecipitation,
-  showHoliday
+  showHoliday,
+  styleVariant,
 }) => {
 
 
@@ -33,20 +34,20 @@ const CurrentWeather = ({
 
   console.log(borders.top.width)
   return (
-    <article className="block--current" style={{
+    <article className={`block--current ${styleVariant}`} style={{
       ...borderStyles,
       borderRadius: borderRadius,
       fontFamily: fontFamily,
     }}>
       <h3>{title}</h3>
-      <h4 style={{ color: textColor }}>{weather.day.date}</h4>
+      <h4 style={{ color: textColor }}>{weather.day.date.fullDate}</h4>
 
       {/* showHolidayがtrueの場合のみ祝日の名前を表示 */}
       {showHoliday && weather.day.isHoliday && (
         <p>{weather.day.holidayName}</p>
       )}
 
-      <p>{weather.name}</p>
+      <p className="weather__name">{weather.name}</p>
       <img src={weather.image} alt="weather icon" />
       <Temp weather={weather} />
 

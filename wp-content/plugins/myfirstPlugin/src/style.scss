@@ -98,6 +98,7 @@
 
 		@media (min-width: 800px) {
 			flex-direction: row;
+			justify-content: space-around;
 		}
 	}
 
@@ -122,5 +123,69 @@
 
 	.celsius {
 		font-size: 1rem;
+	}
+
+	.comparison {
+		font-size: 0.9rem;
+	}
+
+	.EmphasizeTheWeather {
+		h3 {
+			font-size: 1rem;
+		}
+
+		h4 {
+			font-size: 1rem;
+		}
+
+		.weather__name {
+			font-size: 2rem;
+		}
+	}
+
+	.EmphasizeTheTemperature {
+		h3 {
+			font-size: 1rem;
+		}
+
+		h4 {
+			font-size: 1rem;
+		}
+
+		.weather__name {
+			font-size: 1rem;
+		}
+
+		&.block--current {
+			.temp {
+
+				.highest,
+				.lowest {
+					font-size: 2rem;
+				}
+			}
+		}
+	}
+
+	.Comfortable {
+
+		h3 {
+			font-size: 1rem;
+		}
+
+		h4 {
+			font-size: 1.5rem;
+		}
+
+		.weather__name {
+			font-size: 1.5rem;
+		}
+		.time-zone {
+			justify-content: space-around;
+		}
+
+		.temp {
+			gap: 10px;
+		}
 	}
 }

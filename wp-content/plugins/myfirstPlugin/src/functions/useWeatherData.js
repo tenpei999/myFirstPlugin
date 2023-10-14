@@ -1,7 +1,7 @@
 import { useState, useEffect } from '@wordpress/element';
 import weatherObject from '../objects/weatherObject';
 
-export const useWeatherData = (setAttributes) => {
+export const useWeatherData = (setAttributes, addBreak = false) => {
     const [cachedWeather, setCachedWeather] = useState({
         today: null,
         tomorrow: null,
@@ -36,8 +36,9 @@ export const useWeatherData = (setAttributes) => {
                     showHoliday: weeklyHolidays,
                 });
             },
+            addBreak 
         );
-    }, [setAttributes]);
+    }, [setAttributes, addBreak ]);
 
     return cachedWeather;
 };

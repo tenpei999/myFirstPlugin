@@ -1,4 +1,4 @@
-const dayWithHoliday = async () => {
+const dayWithHoliday = async (addBreak = false) => {
 
   async function getHolidays() {
     const response = await fetch('https://holidays-jp.github.io/api/v1/date.json');
@@ -18,7 +18,7 @@ const dayWithHoliday = async () => {
     return dateArray;
   }
 
-  async function getOneWeekDatesWithHolidays() {
+  async function getOneWeekDatesWithHolidays(addBreak = false) {
     const today = new Date();
     const sixDaysLater = new Date(today);
     sixDaysLater.setDate(today.getDate() + 6);
@@ -35,7 +35,12 @@ const dayWithHoliday = async () => {
       const dayOfWeek = weekDays[date.getDay()];
       const formattedDate = `${String(date.getMonth() + 1)}月${String(date.getDate())}日(${dayOfWeek})`;
       return {
-        date: formattedDate,
+        date: {
+          month: `${String(date.getMonth() + 1)}月`,
+          day: `${String(date.getDate())}日`,
+          dayOfWeek: `(${dayOfWeek})`,
+          fullDate: `${String(date.getMonth() + 1)}月${String(date.getDate())}日(${dayOfWeek})`
+        },
         isHoliday: !!holidays[formattedDate],  // this will be true if the date is a holiday, otherwise false
         holidayName: holidays[formattedDate] || null,  // this will have the holiday name if the date is a holiday, otherwise null
         isSaturday: date.getDay() === 6,
@@ -45,7 +50,7 @@ const dayWithHoliday = async () => {
     return oneWeekDatesWithHolidays;
   }
 
-  return await getOneWeekDatesWithHolidays();
+  return await getOneWeekDatesWithHolidays(addBreak);
 }
 
 export default dayWithHoliday;

@@ -30,6 +30,7 @@ import { useChangeCity } from './functions/useChangeCity';
 import { useBorderControl } from './functions/useBorderControl';
 import { city } from './data/getSpotWeather';
 import { useFontFamilyControl } from './functions/useFontFamilyControl';
+import { useChangeBalance } from './functions/useChangeBalance';
 
 export default function Edit({ attributes, setAttributes }) {
 
@@ -38,8 +39,7 @@ export default function Edit({ attributes, setAttributes }) {
 	const [showPrecipitation, setShowPrecipitation] = useState(attributes.showPrecipitation);
 	const [selectedCity, setSelectedCity] = useState('東京'); // 初期値として'東京'をセット
 	const ref = useRef(null);
-	const cachedWeather = useWeatherData(setAttributes);
-
+	const { cachedWeather } = useWeatherData(setAttributes);
 	const [todayWeather, setTodayWeather] = useState(null);
 	const [tomorrowWeather, setTomorrowWeather] = useState(null);
 	const [weeklyWeather, setWeeklyWeather] = useState([]);
@@ -49,15 +49,15 @@ export default function Edit({ attributes, setAttributes }) {
 
 
 	const TodayWeatherComponentProps = {
-		weather: todayWeather, // attributes.todayWeather の代わり
+		weather: todayWeather, 
 	};
 
 	const TomorrowWeatherComponentProps = {
-		weather: tomorrowWeather, // attributes.tomorrowWeather の代わり
+		weather: tomorrowWeather, 
 	};
 
 	const WeeklyWeatherComponentProps = {
-		weather: weeklyWeather, // attributes.weeklyWeather の代わり
+		weather: weeklyWeather, 
 	};
 
 	const blockProps = useBlockProps({
@@ -87,6 +87,13 @@ export default function Edit({ attributes, setAttributes }) {
 		fontFamily: selectedFontFamily,
 		onChangeFontFamily
 	} = useFontFamilyControl(attributes, setAttributes);
+
+	const {
+		selectedOption,
+		setSelectedOption,
+		fontBalanceOptions,
+		applyFontBalance
+	} = useChangeBalance(attributes.balanceOption, setAttributes);
 
 	return (
 		<div {...blockProps}  >
@@ -177,6 +184,15 @@ export default function Edit({ attributes, setAttributes }) {
 									onChangeFontFamily(newFontFamily);
 								}}
 							/>
+							<SelectControl
+								label="Font Balance"
+								value={selectedOption.label}
+								options={fontBalanceOptions.map(opt => ({ label: opt.label, value: opt.label }))}
+								onChange={(label) => {
+									const option = fontBalanceOptions.find(opt => opt.label === label);
+									setSelectedOption(option);
+								}}
+							/>
 						</div>
 					</div>
 				) : (
@@ -191,6 +207,7 @@ export default function Edit({ attributes, setAttributes }) {
 									borderRadius={attributes.borderRadiusValue}
 									borders={attributes.borders}
 									fontFamily={attributes.fontFamily}
+									styleVariant={selectedOption.value}
 								/>}
 							{attributes.tomorrowWeather &&
 								<CurrentWeather
@@ -201,6 +218,7 @@ export default function Edit({ attributes, setAttributes }) {
 									borderRadius={attributes.borderRadiusValue}
 									borders={attributes.borders}
 									fontFamily={attributes.fontFamily}
+									styleVariant={selectedOption.value}
 								/>}
 						</div>
 						{!showSelection && weeklyWeather && <WeekWeather
@@ -208,6 +226,7 @@ export default function Edit({ attributes, setAttributes }) {
 							borderRadius={attributes.borderRadiusValue}
 							borders={attributes.borders}
 							fontFamily={attributes.fontFamily}
+							styleVariant={selectedOption.value}
 						/>}
 					</div>
 				)}

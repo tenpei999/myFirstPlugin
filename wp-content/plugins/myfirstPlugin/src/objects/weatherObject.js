@@ -6,6 +6,7 @@ const weatherObject = async (
   setTodayWeather,
   setTomorrowWeather,
   setWeeklyWeather,
+  addBreak = false 
 ) => {
   try {
     if (!cityurl) {
@@ -29,7 +30,7 @@ const weatherObject = async (
       throw new Error("Unexpected data format received from the weather API.");
     }
 
-    const datesForWeek = await dayWithHoliday();
+    const datesForWeek = await dayWithHoliday(addBreak);
     if (!datesForWeek || datesForWeek.length !== 7) {
       throw new Error("Unexpected date array length from dayWithHoliday.");
     }
@@ -86,6 +87,8 @@ const weatherObject = async (
       lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index + 1],
       rainProbability: rainProbability1[index + 1],
     }));
+
+    console.log(dailyData)
 
     // WordPress REST APIエンドポイントにデータをPOST
     const postResponse = await fetch(apiUrl, {

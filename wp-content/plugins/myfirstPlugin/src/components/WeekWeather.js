@@ -7,7 +7,10 @@ const WeekWeather = ({
   borderRadius,
   fontFamily,
   weather,
+  styleVariant,
 }) => {
+
+  console.log(weather)
 
   if (!weather) return null;
 
@@ -23,7 +26,7 @@ const WeekWeather = ({
   console.log(fontFamily)
 
   return (
-    <ul className="block--weekly weather-layout"
+    <ul className={`block--weekly weather-layout ${styleVariant}`}
       style={{
         ...borderStyles,
         borderRadius: borderRadius,
@@ -42,17 +45,17 @@ const WeekWeather = ({
         return (
           <li className="block--day" key={dayWeather.day.date} >
             <h4 className="c-title__weather" style={{ color: textColor }}>
-              {dayWeather.day.date}
+              {dayWeather.day.date.month}{dayWeather.day.date.day}<br />{dayWeather.day.date.dayOfWeek}
             </h4>
             {dayWeather.day.isHoliday && (
-              <p >
-                {dayWeather.day.holidayName}
+              <p>
+                {displayDate}
               </p>
             )}
-            <p className="c-weather__weather">
+            <p className="weather__name">
               {dayWeather.name}
             </p>
-            <span className="c-weather__img">
+            <span className="weather__img">
               <img src={dayWeather.image} alt="Weather Icon" />
             </span>
             {dayWeather.highestTemperature && dayWeather.lowestTemperature && dayWeather.maximumTemperatureComparison && dayWeather.lowestTemperatureComparison && (

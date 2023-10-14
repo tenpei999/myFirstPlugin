@@ -98,6 +98,7 @@
 @media (min-width: 800px) {
   .wp-block-create-block-my-first-plugin .weather-layout {
     flex-direction: row;
+    justify-content: space-around;
   }
 }
 @media screen and (min-width: 800px) {
@@ -114,6 +115,46 @@
 }
 .wp-block-create-block-my-first-plugin .celsius {
   font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .comparison {
+  font-size: 0.9rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheWeather h3 {
+  font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheWeather h4 {
+  font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheWeather .weather__name {
+  font-size: 2rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheTemperature h3 {
+  font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheTemperature h4 {
+  font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheTemperature .weather__name {
+  font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheTemperature.block--current .temp .highest,
+.wp-block-create-block-my-first-plugin .EmphasizeTheTemperature.block--current .temp .lowest {
+  font-size: 2rem;
+}
+.wp-block-create-block-my-first-plugin .Comfortable h3 {
+  font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .Comfortable h4 {
+  font-size: 1.5rem;
+}
+.wp-block-create-block-my-first-plugin .Comfortable .weather__name {
+  font-size: 1.5rem;
+}
+.wp-block-create-block-my-first-plugin .Comfortable .time-zone {
+  justify-content: space-around;
+}
+.wp-block-create-block-my-first-plugin .Comfortable .temp {
+  gap: 10px;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

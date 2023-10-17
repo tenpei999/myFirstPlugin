@@ -29,7 +29,8 @@ const CurrentWeather = ({
   title,
   showPrecipitation,
   showHoliday,
-  styleVariant
+  styleVariant,
+  selectedMedia
 }) => {
   if (!weather || !weather.day) return null; // weather と weather.day の存在を確認
 
@@ -52,7 +53,11 @@ const CurrentWeather = ({
     style: {
       ...borderStyles,
       borderRadius: borderRadius,
-      fontFamily: fontFamily
+      fontFamily: fontFamily,
+      backgroundImage: selectedMedia ? `url('${selectedMedia}')` : 'none',
+      backgroundSize: selectedMedia ? 'auto 100%' : 'auto',
+      // background-size を設定
+      backgroundRepeat: "no-repeat"
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     style: {
@@ -188,7 +193,8 @@ const WeekWeather = ({
   borderRadius,
   fontFamily,
   weather,
-  styleVariant
+  styleVariant,
+  selectedMedia
 }) => {
   console.log(weather);
   if (!weather) return null;
@@ -199,13 +205,16 @@ const WeekWeather = ({
     borderBottom: `${borders.bottom.width} ${borders.bottom.style} ${borders.bottom.color}`,
     borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
   };
-  console.log(fontFamily);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: `block--weekly weather-layout ${styleVariant}`,
     style: {
       ...borderStyles,
       borderRadius: borderRadius,
-      fontFamily: fontFamily
+      fontFamily: fontFamily,
+      backgroundImage: selectedMedia ? `url('${selectedMedia}')` : 'none',
+      backgroundSize: selectedMedia ? 'cover' : '100%',
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center"
     }
   }, weather.slice(0, 6).map(dayWeather => {
     if (!dayWeather || !dayWeather.day) return null;
@@ -456,6 +465,7 @@ function Edit({
   const [todayWeather, setTodayWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [tomorrowWeather, setTomorrowWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [weeklyWeather, setWeeklyWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [selectedMedia, setSelectedMedia] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.selectedMedia);
   const {
     showSelection,
     handleLayoutClick
@@ -501,6 +511,14 @@ function Edit({
     fontBalanceOptions,
     applyFontBalance
   } = (0,_functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_14__.useChangeBalance)(attributes.balanceOption, setAttributes);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    // selectedMediaが変更されたときに実行されるコード
+    if (selectedMedia !== attributes.selectedMedia) {
+      setSelectedMedia(attributes.selectedMedia);
+    }
+  }, [attributes.selectedMedia]);
+  const ALLOWED_MEDIA_TYPES = ['image'];
+  const mediaId = 690;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -615,7 +633,30 @@ function Edit({
       const option = fontBalanceOptions.find(opt => opt.label === label);
       setSelectedOption(option);
     }
-  }))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => {
+      if (media) {
+        const selectedMediaUrl = media.url; // 選択したメディアのURLを取得
+        setAttributes({
+          backgroundImage: selectedMediaUrl,
+          selectedMedia: selectedMediaUrl // selectedMedia属性に設定
+        });
+      } else {
+        setAttributes({
+          backgroundImage: null,
+          selectedMedia: null // selectedMedia属性をクリア
+        });
+      }
+    },
+
+    allowedTypes: ['image'],
+    value: attributes.backgroundImage || mediaId,
+    render: ({
+      open
+    }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: open
+    }, "Open Media Library")
+  })))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "layout"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "today-and-tomorrow weather-layout"
@@ -627,7 +668,8 @@ function Edit({
     borderRadius: attributes.borderRadiusValue,
     borders: attributes.borders,
     fontFamily: attributes.fontFamily,
-    styleVariant: selectedOption.value
+    styleVariant: selectedOption.value,
+    selectedMedia: selectedMedia
   }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
     ...TomorrowWeatherComponentProps,
     title: "\u660E\u65E5\u306E\u5929\u6C17",
@@ -636,13 +678,15 @@ function Edit({
     borderRadius: attributes.borderRadiusValue,
     borders: attributes.borders,
     fontFamily: attributes.fontFamily,
-    styleVariant: selectedOption.value
+    styleVariant: selectedOption.value,
+    selectedMedia: selectedMedia
   })), !showSelection && weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
     ...WeeklyWeatherComponentProps,
     borderRadius: attributes.borderRadiusValue,
     borders: attributes.borders,
     fontFamily: attributes.fontFamily,
-    styleVariant: selectedOption.value
+    styleVariant: selectedOption.value,
+    selectedMedia: selectedMedia
   }))));
 }
 

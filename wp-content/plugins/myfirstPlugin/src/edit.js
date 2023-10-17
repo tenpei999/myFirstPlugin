@@ -10,13 +10,14 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { useState, useRef, useEffect } from '@wordpress/element';
 import {
 	CheckboxControl,
 	SelectControl,
 	RangeControl,
+	Button,
 	__experimentalBorderBoxControl as BorderBoxControl,
 }
 	from '@wordpress/components';
@@ -43,21 +44,22 @@ export default function Edit({ attributes, setAttributes }) {
 	const [todayWeather, setTodayWeather] = useState(null);
 	const [tomorrowWeather, setTomorrowWeather] = useState(null);
 	const [weeklyWeather, setWeeklyWeather] = useState([]);
+	const [selectedMedia, setSelectedMedia] = useState(attributes.selectedMedia);
 	const { showSelection, handleLayoutClick } = useBlockSelection();
 
 	useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
 
 
 	const TodayWeatherComponentProps = {
-		weather: todayWeather, 
+		weather: todayWeather,
 	};
 
 	const TomorrowWeatherComponentProps = {
-		weather: tomorrowWeather, 
+		weather: tomorrowWeather,
 	};
 
 	const WeeklyWeatherComponentProps = {
-		weather: weeklyWeather, 
+		weather: weeklyWeather,
 	};
 
 	const blockProps = useBlockProps({
@@ -94,6 +96,16 @@ export default function Edit({ attributes, setAttributes }) {
 		fontBalanceOptions,
 		applyFontBalance
 	} = useChangeBalance(attributes.balanceOption, setAttributes);
+
+	useEffect(() => {
+    // selectedMediaが変更されたときに実行されるコード
+    if (selectedMedia !== attributes.selectedMedia) {
+      setSelectedMedia(attributes.selectedMedia);
+    }
+  }, [attributes.selectedMedia]);
+
+	const ALLOWED_MEDIA_TYPES = ['image'];
+	const mediaId = 690;
 
 	return (
 		<div {...blockProps}  >
@@ -193,6 +205,29 @@ export default function Edit({ attributes, setAttributes }) {
 									setSelectedOption(option);
 								}}
 							/>
+							<MediaUploadCheck>
+								<MediaUpload
+									onSelect={(media) => {
+										if (media) {
+											const selectedMediaUrl = media.url; // 選択したメディアのURLを取得
+											setAttributes({
+												backgroundImage: selectedMediaUrl,
+												selectedMedia: selectedMediaUrl, // selectedMedia属性に設定
+											});
+										} else {
+											setAttributes({
+												backgroundImage: null,
+												selectedMedia: null, // selectedMedia属性をクリア
+											});
+										}
+									}}
+									allowedTypes={['image']}
+									value={attributes.backgroundImage || mediaId}
+									render={({ open }) => (
+										<Button onClick={open}>Open Media Library</Button>
+									)}
+								/>
+							</MediaUploadCheck>
 						</div>
 					</div>
 				) : (
@@ -208,6 +243,7 @@ export default function Edit({ attributes, setAttributes }) {
 									borders={attributes.borders}
 									fontFamily={attributes.fontFamily}
 									styleVariant={selectedOption.value}
+									selectedMedia={selectedMedia}
 								/>}
 							{attributes.tomorrowWeather &&
 								<CurrentWeather
@@ -219,6 +255,7 @@ export default function Edit({ attributes, setAttributes }) {
 									borders={attributes.borders}
 									fontFamily={attributes.fontFamily}
 									styleVariant={selectedOption.value}
+									selectedMedia={selectedMedia}
 								/>}
 						</div>
 						{!showSelection && weeklyWeather && <WeekWeather
@@ -227,6 +264,7 @@ export default function Edit({ attributes, setAttributes }) {
 							borders={attributes.borders}
 							fontFamily={attributes.fontFamily}
 							styleVariant={selectedOption.value}
+							selectedMedia={selectedMedia}
 						/>}
 					</div>
 				)}

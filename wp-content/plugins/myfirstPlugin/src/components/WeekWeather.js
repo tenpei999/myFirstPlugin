@@ -8,6 +8,7 @@ const WeekWeather = ({
   fontFamily,
   weather,
   styleVariant,
+  selectedMedia,
 }) => {
 
   console.log(weather)
@@ -23,14 +24,16 @@ const WeekWeather = ({
     borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
   };
 
-  console.log(fontFamily)
-
   return (
     <ul className={`block--weekly weather-layout ${styleVariant}`}
       style={{
         ...borderStyles,
         borderRadius: borderRadius,
         fontFamily: fontFamily,
+        backgroundImage: selectedMedia ? `url('${selectedMedia}')` : 'none',
+        backgroundSize: selectedMedia ? 'cover' : '100%', 
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
       }}>
       {weather.slice(0, 6).map((dayWeather) => {
         if (!dayWeather || !dayWeather.day) return null;
@@ -41,6 +44,8 @@ const WeekWeather = ({
         } else if (dayWeather.day.isSaturday) {
           textColor = "blue";
         }
+
+
 
         return (
           <li className="block--day" key={dayWeather.day.date} >

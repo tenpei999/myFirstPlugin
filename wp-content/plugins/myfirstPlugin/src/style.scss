@@ -19,7 +19,6 @@
 @include font-face('KosugiMaru', '../fonts/KosugiMaru-Regular.ttf');
 @include font-face('SawarabiGothic', '../fonts/SawarabiGothic-Regular.ttf');
 
-
 .wp-block-create-block-my-first-plugin {
 
 	$tablet-breakpoint: 800px;
@@ -184,6 +183,7 @@
 		.weather__name {
 			font-size: 1.5rem;
 		}
+
 		.time-zone {
 			justify-content: space-around;
 		}

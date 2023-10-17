@@ -11,6 +11,7 @@ const CurrentWeather = ({
   showPrecipitation,
   showHoliday,
   styleVariant,
+  selectedMedia,
 }) => {
 
 
@@ -38,6 +39,9 @@ const CurrentWeather = ({
       ...borderStyles,
       borderRadius: borderRadius,
       fontFamily: fontFamily,
+      backgroundImage: selectedMedia ? `url('${selectedMedia}')` : 'none',
+      backgroundSize: selectedMedia ? 'auto 100%' : 'auto', // background-size を設定
+      backgroundRepeat: "no-repeat",
     }}>
       <h3>{title}</h3>
       <h4 style={{ color: textColor }}>{weather.day.date.fullDate}</h4>

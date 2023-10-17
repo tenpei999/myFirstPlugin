@@ -8,14 +8,14 @@ const WeekWeather = ({
   fontFamily,
   weather,
   styleVariant,
+  backgroundStyleType,
   selectedMedia,
+  backgroundGradient,
 }) => {
-
-  console.log(weather)
 
   if (!weather) return null;
 
-  console.log(borders)
+  let backgroundStyles = {};
 
   const borderStyles = {
     borderTop: `${borders.top.width} ${borders.top.style} ${borders.top.color}`,
@@ -24,16 +24,41 @@ const WeekWeather = ({
     borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
   };
 
+  // 背景スタイルタイプに応じた条件分岐
+  switch (backgroundStyleType) {
+    case 'image':
+      // 画像が選択されている場合、背景画像として設定
+      if (selectedMedia) {
+        backgroundStyles = {
+          backgroundImage: `url('${selectedMedia}')`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+        };
+      }
+      break;
+
+    case 'gradient':
+      // グラデーションが選択されている場合、背景としてグラデーションを設定
+      if (backgroundGradient) {
+        backgroundStyles = {
+          background: backgroundGradient,  // グラデーションのCSSをここに設定
+        };
+      }
+      break;
+
+    default:
+      // デフォルトの背景設定（必要に応じて）または何も適用しない
+      break;
+  }
+
   return (
     <ul className={`block--weekly weather-layout ${styleVariant}`}
       style={{
         ...borderStyles,
         borderRadius: borderRadius,
         fontFamily: fontFamily,
-        backgroundImage: selectedMedia ? `url('${selectedMedia}')` : 'none',
-        backgroundSize: selectedMedia ? 'cover' : '100%', 
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
+        ...backgroundStyles,
       }}>
       {weather.slice(0, 6).map((dayWeather) => {
         if (!dayWeather || !dayWeather.day) return null;

@@ -18,7 +18,7 @@ import {
 	SelectControl,
 	RangeControl,
 	Button,
-	ColorPicker,
+	GradientPicker,
 	__experimentalBorderBoxControl as BorderBoxControl,
 }
 	from '@wordpress/components';
@@ -46,6 +46,8 @@ export default function Edit({ attributes, setAttributes }) {
 	const [tomorrowWeather, setTomorrowWeather] = useState(null);
 	const [weeklyWeather, setWeeklyWeather] = useState([]);
 	const [selectedMedia, setSelectedMedia] = useState(attributes.selectedMedia);
+	const [backgroundStyleType, setBackgroundStyleType] = useState('image'); // 初期値は 'image' または 'gradient'
+
 	const { showSelection, handleLayoutClick } = useBlockSelection();
 
 	useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
@@ -106,6 +108,30 @@ export default function Edit({ attributes, setAttributes }) {
 	}, [attributes.selectedMedia]);
 
 	const mediaId = 690;
+
+	const handleSelectMedia = (media) => {
+		if (media) {
+			// 画像が選択されたので、背景スタイルを 'image' に設定します。
+			setBackgroundStyleType('image');
+			// ... [画像を設定するその他のコード]
+		} else {
+			// 画像が削除されたので、背景スタイルをリセットします。
+			setBackgroundStyleType(null);
+			// ... [その他のリセットコード]
+		}
+	};
+
+	const handleGradientChange = (newGradient) => {
+		if (newGradient) {
+			// グラデーションが選択されたので、背景スタイルを 'gradient' に設定します。
+			setBackgroundStyleType('gradient');
+			// ... [グラデーションを設定するその他のコード]
+		} else {
+			// グラデーションが削除されたので、背景スタイルをリセットします。
+			setBackgroundStyleType(null);
+			// ... [その他のリセットコード]
+		}
+	};
 
 	return (
 		<div {...blockProps}  >
@@ -205,29 +231,68 @@ export default function Edit({ attributes, setAttributes }) {
 									setSelectedOption(option);
 								}}
 							/>
-							<MediaUploadCheck>
-								<MediaUpload
-									onSelect={(media) => {
-										if (media) {
-											const selectedMediaUrl = media.url; // 選択したメディアのURLを取得
-											setAttributes({
-												backgroundImage: selectedMediaUrl,
-												selectedMedia: selectedMediaUrl, // selectedMedia属性に設定
-											});
-										} else {
-											setAttributes({
-												backgroundImage: null,
-												selectedMedia: null, // selectedMedia属性をクリア
-											});
-										}
-									}}
-									allowedTypes={['image']}
-									value={attributes.backgroundImage || mediaId}
-									render={({ open }) => (
-										<Button onClick={open}>Open Media Library</Button>
-									)}
+							<SelectControl
+								label="背景スタイル"
+								value={backgroundStyleType}
+								options={[
+									{ label: '画像', value: 'image' },
+									{ label: 'グラデーション', value: 'gradient' },
+								]}
+								onChange={(value) => setBackgroundStyleType(value)}
+							/>
+							{backgroundStyleType !== 'gradient' && (
+								<MediaUploadCheck>
+									<MediaUpload
+										onSelect={(media) => {
+											if (media) {
+												const selectedMediaUrl = media.url; // 選択したメディアのURLを取得
+												setAttributes({
+													backgroundImage: selectedMediaUrl,
+													selectedMedia: selectedMediaUrl, // selectedMedia属性に設定
+												});
+											} else {
+												setAttributes({
+													backgroundImage: null,
+													selectedMedia: null, // selectedMedia属性をクリア
+												});
+											}
+										}}
+										allowedTypes={['image']}
+										value={attributes.backgroundImage || mediaId}
+										render={({ open }) => (
+											<Button onClick={open}>Open Media Library</Button>
+										)}
+									/>
+								</MediaUploadCheck>
+							)}
+
+							{backgroundStyleType !== 'image' && (
+								<GradientPicker
+									__nextHasNoMargin
+									value={attributes.backgroundGradient}
+									onChange={(newGradient) => setAttributes({ backgroundGradient: newGradient })}
+									gradients={[
+										{
+											name: 'JShine',
+											gradient:
+												'linear-gradient(135deg,#12c2e9 0%,#c471ed 50%,#f64f59 100%)',
+											slug: 'jshine',
+										},
+										{
+											name: 'Moonlit Asteroid',
+											gradient:
+												'linear-gradient(135deg,#0F2027 0%, #203A43 0%, #2c5364 100%)',
+											slug: 'moonlit-asteroid',
+										},
+										{
+											name: 'Rastafarie',
+											gradient:
+												'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
+											slug: 'rastafari',
+										},
+									]}
 								/>
-							</MediaUploadCheck>
+							)}
 						</div>
 					</div>
 				) : (
@@ -243,7 +308,9 @@ export default function Edit({ attributes, setAttributes }) {
 									borders={attributes.borders}
 									fontFamily={attributes.fontFamily}
 									styleVariant={selectedOption.value}
+									backgroundStyleType={backgroundStyleType}
 									selectedMedia={selectedMedia}
+									backgroundGradient={attributes.backgroundGradient}
 								/>}
 							{attributes.tomorrowWeather &&
 								<CurrentWeather
@@ -255,7 +322,9 @@ export default function Edit({ attributes, setAttributes }) {
 									borders={attributes.borders}
 									fontFamily={attributes.fontFamily}
 									styleVariant={selectedOption.value}
+									backgroundStyleType={backgroundStyleType}
 									selectedMedia={selectedMedia}
+									backgroundGradient={attributes.backgroundGradient}
 								/>}
 						</div>
 						{!showSelection && weeklyWeather && <WeekWeather
@@ -264,7 +333,9 @@ export default function Edit({ attributes, setAttributes }) {
 							borders={attributes.borders}
 							fontFamily={attributes.fontFamily}
 							styleVariant={selectedOption.value}
+							backgroundStyleType={backgroundStyleType}
 							selectedMedia={selectedMedia}
+							backgroundGradient={attributes.backgroundGradient}
 						/>}
 					</div>
 				)}

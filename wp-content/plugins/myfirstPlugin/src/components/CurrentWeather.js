@@ -11,9 +11,12 @@ const CurrentWeather = ({
   showPrecipitation,
   showHoliday,
   styleVariant,
+  backgroundStyleType,
   selectedMedia,
+  backgroundGradient,
 }) => {
 
+  let backgroundStyles = {};
 
   if (!weather || !weather.day) return null; // weather と weather.day の存在を確認
 
@@ -33,16 +36,40 @@ const CurrentWeather = ({
     borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
   };
 
-  console.log(borders.top.width)
+  // 背景スタイルタイプに応じた条件分岐
+  switch (backgroundStyleType) {
+    case 'image':
+      // 画像が選択されている場合、背景画像として設定
+      if (selectedMedia) {
+        backgroundStyles = {
+          backgroundImage: `url('${selectedMedia}')`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+        };
+      }
+      break;
+
+    case 'gradient':
+      // グラデーションが選択されている場合、背景としてグラデーションを設定
+      if (backgroundGradient) {
+        backgroundStyles = {
+          background: backgroundGradient,  // グラデーションのCSSをここに設定
+        };
+      }
+      break;
+
+    default:
+      // デフォルトの背景設定（必要に応じて）または何も適用しない
+      break;
+  }
+
   return (
     <article className={`block--current ${styleVariant}`} style={{
       ...borderStyles,
       borderRadius: borderRadius,
       fontFamily: fontFamily,
-      backgroundImage: selectedMedia ? `url('${selectedMedia}')` : 'none',
-      backgroundSize: selectedMedia ? 'auto 100%' : 'auto', // background-size を設定
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "center",
+      ...backgroundStyles, // ここで背景スタイルを適用
     }}>
       <h3>{title}</h3>
       <h4 style={{ color: textColor }}>{weather.day.date.fullDate}</h4>

@@ -30,8 +30,11 @@ const CurrentWeather = ({
   showPrecipitation,
   showHoliday,
   styleVariant,
-  selectedMedia
+  backgroundStyleType,
+  selectedMedia,
+  backgroundGradient
 }) => {
+  let backgroundStyles = {};
   if (!weather || !weather.day) return null; // weather と weather.day の存在を確認
 
   const isHoliday = weather.day.isHoliday;
@@ -47,18 +50,40 @@ const CurrentWeather = ({
     borderBottom: `${borders.bottom.width} ${borders.bottom.style} ${borders.bottom.color}`,
     borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
   };
-  console.log(borders.top.width);
+
+  // 背景スタイルタイプに応じた条件分岐
+  switch (backgroundStyleType) {
+    case 'image':
+      // 画像が選択されている場合、背景画像として設定
+      if (selectedMedia) {
+        backgroundStyles = {
+          backgroundImage: `url('${selectedMedia}')`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center'
+        };
+      }
+      break;
+    case 'gradient':
+      // グラデーションが選択されている場合、背景としてグラデーションを設定
+      if (backgroundGradient) {
+        backgroundStyles = {
+          background: backgroundGradient // グラデーションのCSSをここに設定
+        };
+      }
+
+      break;
+    default:
+      // デフォルトの背景設定（必要に応じて）または何も適用しない
+      break;
+  }
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
     className: `block--current ${styleVariant}`,
     style: {
       ...borderStyles,
       borderRadius: borderRadius,
       fontFamily: fontFamily,
-      backgroundImage: selectedMedia ? `url('${selectedMedia}')` : 'none',
-      backgroundSize: selectedMedia ? 'auto 100%' : 'auto',
-      // background-size を設定
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "center"
+      ...backgroundStyles // ここで背景スタイルを適用
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     style: {
@@ -195,27 +220,52 @@ const WeekWeather = ({
   fontFamily,
   weather,
   styleVariant,
-  selectedMedia
+  backgroundStyleType,
+  selectedMedia,
+  backgroundGradient
 }) => {
-  console.log(weather);
   if (!weather) return null;
-  console.log(borders);
+  let backgroundStyles = {};
   const borderStyles = {
     borderTop: `${borders.top.width} ${borders.top.style} ${borders.top.color}`,
     borderRight: `${borders.right.width} ${borders.right.style} ${borders.right.color}`,
     borderBottom: `${borders.bottom.width} ${borders.bottom.style} ${borders.bottom.color}`,
     borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
   };
+
+  // 背景スタイルタイプに応じた条件分岐
+  switch (backgroundStyleType) {
+    case 'image':
+      // 画像が選択されている場合、背景画像として設定
+      if (selectedMedia) {
+        backgroundStyles = {
+          backgroundImage: `url('${selectedMedia}')`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center'
+        };
+      }
+      break;
+    case 'gradient':
+      // グラデーションが選択されている場合、背景としてグラデーションを設定
+      if (backgroundGradient) {
+        backgroundStyles = {
+          background: backgroundGradient // グラデーションのCSSをここに設定
+        };
+      }
+
+      break;
+    default:
+      // デフォルトの背景設定（必要に応じて）または何も適用しない
+      break;
+  }
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: `block--weekly weather-layout ${styleVariant}`,
     style: {
       ...borderStyles,
       borderRadius: borderRadius,
       fontFamily: fontFamily,
-      backgroundImage: selectedMedia ? `url('${selectedMedia}')` : 'none',
-      backgroundSize: selectedMedia ? 'cover' : '100%',
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "center"
+      ...backgroundStyles
     }
   }, weather.slice(0, 6).map(dayWeather => {
     if (!dayWeather || !dayWeather.day) return null;
@@ -467,6 +517,8 @@ function Edit({
   const [tomorrowWeather, setTomorrowWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [weeklyWeather, setWeeklyWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [selectedMedia, setSelectedMedia] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.selectedMedia);
+  const [backgroundStyleType, setBackgroundStyleType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('image'); // 初期値は 'image' または 'gradient'
+
   const {
     showSelection,
     handleLayoutClick
@@ -519,6 +571,30 @@ function Edit({
     }
   }, [attributes.selectedMedia]);
   const mediaId = 690;
+  const handleSelectMedia = media => {
+    if (media) {
+      // 画像が選択されたので、背景スタイルを 'image' に設定します。
+      setBackgroundStyleType('image');
+      // ... [画像を設定するその他のコード]
+    } else {
+      // 画像が削除されたので、背景スタイルをリセットします。
+      setBackgroundStyleType(null);
+      // ... [その他のリセットコード]
+    }
+  };
+
+  const handleGradientChange = newGradient => {
+    if (newGradient) {
+      // グラデーションが選択されたので、背景スタイルを 'gradient' に設定します。
+      setBackgroundStyleType('gradient');
+      // ... [グラデーションを設定するその他のコード]
+    } else {
+      // グラデーションが削除されたので、背景スタイルをリセットします。
+      setBackgroundStyleType(null);
+      // ... [その他のリセットコード]
+    }
+  };
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -633,7 +709,18 @@ function Edit({
       const option = fontBalanceOptions.find(opt => opt.label === label);
       setSelectedOption(option);
     }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: "\u80CC\u666F\u30B9\u30BF\u30A4\u30EB",
+    value: backgroundStyleType,
+    options: [{
+      label: '画像',
+      value: 'image'
+    }, {
+      label: 'グラデーション',
+      value: 'gradient'
+    }],
+    onChange: value => setBackgroundStyleType(value)
+  }), backgroundStyleType !== 'gradient' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
     onSelect: media => {
       if (media) {
         const selectedMediaUrl = media.url; // 選択したメディアのURLを取得
@@ -656,7 +743,26 @@ function Edit({
     }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
       onClick: open
     }, "Open Media Library")
-  })))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })), backgroundStyleType !== 'image' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.GradientPicker, {
+    __nextHasNoMargin: true,
+    value: attributes.backgroundGradient,
+    onChange: newGradient => setAttributes({
+      backgroundGradient: newGradient
+    }),
+    gradients: [{
+      name: 'JShine',
+      gradient: 'linear-gradient(135deg,#12c2e9 0%,#c471ed 50%,#f64f59 100%)',
+      slug: 'jshine'
+    }, {
+      name: 'Moonlit Asteroid',
+      gradient: 'linear-gradient(135deg,#0F2027 0%, #203A43 0%, #2c5364 100%)',
+      slug: 'moonlit-asteroid'
+    }, {
+      name: 'Rastafarie',
+      gradient: 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
+      slug: 'rastafari'
+    }]
+  }))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "layout"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "today-and-tomorrow weather-layout"
@@ -669,7 +775,9 @@ function Edit({
     borders: attributes.borders,
     fontFamily: attributes.fontFamily,
     styleVariant: selectedOption.value,
-    selectedMedia: selectedMedia
+    backgroundStyleType: backgroundStyleType,
+    selectedMedia: selectedMedia,
+    backgroundGradient: attributes.backgroundGradient
   }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
     ...TomorrowWeatherComponentProps,
     title: "\u660E\u65E5\u306E\u5929\u6C17",
@@ -679,14 +787,18 @@ function Edit({
     borders: attributes.borders,
     fontFamily: attributes.fontFamily,
     styleVariant: selectedOption.value,
-    selectedMedia: selectedMedia
+    backgroundStyleType: backgroundStyleType,
+    selectedMedia: selectedMedia,
+    backgroundGradient: attributes.backgroundGradient
   })), !showSelection && weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
     ...WeeklyWeatherComponentProps,
     borderRadius: attributes.borderRadiusValue,
     borders: attributes.borders,
     fontFamily: attributes.fontFamily,
     styleVariant: selectedOption.value,
-    selectedMedia: selectedMedia
+    backgroundStyleType: backgroundStyleType,
+    selectedMedia: selectedMedia,
+    backgroundGradient: attributes.backgroundGradient
   }))));
 }
 
@@ -1119,14 +1231,16 @@ const defaultBorder = {
         type: 'string',
         default: 'Noto Sans JP, sans-serif'
       },
-      backgroundColor: {
+      backgroundImage: {
         type: 'string',
-        // もしくは適切な型
-        default: '' // オプション：デフォルト値を設定する
+        default: 'http://hoge.local/wp-content/uploads/2023/10/IMG_5308-scaled.jpeg'
+      },
+      backgroundGradient: {
+        type: 'string',
+        default: 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)'
       }
     }
   },
-
   /**
    * @see ./edit.js
    */

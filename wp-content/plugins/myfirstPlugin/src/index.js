@@ -71,7 +71,11 @@ registerBlockType(metadata.name, {
 			fontFamily: {
 				type: 'string',
 				default: 'Noto Sans JP, sans-serif'
-			}
+			},
+			backgroundColor: {
+				type: 'string', // もしくは適切な型
+				default: '', // オプション：デフォルト値を設定する
+			},
 		},
 	},
 	/**

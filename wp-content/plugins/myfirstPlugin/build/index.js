@@ -57,7 +57,8 @@ const CurrentWeather = ({
       backgroundImage: selectedMedia ? `url('${selectedMedia}')` : 'none',
       backgroundSize: selectedMedia ? 'auto 100%' : 'auto',
       // background-size を設定
-      backgroundRepeat: "no-repeat"
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center"
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     style: {
@@ -517,7 +518,6 @@ function Edit({
       setSelectedMedia(attributes.selectedMedia);
     }
   }, [attributes.selectedMedia]);
-  const ALLOWED_MEDIA_TYPES = ['image'];
   const mediaId = 690;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
@@ -1118,9 +1118,15 @@ const defaultBorder = {
       fontFamily: {
         type: 'string',
         default: 'Noto Sans JP, sans-serif'
+      },
+      backgroundColor: {
+        type: 'string',
+        // もしくは適切な型
+        default: '' // オプション：デフォルト値を設定する
       }
     }
   },
+
   /**
    * @see ./edit.js
    */

@@ -18,6 +18,7 @@ import {
 	SelectControl,
 	RangeControl,
 	Button,
+	ColorPicker,
 	__experimentalBorderBoxControl as BorderBoxControl,
 }
 	from '@wordpress/components';
@@ -98,13 +99,12 @@ export default function Edit({ attributes, setAttributes }) {
 	} = useChangeBalance(attributes.balanceOption, setAttributes);
 
 	useEffect(() => {
-    // selectedMediaが変更されたときに実行されるコード
-    if (selectedMedia !== attributes.selectedMedia) {
-      setSelectedMedia(attributes.selectedMedia);
-    }
-  }, [attributes.selectedMedia]);
+		// selectedMediaが変更されたときに実行されるコード
+		if (selectedMedia !== attributes.selectedMedia) {
+			setSelectedMedia(attributes.selectedMedia);
+		}
+	}, [attributes.selectedMedia]);
 
-	const ALLOWED_MEDIA_TYPES = ['image'];
 	const mediaId = 690;
 
 	return (

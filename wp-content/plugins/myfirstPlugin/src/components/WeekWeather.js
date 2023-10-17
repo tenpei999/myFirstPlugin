@@ -45,8 +45,6 @@ const WeekWeather = ({
           textColor = "blue";
         }
 
-
-
         return (
           <li className="block--day" key={dayWeather.day.date} >
             <h4 className="c-title__weather" style={{ color: textColor }}>

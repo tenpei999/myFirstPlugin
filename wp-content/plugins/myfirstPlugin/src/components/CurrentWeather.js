@@ -6,6 +6,7 @@ const CurrentWeather = ({
   borders,
   borderRadius,
   fontFamily,
+  color,
   weather,
   title,
   showPrecipitation,
@@ -14,6 +15,7 @@ const CurrentWeather = ({
   backgroundStyleType,
   selectedMedia,
   backgroundGradient,
+  backgroundColor
 }) => {
 
   let backgroundStyles = {};
@@ -50,6 +52,15 @@ const CurrentWeather = ({
       }
       break;
 
+    case 'color':
+      // グラデーションが選択されている場合、背景としてグラデーションを設定
+      if (backgroundColor) {
+        backgroundStyles = {
+          background: backgroundColor,  // グラデーションのCSSをここに設定
+        };
+      }
+      break;
+
     case 'gradient':
       // グラデーションが選択されている場合、背景としてグラデーションを設定
       if (backgroundGradient) {
@@ -69,7 +80,8 @@ const CurrentWeather = ({
       ...borderStyles,
       borderRadius: borderRadius,
       fontFamily: fontFamily,
-      ...backgroundStyles, // ここで背景スタイルを適用
+      ...backgroundStyles, 
+      color
     }}>
       <h3>{title}</h3>
       <h4 style={{ color: textColor }}>{weather.day.date.fullDate}</h4>

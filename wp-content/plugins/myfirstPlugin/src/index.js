@@ -72,6 +72,10 @@ registerBlockType(metadata.name, {
 				type: 'string',
 				default: 'Noto Sans JP, sans-serif'
 			},
+			textColor: {
+				type: 'string',
+				default: 'black'
+			},
 			backgroundImage: {
 				type: 'string', 
 				default: 'http://hoge.local/wp-content/uploads/2023/10/IMG_5308-scaled.jpeg',   
@@ -79,6 +83,10 @@ registerBlockType(metadata.name, {
 			backgroundGradient: {
 				type: 'string',
 				default: 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)', 
+			},
+			backgroundColor: {
+				type: 'string',
+				default: '#fff', 
 			},
 		},
 	},

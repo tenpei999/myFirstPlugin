@@ -25,6 +25,7 @@ const CurrentWeather = ({
   borders,
   borderRadius,
   fontFamily,
+  color,
   weather,
   title,
   showPrecipitation,
@@ -32,7 +33,8 @@ const CurrentWeather = ({
   styleVariant,
   backgroundStyleType,
   selectedMedia,
-  backgroundGradient
+  backgroundGradient,
+  backgroundColor
 }) => {
   let backgroundStyles = {};
   if (!weather || !weather.day) return null; // weather と weather.day の存在を確認
@@ -64,6 +66,15 @@ const CurrentWeather = ({
         };
       }
       break;
+    case 'color':
+      // グラデーションが選択されている場合、背景としてグラデーションを設定
+      if (backgroundColor) {
+        backgroundStyles = {
+          background: backgroundColor // グラデーションのCSSをここに設定
+        };
+      }
+
+      break;
     case 'gradient':
       // グラデーションが選択されている場合、背景としてグラデーションを設定
       if (backgroundGradient) {
@@ -83,7 +94,8 @@ const CurrentWeather = ({
       ...borderStyles,
       borderRadius: borderRadius,
       fontFamily: fontFamily,
-      ...backgroundStyles // ここで背景スタイルを適用
+      ...backgroundStyles,
+      color
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     style: {
@@ -219,10 +231,12 @@ const WeekWeather = ({
   borderRadius,
   fontFamily,
   weather,
+  color,
   styleVariant,
   backgroundStyleType,
   selectedMedia,
-  backgroundGradient
+  backgroundGradient,
+  backgroundColor
 }) => {
   if (!weather) return null;
   let backgroundStyles = {};
@@ -246,6 +260,15 @@ const WeekWeather = ({
         };
       }
       break;
+    case 'color':
+      // グラデーションが選択されている場合、背景としてグラデーションを設定
+      if (backgroundColor) {
+        backgroundStyles = {
+          background: backgroundColor // グラデーションのCSSをここに設定
+        };
+      }
+
+      break;
     case 'gradient':
       // グラデーションが選択されている場合、背景としてグラデーションを設定
       if (backgroundGradient) {
@@ -265,7 +288,8 @@ const WeekWeather = ({
       ...borderStyles,
       borderRadius: borderRadius,
       fontFamily: fontFamily,
-      ...backgroundStyles
+      ...backgroundStyles,
+      color
     }
   }, weather.slice(0, 6).map(dayWeather => {
     if (!dayWeather || !dayWeather.day) return null;
@@ -518,7 +542,8 @@ function Edit({
   const [weeklyWeather, setWeeklyWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [selectedMedia, setSelectedMedia] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.selectedMedia);
   const [backgroundStyleType, setBackgroundStyleType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('image'); // 初期値は 'image' または 'gradient'
-
+  const [backgroundColor, setBackgroundColor] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.backgroundColor || '#FFFFFF');
+  const [textColor, setTextColor] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.textColor);
   const {
     showSelection,
     handleLayoutClick
@@ -716,11 +741,14 @@ function Edit({
       label: '画像',
       value: 'image'
     }, {
+      label: 'カラー',
+      value: 'color'
+    }, {
       label: 'グラデーション',
       value: 'gradient'
     }],
     onChange: value => setBackgroundStyleType(value)
-  }), backgroundStyleType !== 'gradient' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+  }), backgroundStyleType === 'image' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
     onSelect: media => {
       if (media) {
         const selectedMediaUrl = media.url; // 選択したメディアのURLを取得
@@ -743,7 +771,16 @@ function Edit({
     }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
       onClick: open
     }, "Open Media Library")
-  })), backgroundStyleType !== 'image' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.GradientPicker, {
+  })), backgroundStyleType === 'color' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    onChange: color => {
+      setBackgroundColor(color); // 新しい色で状態を更新
+      setAttributes({
+        backgroundColor: color
+      }); // ブロックの属性も更新
+    },
+
+    value: backgroundColor
+  }), backgroundStyleType === 'gradient' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.GradientPicker, {
     __nextHasNoMargin: true,
     value: attributes.backgroundGradient,
     onChange: newGradient => setAttributes({
@@ -762,6 +799,22 @@ function Edit({
       gradient: 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
       slug: 'rastafari'
     }]
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: "\u30C6\u30AD\u30B9\u30C8\u306E\u8272\u3092\u9078\u629E",
+    value: textColor,
+    options: [{
+      label: '黒',
+      value: 'black'
+    }, {
+      label: '白',
+      value: 'white'
+    }],
+    onChange: value => {
+      setTextColor(value); // ローカルステートを更新
+      setAttributes({
+        textColor: value
+      }); // ブロックの属性を更新
+    }
   }))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "layout"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -774,10 +827,12 @@ function Edit({
     borderRadius: attributes.borderRadiusValue,
     borders: attributes.borders,
     fontFamily: attributes.fontFamily,
+    color: textColor,
     styleVariant: selectedOption.value,
     backgroundStyleType: backgroundStyleType,
     selectedMedia: selectedMedia,
-    backgroundGradient: attributes.backgroundGradient
+    backgroundGradient: attributes.backgroundGradient,
+    backgroundColor: backgroundColor
   }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
     ...TomorrowWeatherComponentProps,
     title: "\u660E\u65E5\u306E\u5929\u6C17",
@@ -786,19 +841,23 @@ function Edit({
     borderRadius: attributes.borderRadiusValue,
     borders: attributes.borders,
     fontFamily: attributes.fontFamily,
+    color: textColor,
     styleVariant: selectedOption.value,
     backgroundStyleType: backgroundStyleType,
     selectedMedia: selectedMedia,
-    backgroundGradient: attributes.backgroundGradient
+    backgroundGradient: attributes.backgroundGradient,
+    backgroundColor: backgroundColor
   })), !showSelection && weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
     ...WeeklyWeatherComponentProps,
     borderRadius: attributes.borderRadiusValue,
     borders: attributes.borders,
     fontFamily: attributes.fontFamily,
+    color: textColor,
     styleVariant: selectedOption.value,
     backgroundStyleType: backgroundStyleType,
     selectedMedia: selectedMedia,
-    backgroundGradient: attributes.backgroundGradient
+    backgroundGradient: attributes.backgroundGradient,
+    backgroundColor: backgroundColor
   }))));
 }
 
@@ -1231,6 +1290,10 @@ const defaultBorder = {
         type: 'string',
         default: 'Noto Sans JP, sans-serif'
       },
+      textColor: {
+        type: 'string',
+        default: 'black'
+      },
       backgroundImage: {
         type: 'string',
         default: 'http://hoge.local/wp-content/uploads/2023/10/IMG_5308-scaled.jpeg'
@@ -1238,6 +1301,10 @@ const defaultBorder = {
       backgroundGradient: {
         type: 'string',
         default: 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)'
+      },
+      backgroundColor: {
+        type: 'string',
+        default: '#fff'
       }
     }
   },

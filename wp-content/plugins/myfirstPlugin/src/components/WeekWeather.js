@@ -7,10 +7,12 @@ const WeekWeather = ({
   borderRadius,
   fontFamily,
   weather,
+  color,
   styleVariant,
   backgroundStyleType,
   selectedMedia,
   backgroundGradient,
+  backgroundColor,
 }) => {
 
   if (!weather) return null;
@@ -38,6 +40,15 @@ const WeekWeather = ({
       }
       break;
 
+    case 'color':
+      // グラデーションが選択されている場合、背景としてグラデーションを設定
+      if (backgroundColor) {
+        backgroundStyles = {
+          background: backgroundColor,  // グラデーションのCSSをここに設定
+        };
+      }
+      break;
+
     case 'gradient':
       // グラデーションが選択されている場合、背景としてグラデーションを設定
       if (backgroundGradient) {
@@ -59,6 +70,7 @@ const WeekWeather = ({
         borderRadius: borderRadius,
         fontFamily: fontFamily,
         ...backgroundStyles,
+        color
       }}>
       {weather.slice(0, 6).map((dayWeather) => {
         if (!dayWeather || !dayWeather.day) return null;

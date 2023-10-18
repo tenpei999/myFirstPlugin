@@ -19,6 +19,7 @@ import {
 	RangeControl,
 	Button,
 	GradientPicker,
+	ColorPalette,
 	__experimentalBorderBoxControl as BorderBoxControl,
 }
 	from '@wordpress/components';
@@ -47,6 +48,8 @@ export default function Edit({ attributes, setAttributes }) {
 	const [weeklyWeather, setWeeklyWeather] = useState([]);
 	const [selectedMedia, setSelectedMedia] = useState(attributes.selectedMedia);
 	const [backgroundStyleType, setBackgroundStyleType] = useState('image'); // 初期値は 'image' または 'gradient'
+	const [backgroundColor, setBackgroundColor] = useState(attributes.backgroundColor || '#FFFFFF');
+	const [textColor, setTextColor] = useState(attributes.textColor);
 
 	const { showSelection, handleLayoutClick } = useBlockSelection();
 
@@ -236,11 +239,12 @@ export default function Edit({ attributes, setAttributes }) {
 								value={backgroundStyleType}
 								options={[
 									{ label: '画像', value: 'image' },
+									{ label: 'カラー', value: 'color' },
 									{ label: 'グラデーション', value: 'gradient' },
 								]}
 								onChange={(value) => setBackgroundStyleType(value)}
 							/>
-							{backgroundStyleType !== 'gradient' && (
+							{backgroundStyleType === 'image' && (
 								<MediaUploadCheck>
 									<MediaUpload
 										onSelect={(media) => {
@@ -266,7 +270,17 @@ export default function Edit({ attributes, setAttributes }) {
 								</MediaUploadCheck>
 							)}
 
-							{backgroundStyleType !== 'image' && (
+							{backgroundStyleType === 'color' && (
+								<ColorPalette
+									onChange={(color) => {
+										setBackgroundColor(color); // 新しい色で状態を更新
+										setAttributes({ backgroundColor: color }); // ブロックの属性も更新
+									}}
+									value={backgroundColor}
+								/>
+							)}
+
+							{backgroundStyleType === 'gradient' && (
 								<GradientPicker
 									__nextHasNoMargin
 									value={attributes.backgroundGradient}
@@ -293,6 +307,18 @@ export default function Edit({ attributes, setAttributes }) {
 									]}
 								/>
 							)}
+							<SelectControl
+								label="テキストの色を選択"
+								value={textColor}
+								options={[
+									{ label: '黒', value: 'black' },
+									{ label: '白', value: 'white' },
+								]}
+								onChange={(value) => {
+									setTextColor(value); // ローカルステートを更新
+									setAttributes({ textColor: value }); // ブロックの属性を更新
+								}}
+							/>
 						</div>
 					</div>
 				) : (
@@ -307,10 +333,12 @@ export default function Edit({ attributes, setAttributes }) {
 									borderRadius={attributes.borderRadiusValue}
 									borders={attributes.borders}
 									fontFamily={attributes.fontFamily}
+									color={textColor}
 									styleVariant={selectedOption.value}
 									backgroundStyleType={backgroundStyleType}
 									selectedMedia={selectedMedia}
 									backgroundGradient={attributes.backgroundGradient}
+									backgroundColor={backgroundColor}
 								/>}
 							{attributes.tomorrowWeather &&
 								<CurrentWeather
@@ -321,10 +349,12 @@ export default function Edit({ attributes, setAttributes }) {
 									borderRadius={attributes.borderRadiusValue}
 									borders={attributes.borders}
 									fontFamily={attributes.fontFamily}
+									color={textColor}
 									styleVariant={selectedOption.value}
 									backgroundStyleType={backgroundStyleType}
 									selectedMedia={selectedMedia}
 									backgroundGradient={attributes.backgroundGradient}
+									backgroundColor={backgroundColor}
 								/>}
 						</div>
 						{!showSelection && weeklyWeather && <WeekWeather
@@ -332,10 +362,12 @@ export default function Edit({ attributes, setAttributes }) {
 							borderRadius={attributes.borderRadiusValue}
 							borders={attributes.borders}
 							fontFamily={attributes.fontFamily}
+							color={textColor}
 							styleVariant={selectedOption.value}
 							backgroundStyleType={backgroundStyleType}
 							selectedMedia={selectedMedia}
 							backgroundGradient={attributes.backgroundGradient}
+							backgroundColor={backgroundColor}
 						/>}
 					</div>
 				)}

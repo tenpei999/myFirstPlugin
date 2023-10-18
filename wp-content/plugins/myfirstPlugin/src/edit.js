@@ -136,6 +136,18 @@ export default function Edit({ attributes, setAttributes }) {
 		}
 	};
 
+	const commonProps = {
+    borderRadius: attributes.borderRadiusValue,
+    borders: attributes.borders,
+    fontFamily: attributes.fontFamily,
+    color: textColor, 
+    styleVariant: selectedOption.value, 
+    backgroundStyleType: backgroundStyleType,
+    selectedMedia: selectedMedia,
+    backgroundGradient: attributes.backgroundGradient,
+    backgroundColor: backgroundColor,
+  };
+
 	return (
 		<div {...blockProps}  >
 			<div onClick={handleLayoutClick} ref={ref}>
@@ -330,15 +342,7 @@ export default function Edit({ attributes, setAttributes }) {
 									title="今日の天気"
 									showHoliday={attributes.showHoliday}
 									showPrecipitation={attributes.showPrecipitation}
-									borderRadius={attributes.borderRadiusValue}
-									borders={attributes.borders}
-									fontFamily={attributes.fontFamily}
-									color={textColor}
-									styleVariant={selectedOption.value}
-									backgroundStyleType={backgroundStyleType}
-									selectedMedia={selectedMedia}
-									backgroundGradient={attributes.backgroundGradient}
-									backgroundColor={backgroundColor}
+									{...commonProps}
 								/>}
 							{attributes.tomorrowWeather &&
 								<CurrentWeather
@@ -346,28 +350,12 @@ export default function Edit({ attributes, setAttributes }) {
 									title="明日の天気"
 									showHoliday={attributes.showHoliday}
 									showPrecipitation={attributes.showPrecipitation}
-									borderRadius={attributes.borderRadiusValue}
-									borders={attributes.borders}
-									fontFamily={attributes.fontFamily}
-									color={textColor}
-									styleVariant={selectedOption.value}
-									backgroundStyleType={backgroundStyleType}
-									selectedMedia={selectedMedia}
-									backgroundGradient={attributes.backgroundGradient}
-									backgroundColor={backgroundColor}
+									{...commonProps}
 								/>}
 						</div>
 						{!showSelection && weeklyWeather && <WeekWeather
 							{...WeeklyWeatherComponentProps}
-							borderRadius={attributes.borderRadiusValue}
-							borders={attributes.borders}
-							fontFamily={attributes.fontFamily}
-							color={textColor}
-							styleVariant={selectedOption.value}
-							backgroundStyleType={backgroundStyleType}
-							selectedMedia={selectedMedia}
-							backgroundGradient={attributes.backgroundGradient}
-							backgroundColor={backgroundColor}
+							{...commonProps}
 						/>}
 					</div>
 				)}

@@ -620,6 +620,17 @@ function Edit({
     }
   };
 
+  const commonProps = {
+    borderRadius: attributes.borderRadiusValue,
+    borders: attributes.borders,
+    fontFamily: attributes.fontFamily,
+    color: textColor,
+    styleVariant: selectedOption.value,
+    backgroundStyleType: backgroundStyleType,
+    selectedMedia: selectedMedia,
+    backgroundGradient: attributes.backgroundGradient,
+    backgroundColor: backgroundColor
+  };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -824,40 +835,16 @@ function Edit({
     title: "\u4ECA\u65E5\u306E\u5929\u6C17",
     showHoliday: attributes.showHoliday,
     showPrecipitation: attributes.showPrecipitation,
-    borderRadius: attributes.borderRadiusValue,
-    borders: attributes.borders,
-    fontFamily: attributes.fontFamily,
-    color: textColor,
-    styleVariant: selectedOption.value,
-    backgroundStyleType: backgroundStyleType,
-    selectedMedia: selectedMedia,
-    backgroundGradient: attributes.backgroundGradient,
-    backgroundColor: backgroundColor
+    ...commonProps
   }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
     ...TomorrowWeatherComponentProps,
     title: "\u660E\u65E5\u306E\u5929\u6C17",
     showHoliday: attributes.showHoliday,
     showPrecipitation: attributes.showPrecipitation,
-    borderRadius: attributes.borderRadiusValue,
-    borders: attributes.borders,
-    fontFamily: attributes.fontFamily,
-    color: textColor,
-    styleVariant: selectedOption.value,
-    backgroundStyleType: backgroundStyleType,
-    selectedMedia: selectedMedia,
-    backgroundGradient: attributes.backgroundGradient,
-    backgroundColor: backgroundColor
+    ...commonProps
   })), !showSelection && weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
     ...WeeklyWeatherComponentProps,
-    borderRadius: attributes.borderRadiusValue,
-    borders: attributes.borders,
-    fontFamily: attributes.fontFamily,
-    color: textColor,
-    styleVariant: selectedOption.value,
-    backgroundStyleType: backgroundStyleType,
-    selectedMedia: selectedMedia,
-    backgroundGradient: attributes.backgroundGradient,
-    backgroundColor: backgroundColor
+    ...commonProps
   }))));
 }
 

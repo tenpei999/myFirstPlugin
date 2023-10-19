@@ -2,6 +2,111 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/components/BackgroundSelector.js":
+/*!**********************************************!*\
+  !*** ./src/components/BackgroundSelector.js ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+const BackgroundSelector = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    backgroundStyleType
+  } = attributes;
+  console.log(attributes);
+  const handleMediaSelect = media => {
+    if (!media) {
+      setAttributes({
+        backgroundImage: null,
+        selectedMedia: null
+      });
+      return;
+    }
+    const selectedMediaUrl = media.url;
+    setAttributes({
+      backgroundImage: selectedMediaUrl,
+      selectedMedia: selectedMediaUrl
+    });
+  };
+  const handleColorChange = color => {
+    // setBackgroundColor(color);
+    setAttributes({
+      backgroundColor: color
+    });
+  };
+  const handleGradientChange = newGradient => {
+    setAttributes({
+      backgroundGradient: newGradient
+    });
+  };
+  const handleBackgroundStyleChange = newStyleType => {
+    setAttributes({
+      ...attributes,
+      backgroundStyleType: newStyleType
+    });
+  };
+  console.log(attributes);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    label: "\u80CC\u666F\u30B9\u30BF\u30A4\u30EB",
+    value: attributes.backgroundStyleType // 現在の値をattributesから取得
+    ,
+    options: [{
+      label: '画像',
+      value: 'image'
+    }, {
+      label: 'カラー',
+      value: 'color'
+    }, {
+      label: 'グラデーション',
+      value: 'gradient'
+    }],
+    onChange: handleBackgroundStyleChange // ここで新しい関数を使用します
+  }), backgroundStyleType === 'image' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: handleMediaSelect,
+    allowedTypes: ['image'],
+    value: attributes.backgroundImage,
+    render: ({
+      open
+    }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      onClick: open
+    }, "Open Media Library")
+  })), backgroundStyleType === 'color' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
+    onChange: handleColorChange,
+    value: attributes.backgroundColor
+  }), backgroundStyleType === 'gradient' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.GradientPicker, {
+    value: attributes.backgroundGradient,
+    onChange: handleGradientChange,
+    gradients: [{
+      name: 'JShine',
+      gradient: 'linear-gradient(135deg,#12c2e9 0%,#c471ed 50%,#f64f59 100%)',
+      slug: 'jshine'
+    }, {
+      name: 'Moonlit Asteroid',
+      gradient: 'linear-gradient(135deg,#0F2027 0%, #203A43 0%, #2c5364 100%)',
+      slug: 'moonlit-asteroid'
+    }, {
+      name: 'Rastafarie',
+      gradient: 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
+      slug: 'rastafari'
+    }]
+  }));
+};
+/* harmony default export */ __webpack_exports__["default"] = (BackgroundSelector);
+
+/***/ }),
+
 /***/ "./src/components/CurrentWeather.js":
 /*!******************************************!*\
   !*** ./src/components/CurrentWeather.js ***!
@@ -88,6 +193,7 @@ const CurrentWeather = ({
       // デフォルトの背景設定（必要に応じて）または何も適用しない
       break;
   }
+  console.log(backgroundStyleType);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
     className: `block--current ${styleVariant}`,
     style: {
@@ -491,12 +597,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/CurrentWeather */ "./src/components/CurrentWeather.js");
 /* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
 /* harmony import */ var _functions_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./functions/useOutsideClick */ "./src/functions/useOutsideClick.js");
-/* harmony import */ var _functions_useWeatherData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./functions/useWeatherData */ "./src/functions/useWeatherData.js");
-/* harmony import */ var _functions_useChangeCity__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./functions/useChangeCity */ "./src/functions/useChangeCity.js");
-/* harmony import */ var _functions_useBorderControl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./functions/useBorderControl */ "./src/functions/useBorderControl.js");
-/* harmony import */ var _data_getSpotWeather__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./data/getSpotWeather */ "./src/data/getSpotWeather.js");
-/* harmony import */ var _functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./functions/useFontFamilyControl */ "./src/functions/useFontFamilyControl.js");
-/* harmony import */ var _functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./functions/useChangeBalance */ "./src/functions/useChangeBalance.js");
+/* harmony import */ var _components_BackgroundSelector__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/BackgroundSelector */ "./src/components/BackgroundSelector.js");
+/* harmony import */ var _functions_useWeatherData__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./functions/useWeatherData */ "./src/functions/useWeatherData.js");
+/* harmony import */ var _functions_useChangeCity__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./functions/useChangeCity */ "./src/functions/useChangeCity.js");
+/* harmony import */ var _functions_useBorderControl__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./functions/useBorderControl */ "./src/functions/useBorderControl.js");
+/* harmony import */ var _data_getSpotWeather__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./data/getSpotWeather */ "./src/data/getSpotWeather.js");
+/* harmony import */ var _functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./functions/useFontFamilyControl */ "./src/functions/useFontFamilyControl.js");
+/* harmony import */ var _functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./functions/useChangeBalance */ "./src/functions/useChangeBalance.js");
 
 /**
  * WordPress components that create the necessary UI elements for the block
@@ -525,6 +632,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function Edit({
   attributes,
   setAttributes
@@ -536,19 +644,17 @@ function Edit({
   const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const {
     cachedWeather
-  } = (0,_functions_useWeatherData__WEBPACK_IMPORTED_MODULE_9__.useWeatherData)(setAttributes);
+  } = (0,_functions_useWeatherData__WEBPACK_IMPORTED_MODULE_10__.useWeatherData)(setAttributes);
   const [todayWeather, setTodayWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [tomorrowWeather, setTomorrowWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [weeklyWeather, setWeeklyWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [selectedMedia, setSelectedMedia] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.selectedMedia);
-  const [backgroundStyleType, setBackgroundStyleType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('image'); // 初期値は 'image' または 'gradient'
-  const [backgroundColor, setBackgroundColor] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.backgroundColor || '#FFFFFF');
   const [textColor, setTextColor] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.textColor);
   const {
     showSelection,
     handleLayoutClick
   } = (0,_functions_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  (0,_functions_useChangeCity__WEBPACK_IMPORTED_MODULE_10__.useChangeCity)(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
+  (0,_functions_useChangeCity__WEBPACK_IMPORTED_MODULE_11__.useChangeCity)(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
   const TodayWeatherComponentProps = {
     weather: todayWeather
   };
@@ -563,7 +669,7 @@ function Edit({
   });
 
   // `city`オブジェクトから都市名を抽出してSelectControlに適切な形式で変換
-  const cityOptions = Object.keys(_data_getSpotWeather__WEBPACK_IMPORTED_MODULE_12__.city).map(cityName => ({
+  const cityOptions = Object.keys(_data_getSpotWeather__WEBPACK_IMPORTED_MODULE_13__.city).map(cityName => ({
     label: cityName.charAt(0).toUpperCase() + cityName.slice(1),
     // 都市名の最初の文字を大文字に
     value: cityName
@@ -578,59 +684,35 @@ function Edit({
     handleUnitChange,
     colors,
     units
-  } = (0,_functions_useBorderControl__WEBPACK_IMPORTED_MODULE_11__.useBorderControl)(attributes, setAttributes);
+  } = (0,_functions_useBorderControl__WEBPACK_IMPORTED_MODULE_12__.useBorderControl)(attributes, setAttributes);
   const {
     fontFamily: selectedFontFamily,
     onChangeFontFamily
-  } = (0,_functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_13__.useFontFamilyControl)(attributes, setAttributes);
+  } = (0,_functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_14__.useFontFamilyControl)(attributes, setAttributes);
   const {
     selectedOption,
     setSelectedOption,
     fontBalanceOptions,
     applyFontBalance
-  } = (0,_functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_14__.useChangeBalance)(attributes.balanceOption, setAttributes);
+  } = (0,_functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_15__.useChangeBalance)(attributes.balanceOption, setAttributes);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     // selectedMediaが変更されたときに実行されるコード
     if (selectedMedia !== attributes.selectedMedia) {
       setSelectedMedia(attributes.selectedMedia);
     }
   }, [attributes.selectedMedia]);
-  const mediaId = 690;
-  const handleSelectMedia = media => {
-    if (media) {
-      // 画像が選択されたので、背景スタイルを 'image' に設定します。
-      setBackgroundStyleType('image');
-      // ... [画像を設定するその他のコード]
-    } else {
-      // 画像が削除されたので、背景スタイルをリセットします。
-      setBackgroundStyleType(null);
-      // ... [その他のリセットコード]
-    }
-  };
-
-  const handleGradientChange = newGradient => {
-    if (newGradient) {
-      // グラデーションが選択されたので、背景スタイルを 'gradient' に設定します。
-      setBackgroundStyleType('gradient');
-      // ... [グラデーションを設定するその他のコード]
-    } else {
-      // グラデーションが削除されたので、背景スタイルをリセットします。
-      setBackgroundStyleType(null);
-      // ... [その他のリセットコード]
-    }
-  };
-
   const commonProps = {
     borderRadius: attributes.borderRadiusValue,
     borders: attributes.borders,
     fontFamily: attributes.fontFamily,
     color: textColor,
     styleVariant: selectedOption.value,
-    backgroundStyleType: backgroundStyleType,
+    backgroundStyleType: attributes.backgroundStyleType,
     selectedMedia: selectedMedia,
     backgroundGradient: attributes.backgroundGradient,
-    backgroundColor: backgroundColor
+    backgroundColor: attributes.backgroundColor
   };
+  console.log(attributes);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -647,9 +729,7 @@ function Edit({
     onChange: value => setSelectedCity(value)
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
     label: "\u4ECA\u65E5\u306E\u5929\u6C17\u3092\u8868\u793A",
-    checked: attributes.todayWeather !== null
-    // onChange={(checked) => setAttributes({ todayWeather: checked ? cachedWeather.today : null })}
-    ,
+    checked: attributes.todayWeather !== null,
     onChange: checked => {
       if (checked) {
         setAttributes({
@@ -735,82 +815,6 @@ function Edit({
       onChangeFontFamily(newFontFamily);
     }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: "Font Balance",
-    value: selectedOption.label,
-    options: fontBalanceOptions.map(opt => ({
-      label: opt.label,
-      value: opt.label
-    })),
-    onChange: label => {
-      const option = fontBalanceOptions.find(opt => opt.label === label);
-      setSelectedOption(option);
-    }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: "\u80CC\u666F\u30B9\u30BF\u30A4\u30EB",
-    value: backgroundStyleType,
-    options: [{
-      label: '画像',
-      value: 'image'
-    }, {
-      label: 'カラー',
-      value: 'color'
-    }, {
-      label: 'グラデーション',
-      value: 'gradient'
-    }],
-    onChange: value => setBackgroundStyleType(value)
-  }), backgroundStyleType === 'image' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
-    onSelect: media => {
-      if (media) {
-        const selectedMediaUrl = media.url; // 選択したメディアのURLを取得
-        setAttributes({
-          backgroundImage: selectedMediaUrl,
-          selectedMedia: selectedMediaUrl // selectedMedia属性に設定
-        });
-      } else {
-        setAttributes({
-          backgroundImage: null,
-          selectedMedia: null // selectedMedia属性をクリア
-        });
-      }
-    },
-
-    allowedTypes: ['image'],
-    value: attributes.backgroundImage || mediaId,
-    render: ({
-      open
-    }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-      onClick: open
-    }, "Open Media Library")
-  })), backgroundStyleType === 'color' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
-    onChange: color => {
-      setBackgroundColor(color); // 新しい色で状態を更新
-      setAttributes({
-        backgroundColor: color
-      }); // ブロックの属性も更新
-    },
-
-    value: backgroundColor
-  }), backgroundStyleType === 'gradient' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.GradientPicker, {
-    __nextHasNoMargin: true,
-    value: attributes.backgroundGradient,
-    onChange: newGradient => setAttributes({
-      backgroundGradient: newGradient
-    }),
-    gradients: [{
-      name: 'JShine',
-      gradient: 'linear-gradient(135deg,#12c2e9 0%,#c471ed 50%,#f64f59 100%)',
-      slug: 'jshine'
-    }, {
-      name: 'Moonlit Asteroid',
-      gradient: 'linear-gradient(135deg,#0F2027 0%, #203A43 0%, #2c5364 100%)',
-      slug: 'moonlit-asteroid'
-    }, {
-      name: 'Rastafarie',
-      gradient: 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
-      slug: 'rastafari'
-    }]
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     label: "\u30C6\u30AD\u30B9\u30C8\u306E\u8272\u3092\u9078\u629E",
     value: textColor,
     options: [{
@@ -826,6 +830,20 @@ function Edit({
         textColor: value
       }); // ブロックの属性を更新
     }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: "Font Balance",
+    value: selectedOption.label,
+    options: fontBalanceOptions.map(opt => ({
+      label: opt.label,
+      value: opt.label
+    })),
+    onChange: label => {
+      const option = fontBalanceOptions.find(opt => opt.label === label);
+      setSelectedOption(option);
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_BackgroundSelector__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes
   }))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "layout"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -1280,6 +1298,10 @@ const defaultBorder = {
       textColor: {
         type: 'string',
         default: 'black'
+      },
+      backgroundStyleType: {
+        type: 'string',
+        default: 'color'
       },
       backgroundImage: {
         type: 'string',

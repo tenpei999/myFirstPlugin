@@ -10,16 +10,13 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { useState, useRef, useEffect } from '@wordpress/element';
 import {
 	CheckboxControl,
 	SelectControl,
 	RangeControl,
-	Button,
-	GradientPicker,
-	ColorPalette,
 	__experimentalBorderBoxControl as BorderBoxControl,
 }
 	from '@wordpress/components';
@@ -28,6 +25,7 @@ import './style.scss';
 import { CurrentWeather } from './components/CurrentWeather';
 import WeekWeather from './components/WeekWeather';
 import useBlockSelection from './functions/useOutsideClick';
+import BackgroundSelector from './components/BackgroundSelector';
 import { useWeatherData } from './functions/useWeatherData';
 import { useChangeCity } from './functions/useChangeCity';
 import { useBorderControl } from './functions/useBorderControl';
@@ -47,8 +45,7 @@ export default function Edit({ attributes, setAttributes }) {
 	const [tomorrowWeather, setTomorrowWeather] = useState(null);
 	const [weeklyWeather, setWeeklyWeather] = useState([]);
 	const [selectedMedia, setSelectedMedia] = useState(attributes.selectedMedia);
-	const [backgroundStyleType, setBackgroundStyleType] = useState('image'); // 初期値は 'image' または 'gradient'
-	const [backgroundColor, setBackgroundColor] = useState(attributes.backgroundColor || '#FFFFFF');
+
 	const [textColor, setTextColor] = useState(attributes.textColor);
 
 	const { showSelection, handleLayoutClick } = useBlockSelection();
@@ -110,43 +107,19 @@ export default function Edit({ attributes, setAttributes }) {
 		}
 	}, [attributes.selectedMedia]);
 
-	const mediaId = 690;
-
-	const handleSelectMedia = (media) => {
-		if (media) {
-			// 画像が選択されたので、背景スタイルを 'image' に設定します。
-			setBackgroundStyleType('image');
-			// ... [画像を設定するその他のコード]
-		} else {
-			// 画像が削除されたので、背景スタイルをリセットします。
-			setBackgroundStyleType(null);
-			// ... [その他のリセットコード]
-		}
-	};
-
-	const handleGradientChange = (newGradient) => {
-		if (newGradient) {
-			// グラデーションが選択されたので、背景スタイルを 'gradient' に設定します。
-			setBackgroundStyleType('gradient');
-			// ... [グラデーションを設定するその他のコード]
-		} else {
-			// グラデーションが削除されたので、背景スタイルをリセットします。
-			setBackgroundStyleType(null);
-			// ... [その他のリセットコード]
-		}
-	};
-
 	const commonProps = {
-    borderRadius: attributes.borderRadiusValue,
-    borders: attributes.borders,
-    fontFamily: attributes.fontFamily,
-    color: textColor, 
-    styleVariant: selectedOption.value, 
-    backgroundStyleType: backgroundStyleType,
-    selectedMedia: selectedMedia,
-    backgroundGradient: attributes.backgroundGradient,
-    backgroundColor: backgroundColor,
-  };
+		borderRadius: attributes.borderRadiusValue,
+		borders: attributes.borders,
+		fontFamily: attributes.fontFamily,
+		color: textColor,
+		styleVariant: selectedOption.value,
+		backgroundStyleType: attributes.backgroundStyleType,
+		selectedMedia: selectedMedia,
+		backgroundGradient: attributes.backgroundGradient,
+		backgroundColor: attributes.backgroundColor,
+	};
+
+	console.log(attributes)
 
 	return (
 		<div {...blockProps}  >
@@ -163,7 +136,6 @@ export default function Edit({ attributes, setAttributes }) {
 							<CheckboxControl
 								label="今日の天気を表示"
 								checked={attributes.todayWeather !== null}
-								// onChange={(checked) => setAttributes({ todayWeather: checked ? cachedWeather.today : null })}
 								onChange={(checked) => {
 									if (checked) {
 										setAttributes({ todayWeather: cachedWeather.today });
@@ -237,6 +209,18 @@ export default function Edit({ attributes, setAttributes }) {
 									onChangeFontFamily(newFontFamily);
 								}}
 							/>
+								<SelectControl
+									label="テキストの色を選択"
+									value={textColor}
+									options={[
+										{ label: '黒', value: 'black' },
+										{ label: '白', value: 'white' },
+									]}
+									onChange={(value) => {
+										setTextColor(value); // ローカルステートを更新
+										setAttributes({ textColor: value }); // ブロックの属性を更新
+									}}
+								/>
 							<SelectControl
 								label="Font Balance"
 								value={selectedOption.label}
@@ -246,90 +230,9 @@ export default function Edit({ attributes, setAttributes }) {
 									setSelectedOption(option);
 								}}
 							/>
-							<SelectControl
-								label="背景スタイル"
-								value={backgroundStyleType}
-								options={[
-									{ label: '画像', value: 'image' },
-									{ label: 'カラー', value: 'color' },
-									{ label: 'グラデーション', value: 'gradient' },
-								]}
-								onChange={(value) => setBackgroundStyleType(value)}
-							/>
-							{backgroundStyleType === 'image' && (
-								<MediaUploadCheck>
-									<MediaUpload
-										onSelect={(media) => {
-											if (media) {
-												const selectedMediaUrl = media.url; // 選択したメディアのURLを取得
-												setAttributes({
-													backgroundImage: selectedMediaUrl,
-													selectedMedia: selectedMediaUrl, // selectedMedia属性に設定
-												});
-											} else {
-												setAttributes({
-													backgroundImage: null,
-													selectedMedia: null, // selectedMedia属性をクリア
-												});
-											}
-										}}
-										allowedTypes={['image']}
-										value={attributes.backgroundImage || mediaId}
-										render={({ open }) => (
-											<Button onClick={open}>Open Media Library</Button>
-										)}
-									/>
-								</MediaUploadCheck>
-							)}
-
-							{backgroundStyleType === 'color' && (
-								<ColorPalette
-									onChange={(color) => {
-										setBackgroundColor(color); // 新しい色で状態を更新
-										setAttributes({ backgroundColor: color }); // ブロックの属性も更新
-									}}
-									value={backgroundColor}
-								/>
-							)}
-
-							{backgroundStyleType === 'gradient' && (
-								<GradientPicker
-									__nextHasNoMargin
-									value={attributes.backgroundGradient}
-									onChange={(newGradient) => setAttributes({ backgroundGradient: newGradient })}
-									gradients={[
-										{
-											name: 'JShine',
-											gradient:
-												'linear-gradient(135deg,#12c2e9 0%,#c471ed 50%,#f64f59 100%)',
-											slug: 'jshine',
-										},
-										{
-											name: 'Moonlit Asteroid',
-											gradient:
-												'linear-gradient(135deg,#0F2027 0%, #203A43 0%, #2c5364 100%)',
-											slug: 'moonlit-asteroid',
-										},
-										{
-											name: 'Rastafarie',
-											gradient:
-												'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
-											slug: 'rastafari',
-										},
-									]}
-								/>
-							)}
-							<SelectControl
-								label="テキストの色を選択"
-								value={textColor}
-								options={[
-									{ label: '黒', value: 'black' },
-									{ label: '白', value: 'white' },
-								]}
-								onChange={(value) => {
-									setTextColor(value); // ローカルステートを更新
-									setAttributes({ textColor: value }); // ブロックの属性を更新
-								}}
+							<BackgroundSelector
+								attributes={attributes}
+								setAttributes={setAttributes}
 							/>
 						</div>
 					</div>

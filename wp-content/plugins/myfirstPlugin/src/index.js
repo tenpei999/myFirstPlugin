@@ -76,6 +76,10 @@ registerBlockType(metadata.name, {
 				type: 'string',
 				default: 'black'
 			},
+			backgroundStyleType: {
+				type: 'string',
+				default: 'color', 
+			},
 			backgroundImage: {
 				type: 'string', 
 				default: 'http://hoge.local/wp-content/uploads/2023/10/IMG_5308-scaled.jpeg',   

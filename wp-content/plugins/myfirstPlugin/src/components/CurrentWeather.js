@@ -75,6 +75,8 @@ const CurrentWeather = ({
       break;
   }
 
+console.log(backgroundStyleType)
+
   return (
     <article className={`block--current ${styleVariant}`} style={{
       ...borderStyles,

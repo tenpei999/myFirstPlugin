@@ -25,6 +25,8 @@ import './style.scss';
 import { CurrentWeather } from './components/CurrentWeather';
 import WeekWeather from './components/WeekWeather';
 import useBlockSelection from './functions/useOutsideClick';
+import FontFamilyControl from './components/FontFamilyControl';
+import TextColorControl from './components/TextColorControl';
 import BackgroundSelector from './components/BackgroundSelector';
 import { useWeatherData } from './functions/useWeatherData';
 import { useChangeCity } from './functions/useChangeCity';
@@ -40,6 +42,7 @@ export default function Edit({ attributes, setAttributes }) {
 	const [showPrecipitation, setShowPrecipitation] = useState(attributes.showPrecipitation);
 	const [selectedCity, setSelectedCity] = useState('東京'); // 初期値として'東京'をセット
 	const ref = useRef(null);
+	const { fontFamily, onChangeFontFamily } = useFontFamilyControl(attributes, setAttributes);
 	const { cachedWeather } = useWeatherData(setAttributes);
 	const [todayWeather, setTodayWeather] = useState(null);
 	const [tomorrowWeather, setTomorrowWeather] = useState(null);
@@ -87,11 +90,6 @@ export default function Edit({ attributes, setAttributes }) {
 		colors,
 		units,
 	} = useBorderControl(attributes, setAttributes);
-
-	const {
-		fontFamily: selectedFontFamily,
-		onChangeFontFamily
-	} = useFontFamilyControl(attributes, setAttributes);
 
 	const {
 		selectedOption,
@@ -194,33 +192,17 @@ export default function Edit({ attributes, setAttributes }) {
 									onChange={handleUnitChange}
 								/>
 							</div>
-							<SelectControl
-								label="フォントファミリーを選択"
-								value={attributes.fontFamily || selectedFontFamily}
-								options={[
-									{ label: 'Noto Sans JP', value: "NotoSans, sans-serif" },
-									{ label: 'Noto Serif JP', value: "NotoSerif, serif" },
-									{ label: 'M PLUS 1p', value: "MPLUS1, sans-serif" },
-									{ label: 'Kosugi Maru', value: "KosugiMaru, sans-serif" },
-									{ label: 'Sawarabi Gothic', value: "SawarabiGothic, sans-serif" }
-								]}
-								onChange={newFontFamily => {
-									setAttributes({ fontFamily: newFontFamily });
-									onChangeFontFamily(newFontFamily);
+							<FontFamilyControl
+								fontFamily={fontFamily || attributes.fontFamily}
+								setFontFamily={onChangeFontFamily}
+							/>
+							<TextColorControl
+								textColor={textColor}
+								setTextColor={(value) => {
+									setTextColor(value);
+									setAttributes({ textColor: value });
 								}}
 							/>
-								<SelectControl
-									label="テキストの色を選択"
-									value={textColor}
-									options={[
-										{ label: '黒', value: 'black' },
-										{ label: '白', value: 'white' },
-									]}
-									onChange={(value) => {
-										setTextColor(value); // ローカルステートを更新
-										setAttributes({ textColor: value }); // ブロックの属性を更新
-									}}
-								/>
 							<SelectControl
 								label="Font Balance"
 								value={selectedOption.label}

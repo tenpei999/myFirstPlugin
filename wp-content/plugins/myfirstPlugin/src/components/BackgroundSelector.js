@@ -4,8 +4,6 @@ import { SelectControl, Button, ColorPalette, GradientPicker } from '@wordpress/
 const BackgroundSelector = ({ attributes, setAttributes }) => {
   const { backgroundStyleType } = attributes;
 
-  console.log(attributes)
-
   const handleMediaSelect = (media) => {
     if (!media) {
       setAttributes({
@@ -34,8 +32,6 @@ const BackgroundSelector = ({ attributes, setAttributes }) => {
   const handleBackgroundStyleChange = (newStyleType) => {
     setAttributes({ ...attributes, backgroundStyleType: newStyleType });
   };
-
-  console.log(attributes)
 
   return (
     <div>

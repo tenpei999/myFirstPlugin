@@ -16,8 +16,6 @@ import { useState, useRef, useEffect } from '@wordpress/element';
 import {
 	CheckboxControl,
 	SelectControl,
-	RangeControl,
-	__experimentalBorderBoxControl as BorderBoxControl,
 }
 	from '@wordpress/components';
 import './editor.scss';
@@ -28,6 +26,7 @@ import useBlockSelection from './functions/useOutsideClick';
 import FontFamilyControl from './components/FontFamilyControl';
 import TextColorControl from './components/TextColorControl';
 import BackgroundSelector from './components/BackgroundSelector';
+import BorderControlGroup from './components/BorderControlGroup';
 import { useWeatherData } from './functions/useWeatherData';
 import { useChangeCity } from './functions/useChangeCity';
 import { useBorderControl } from './functions/useBorderControl';
@@ -81,15 +80,6 @@ export default function Edit({ attributes, setAttributes }) {
 	useEffect(() => {
 		console.log("Attributes updated:", attributes);
 	}, [attributes]);
-
-	const {
-		borders,
-		onChangeBorder,
-		handleRangeChange,
-		handleUnitChange,
-		colors,
-		units,
-	} = useBorderControl(attributes, setAttributes);
 
 	const {
 		selectedOption,
@@ -171,27 +161,10 @@ export default function Edit({ attributes, setAttributes }) {
 									setAttributes({ showPrecipitation: checked });
 								}}
 							/>
-							<BorderBoxControl
-								colors={colors}
-								label={__('Borders')}
-								onChange={onChangeBorder}
-								value={attributes.borders}
+							<BorderControlGroup
+								attributes={attributes}
+								setAttributes={setAttributes}
 							/>
-							<div>
-								<RangeControl
-									label="Set your value"
-									value={parseInt(attributes.borderRadiusValue, 10)}
-									onChange={handleRangeChange}
-									min={0}
-									max={(attributes.borderRadiusValue && attributes.borderRadiusValue.includes('px')) ? 100 : 100}
-								/>
-								<SelectControl
-									label="Select unit"
-									value={attributes.borderRadiusValue && attributes.borderRadiusValue.replace(/[0-9]/g, '')}
-									options={units}
-									onChange={handleUnitChange}
-								/>
-							</div>
 							<FontFamilyControl
 								fontFamily={fontFamily || attributes.fontFamily}
 								setFontFamily={onChangeFontFamily}

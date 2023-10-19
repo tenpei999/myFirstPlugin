@@ -1,7 +1,7 @@
 import { useState, useEffect } from '@wordpress/element';
 
 export function useBorderControl(attributes, setAttributes) {
-  const colors = [
+  const borderColors = [
     { name: 'Blue 20', color: '#72aee6' },
   ];
   const defaultBorder = {
@@ -81,7 +81,7 @@ export function useBorderControl(attributes, setAttributes) {
     onChangeBorder,
     handleRangeChange,
     handleUnitChange,
-    colors,
+    borderColors,
     units
   };
 }

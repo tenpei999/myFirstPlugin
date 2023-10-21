@@ -14,7 +14,6 @@ import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { useState, useRef, useEffect } from '@wordpress/element';
 import {
-	CheckboxControl,
 	SelectControl,
 }
 	from '@wordpress/components';
@@ -23,13 +22,14 @@ import './style.scss';
 import { CurrentWeather } from './components/CurrentWeather';
 import WeekWeather from './components/WeekWeather';
 import useBlockSelection from './functions/useOutsideClick';
+import VisibilityControl from './components/VisibilityControl';
 import FontFamilyControl from './components/FontFamilyControl';
 import TextColorControl from './components/TextColorControl';
 import BackgroundSelector from './components/BackgroundSelector';
 import BorderControlGroup from './components/BorderControlGroup';
+import { createVisibilitySettings } from './objects/visibilitySettings';
 import { useWeatherData } from './functions/useWeatherData';
 import { useChangeCity } from './functions/useChangeCity';
-import { useBorderControl } from './functions/useBorderControl';
 import { city } from './data/getSpotWeather';
 import { useFontFamilyControl } from './functions/useFontFamilyControl';
 import { useChangeBalance } from './functions/useChangeBalance';
@@ -37,12 +37,12 @@ import { useChangeBalance } from './functions/useChangeBalance';
 export default function Edit({ attributes, setAttributes }) {
 
 	// 他の状態変数とともに、これらを初期化します：
-	const [showHoliday, setShowHoliday] = useState(attributes.showHoliday);
-	const [showPrecipitation, setShowPrecipitation] = useState(attributes.showPrecipitation);
+	// const [showHoliday, setShowHoliday] = useState(attributes.showHoliday);
+	// const [showPrecipitation, setShowPrecipitation] = useState(attributes.showPrecipitation);
 	const [selectedCity, setSelectedCity] = useState('東京'); // 初期値として'東京'をセット
 	const ref = useRef(null);
 	const { fontFamily, onChangeFontFamily } = useFontFamilyControl(attributes, setAttributes);
-	const  cachedWeather  = useWeatherData(setAttributes);
+	// const cachedWeather = useWeatherData(setAttributes);
 	const [todayWeather, setTodayWeather] = useState(null);
 	const [tomorrowWeather, setTomorrowWeather] = useState(null);
 	const [weeklyWeather, setWeeklyWeather] = useState([]);
@@ -53,7 +53,6 @@ export default function Edit({ attributes, setAttributes }) {
 	const { showSelection, handleLayoutClick } = useBlockSelection();
 
 	useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
-
 
 	const TodayWeatherComponentProps = {
 		weather: todayWeather,
@@ -76,6 +75,12 @@ export default function Edit({ attributes, setAttributes }) {
 		label: cityName.charAt(0).toUpperCase() + cityName.slice(1), // 都市名の最初の文字を大文字に
 		value: cityName
 	}));
+
+	const visibilitySettings = createVisibilitySettings({
+		attributes,
+		setAttributes,
+		setTodayWeather, 
+});
 
 	useEffect(() => {
 		console.log("Attributes updated:", attributes);
@@ -121,46 +126,7 @@ export default function Edit({ attributes, setAttributes }) {
 								options={cityOptions}
 								onChange={(value) => setSelectedCity(value)}
 							/>
-							<CheckboxControl
-								label="今日の天気を表示"
-								checked={attributes.todayWeather !== null}
-								onChange={(checked) => {
-									if (checked) {
-										setAttributes({ todayWeather: cachedWeather.today });
-										setTodayWeather(cachedWeather.today);
-									} else {
-										setAttributes({ todayWeather: null });
-										setTodayWeather(null);
-									}
-								}}
-							/>
-							<CheckboxControl
-								label="明日の天気を表示"
-								checked={attributes.tomorrowWeather !== null}
-								onChange={(checked) => setAttributes({ tomorrowWeather: checked ? cachedWeather.tomorrow : null })}
-							/>
-							<CheckboxControl
-								label="週間の天気を表示"
-								checked={attributes.weeklyWeather !== null}
-								onChange={(checked) => setAttributes({ weeklyWeather: checked ? cachedWeather.weekly : null })}
-							/>
-							<h4>詳細設定</h4>
-							<CheckboxControl
-								label="祝日を表示"
-								checked={showHoliday}
-								onChange={(checked) => {
-									setShowHoliday(checked);
-									setAttributes({ showHoliday: checked });
-								}}
-							/>
-							<CheckboxControl
-								label="降水確率を表示"
-								checked={showPrecipitation}
-								onChange={(checked) => {
-									setShowPrecipitation(checked);
-									setAttributes({ showPrecipitation: checked });
-								}}
-							/>
+							<VisibilityControl settings={visibilitySettings} />
 							<BorderControlGroup
 								attributes={attributes}
 								setAttributes={setAttributes}

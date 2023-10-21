@@ -793,9 +793,7 @@ function Edit({
     fontFamily,
     onChangeFontFamily
   } = (0,_functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_17__.useFontFamilyControl)(attributes, setAttributes);
-  const {
-    cachedWeather
-  } = (0,_functions_useWeatherData__WEBPACK_IMPORTED_MODULE_13__.useWeatherData)(setAttributes);
+  const cachedWeather = (0,_functions_useWeatherData__WEBPACK_IMPORTED_MODULE_13__.useWeatherData)(setAttributes);
   const [todayWeather, setTodayWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [tomorrowWeather, setTomorrowWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [weeklyWeather, setWeeklyWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
@@ -956,7 +954,7 @@ function Edit({
     showHoliday: attributes.showHoliday,
     showPrecipitation: attributes.showPrecipitation,
     ...commonProps
-  })), !showSelection && weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  })), !showSelection && attributes.weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
     ...WeeklyWeatherComponentProps,
     ...commonProps
   }))));

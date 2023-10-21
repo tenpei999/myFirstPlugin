@@ -42,7 +42,7 @@ export default function Edit({ attributes, setAttributes }) {
 	const [selectedCity, setSelectedCity] = useState('東京'); // 初期値として'東京'をセット
 	const ref = useRef(null);
 	const { fontFamily, onChangeFontFamily } = useFontFamilyControl(attributes, setAttributes);
-	const { cachedWeather } = useWeatherData(setAttributes);
+	const  cachedWeather  = useWeatherData(setAttributes);
 	const [todayWeather, setTodayWeather] = useState(null);
 	const [tomorrowWeather, setTomorrowWeather] = useState(null);
 	const [weeklyWeather, setWeeklyWeather] = useState([]);
@@ -211,7 +211,7 @@ export default function Edit({ attributes, setAttributes }) {
 									{...commonProps}
 								/>}
 						</div>
-						{!showSelection && weeklyWeather && <WeekWeather
+						{!showSelection && attributes.weeklyWeather && <WeekWeather
 							{...WeeklyWeatherComponentProps}
 							{...commonProps}
 						/>}

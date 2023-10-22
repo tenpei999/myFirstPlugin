@@ -1,0 +1,163 @@
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+@font-face {
+  font-family: "NotoSans";
+  src: url(fonts/NotoSansJP-Regular.2a77d217.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NotoSerif";
+  src: url(fonts/NotoSerifJP-Regular.28541389.otf);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MPLUS1";
+  src: url(fonts/MPLUS1p-Regular.d7322c05.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "KosugiMaru";
+  src: url(fonts/KosugiMaru-Regular.dc10c3fc.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SawarabiGothic";
+  src: url(fonts/SawarabiGothic-Regular.326c9a41.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+.wp-block-create-block-my-first-plugin p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.wp-block-create-block-my-first-plugin ul {
+  padding-inline-start: 0;
+  padding-left: 0;
+}
+.wp-block-create-block-my-first-plugin li {
+  list-style: none;
+}
+.wp-block-create-block-my-first-plugin .wp-block-create-block-gutenpride {
+  font-family: Gilbert, sans-serif;
+  font-size: 64px;
+}
+.wp-block-create-block-my-first-plugin .block--current, .wp-block-create-block-my-first-plugin .block--day {
+  text-align: center;
+  border: solid #888;
+  border-radius: 10px;
+}
+.wp-block-create-block-my-first-plugin .block--current {
+  width: 100%;
+}
+@media screen and (min-width: 800px) {
+  .wp-block-create-block-my-first-plugin .block--current {
+    width: 47.7%;
+  }
+}
+.wp-block-create-block-my-first-plugin .block--weekly {
+  display: flex;
+}
+@media screen and (min-width: 800px) {
+  .wp-block-create-block-my-first-plugin .block--weekly {
+    border: solid #888;
+    border-radius: 10px;
+  }
+}
+@media screen and (min-width: 800px) {
+  .wp-block-create-block-my-first-plugin .block--day {
+    border: none;
+  }
+}
+.wp-block-create-block-my-first-plugin .temp,
+.wp-block-create-block-my-first-plugin .time-zone {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+.wp-block-create-block-my-first-plugin .temp {
+  margin: 18px 0;
+}
+.wp-block-create-block-my-first-plugin .time {
+  letter-spacing: -1px;
+}
+.wp-block-create-block-my-first-plugin .weather-layout {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 800px) {
+  .wp-block-create-block-my-first-plugin .weather-layout {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+@media screen and (min-width: 800px) {
+  .wp-block-create-block-my-first-plugin .today-and-tomorrow {
+    gap: 5%;
+  }
+}
+.wp-block-create-block-my-first-plugin .c-weather__chanceOfRain-index {
+  padding-right: 0.5rem;
+}
+.wp-block-create-block-my-first-plugin .c-weather__chanceOfRain-index .time,
+.wp-block-create-block-my-first-plugin .c-weather__chanceOfRain-index .rain {
+  color: #333;
+}
+.wp-block-create-block-my-first-plugin .celsius {
+  font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .comparison {
+  font-size: 0.9rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheWeather h3 {
+  font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheWeather h4 {
+  font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheWeather .weather__name {
+  font-size: 2rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheTemperature h3 {
+  font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheTemperature h4 {
+  font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheTemperature .weather__name {
+  font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .EmphasizeTheTemperature.block--current .temp .highest,
+.wp-block-create-block-my-first-plugin .EmphasizeTheTemperature.block--current .temp .lowest {
+  font-size: 2rem;
+}
+.wp-block-create-block-my-first-plugin .Comfortable img {
+  transform: scale(1.2);
+}
+.wp-block-create-block-my-first-plugin .Comfortable h3 {
+  font-size: 1rem;
+}
+.wp-block-create-block-my-first-plugin .Comfortable h4 {
+  font-size: 1.5rem;
+}
+.wp-block-create-block-my-first-plugin .Comfortable .weather__name {
+  font-size: 1.5rem;
+}
+.wp-block-create-block-my-first-plugin .Comfortable .time-zone {
+  justify-content: space-around;
+}
+.wp-block-create-block-my-first-plugin .Comfortable .temp {
+  gap: 10px;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

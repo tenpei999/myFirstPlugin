@@ -31,7 +31,7 @@ function generateBorderStyle($borders, $borderRadiusValue)
 function myfirstplugin_render_block($attr, $content)
 {
   $weather_data = json_decode(get_option('my_weather_data'), true);
-  error_log('Debug: Weather Data - ' . print_r($weather_data, true));
+  // error_log('Debug: Weather Data - ' . print_r($weather_data, true));
 
   // 1. オプションデータの取得デバッグ
   // error_log('Debug: Weather Data - ' . print_r($weather_data, true));
@@ -53,37 +53,79 @@ function myfirstplugin_render_block($attr, $content)
   $showPrecipitation = $attr['showPrecipitation'] ?? null;
   $borders = $attr['borders'] ?? null;
   $borderRadiusValue = $attr['borderRadiusValue'] ?? null;
-  
+  $selectedFontFamily = $attr['fontFamily'] ?? 'Noto Sans JP, sans-serif';
+  $selectedColor = $attr['textColor'] ?? 'black';
+  $backgroundStyleType = $attr['backgroundStyleType'] ?? 'color';
+  $selectedBackgroundImage = $attr['backgroundImage'] ?? 'http://hoge.local/wp-content/uploads/2023/10/IMG_5308-scaled.jpeg';
+  $selectedBackgroundGradient = $attr['backgroundGradient'] ?? 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)';
+  $selectedBackgroundColor = $attr['backgroundColor'] ?? '#fff';
+  $selectedBalance = $attr['balanceOption
+  '] ?? 'EmphasizeTheWeather';
 
-  // attributesの内容をログに出力
 
-  error_log('Debug: Attributes - ' . print_r($attr, true));
+  $colorStyle = 'color: ' . $selectedColor . ';';
+  $fontStyle = 'font-family: ' . $selectedFontFamily . ';';
+  $backgroundStyles = array(); // 初期化
 
-  $commonStyle = generateBorderStyle($borders, $borderRadiusValue);
-  // commonStyleの内容をログに出力
-  error_log('Debug: CommonStyle - ' . $commonStyle);
+  switch ($backgroundStyleType) {
+    case 'image':
+      // 画像が選択されている場合、背景画像として設定
+      if ($selectedBackgroundImage) {
+        $backgroundStyles[] = 'background-image: url(' . esc_url($selectedBackgroundImage) . ')';
+        $backgroundStyles[] = 'background-size: cover';
+        $backgroundStyles[] = 'background-repeat: no-repeat';
+        $backgroundStyles[] = 'background-position: center';
+      }
+      break;
 
-  
+    case 'color':
+      // グラデーションが選択されている場合、背景として背景色を設定
+      if ($selectedBackgroundColor) {
+        $backgroundStyles[] = 'background: ' . $selectedBackgroundColor;
+      }
+      break;
+
+    case 'gradient':
+      // グラデーションが選択されている場合、背景として背景グラデーションを設定
+      if ($selectedBackgroundGradient) {
+        $backgroundStyles[] = 'background: ' . $selectedBackgroundGradient;
+      }
+      break;
+
+    default:
+      // デフォルトの背景設定（必要に応じて）または何も適用しない
+      break;
+  }
+
+  $backgroundStylesString = implode('; ', $backgroundStyles);
+
+  $commonStyle = generateBorderStyle($borders, $borderRadiusValue) . ' ; ' . $colorStyle . ' ; ' . $backgroundStylesString . ' ; ' . $fontStyle . ' ; ';
+
+
+
+  error_log('Debug: Attributes - ' . print_r($backgroundStyleType, true));
+
+
   $output = '<div class="wp-block-create-block-my-first-plugin"><div class="layout"><div class="today-and-tomorrow weather-layout">';
 
   $time_ranges = ['0-6時', '6-12時', '12-18時', '18-24時'];
 
   if ($todayWeather && isset($weather_data[0])) {
-    error_log('Debug: Today Weather Data - ' . print_r($weather_data[0], true));
+    // error_log('Debug: Today Weather Data - ' . print_r($weather_data[0], true));
     $textColor = setTextColor($weather_data[0]['day']['date']['fullDate'] ?? []);
-    $output .= generateWeatherOutput($weather_data[0], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('今日の天気', 'myfirstPlugin'), $commonStyle);
+    $output .= generateWeatherOutput($weather_data[0], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('今日の天気', 'myfirstPlugin'), $commonStyle, $selectedBalance);
   }
 
   if ($tomorrowWeather && isset($weather_data[1])) {
-    error_log('Debug: Tomorrow Weather Data - ' . print_r($weather_data[1], true));
+    // error_log('Debug: Tomorrow Weather Data - ' . print_r($weather_data[1], true));
     $textColor = setTextColor($weather_data[1]['day']['date']['fullDate']  ?? []);
-    $output .= generateWeatherOutput($weather_data[1], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('明日の天気', 'myfirstPlugin'), $commonStyle);
+    $output .= generateWeatherOutput($weather_data[1], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('明日の天気', 'myfirstPlugin'), $commonStyle, $selectedBalance);
   }
 
   $output .= '</div>';
 
   if ($weeklyWeather) {
-    $output .= '<ul class="block--weekly weather-layout" style="' . $commonStyle . '">';
+    $output .= '<ul class="block--weekly weather-layout ' . esc_attr($selectedBalance) . '" style="' . $commonStyle . '">';
 
     for ($i = 2; $i <= 6; $i++) {
       if (isset($weather_data[$i])) {
@@ -100,24 +142,24 @@ function myfirstplugin_render_block($attr, $content)
   return $output;
 }
 
-function generateWeatherOutput($data, $textColor, $time_ranges, $showHoliday, $showPrecipitation, $title, $commonStyle)
+function generateWeatherOutput($data, $textColor, $time_ranges, $showHoliday, $showPrecipitation, $title, $commonStyle, $selectedBalance)
 {
-  $output = '<div class="block--current" style="' . $commonStyle . '">';
+  $output = '<div class="block--current ' . esc_attr($selectedBalance) . '" style="' . $commonStyle . '">';
   $output .= '<h3>' . $title . '</h3>';
   $output .= '<h4' . $textColor . '>'  . ($data['day']['data']['fullDate'] ?? '') . '</h4>';
   if ($showHoliday) {
     $output .= '<p>' . esc_html($data['day']['holidayName'] ?? '') . '</p>';
   }
-  $output .= '<p>' . ($data['name'] ?? '')  . '</p>';
+  $output .= '<p class="weather__name">' . ($data['name'] ?? '')  . '</p>';
   $output .= "<img src=\"{$data['image']}\" alt=\"weather icon\">";
   $output .= '<ul class="temp">';
-  $output .= '<li>';
-  $output .= '<p>' . ($data['highestTemperature'] ?? '') . '<span class="celsius">℃</span></p>';
-  $output .= '<p>' . ($data['maximumTemperatureComparison'] ?? '') . '</p>';
+  $output .= '<li class="highestAndComparison">';
+  $output .= '<p class="highest">' . ($data['highestTemperature'] ?? '') . '<span class="celsius">℃</span></p>';
+  $output .= '<p class="comparison">' . ($data['maximumTemperatureComparison'] ?? '') . '</p>';
   $output .= '</li>';
-  $output .= '<li>';
-  $output .= '<p>' . ($data['lowestTemperature'] ?? '') . '<span class="celsius">℃</span></p>';
-  $output .= '<p>' . ($data['lowestTemperatureComparison'] ?? '') . '</p>';
+  $output .= '<li class="lowestAndComparison">';
+  $output .= '<p class="lowest">' . ($data['lowestTemperature'] ?? '') . '<span class="celsius">℃</span></p>';
+  $output .= '<p class="comparison">' . ($data['lowestTemperatureComparison'] ?? '') . '</p>';
   $output .= '</li>';
   $output .= '</ul>';
   if ($showPrecipitation && isset($data['rainProbability']) && is_array($data['rainProbability'])) {
@@ -143,7 +185,7 @@ function generateWeeklyWeatherOutput($data, $textColor, $showHoliday)
   if ($showHoliday) {
     $output .= '<p>' . esc_html($data['day']['holidayName'] ?? '') . '</p>';
   }
-  $output .= '<p>' . ($data['name'] ?? '')  . '</p>';
+  $output .= '<p class="weather__name">' . ($data['name'] ?? '')  . '</p>';
   $output .= "<img src=\"{$data['image']}\" alt=\"weather icon\">";
   $output .= '<ul class="temp">';
   $output .= '<li>';

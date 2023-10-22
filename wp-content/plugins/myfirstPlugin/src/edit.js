@@ -21,14 +21,10 @@ import './editor.scss';
 import './style.scss';
 import { CurrentWeather } from './components/CurrentWeather';
 import WeekWeather from './components/WeekWeather';
+import UIControlGroup from './components/UICintrolGroup';
 import useBlockSelection from './functions/useOutsideClick';
 import VisibilityControl from './components/VisibilityControl';
-import FontFamilyControl from './components/FontFamilyControl';
-import TextColorControl from './components/TextColorControl';
-import BackgroundSelector from './components/BackgroundSelector';
-import BorderControlGroup from './components/BorderControlGroup';
 import { createVisibilitySettings } from './objects/visibilitySettings';
-import { useWeatherData } from './functions/useWeatherData';
 import { useChangeCity } from './functions/useChangeCity';
 import { city } from './data/getSpotWeather';
 import { useFontFamilyControl } from './functions/useFontFamilyControl';
@@ -37,12 +33,9 @@ import { useChangeBalance } from './functions/useChangeBalance';
 export default function Edit({ attributes, setAttributes }) {
 
 	// 他の状態変数とともに、これらを初期化します：
-	// const [showHoliday, setShowHoliday] = useState(attributes.showHoliday);
-	// const [showPrecipitation, setShowPrecipitation] = useState(attributes.showPrecipitation);
 	const [selectedCity, setSelectedCity] = useState('東京'); // 初期値として'東京'をセット
 	const ref = useRef(null);
 	const { fontFamily, onChangeFontFamily } = useFontFamilyControl(attributes, setAttributes);
-	// const cachedWeather = useWeatherData(setAttributes);
 	const [todayWeather, setTodayWeather] = useState(null);
 	const [tomorrowWeather, setTomorrowWeather] = useState(null);
 	const [weeklyWeather, setWeeklyWeather] = useState([]);
@@ -79,8 +72,8 @@ export default function Edit({ attributes, setAttributes }) {
 	const visibilitySettings = createVisibilitySettings({
 		attributes,
 		setAttributes,
-		setTodayWeather, 
-});
+		setTodayWeather,
+	});
 
 	useEffect(() => {
 		console.log("Attributes updated:", attributes);
@@ -127,31 +120,14 @@ export default function Edit({ attributes, setAttributes }) {
 								onChange={(value) => setSelectedCity(value)}
 							/>
 							<VisibilityControl settings={visibilitySettings} />
-							<BorderControlGroup
-								attributes={attributes}
-								setAttributes={setAttributes}
-							/>
-							<FontFamilyControl
-								fontFamily={fontFamily || attributes.fontFamily}
-								setFontFamily={onChangeFontFamily}
-							/>
-							<TextColorControl
+							<UIControlGroup
+								fontFamily={fontFamily}
+								onChangeFontFamily={onChangeFontFamily}
 								textColor={textColor}
-								setTextColor={(value) => {
-									setTextColor(value);
-									setAttributes({ textColor: value });
-								}}
-							/>
-							<SelectControl
-								label="Font Balance"
-								value={selectedOption.label}
-								options={fontBalanceOptions.map(opt => ({ label: opt.label, value: opt.label }))}
-								onChange={(label) => {
-									const option = fontBalanceOptions.find(opt => opt.label === label);
-									setSelectedOption(option);
-								}}
-							/>
-							<BackgroundSelector
+								setTextColor={setTextColor}
+								selectedOption={selectedOption}
+								setSelectedOption={setSelectedOption}
+								fontBalanceOptions={fontBalanceOptions}
 								attributes={attributes}
 								setAttributes={setAttributes}
 							/>

@@ -4,12 +4,13 @@ import { useWeatherData } from "../functions/useWeatherData";
 export const createVisibilitySettings = ({ 
   attributes, 
   setAttributes, 
+  setTodayWeather,
 
 }) => {
 
   const cachedWeather = useWeatherData(setAttributes);
-  const setShowHoliday = useState(attributes.showHoliday);
-  const setShowPrecipitation = useState(attributes.showPrecipitation);
+  const [showHoliday, setShowHoliday] = useState(attributes.showHoliday);
+	const [showPrecipitation, setShowPrecipitation] = useState(attributes.showPrecipitation);
 
   return [
     {

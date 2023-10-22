@@ -457,6 +457,74 @@ const TimeZone = ({
 
 /***/ }),
 
+/***/ "./src/components/UICintrolGroup.js":
+/*!******************************************!*\
+  !*** ./src/components/UICintrolGroup.js ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _FontFamilyControl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FontFamilyControl */ "./src/components/FontFamilyControl.js");
+/* harmony import */ var _TextColorControl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TextColorControl */ "./src/components/TextColorControl.js");
+/* harmony import */ var _BackgroundSelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./BackgroundSelector */ "./src/components/BackgroundSelector.js");
+/* harmony import */ var _BorderControlGroup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BorderControlGroup */ "./src/components/BorderControlGroup.js");
+
+
+
+
+
+
+const UIControlGroup = ({
+  fontFamily,
+  onChangeFontFamily,
+  textColor,
+  setTextColor,
+  selectedOption,
+  setSelectedOption,
+  fontBalanceOptions,
+  attributes,
+  setAttributes
+}) => {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "detail-settings"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_BorderControlGroup__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FontFamilyControl__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    fontFamily: fontFamily || attributes.fontFamily,
+    setFontFamily: onChangeFontFamily
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_TextColorControl__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    textColor: textColor,
+    setTextColor: value => {
+      setTextColor(value);
+      setAttributes({
+        textColor: value
+      });
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+    label: "Font Balance",
+    value: selectedOption.label,
+    options: fontBalanceOptions.map(opt => ({
+      label: opt.label,
+      value: opt.label
+    })),
+    onChange: label => {
+      const option = fontBalanceOptions.find(opt => opt.label === label);
+      setSelectedOption(option);
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_BackgroundSelector__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes
+  }));
+};
+/* harmony default export */ __webpack_exports__["default"] = (UIControlGroup);
+
+/***/ }),
+
 /***/ "./src/components/VisibilityControl.js":
 /*!*********************************************!*\
   !*** ./src/components/VisibilityControl.js ***!
@@ -767,18 +835,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var _components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/CurrentWeather */ "./src/components/CurrentWeather.js");
 /* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
-/* harmony import */ var _functions_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./functions/useOutsideClick */ "./src/functions/useOutsideClick.js");
-/* harmony import */ var _components_VisibilityControl__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/VisibilityControl */ "./src/components/VisibilityControl.js");
-/* harmony import */ var _components_FontFamilyControl__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/FontFamilyControl */ "./src/components/FontFamilyControl.js");
-/* harmony import */ var _components_TextColorControl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/TextColorControl */ "./src/components/TextColorControl.js");
-/* harmony import */ var _components_BackgroundSelector__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/BackgroundSelector */ "./src/components/BackgroundSelector.js");
-/* harmony import */ var _components_BorderControlGroup__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/BorderControlGroup */ "./src/components/BorderControlGroup.js");
-/* harmony import */ var _objects_visibilitySettings__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./objects/visibilitySettings */ "./src/objects/visibilitySettings.js");
-/* harmony import */ var _functions_useWeatherData__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./functions/useWeatherData */ "./src/functions/useWeatherData.js");
-/* harmony import */ var _functions_useChangeCity__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./functions/useChangeCity */ "./src/functions/useChangeCity.js");
-/* harmony import */ var _data_getSpotWeather__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./data/getSpotWeather */ "./src/data/getSpotWeather.js");
-/* harmony import */ var _functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./functions/useFontFamilyControl */ "./src/functions/useFontFamilyControl.js");
-/* harmony import */ var _functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./functions/useChangeBalance */ "./src/functions/useChangeBalance.js");
+/* harmony import */ var _components_UICintrolGroup__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/UICintrolGroup */ "./src/components/UICintrolGroup.js");
+/* harmony import */ var _functions_useOutsideClick__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./functions/useOutsideClick */ "./src/functions/useOutsideClick.js");
+/* harmony import */ var _components_VisibilityControl__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/VisibilityControl */ "./src/components/VisibilityControl.js");
+/* harmony import */ var _objects_visibilitySettings__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./objects/visibilitySettings */ "./src/objects/visibilitySettings.js");
+/* harmony import */ var _functions_useChangeCity__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./functions/useChangeCity */ "./src/functions/useChangeCity.js");
+/* harmony import */ var _data_getSpotWeather__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./data/getSpotWeather */ "./src/data/getSpotWeather.js");
+/* harmony import */ var _functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./functions/useFontFamilyControl */ "./src/functions/useFontFamilyControl.js");
+/* harmony import */ var _functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./functions/useChangeBalance */ "./src/functions/useChangeBalance.js");
 
 /**
  * WordPress components that create the necessary UI elements for the block
@@ -808,24 +872,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
 function Edit({
   attributes,
   setAttributes
 }) {
   // 他の状態変数とともに、これらを初期化します：
-  // const [showHoliday, setShowHoliday] = useState(attributes.showHoliday);
-  // const [showPrecipitation, setShowPrecipitation] = useState(attributes.showPrecipitation);
   const [selectedCity, setSelectedCity] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('東京'); // 初期値として'東京'をセット
   const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const {
     fontFamily,
     onChangeFontFamily
-  } = (0,_functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_18__.useFontFamilyControl)(attributes, setAttributes);
-  // const cachedWeather = useWeatherData(setAttributes);
+  } = (0,_functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_14__.useFontFamilyControl)(attributes, setAttributes);
   const [todayWeather, setTodayWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [tomorrowWeather, setTomorrowWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
   const [weeklyWeather, setWeeklyWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
@@ -834,8 +891,8 @@ function Edit({
   const {
     showSelection,
     handleLayoutClick
-  } = (0,_functions_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  (0,_functions_useChangeCity__WEBPACK_IMPORTED_MODULE_16__.useChangeCity)(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
+  } = (0,_functions_useOutsideClick__WEBPACK_IMPORTED_MODULE_9__["default"])();
+  (0,_functions_useChangeCity__WEBPACK_IMPORTED_MODULE_12__.useChangeCity)(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
   const TodayWeatherComponentProps = {
     weather: todayWeather
   };
@@ -850,12 +907,12 @@ function Edit({
   });
 
   // `city`オブジェクトから都市名を抽出してSelectControlに適切な形式で変換
-  const cityOptions = Object.keys(_data_getSpotWeather__WEBPACK_IMPORTED_MODULE_17__.city).map(cityName => ({
+  const cityOptions = Object.keys(_data_getSpotWeather__WEBPACK_IMPORTED_MODULE_13__.city).map(cityName => ({
     label: cityName.charAt(0).toUpperCase() + cityName.slice(1),
     // 都市名の最初の文字を大文字に
     value: cityName
   }));
-  const visibilitySettings = (0,_objects_visibilitySettings__WEBPACK_IMPORTED_MODULE_14__.createVisibilitySettings)({
+  const visibilitySettings = (0,_objects_visibilitySettings__WEBPACK_IMPORTED_MODULE_11__.createVisibilitySettings)({
     attributes,
     setAttributes,
     setTodayWeather
@@ -868,7 +925,7 @@ function Edit({
     setSelectedOption,
     fontBalanceOptions,
     applyFontBalance
-  } = (0,_functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_19__.useChangeBalance)(attributes.balanceOption, setAttributes);
+  } = (0,_functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_15__.useChangeBalance)(attributes.balanceOption, setAttributes);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     // selectedMediaが変更されたときに実行されるコード
     if (selectedMedia !== attributes.selectedMedia) {
@@ -901,34 +958,16 @@ function Edit({
     value: selectedCity,
     options: cityOptions,
     onChange: value => setSelectedCity(value)
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_VisibilityControl__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_VisibilityControl__WEBPACK_IMPORTED_MODULE_10__["default"], {
     settings: visibilitySettings
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_BorderControlGroup__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    attributes: attributes,
-    setAttributes: setAttributes
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_FontFamilyControl__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    fontFamily: fontFamily || attributes.fontFamily,
-    setFontFamily: onChangeFontFamily
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_TextColorControl__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_UICintrolGroup__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    fontFamily: fontFamily,
+    onChangeFontFamily: onChangeFontFamily,
     textColor: textColor,
-    setTextColor: value => {
-      setTextColor(value);
-      setAttributes({
-        textColor: value
-      });
-    }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-    label: "Font Balance",
-    value: selectedOption.label,
-    options: fontBalanceOptions.map(opt => ({
-      label: opt.label,
-      value: opt.label
-    })),
-    onChange: label => {
-      const option = fontBalanceOptions.find(opt => opt.label === label);
-      setSelectedOption(option);
-    }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_BackgroundSelector__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    setTextColor: setTextColor,
+    selectedOption: selectedOption,
+    setSelectedOption: setSelectedOption,
+    fontBalanceOptions: fontBalanceOptions,
     attributes: attributes,
     setAttributes: setAttributes
   }))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -1494,11 +1533,12 @@ __webpack_require__.r(__webpack_exports__);
 
 const createVisibilitySettings = ({
   attributes,
-  setAttributes
+  setAttributes,
+  setTodayWeather
 }) => {
   const cachedWeather = (0,_functions_useWeatherData__WEBPACK_IMPORTED_MODULE_1__.useWeatherData)(setAttributes);
-  const setShowHoliday = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showHoliday);
-  const setShowPrecipitation = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showPrecipitation);
+  const [showHoliday, setShowHoliday] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showHoliday);
+  const [showPrecipitation, setShowPrecipitation] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showPrecipitation);
   return [{
     key: 'todayWeather',
     label: '今日の天気を表示',

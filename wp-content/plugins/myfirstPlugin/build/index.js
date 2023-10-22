@@ -876,8 +876,7 @@ function Edit({
   attributes,
   setAttributes
 }) {
-  // 他の状態変数とともに、これらを初期化します：
-  const [selectedCity, setSelectedCity] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('東京'); // 初期値として'東京'をセット
+  const [selectedCity, setSelectedCity] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('東京');
   const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const {
     fontFamily,
@@ -909,7 +908,6 @@ function Edit({
   // `city`オブジェクトから都市名を抽出してSelectControlに適切な形式で変換
   const cityOptions = Object.keys(_data_getSpotWeather__WEBPACK_IMPORTED_MODULE_13__.city).map(cityName => ({
     label: cityName.charAt(0).toUpperCase() + cityName.slice(1),
-    // 都市名の最初の文字を大文字に
     value: cityName
   }));
   const visibilitySettings = (0,_objects_visibilitySettings__WEBPACK_IMPORTED_MODULE_11__.createVisibilitySettings)({

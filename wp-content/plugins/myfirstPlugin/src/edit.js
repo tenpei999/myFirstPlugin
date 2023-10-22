@@ -13,10 +13,7 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { useState, useRef, useEffect } from '@wordpress/element';
-import {
-	SelectControl,
-}
-	from '@wordpress/components';
+import { SelectControl } from '@wordpress/components';
 import './editor.scss';
 import './style.scss';
 import { CurrentWeather } from './components/CurrentWeather';
@@ -32,32 +29,21 @@ import { useChangeBalance } from './functions/useChangeBalance';
 
 export default function Edit({ attributes, setAttributes }) {
 
-	// 他の状態変数とともに、これらを初期化します：
-	const [selectedCity, setSelectedCity] = useState('東京'); // 初期値として'東京'をセット
+	const [selectedCity, setSelectedCity] = useState('東京');
 	const ref = useRef(null);
 	const { fontFamily, onChangeFontFamily } = useFontFamilyControl(attributes, setAttributes);
 	const [todayWeather, setTodayWeather] = useState(null);
 	const [tomorrowWeather, setTomorrowWeather] = useState(null);
 	const [weeklyWeather, setWeeklyWeather] = useState([]);
 	const [selectedMedia, setSelectedMedia] = useState(attributes.selectedMedia);
-
 	const [textColor, setTextColor] = useState(attributes.textColor);
-
 	const { showSelection, handleLayoutClick } = useBlockSelection();
 
 	useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
 
-	const TodayWeatherComponentProps = {
-		weather: todayWeather,
-	};
-
-	const TomorrowWeatherComponentProps = {
-		weather: tomorrowWeather,
-	};
-
-	const WeeklyWeatherComponentProps = {
-		weather: weeklyWeather,
-	};
+	const TodayWeatherComponentProps = { weather: todayWeather };
+	const TomorrowWeatherComponentProps = { weather: tomorrowWeather };
+	const WeeklyWeatherComponentProps = { weather: weeklyWeather };
 
 	const blockProps = useBlockProps({
 		className: 'my-first-plugin',
@@ -65,7 +51,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 	// `city`オブジェクトから都市名を抽出してSelectControlに適切な形式で変換
 	const cityOptions = Object.keys(city).map(cityName => ({
-		label: cityName.charAt(0).toUpperCase() + cityName.slice(1), // 都市名の最初の文字を大文字に
+		label: cityName.charAt(0).toUpperCase() + cityName.slice(1),
 		value: cityName
 	}));
 

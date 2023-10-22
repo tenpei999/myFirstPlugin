@@ -80,6 +80,10 @@
     "backgroundColor": {
       "type": "string",
       "default": "#fff"
+    },
+    "balanceOption": {
+      "type": "string",
+      "default": "EmphasizeTheWeather"
     }
   },
   "supports": {

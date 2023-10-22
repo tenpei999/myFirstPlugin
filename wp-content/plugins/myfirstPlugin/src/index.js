@@ -92,6 +92,10 @@ registerBlockType(metadata.name, {
 				type: 'string',
 				default: '#fff', 
 			},
+			balanceOption: {
+				type: 'string',
+				default: 'EmphasizeTheWeather', 
+			},
 		},
 	},
 	/**

@@ -59,8 +59,7 @@ function myfirstplugin_render_block($attr, $content)
   $selectedBackgroundImage = $attr['backgroundImage'] ?? 'http://hoge.local/wp-content/uploads/2023/10/IMG_5308-scaled.jpeg';
   $selectedBackgroundGradient = $attr['backgroundGradient'] ?? 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)';
   $selectedBackgroundColor = $attr['backgroundColor'] ?? '#fff';
-  $selectedBalance = $attr['balanceOption
-  '] ?? 'EmphasizeTheWeather';
+  $selectedBalance = $attr['balanceOption'] ?? 'EmphasizeTheWeather';
 
 
   $colorStyle = 'color: ' . $selectedColor . ';';
@@ -103,7 +102,9 @@ function myfirstplugin_render_block($attr, $content)
 
 
 
-  error_log('Debug: Attributes - ' . print_r($backgroundStyleType, true));
+
+  error_log('Debug: Attributes - ' . print_r($attr['balanceOption'], true));
+  error_log('Debug: Attributes - ' . print_r($attr, true));
 
 
   $output = '<div class="wp-block-create-block-my-first-plugin"><div class="layout"><div class="today-and-tomorrow weather-layout">';

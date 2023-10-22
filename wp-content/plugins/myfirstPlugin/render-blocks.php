@@ -53,6 +53,7 @@ function myfirstplugin_render_block($attr, $content)
   $showPrecipitation = $attr['showPrecipitation'] ?? null;
   $borders = $attr['borders'] ?? null;
   $borderRadiusValue = $attr['borderRadiusValue'] ?? null;
+  
 
   // attributesの内容をログに出力
 

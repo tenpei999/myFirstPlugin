@@ -177,7 +177,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Temp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Temp */ "./src/components/Temp.js");
 /* harmony import */ var _TimeZone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TimeZone */ "./src/components/TimeZone.js");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../style.scss */ "./src/style.scss");
+/* harmony import */ var _functions_useBorderStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions/useBorderStyles */ "./src/functions/useBorderStyles.js");
+/* harmony import */ var _functions_useBackgroundStyles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../functions/useBackgroundStyles */ "./src/functions/useBackgroundStyles.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../style.scss */ "./src/style.scss");
+
+
 
 
 
@@ -197,7 +201,6 @@ const CurrentWeather = ({
   backgroundGradient,
   backgroundColor
 }) => {
-  let backgroundStyles = {};
   if (!weather || !weather.day) return null; // weather と weather.day の存在を確認
 
   const isHoliday = weather.day.isHoliday;
@@ -207,49 +210,8 @@ const CurrentWeather = ({
   } else if (weather.day.isSaturday) {
     textColor = "blue";
   }
-  const borderStyles = {
-    borderTop: `${borders.top.width} ${borders.top.style} ${borders.top.color}`,
-    borderRight: `${borders.right.width} ${borders.right.style} ${borders.right.color}`,
-    borderBottom: `${borders.bottom.width} ${borders.bottom.style} ${borders.bottom.color}`,
-    borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
-  };
-
-  // 背景スタイルタイプに応じた条件分岐
-  switch (backgroundStyleType) {
-    case 'image':
-      // 画像が選択されている場合、背景画像として設定
-      if (selectedMedia) {
-        backgroundStyles = {
-          backgroundImage: `url('${selectedMedia}')`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center'
-        };
-      }
-      break;
-    case 'color':
-      // グラデーションが選択されている場合、背景としてグラデーションを設定
-      if (backgroundColor) {
-        backgroundStyles = {
-          background: backgroundColor // グラデーションのCSSをここに設定
-        };
-      }
-
-      break;
-    case 'gradient':
-      // グラデーションが選択されている場合、背景としてグラデーションを設定
-      if (backgroundGradient) {
-        backgroundStyles = {
-          background: backgroundGradient // グラデーションのCSSをここに設定
-        };
-      }
-
-      break;
-    default:
-      // デフォルトの背景設定（必要に応じて）または何も適用しない
-      break;
-  }
-  console.log(backgroundStyleType);
+  const borderStyles = (0,_functions_useBorderStyles__WEBPACK_IMPORTED_MODULE_3__["default"])(borders);
+  const backgroundStyles = (0,_functions_useBackgroundStyles__WEBPACK_IMPORTED_MODULE_4__["default"])(backgroundStyleType, selectedMedia, backgroundColor, backgroundGradient);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
     className: `block--current ${styleVariant}`,
     style: {
@@ -570,8 +532,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Temp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Temp */ "./src/components/Temp.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../editor.scss */ "./src/editor.scss");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../style.scss */ "./src/style.scss");
+/* harmony import */ var _functions_useBorderStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../functions/useBorderStyles */ "./src/functions/useBorderStyles.js");
+/* harmony import */ var _functions_useBackgroundStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions/useBackgroundStyles */ "./src/functions/useBackgroundStyles.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../editor.scss */ "./src/editor.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../style.scss */ "./src/style.scss");
+
+
 
 
 
@@ -589,49 +555,8 @@ const WeekWeather = ({
   backgroundColor
 }) => {
   if (!weather) return null;
-  let backgroundStyles = {};
-  const borderStyles = {
-    borderTop: `${borders.top.width} ${borders.top.style} ${borders.top.color}`,
-    borderRight: `${borders.right.width} ${borders.right.style} ${borders.right.color}`,
-    borderBottom: `${borders.bottom.width} ${borders.bottom.style} ${borders.bottom.color}`,
-    borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
-  };
-
-  // 背景スタイルタイプに応じた条件分岐
-  switch (backgroundStyleType) {
-    case 'image':
-      // 画像が選択されている場合、背景画像として設定
-      if (selectedMedia) {
-        backgroundStyles = {
-          backgroundImage: `url('${selectedMedia}')`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center'
-        };
-      }
-      break;
-    case 'color':
-      // グラデーションが選択されている場合、背景としてグラデーションを設定
-      if (backgroundColor) {
-        backgroundStyles = {
-          background: backgroundColor // グラデーションのCSSをここに設定
-        };
-      }
-
-      break;
-    case 'gradient':
-      // グラデーションが選択されている場合、背景としてグラデーションを設定
-      if (backgroundGradient) {
-        backgroundStyles = {
-          background: backgroundGradient // グラデーションのCSSをここに設定
-        };
-      }
-
-      break;
-    default:
-      // デフォルトの背景設定（必要に応じて）または何も適用しない
-      break;
-  }
+  const borderStyles = (0,_functions_useBorderStyles__WEBPACK_IMPORTED_MODULE_2__["default"])(borders);
+  const backgroundStyles = (0,_functions_useBackgroundStyles__WEBPACK_IMPORTED_MODULE_3__["default"])(backgroundStyleType, selectedMedia, backgroundColor, backgroundGradient);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: `block--weekly weather-layout ${styleVariant}`,
     style: {
@@ -997,6 +922,56 @@ function Edit({
 
 /***/ }),
 
+/***/ "./src/functions/useBackgroundStyles.js":
+/*!**********************************************!*\
+  !*** ./src/functions/useBackgroundStyles.js ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+// useBackgroundStyles.js
+
+function useBackgroundStyles(backgroundStyleType, selectedMedia, backgroundColor, backgroundGradient) {
+  const [backgroundStyles, setBackgroundStyles] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    switch (backgroundStyleType) {
+      case 'image':
+        if (selectedMedia) {
+          setBackgroundStyles({
+            backgroundImage: `url('${selectedMedia}')`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center'
+          });
+        }
+        break;
+      case 'color':
+        if (backgroundColor) {
+          setBackgroundStyles({
+            background: backgroundColor
+          });
+        }
+        break;
+      case 'gradient':
+        if (backgroundGradient) {
+          setBackgroundStyles({
+            background: backgroundGradient
+          });
+        }
+        break;
+      default:
+        // 他のスタイルタイプやデフォルトの処理をここに追加できます。
+        break;
+    }
+  }, [backgroundStyleType, selectedMedia, backgroundColor, backgroundGradient]);
+  return backgroundStyles;
+}
+/* harmony default export */ __webpack_exports__["default"] = (useBackgroundStyles);
+
+/***/ }),
+
 /***/ "./src/functions/useBorderControl.js":
 /*!*******************************************!*\
   !*** ./src/functions/useBorderControl.js ***!
@@ -1100,6 +1075,34 @@ function useBorderControl(attributes, setAttributes) {
     units
   };
 }
+
+/***/ }),
+
+/***/ "./src/functions/useBorderStyles.js":
+/*!******************************************!*\
+  !*** ./src/functions/useBorderStyles.js ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function useBorderStyles(borders) {
+  const [borderStyles, setBorderStyles] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (borders) {
+      setBorderStyles({
+        borderTop: `${borders.top.width} ${borders.top.style} ${borders.top.color}`,
+        borderRight: `${borders.right.width} ${borders.right.style} ${borders.right.color}`,
+        borderBottom: `${borders.bottom.width} ${borders.bottom.style} ${borders.bottom.color}`,
+        borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
+      });
+    }
+  }, [borders]);
+  return borderStyles;
+}
+/* harmony default export */ __webpack_exports__["default"] = (useBorderStyles);
 
 /***/ }),
 
@@ -1395,6 +1398,10 @@ const defaultBorder = {
   example: {
     attributes: {
       message: 'my-first-plugin',
+      selectedCity: {
+        type: 'string',
+        default: '東京'
+      },
       todayWeather: {
         type: 'object',
         default: {}
@@ -1734,6 +1741,16 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ (function(module) {
+
+module.exports = window["React"];
 
 /***/ }),
 

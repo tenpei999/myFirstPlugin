@@ -1,4 +1,6 @@
 import Temp from './Temp';
+import useBorderStyles from '../functions/useBorderStyles';
+import useBackgroundStyles from '../functions/useBackgroundStyles';
 import '../editor.scss';
 import '../style.scss';
 
@@ -17,51 +19,8 @@ const WeekWeather = ({
 
   if (!weather) return null;
 
-  let backgroundStyles = {};
-
-  const borderStyles = {
-    borderTop: `${borders.top.width} ${borders.top.style} ${borders.top.color}`,
-    borderRight: `${borders.right.width} ${borders.right.style} ${borders.right.color}`,
-    borderBottom: `${borders.bottom.width} ${borders.bottom.style} ${borders.bottom.color}`,
-    borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
-  };
-
-  // 背景スタイルタイプに応じた条件分岐
-  switch (backgroundStyleType) {
-    case 'image':
-      // 画像が選択されている場合、背景画像として設定
-      if (selectedMedia) {
-        backgroundStyles = {
-          backgroundImage: `url('${selectedMedia}')`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-        };
-      }
-      break;
-
-    case 'color':
-      // グラデーションが選択されている場合、背景としてグラデーションを設定
-      if (backgroundColor) {
-        backgroundStyles = {
-          background: backgroundColor,  // グラデーションのCSSをここに設定
-        };
-      }
-      break;
-
-    case 'gradient':
-      // グラデーションが選択されている場合、背景としてグラデーションを設定
-      if (backgroundGradient) {
-        backgroundStyles = {
-          background: backgroundGradient,  // グラデーションのCSSをここに設定
-        };
-      }
-      break;
-
-    default:
-      // デフォルトの背景設定（必要に応じて）または何も適用しない
-      break;
-  }
+  const borderStyles = useBorderStyles(borders);
+  const backgroundStyles = useBackgroundStyles(backgroundStyleType, selectedMedia, backgroundColor, backgroundGradient);
 
   return (
     <ul className={`block--weekly weather-layout ${styleVariant}`}

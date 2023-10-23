@@ -43,6 +43,10 @@ registerBlockType(metadata.name, {
 	example: {
 		attributes: {
 			message: 'my-first-plugin',
+			selectedCity: {
+				type: 'string',     
+				default: '東京',    
+			},
 			todayWeather: {
 				type: 'object',
 				default: {}

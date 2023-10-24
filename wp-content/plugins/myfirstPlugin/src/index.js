@@ -44,8 +44,8 @@ registerBlockType(metadata.name, {
 		attributes: {
 			message: 'my-first-plugin',
 			selectedCity: {
-				type: 'string',     
-				default: '東京',    
+				type: 'object',
+				default: {}, // あるいは適切なデフォルト値
 			},
 			todayWeather: {
 				type: 'object',
@@ -82,23 +82,23 @@ registerBlockType(metadata.name, {
 			},
 			backgroundStyleType: {
 				type: 'string',
-				default: 'color', 
+				default: 'color',
 			},
 			backgroundImage: {
-				type: 'string', 
-				default: 'http://hoge.local/wp-content/uploads/2023/10/IMG_5308-scaled.jpeg',   
+				type: 'string',
+				default: 'http://hoge.local/wp-content/uploads/2023/10/IMG_5308-scaled.jpeg',
 			},
 			backgroundGradient: {
 				type: 'string',
-				default: 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)', 
+				default: 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
 			},
 			backgroundColor: {
 				type: 'string',
-				default: '#fff', 
+				default: '#fff',
 			},
 			balanceOption: {
 				type: 'string',
-				default: 'EmphasizeTheWeather', 
+				default: 'EmphasizeTheWeather',
 			},
 		},
 	},

@@ -8,6 +8,7 @@ const weatherObject = async (
   setWeeklyWeather,
   addBreak = false 
 ) => {
+  console.log(cityurl)
   try {
     if (!cityurl) {
       throw new Error(`City "${cityurl}" does not exist in the city object.`);

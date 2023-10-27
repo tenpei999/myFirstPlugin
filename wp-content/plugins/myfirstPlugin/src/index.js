@@ -43,63 +43,6 @@ registerBlockType(metadata.name, {
 	example: {
 		attributes: {
 			message: 'my-first-plugin',
-			selectedCity: {
-				type: 'object',
-				default: {}, // あるいは適切なデフォルト値
-			},
-			todayWeather: {
-				type: 'object',
-				default: {}
-			},
-			tomorrowWeather: {
-				type: 'object',
-				default: {}
-			},
-			weeklyWeather: {
-				type: 'array',
-				default: []
-			},
-			borderRadiusValue: {
-				type: 'string',
-				default: '0px'
-			},
-			borders: {
-				type: 'object',
-				default: {
-					top: defaultBorder,
-					right: defaultBorder,
-					bottom: defaultBorder,
-					left: defaultBorder,
-				}
-			},
-			fontFamily: {
-				type: 'string',
-				default: 'Noto Sans JP, sans-serif'
-			},
-			textColor: {
-				type: 'string',
-				default: 'black'
-			},
-			backgroundStyleType: {
-				type: 'string',
-				default: 'color',
-			},
-			backgroundImage: {
-				type: 'string',
-				default: 'http://hoge.local/wp-content/uploads/2023/10/IMG_5308-scaled.jpeg',
-			},
-			backgroundGradient: {
-				type: 'string',
-				default: 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
-			},
-			backgroundColor: {
-				type: 'string',
-				default: '#fff',
-			},
-			balanceOption: {
-				type: 'string',
-				default: 'EmphasizeTheWeather',
-			},
 		},
 	},
 	/**

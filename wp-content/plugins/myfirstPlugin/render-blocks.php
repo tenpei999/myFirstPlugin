@@ -46,9 +46,9 @@ function myfirstplugin_render_block($attr, $content)
   }
 
   // Attribute Defaults
-  $todayWeather = $attr['todayWeather'] ?? null;
-  $tomorrowWeather = $attr['tomorrowWeather'] ?? null;
-  $weeklyWeather = $attr['weeklyWeather'] ?? null;
+  $showTodayWeather = $attr['showTodayWeather'] ?? true; // デフォルトはtrue
+  $showTomorrowWeather = $attr['showTomorrowWeather'] ?? true; // デフォルトはtrue
+  $showWeeklyWeather = $attr['showWeeklyWeather'] ?? true; 
   $showHoliday = $attr['showHoliday'] ?? null;
   $showPrecipitation = $attr['showPrecipitation'] ?? null;
   $borders = $attr['borders'] ?? null;
@@ -111,13 +111,13 @@ function myfirstplugin_render_block($attr, $content)
 
   $time_ranges = ['0-6時', '6-12時', '12-18時', '18-24時'];
 
-  if ($todayWeather && isset($weather_data[0])) {
+  if ($showTodayWeather && isset($weather_data[0])) {
     // error_log('Debug: Today Weather Data - ' . print_r($weather_data[0], true));
     $textColor = setTextColor($weather_data[0]['day']['date']['fullDate'] ?? []);
     $output .= generateWeatherOutput($weather_data[0], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('今日の天気', 'myfirstPlugin'), $commonStyle, $selectedBalance);
   }
 
-  if ($tomorrowWeather && isset($weather_data[1])) {
+  if ($showTomorrowWeather && isset($weather_data[1])) {
     // error_log('Debug: Tomorrow Weather Data - ' . print_r($weather_data[1], true));
     $textColor = setTextColor($weather_data[1]['day']['date']['fullDate']  ?? []);
     $output .= generateWeatherOutput($weather_data[1], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('明日の天気', 'myfirstPlugin'), $commonStyle, $selectedBalance);
@@ -125,7 +125,7 @@ function myfirstplugin_render_block($attr, $content)
 
   $output .= '</div>';
 
-  if ($weeklyWeather) {
+  if ($showWeeklyWeather) {
     $output .= '<ul class="block--weekly weather-layout ' . esc_attr($selectedBalance) . '" style="' . $commonStyle . '">';
 
     for ($i = 2; $i <= 6; $i++) {

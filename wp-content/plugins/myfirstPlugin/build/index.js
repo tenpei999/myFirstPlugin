@@ -508,16 +508,20 @@ __webpack_require__.r(__webpack_exports__);
 const VisibilityControl = ({
   settings
 }) => {
+  const handleVisibilityChange = (index, isChecked) => {
+    const updatedSettings = [...settings];
+    updatedSettings[index].checked = isChecked;
+    updatedSettings[index].onChange(isChecked);
+  };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "visibility-control"
   }, settings.map((setting, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
     key: index,
     label: setting.label,
     checked: setting.checked,
-    onChange: setting.onChange // 直接カスタム onChange を使用
+    onChange: isChecked => handleVisibilityChange(index, isChecked)
   })));
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (VisibilityControl);
 
 /***/ }),
@@ -735,12 +739,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
 /* harmony import */ var _components_UICintrolGroup__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/UICintrolGroup */ "./src/components/UICintrolGroup.js");
 /* harmony import */ var _functions_useOutsideClick__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./functions/useOutsideClick */ "./src/functions/useOutsideClick.js");
-/* harmony import */ var _components_VisibilityControl__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/VisibilityControl */ "./src/components/VisibilityControl.js");
-/* harmony import */ var _objects_visibilitySettings__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./objects/visibilitySettings */ "./src/objects/visibilitySettings.js");
-/* harmony import */ var _functions_useChangeCity__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./functions/useChangeCity */ "./src/functions/useChangeCity.js");
-/* harmony import */ var _objects_getSpotWeather__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./objects/getSpotWeather */ "./src/objects/getSpotWeather.js");
-/* harmony import */ var _functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./functions/useFontFamilyControl */ "./src/functions/useFontFamilyControl.js");
-/* harmony import */ var _functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./functions/useChangeBalance */ "./src/functions/useChangeBalance.js");
+/* harmony import */ var _objects_visibilitySettings__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./objects/visibilitySettings */ "./src/objects/visibilitySettings.js");
+/* harmony import */ var _components_VisibilityControl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/VisibilityControl */ "./src/components/VisibilityControl.js");
+/* harmony import */ var _functions_useWeatherData__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./functions/useWeatherData */ "./src/functions/useWeatherData.js");
+/* harmony import */ var _functions_useChangeCity__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./functions/useChangeCity */ "./src/functions/useChangeCity.js");
+/* harmony import */ var _objects_getSpotWeather__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./objects/getSpotWeather */ "./src/objects/getSpotWeather.js");
+/* harmony import */ var _functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./functions/useFontFamilyControl */ "./src/functions/useFontFamilyControl.js");
+/* harmony import */ var _functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./functions/useChangeBalance */ "./src/functions/useChangeBalance.js");
 
 /**
  * WordPress components that create the necessary UI elements for the block
@@ -770,6 +775,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function Edit({
   attributes,
   setAttributes
@@ -778,58 +784,46 @@ function Edit({
     name: '東京',
     url: 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&hourly=precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
   };
-  console.log(defaultCityObject);
-  console.log(_functions_useChangeCity__WEBPACK_IMPORTED_MODULE_12__.useChangeCity);
   const currentCityFromAttributes = attributes.selectedCity;
-  console.log(currentCityFromAttributes);
   const [selectedCity, setSelectedCity] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(currentCityFromAttributes || defaultCityObject);
-  console.log(selectedCity);
   const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   const {
     fontFamily,
     onChangeFontFamily
-  } = (0,_functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_14__.useFontFamilyControl)(attributes, setAttributes);
-  const [todayWeather, setTodayWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const [tomorrowWeather, setTomorrowWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const [weeklyWeather, setWeeklyWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  } = (0,_functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_15__.useFontFamilyControl)(attributes, setAttributes);
+  const {
+    todayWeather,
+    tomorrowWeather,
+    weeklyWeather
+  } = (0,_functions_useWeatherData__WEBPACK_IMPORTED_MODULE_12__.useWeatherData)(setAttributes);
+  const visibilitySettings = (0,_objects_visibilitySettings__WEBPACK_IMPORTED_MODULE_10__.createVisibilitySettings)({
+    attributes,
+    setAttributes
+  });
   const [selectedMedia, setSelectedMedia] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.selectedMedia);
   const [textColor, setTextColor] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.textColor);
   const {
     showSelection,
     handleLayoutClick
   } = (0,_functions_useOutsideClick__WEBPACK_IMPORTED_MODULE_9__["default"])();
-  (0,_functions_useChangeCity__WEBPACK_IMPORTED_MODULE_12__.useChangeCity)(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
-  const TodayWeatherComponentProps = {
-    weather: todayWeather
-  };
-  const TomorrowWeatherComponentProps = {
-    weather: tomorrowWeather
-  };
-  const WeeklyWeatherComponentProps = {
-    weather: weeklyWeather
-  };
+  (0,_functions_useChangeCity__WEBPACK_IMPORTED_MODULE_13__.useChangeCity)(selectedCity);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
     className: 'my-first-plugin'
   });
-  const cityOptions = Object.entries(_objects_getSpotWeather__WEBPACK_IMPORTED_MODULE_13__.cities).map(([key, city]) => ({
+  const cityOptions = Object.entries(_objects_getSpotWeather__WEBPACK_IMPORTED_MODULE_14__.cities).map(([key, city]) => ({
     label: city.name,
     // 'name'属性を表示テキストとして使用
     value: key // キー（都市名）を内部値として使用
   }));
 
   const handleCityChange = selectedCityKey => {
-    const newSelectedCity = _objects_getSpotWeather__WEBPACK_IMPORTED_MODULE_13__.cities[selectedCityKey];
+    const newSelectedCity = _objects_getSpotWeather__WEBPACK_IMPORTED_MODULE_14__.cities[selectedCityKey];
     setSelectedCity(newSelectedCity);
     setAttributes({
       selectedCity: newSelectedCity
     }); // ここで新しい値を保存
   };
 
-  const visibilitySettings = (0,_objects_visibilitySettings__WEBPACK_IMPORTED_MODULE_11__.createVisibilitySettings)({
-    attributes,
-    setAttributes,
-    setTodayWeather
-  });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     console.log("Attributes updated:", attributes);
   }, [attributes]);
@@ -838,7 +832,7 @@ function Edit({
     setSelectedOption,
     fontBalanceOptions,
     applyFontBalance
-  } = (0,_functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_15__.useChangeBalance)(attributes.balanceOption, setAttributes);
+  } = (0,_functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_16__.useChangeBalance)(attributes.balanceOption, setAttributes);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     // selectedMediaが変更されたときに実行されるコード
     if (selectedMedia !== attributes.selectedMedia) {
@@ -861,7 +855,6 @@ function Edit({
     backgroundGradient: attributes.backgroundGradient,
     backgroundColor: attributes.backgroundColor
   };
-  console.log(attributes);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -877,7 +870,7 @@ function Edit({
     ,
     options: cityOptions,
     onChange: handleCityChange
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_VisibilityControl__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_VisibilityControl__WEBPACK_IMPORTED_MODULE_11__["default"], {
     settings: visibilitySettings
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_UICintrolGroup__WEBPACK_IMPORTED_MODULE_8__["default"], {
     fontFamily: fontFamily,
@@ -893,20 +886,20 @@ function Edit({
     className: "layout"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "today-and-tomorrow weather-layout"
-  }, attributes.todayWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
-    ...TodayWeatherComponentProps,
+  }, attributes.showTodayWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
+    weather: attributes.todayWeather,
     title: "\u4ECA\u65E5\u306E\u5929\u6C17",
     showHoliday: attributes.showHoliday,
     showPrecipitation: attributes.showPrecipitation,
     ...commonProps
-  }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
-    ...TomorrowWeatherComponentProps,
+  }), attributes.showTomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
+    weather: attributes.tomorrowWeather,
     title: "\u660E\u65E5\u306E\u5929\u6C17",
     showHoliday: attributes.showHoliday,
     showPrecipitation: attributes.showPrecipitation,
     ...commonProps
-  })), !showSelection && attributes.weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    ...WeeklyWeatherComponentProps,
+  })), attributes.showWeeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    weather: attributes.weeklyWeather,
     ...commonProps
   }))));
 }
@@ -1170,11 +1163,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _objects_weatherObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../objects/weatherObject */ "./src/objects/weatherObject.js");
 
 
-
-// useChangeCity関数内での修正:
-function useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather) {
+function useChangeCity(selectedCity) {
+  // 天気データを状態として保存します。
+  const [weatherData, setWeatherData] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    today: null,
+    tomorrow: null,
+    weekly: null
+  });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    console.log(selectedCity);
     async function fetchData() {
       if (!selectedCity || !selectedCity.url) {
         console.error(`No URL found for city: ${selectedCity ? selectedCity.name : "Unknown city"}`);
@@ -1183,10 +1179,26 @@ function useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWee
 
       // 'selectedCity'が存在し、URLが含まれている場合、以下の処理を行います。
       const cityUrl = selectedCity.url;
-      await (0,_objects_weatherObject__WEBPACK_IMPORTED_MODULE_1__["default"])(cityUrl, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
+      await (0,_objects_weatherObject__WEBPACK_IMPORTED_MODULE_1__["default"])(cityUrl, todayWeather => {
+        setWeatherData(prevData => ({
+          ...prevData,
+          today: todayWeather
+        }));
+      }, tomorrowWeather => {
+        setWeatherData(prevData => ({
+          ...prevData,
+          tomorrow: tomorrowWeather
+        }));
+      }, weeklyWeather => {
+        setWeatherData(prevData => ({
+          ...prevData,
+          weekly: weeklyWeather
+        }));
+      });
     }
     fetchData();
-  }, [selectedCity]); // 'selectedCity'オブジェクトの変更に応じてフックを再実行します。
+  }, [selectedCity]);
+  return weatherData;
 }
 
 /***/ }),
@@ -1296,6 +1308,24 @@ const useWeatherData = (setAttributes, addBreak = false) => {
     tomorrow: null,
     weekly: null
   });
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    // `cachedWeather` に基づいて属性を更新
+    if (cachedWeather.today) {
+      setAttributes({
+        todayWeather: cachedWeather.today
+      });
+    }
+    if (cachedWeather.tomorrow) {
+      setAttributes({
+        tomorrowWeather: cachedWeather.tomorrow
+      });
+    }
+    if (cachedWeather.weekly && cachedWeather.weekly.length > 0) {
+      setAttributes({
+        weeklyWeather: cachedWeather.weekly
+      });
+    }
+  }, [cachedWeather, setAttributes]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const cityurl = 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&hourly=precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14';
     (0,_objects_weatherObject__WEBPACK_IMPORTED_MODULE_1__["default"])(cityurl, todayData => {
@@ -1629,66 +1659,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   createVisibilitySettings: function() { return /* binding */ createVisibilitySettings; }
 /* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _functions_useWeatherData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions/useWeatherData */ "./src/functions/useWeatherData.js");
-
-
 const createVisibilitySettings = ({
   attributes,
-  setAttributes,
-  setTodayWeather
+  setAttributes
 }) => {
-  const cachedWeather = (0,_functions_useWeatherData__WEBPACK_IMPORTED_MODULE_1__.useWeatherData)(setAttributes);
-  const [showHoliday, setShowHoliday] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showHoliday);
-  const [showPrecipitation, setShowPrecipitation] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showPrecipitation);
+  const {
+    showTomorrowWeather,
+    showWeeklyWeather,
+    showTodayWeather,
+    showHoliday,
+    showPrecipitation
+  } = attributes;
   return [{
-    key: 'todayWeather',
-    label: '今日の天気を表示',
-    checked: attributes.todayWeather !== null,
-    onChange: checked => {
-      if (checked) {
-        setAttributes({
-          todayWeather: cachedWeather.today
-        });
-        setTodayWeather(cachedWeather.today);
-      } else {
-        setAttributes({
-          todayWeather: null
-        });
-        setTodayWeather(null);
-      }
+    label: "今日の天気を表示",
+    checked: attributes.showTodayWeather,
+    // 属性から現在の値を取得
+    onChange: isChecked => {
+      // 'showTodayWeather' 属性を更新
+      setAttributes({
+        showTodayWeather: isChecked
+      });
+    }
+  },, {
+    label: '明日の天気を表示',
+    checked: attributes.showTomorrowWeather,
+    onChange: isChecked => {
+      // 'showTodayWeather' 属性を更新
+      setAttributes({
+        showTomorrowWeather: isChecked
+      });
     }
   }, {
-    key: 'tomorrowWeather',
-    label: '明日の天気を表示',
-    checked: attributes.tomorrowWeather !== null,
-    onChange: checked => setAttributes({
-      tomorrowWeather: checked ? cachedWeather.tomorrow : null
-    })
-  }, {
-    key: 'weeklyWeather',
     label: '週間天気を表示',
-    checked: attributes.weeklyWeather !== null,
-    onChange: checked => setAttributes({
-      weeklyWeather: checked ? cachedWeather.weekly : null
-    })
+    checked: attributes.showWeeklyWeather,
+    onChange: isChecked => {
+      // 'showTodayWeather' 属性を更新
+      setAttributes({
+        showWeeklyWeather: isChecked
+      });
+    }
   }, {
-    key: 'showHoliday',
     label: '祝日を表示',
     checked: attributes.showHoliday,
     onChange: checked => {
-      setShowHoliday(checked);
       setAttributes({
         showHoliday: checked
       });
     }
   }, {
-    key: 'showPrecipitation',
     label: '降水確率を表示',
     checked: attributes.showPrecipitation,
     onChange: checked => {
-      setShowPrecipitation(checked);
       setAttributes({
         showPrecipitation: checked
       });
@@ -1910,7 +1931,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"selectedCity":{"type":"object","default":{}},"showHoliday":{"type":"boolean","default":true},"showPrecipitation":{"type":"boolean","default":true},"tomorrowWeather":{"type":"object","default":{}},"weeklyWeather":{"type":"array","default":[]},"todayWeather":{"type":"object","default":{}},"borderRadiusValue":{"type":"string","default":"0px"},"borders":{"type":"object","default":{"top":{"color":"#72aee6","style":"dashed","width":"1px"},"right":{"color":"#72aee6","style":"dashed","width":"1px"},"bottom":{"color":"#72aee6","style":"dashed","width":"1px"},"left":{"color":"#72aee6","style":"dashed","width":"1px"}}},"fontFamily":{"type":"string","default":"Noto Sans JP, sans-serif"},"textColor":{"type":"string","default":"black"},"backgroundStyleType":{"type":"string","default":"color"},"backgroundImage":{"type":"string","default":"http://hoge.local/wp-content/uploads/2023/10/IMG_5308-scaled.jpeg"},"backgroundGradient":{"type":"string","default":"linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)"},"backgroundColor":{"type":"string","default":"#fff"},"balanceOption":{"type":"string","default":"EmphasizeTheWeather"}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./style-index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"selectedCity":{"type":"object","default":{"name":"東京","url":"https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&hourly=precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14"}},"showTomorrowWeather":{"type":"boolean","default":true},"showWeeklyWeather":{"type":"boolean","default":true},"showTodayWeather":{"type":"boolean","default":true},"showHoliday":{"type":"boolean","default":true},"showPrecipitation":{"type":"boolean","default":true},"tomorrowWeather":{"type":"object","default":{}},"weeklyWeather":{"type":"array","default":[]},"todayWeather":{"type":"object","default":{}},"borderRadiusValue":{"type":"string","default":"0px"},"borders":{"type":"object","default":{"top":{"color":"#72aee6","style":"dashed","width":"1px"},"right":{"color":"#72aee6","style":"dashed","width":"1px"},"bottom":{"color":"#72aee6","style":"dashed","width":"1px"},"left":{"color":"#72aee6","style":"dashed","width":"1px"}}},"fontFamily":{"type":"string","default":"Noto Sans JP, sans-serif"},"textColor":{"type":"string","default":"black"},"backgroundStyleType":{"type":"string","default":"color"},"backgroundImage":{"type":"string","default":"http://hoge.local/wp-content/uploads/2023/10/IMG_5308-scaled.jpeg"},"backgroundGradient":{"type":"string","default":"linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)"},"backgroundColor":{"type":"string","default":"#fff"},"balanceOption":{"type":"string","default":"EmphasizeTheWeather"}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./style-index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

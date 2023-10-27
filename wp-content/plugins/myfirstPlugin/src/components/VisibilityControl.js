@@ -1,21 +1,26 @@
-import {
-	CheckboxControl,
-}
-	from '@wordpress/components';
+import { CheckboxControl } from '@wordpress/components';
 
 const VisibilityControl = ({ settings }) => {
-  return (
-      <div className="visibility-control">
-          {settings.map((setting, index) => (
-              <CheckboxControl
-                  key={index}
-                  label={setting.label}
-                  checked={setting.checked}
-                  onChange={setting.onChange} // 直接カスタム onChange を使用
-              />
-          ))}
-      </div>
-  );
+
+    const handleVisibilityChange = (index, isChecked) => {
+        const updatedSettings = [...settings];
+        updatedSettings[index].checked = isChecked;
+
+        updatedSettings[index].onChange(isChecked);
+    };
+
+    return (
+        <div className="visibility-control">
+            {settings.map((setting, index) => (
+                <CheckboxControl
+                    key={index}
+                    label={setting.label}
+                    checked={setting.checked}
+                    onChange={(isChecked) => handleVisibilityChange(index, isChecked)}
+                />
+            ))}
+        </div>
+    );
 };
 
 export default VisibilityControl;

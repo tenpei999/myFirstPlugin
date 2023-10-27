@@ -20,8 +20,9 @@ import { CurrentWeather } from './components/CurrentWeather';
 import WeekWeather from './components/WeekWeather';
 import UIControlGroup from './components/UICintrolGroup';
 import useBlockSelection from './functions/useOutsideClick';
-import VisibilityControl from './components/VisibilityControl';
 import { createVisibilitySettings } from './objects/visibilitySettings';
+import VisibilityControl from './components/VisibilityControl';
+import { useWeatherData } from './functions/useWeatherData';
 import { useChangeCity } from './functions/useChangeCity';
 import { cities } from './objects/getSpotWeather';
 import { useFontFamilyControl } from './functions/useFontFamilyControl';
@@ -34,27 +35,19 @@ export default function Edit({ attributes, setAttributes }) {
 		url: 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&hourly=precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
 	};
 
-	console.log(defaultCityObject)
-	console.log(useChangeCity)
-
 	const currentCityFromAttributes = attributes.selectedCity;
-	console.log(currentCityFromAttributes)
 	const [selectedCity, setSelectedCity] = useState(currentCityFromAttributes || defaultCityObject);
-	console.log(selectedCity)
 	const ref = useRef(null);
 	const { fontFamily, onChangeFontFamily } = useFontFamilyControl(attributes, setAttributes);
-	const [todayWeather, setTodayWeather] = useState(null);
-	const [tomorrowWeather, setTomorrowWeather] = useState(null);
-	const [weeklyWeather, setWeeklyWeather] = useState([]);
+	const { todayWeather, tomorrowWeather, weeklyWeather } = useWeatherData(setAttributes);
+    
+	const visibilitySettings = createVisibilitySettings({ attributes, setAttributes });
+
 	const [selectedMedia, setSelectedMedia] = useState(attributes.selectedMedia);
 	const [textColor, setTextColor] = useState(attributes.textColor);
 	const { showSelection, handleLayoutClick } = useBlockSelection();
 
-	useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
-
-	const TodayWeatherComponentProps = { weather: todayWeather };
-	const TomorrowWeatherComponentProps = { weather: tomorrowWeather };
-	const WeeklyWeatherComponentProps = { weather: weeklyWeather };
+	useChangeCity(selectedCity);
 
 	const blockProps = useBlockProps({
 		className: 'my-first-plugin',
@@ -70,11 +63,6 @@ export default function Edit({ attributes, setAttributes }) {
 		setSelectedCity(newSelectedCity);
 		setAttributes({ selectedCity: newSelectedCity }); // ここで新しい値を保存
 	};
-	const visibilitySettings = createVisibilitySettings({
-		attributes,
-		setAttributes,
-		setTodayWeather,
-	});
 
 	useEffect(() => {
 		console.log("Attributes updated:", attributes);
@@ -112,7 +100,7 @@ export default function Edit({ attributes, setAttributes }) {
 		backgroundColor: attributes.backgroundColor,
 	};
 
-	console.log(attributes)
+
 
 	return (
 		<div {...blockProps}  >
@@ -143,27 +131,28 @@ export default function Edit({ attributes, setAttributes }) {
 				) : (
 					<div className="layout">
 						<div className="today-and-tomorrow weather-layout">
-							{attributes.todayWeather &&
+							{attributes.showTodayWeather &&
 								<CurrentWeather
-									{...TodayWeatherComponentProps}
+									weather={attributes.todayWeather}
 									title="今日の天気"
 									showHoliday={attributes.showHoliday}
 									showPrecipitation={attributes.showPrecipitation}
 									{...commonProps}
 								/>}
-							{attributes.tomorrowWeather &&
+							{attributes.showTomorrowWeather &&
 								<CurrentWeather
-									{...TomorrowWeatherComponentProps}
+									weather={attributes.tomorrowWeather}
 									title="明日の天気"
 									showHoliday={attributes.showHoliday}
 									showPrecipitation={attributes.showPrecipitation}
 									{...commonProps}
 								/>}
 						</div>
-						{!showSelection && attributes.weeklyWeather && <WeekWeather
-							{...WeeklyWeatherComponentProps}
-							{...commonProps}
-						/>}
+						{attributes.showWeeklyWeather &&
+							<WeekWeather
+								weather={attributes.weeklyWeather}
+								{...commonProps}
+							/>}
 					</div>
 				)}
 			</div>

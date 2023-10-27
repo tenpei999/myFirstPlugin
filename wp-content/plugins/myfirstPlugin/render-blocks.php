@@ -3,6 +3,7 @@
 // Helper function to set text color based on day properties
 function setTextColor($day)
 {
+  error_log('Debug: モヒカン Weather Data - ' . print_r($day, true));
   if (($day['isHoliday'] ?? false) || ($day['isSunday'] ?? false)) {
     return ' style="color: red"';
   } elseif ($day['isSaturday'] ?? false) {
@@ -44,6 +45,8 @@ function myfirstplugin_render_block($attr, $content)
   if (!is_array($weather_data)) {
     return '天気データのフォーマットが不正です。';
   }
+
+  error_log('Debug: モケケ Weather Data - ' . print_r($weather_data, true));
 
   // Attribute Defaults
   $showTodayWeather = $attr['showTodayWeather'] ?? true; // デフォルトはtrue
@@ -113,13 +116,13 @@ function myfirstplugin_render_block($attr, $content)
 
   if ($showTodayWeather && isset($weather_data[0])) {
     // error_log('Debug: Today Weather Data - ' . print_r($weather_data[0], true));
-    $textColor = setTextColor($weather_data[0]['day']['date']['fullDate'] ?? []);
+    $textColor = setTextColor($weather_data[0]['day'] ?? []);
     $output .= generateWeatherOutput($weather_data[0], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('今日の天気', 'myfirstPlugin'), $commonStyle, $selectedBalance);
   }
 
   if ($showTomorrowWeather && isset($weather_data[1])) {
     // error_log('Debug: Tomorrow Weather Data - ' . print_r($weather_data[1], true));
-    $textColor = setTextColor($weather_data[1]['day']['date']['fullDate']  ?? []);
+    $textColor = setTextColor($weather_data[1]['day']  ?? []);
     $output .= generateWeatherOutput($weather_data[1], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('明日の天気', 'myfirstPlugin'), $commonStyle, $selectedBalance);
   }
 
@@ -130,7 +133,7 @@ function myfirstplugin_render_block($attr, $content)
 
     for ($i = 2; $i <= 6; $i++) {
       if (isset($weather_data[$i])) {
-        $textColor = setTextColor($weather_data[$i]['day']['date']['fullDate']  ?? []);
+        $textColor = setTextColor($weather_data[$i]['day'] ?? []);
         $output .= generateWeeklyWeatherOutput($weather_data[$i], $textColor, $showHoliday);
       }
     }
@@ -147,7 +150,7 @@ function generateWeatherOutput($data, $textColor, $time_ranges, $showHoliday, $s
 {
   $output = '<div class="block--current ' . esc_attr($selectedBalance) . '" style="' . $commonStyle . '">';
   $output .= '<h3>' . $title . '</h3>';
-  $output .= '<h4' . $textColor . '>'  . ($data['day']['data']['fullDate'] ?? '') . '</h4>';
+  $output .= '<h4' . $textColor . '>' . ($data['day']['date']['month'] ?? '') . ($data['day']['date']['day'] ?? '') . '<br/>' . ($data['day']['date']['dayOfWeek']  ?? '') . '</h4>';
   if ($showHoliday) {
     $output .= '<p>' . esc_html($data['day']['holidayName'] ?? '') . '</p>';
   }

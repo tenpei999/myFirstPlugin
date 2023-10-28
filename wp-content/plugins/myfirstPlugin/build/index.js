@@ -2,6 +2,167 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/components/BackgroundSelector.js":
+/*!**********************************************!*\
+  !*** ./src/components/BackgroundSelector.js ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+const BackgroundSelector = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    backgroundStyleType
+  } = attributes;
+  const handleMediaSelect = media => {
+    if (!media) {
+      setAttributes({
+        backgroundImage: null,
+        selectedMedia: null
+      });
+      return;
+    }
+    const selectedMediaUrl = media.url;
+    setAttributes({
+      backgroundImage: selectedMediaUrl,
+      selectedMedia: selectedMediaUrl
+    });
+  };
+  const handleColorChange = color => {
+    // setBackgroundColor(color);
+    setAttributes({
+      backgroundColor: color
+    });
+  };
+  const handleGradientChange = newGradient => {
+    setAttributes({
+      backgroundGradient: newGradient
+    });
+  };
+  const handleBackgroundStyleChange = newStyleType => {
+    setAttributes({
+      ...attributes,
+      backgroundStyleType: newStyleType
+    });
+  };
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    label: "\u80CC\u666F\u30B9\u30BF\u30A4\u30EB",
+    value: attributes.backgroundStyleType // 現在の値をattributesから取得
+    ,
+    options: [{
+      label: '画像',
+      value: 'image'
+    }, {
+      label: 'カラー',
+      value: 'color'
+    }, {
+      label: 'グラデーション',
+      value: 'gradient'
+    }],
+    onChange: handleBackgroundStyleChange // ここで新しい関数を使用します
+  }), backgroundStyleType === 'image' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: handleMediaSelect,
+    allowedTypes: ['image'],
+    value: attributes.backgroundImage,
+    render: ({
+      open
+    }) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      onClick: open
+    }, "Open Media Library")
+  })), backgroundStyleType === 'color' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
+    onChange: handleColorChange,
+    value: attributes.backgroundColor
+  }), backgroundStyleType === 'gradient' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.GradientPicker, {
+    value: attributes.backgroundGradient,
+    onChange: handleGradientChange,
+    gradients: [{
+      name: 'JShine',
+      gradient: 'linear-gradient(135deg,#12c2e9 0%,#c471ed 50%,#f64f59 100%)',
+      slug: 'jshine'
+    }, {
+      name: 'Moonlit Asteroid',
+      gradient: 'linear-gradient(135deg,#0F2027 0%, #203A43 0%, #2c5364 100%)',
+      slug: 'moonlit-asteroid'
+    }, {
+      name: 'Rastafarie',
+      gradient: 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
+      slug: 'rastafari'
+    }]
+  }));
+};
+/* harmony default export */ __webpack_exports__["default"] = (BackgroundSelector);
+
+/***/ }),
+
+/***/ "./src/components/BorderControlGroup.js":
+/*!**********************************************!*\
+  !*** ./src/components/BorderControlGroup.js ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ BorderControlGroup; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _functions_useBorderControl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions/useBorderControl */ "./src/functions/useBorderControl.js");
+
+// BorderControlGroup.js
+
+
+
+
+function BorderControlGroup({
+  attributes,
+  setAttributes
+}) {
+  const {
+    borders,
+    onChangeBorder,
+    handleRangeChange,
+    handleUnitChange,
+    borderColors,
+    // ここを変更しました
+    units
+  } = (0,_functions_useBorderControl__WEBPACK_IMPORTED_MODULE_3__.useBorderControl)(attributes, setAttributes);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalBorderBoxControl, {
+    colors: borderColors // ここを変更しました
+    ,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Borders'),
+    onChange: onChangeBorder,
+    value: borders
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+    label: "Set your value",
+    value: parseInt(attributes.borderRadiusValue, 10),
+    onChange: handleRangeChange,
+    min: 0,
+    max: attributes.borderRadiusValue && attributes.borderRadiusValue.includes('px') ? 100 : 100
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    label: "Select unit",
+    value: attributes.borderRadiusValue && attributes.borderRadiusValue.replace(/[0-9]/g, ''),
+    options: units,
+    onChange: handleUnitChange
+  })));
+}
+
+/***/ }),
+
 /***/ "./src/components/CurrentWeather.js":
 /*!******************************************!*\
   !*** ./src/components/CurrentWeather.js ***!
@@ -16,16 +177,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Temp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Temp */ "./src/components/Temp.js");
 /* harmony import */ var _TimeZone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TimeZone */ "./src/components/TimeZone.js");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../style.scss */ "./src/style.scss");
+/* harmony import */ var _functions_useBorderStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions/useBorderStyles */ "./src/functions/useBorderStyles.js");
+/* harmony import */ var _functions_useBackgroundStyles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../functions/useBackgroundStyles */ "./src/functions/useBackgroundStyles.js");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../style.scss */ "./src/style.scss");
+
+
 
 
 
 
 const CurrentWeather = ({
+  borders,
+  borderRadius,
+  fontFamily,
+  color,
   weather,
   title,
   showPrecipitation,
-  showHoliday
+  showHoliday,
+  styleVariant,
+  backgroundStyleType,
+  selectedMedia,
+  backgroundGradient,
+  backgroundColor
 }) => {
   if (!weather || !weather.day) return null; // weather と weather.day の存在を確認
 
@@ -36,13 +210,24 @@ const CurrentWeather = ({
   } else if (weather.day.isSaturday) {
     textColor = "blue";
   }
+  const borderStyles = (0,_functions_useBorderStyles__WEBPACK_IMPORTED_MODULE_3__["default"])(borders);
+  const backgroundStyles = (0,_functions_useBackgroundStyles__WEBPACK_IMPORTED_MODULE_4__["default"])(backgroundStyleType, selectedMedia, backgroundColor, backgroundGradient);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", {
-    className: "block--current"
+    className: `block--current ${styleVariant}`,
+    style: {
+      ...borderStyles,
+      borderRadius: borderRadius,
+      fontFamily: fontFamily,
+      ...backgroundStyles,
+      color
+    }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", {
     style: {
       color: textColor
     }
-  }, weather.day.date), showHoliday && weather.day.isHoliday && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.day.holidayName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+  }, weather.day.date.fullDate), showHoliday && weather.day.isHoliday && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.day.holidayName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "weather__name"
+  }, weather.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: weather.image,
     alt: "weather icon"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Temp__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -52,6 +237,53 @@ const CurrentWeather = ({
   }));
 };
 
+
+/***/ }),
+
+/***/ "./src/components/FontFamilyControl.js":
+/*!*********************************************!*\
+  !*** ./src/components/FontFamilyControl.js ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+// FontFamilyControl.js
+
+function FontFamilyControl({
+  fontFamily,
+  setFontFamily
+}) {
+  const handleOnChange = newFontFamily => {
+    setFontFamily(newFontFamily);
+  };
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+    label: "\u30D5\u30A9\u30F3\u30C8\u30D5\u30A1\u30DF\u30EA\u30FC\u3092\u9078\u629E",
+    value: fontFamily,
+    options: [{
+      label: 'Noto Sans JP',
+      value: "NotoSans, sans-serif"
+    }, {
+      label: 'Noto Serif JP',
+      value: "NotoSerif, serif"
+    }, {
+      label: 'M PLUS 1p',
+      value: "MPLUS1, sans-serif"
+    }, {
+      label: 'Kosugi Maru',
+      value: "KosugiMaru, sans-serif"
+    }, {
+      label: 'Sawarabi Gothic',
+      value: "SawarabiGothic, sans-serif"
+    }],
+    onChange: handleOnChange
+  });
+}
+/* harmony default export */ __webpack_exports__["default"] = (FontFamilyControl);
 
 /***/ }),
 
@@ -71,13 +303,67 @@ const Temp = ({
   if (!weather) return null;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
     className: "temp"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.highestTemperature, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+    className: "highestAndComparison"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "highest"
+  }, weather.highestTemperature, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "celsius"
-  }, "\u2103")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.maximumTemperatureComparison)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.lowestTemperature, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+  }, "\u2103")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "comparison"
+  }, weather.maximumTemperatureComparison)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
+    className: "lowestAndComparison"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "lowest"
+  }, weather.lowestTemperature, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "celsius"
-  }, "\u2103")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, weather.lowestTemperatureComparison)));
+  }, "\u2103")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "comparison"
+  }, weather.lowestTemperatureComparison)));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Temp);
+
+/***/ }),
+
+/***/ "./src/components/TextColorControl.js":
+/*!********************************************!*\
+  !*** ./src/components/TextColorControl.js ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+// TextColorControl.js
+
+function TextColorControl({
+  textColor,
+  setTextColor,
+  setAttributes
+}) {
+  const handleOnChange = newTextColor => {
+    setTextColor(newTextColor);
+    setAttributes({
+      textColor: newTextColor
+    });
+  };
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+    label: "\u30C6\u30AD\u30B9\u30C8\u306E\u8272\u3092\u9078\u629E",
+    value: textColor,
+    options: [{
+      label: '黒',
+      value: 'black'
+    }, {
+      label: '白',
+      value: 'white'
+    }],
+    onChange: handleOnChange
+  });
+}
+/* harmony default export */ __webpack_exports__["default"] = (TextColorControl);
 
 /***/ }),
 
@@ -137,6 +423,108 @@ const TimeZone = ({
 
 /***/ }),
 
+/***/ "./src/components/UICintrolGroup.js":
+/*!******************************************!*\
+  !*** ./src/components/UICintrolGroup.js ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _FontFamilyControl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FontFamilyControl */ "./src/components/FontFamilyControl.js");
+/* harmony import */ var _TextColorControl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TextColorControl */ "./src/components/TextColorControl.js");
+/* harmony import */ var _BackgroundSelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./BackgroundSelector */ "./src/components/BackgroundSelector.js");
+/* harmony import */ var _BorderControlGroup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BorderControlGroup */ "./src/components/BorderControlGroup.js");
+
+
+
+
+
+
+const UIControlGroup = ({
+  fontFamily,
+  onChangeFontFamily,
+  textColor,
+  setTextColor,
+  selectedOption,
+  setSelectedOption,
+  fontBalanceOptions,
+  attributes,
+  setAttributes
+}) => {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "detail-settings"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_BorderControlGroup__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_FontFamilyControl__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    fontFamily: fontFamily || attributes.fontFamily,
+    setFontFamily: onChangeFontFamily
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_TextColorControl__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    textColor: textColor,
+    setTextColor: value => {
+      setTextColor(value);
+      setAttributes({
+        textColor: value
+      });
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+    label: "Font Balance",
+    value: selectedOption.label,
+    options: fontBalanceOptions.map(opt => ({
+      label: opt.label,
+      value: opt.label
+    })),
+    onChange: label => {
+      const option = fontBalanceOptions.find(opt => opt.label === label);
+      setSelectedOption(option);
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_BackgroundSelector__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes
+  }));
+};
+/* harmony default export */ __webpack_exports__["default"] = (UIControlGroup);
+
+/***/ }),
+
+/***/ "./src/components/VisibilityControl.js":
+/*!*********************************************!*\
+  !*** ./src/components/VisibilityControl.js ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const VisibilityControl = ({
+  settings
+}) => {
+  const handleVisibilityChange = (index, isChecked) => {
+    const updatedSettings = [...settings];
+    updatedSettings[index].checked = isChecked;
+    updatedSettings[index].onChange(isChecked);
+  };
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "visibility-control"
+  }, settings.map((setting, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.CheckboxControl, {
+    key: index,
+    label: setting.label,
+    checked: setting.checked,
+    onChange: isChecked => handleVisibilityChange(index, isChecked)
+  })));
+};
+/* harmony default export */ __webpack_exports__["default"] = (VisibilityControl);
+
+/***/ }),
+
 /***/ "./src/components/WeekWeather.js":
 /*!***************************************!*\
   !*** ./src/components/WeekWeather.js ***!
@@ -147,18 +535,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Temp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Temp */ "./src/components/Temp.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../editor.scss */ "./src/editor.scss");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../style.scss */ "./src/style.scss");
+/* harmony import */ var _functions_useBorderStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../functions/useBorderStyles */ "./src/functions/useBorderStyles.js");
+/* harmony import */ var _functions_useBackgroundStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions/useBackgroundStyles */ "./src/functions/useBackgroundStyles.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../editor.scss */ "./src/editor.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../style.scss */ "./src/style.scss");
+
+
 
 
 
 
 const WeekWeather = ({
-  weather
+  borders,
+  borderRadius,
+  fontFamily,
+  weather,
+  color,
+  styleVariant,
+  backgroundStyleType,
+  selectedMedia,
+  backgroundGradient,
+  backgroundColor
 }) => {
   if (!weather) return null;
+  const borderStyles = (0,_functions_useBorderStyles__WEBPACK_IMPORTED_MODULE_2__["default"])(borders);
+  const backgroundStyles = (0,_functions_useBackgroundStyles__WEBPACK_IMPORTED_MODULE_3__["default"])(backgroundStyleType, selectedMedia, backgroundColor, backgroundGradient);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
-    className: "block--weekly weather-layout"
+    className: `block--weekly weather-layout ${styleVariant}`,
+    style: {
+      ...borderStyles,
+      borderRadius: borderRadius,
+      fontFamily: fontFamily,
+      ...backgroundStyles,
+      color
+    }
   }, weather.slice(0, 6).map(dayWeather => {
     if (!dayWeather || !dayWeather.day) return null;
     let textColor;
@@ -175,10 +585,10 @@ const WeekWeather = ({
       style: {
         color: textColor
       }
-    }, dayWeather.day.date), dayWeather.day.isHoliday && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, dayWeather.day.holidayName), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-      className: "c-weather__weather"
+    }, dayWeather.day.date.month, dayWeather.day.date.day, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), dayWeather.day.date.dayOfWeek), dayWeather.day.isHoliday && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, displayDate), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+      className: "weather__name"
     }, dayWeather.name), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      className: "c-weather__img"
+      className: "weather__img"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
       src: dayWeather.image,
       alt: "Weather Icon"
@@ -188,38 +598,6 @@ const WeekWeather = ({
   }));
 };
 /* harmony default export */ __webpack_exports__["default"] = (WeekWeather);
-
-/***/ }),
-
-/***/ "./src/data/getSpotWeather.js":
-/*!************************************!*\
-  !*** ./src/data/getSpotWeather.js ***!
-  \************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   city: function() { return /* binding */ city; }
-/* harmony export */ });
-const city = {
-  // https://open-meteo.com/en/docs
-  // Daily Weather Variables Weathercode / Maximum Temperature (2 m) / Minimum Temperature (2 m) / Past days 1
-
-  札幌: 'https://api.open-meteo.com/v1/forecast?latitude=43.0667&longitude=141.35&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
-  秋田: 'https://api.open-meteo.com/v1/forecast?latitude=39.7167&longitude=140.1167&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
-  金沢: 'https://api.open-meteo.com/v1/forecast?latitude=36.6&longitude=136.6167&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
-  東京: 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&hourly=precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
-  大宮: 'https://api.open-meteo.com/v1/forecast?latitude=35.9635&longitude=139.8305&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
-  名古屋: 'https://api.open-meteo.com/v1/forecast?latitude=35.1815&longitude=136.9064&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
-  南堀江: 'https://api.open-meteo.com/v1/forecast?latitude=34.6711&longitude=135.4942&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
-  八尾: 'https://api.open-meteo.com/v1/forecast?latitude=34.6167&longitude=135.6&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
-  奈良: 'https://api.open-meteo.com/v1/forecast?latitude=34.685&longitude=135.8049&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
-  朝来: 'https://api.open-meteo.com/v1/forecast?latitude=35.2591&longitude=134.8139&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
-  福岡: 'https://api.open-meteo.com/v1/forecast?latitude=33.6&longitude=130.4167&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
-  佐世保: 'https://api.open-meteo.com/v1/forecast?latitude=33.1683&longitude=129.725&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
-  諸塚: 'https://api.open-meteo.com/v1/forecast?latitude=32.5601&longitude=131.3198&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
-  パリ: 'https://api.open-meteo.com/v1/forecast?latitude=48.8534&longitude=2.3488&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
-};
 
 /***/ }),
 
@@ -358,10 +736,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var _components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/CurrentWeather */ "./src/components/CurrentWeather.js");
 /* harmony import */ var _components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/WeekWeather */ "./src/components/WeekWeather.js");
-/* harmony import */ var _functions_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./functions/useOutsideClick */ "./src/functions/useOutsideClick.js");
-/* harmony import */ var _functions_useWeatherData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./functions/useWeatherData */ "./src/functions/useWeatherData.js");
-/* harmony import */ var _functions_useChangeCity__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./functions/useChangeCity */ "./src/functions/useChangeCity.js");
-/* harmony import */ var _data_getSpotWeather__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./data/getSpotWeather */ "./src/data/getSpotWeather.js");
+/* harmony import */ var _components_UICintrolGroup__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/UICintrolGroup */ "./src/components/UICintrolGroup.js");
+/* harmony import */ var _functions_useOutsideClick__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./functions/useOutsideClick */ "./src/functions/useOutsideClick.js");
+/* harmony import */ var _objects_visibilitySettings__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./objects/visibilitySettings */ "./src/objects/visibilitySettings.js");
+/* harmony import */ var _components_VisibilityControl__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/VisibilityControl */ "./src/components/VisibilityControl.js");
+/* harmony import */ var _functions_useWeatherData__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./functions/useWeatherData */ "./src/functions/useWeatherData.js");
+/* harmony import */ var _functions_useChangeCity__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./functions/useChangeCity */ "./src/functions/useChangeCity.js");
+/* harmony import */ var _objects_getSpotWeather__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./objects/getSpotWeather */ "./src/objects/getSpotWeather.js");
+/* harmony import */ var _functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./functions/useFontFamilyControl */ "./src/functions/useFontFamilyControl.js");
+/* harmony import */ var _functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./functions/useChangeBalance */ "./src/functions/useChangeBalance.js");
 
 /**
  * WordPress components that create the necessary UI elements for the block
@@ -387,51 +770,88 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
 function Edit({
   attributes,
   setAttributes
 }) {
-  // 他の状態変数とともに、これらを初期化します：
-  const [showHoliday, setShowHoliday] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showHoliday);
-  const [showPrecipitation, setShowPrecipitation] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.showPrecipitation);
-  const [selectedCity, setSelectedCity] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('東京'); // 初期値として'東京'をセット
+  const defaultCityObject = {
+    name: '東京',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&hourly=precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  };
+  const currentCityFromAttributes = attributes.selectedCity;
+  const [selectedCity, setSelectedCity] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(currentCityFromAttributes || defaultCityObject);
   const ref = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const cachedWeather = (0,_functions_useWeatherData__WEBPACK_IMPORTED_MODULE_9__.useWeatherData)(setAttributes);
-  const [todayWeather, setTodayWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const [tomorrowWeather, setTomorrowWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-  const [weeklyWeather, setWeeklyWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const {
+    fontFamily,
+    onChangeFontFamily
+  } = (0,_functions_useFontFamilyControl__WEBPACK_IMPORTED_MODULE_15__.useFontFamilyControl)(attributes, setAttributes);
+  const {
+    todayWeather,
+    tomorrowWeather,
+    weeklyWeather
+  } = (0,_functions_useWeatherData__WEBPACK_IMPORTED_MODULE_12__.useWeatherData)(setAttributes);
+  const visibilitySettings = (0,_objects_visibilitySettings__WEBPACK_IMPORTED_MODULE_10__.createVisibilitySettings)({
+    attributes,
+    setAttributes
+  });
+  const [selectedMedia, setSelectedMedia] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.selectedMedia);
+  const [textColor, setTextColor] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.textColor);
   const {
     showSelection,
     handleLayoutClick
-  } = (0,_functions_useOutsideClick__WEBPACK_IMPORTED_MODULE_8__["default"])();
-  (0,_functions_useChangeCity__WEBPACK_IMPORTED_MODULE_10__.useChangeCity)(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
-  const TodayWeatherComponentProps = {
-    weather: todayWeather // attributes.todayWeather の代わり
-  };
-
-  const TomorrowWeatherComponentProps = {
-    weather: tomorrowWeather // attributes.tomorrowWeather の代わり
-  };
-
-  const WeeklyWeatherComponentProps = {
-    weather: weeklyWeather // attributes.weeklyWeather の代わり
-  };
-
+  } = (0,_functions_useOutsideClick__WEBPACK_IMPORTED_MODULE_9__["default"])();
+  (0,_functions_useChangeCity__WEBPACK_IMPORTED_MODULE_13__.useChangeCity)(selectedCity);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
     className: 'my-first-plugin'
   });
-
-  // `city`オブジェクトから都市名を抽出してSelectControlに適切な形式で変換
-  const cityOptions = Object.keys(_data_getSpotWeather__WEBPACK_IMPORTED_MODULE_11__.city).map(cityName => ({
-    label: cityName.charAt(0).toUpperCase() + cityName.slice(1),
-    // 都市名の最初の文字を大文字に
-    value: cityName
+  const cityOptions = Object.entries(_objects_getSpotWeather__WEBPACK_IMPORTED_MODULE_14__.cities).map(([key, city]) => ({
+    label: city.name,
+    // 'name'属性を表示テキストとして使用
+    value: key // キー（都市名）を内部値として使用
   }));
 
-  //attributesの変更を監視するuseEffect：
+  const handleCityChange = selectedCityKey => {
+    const newSelectedCity = _objects_getSpotWeather__WEBPACK_IMPORTED_MODULE_14__.cities[selectedCityKey];
+    setSelectedCity(newSelectedCity);
+    setAttributes({
+      selectedCity: newSelectedCity
+    }); // ここで新しい値を保存
+  };
+
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {}, [attributes]);
+  const {
+    selectedOption,
+    setSelectedOption,
+    fontBalanceOptions,
+    applyFontBalance
+  } = (0,_functions_useChangeBalance__WEBPACK_IMPORTED_MODULE_16__.useChangeBalance)(attributes.balanceOption, setAttributes);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    console.log("Attributes updated:", attributes);
-  }, [attributes]);
+    // selectedMediaが変更されたときに実行されるコード
+    if (selectedMedia !== attributes.selectedMedia) {
+      setSelectedMedia(attributes.selectedMedia);
+    }
+  }, [attributes.selectedMedia]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (attributes.selectedCity) {
+      setSelectedCity(attributes.selectedCity);
+    }
+  }, [attributes.selectedCity]);
+  const commonProps = {
+    borderRadius: attributes.borderRadiusValue,
+    borders: attributes.borders,
+    fontFamily: attributes.fontFamily,
+    color: textColor,
+    styleVariant: selectedOption.value,
+    backgroundStyleType: attributes.backgroundStyleType,
+    selectedMedia: selectedMedia,
+    backgroundGradient: attributes.backgroundGradient,
+    backgroundColor: attributes.backgroundColor
+  };
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -443,74 +863,284 @@ function Edit({
     className: "detail-settings"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
     label: "\u90FD\u5E02\u3092\u9078\u629E",
-    value: selectedCity,
-    options: cityOptions,
-    onChange: value => setSelectedCity(value)
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
-    label: "\u4ECA\u65E5\u306E\u5929\u6C17\u3092\u8868\u793A",
-    checked: attributes.todayWeather !== null
-    // onChange={(checked) => setAttributes({ todayWeather: checked ? cachedWeather.today : null })}
+    value: selectedCity.name // 現在選択されている都市名
     ,
-    onChange: checked => {
-      if (checked) {
-        setAttributes({
-          todayWeather: cachedWeather.today
-        });
-        setTodayWeather(cachedWeather.today);
-      } else {
-        setAttributes({
-          todayWeather: null
-        });
-        setTodayWeather(null);
-      }
-    }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
-    label: "\u660E\u65E5\u306E\u5929\u6C17\u3092\u8868\u793A",
-    checked: attributes.tomorrowWeather !== null,
-    onChange: checked => setAttributes({
-      tomorrowWeather: checked ? cachedWeather.tomorrow : null
-    })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
-    label: "\u9031\u9593\u306E\u5929\u6C17\u3092\u8868\u793A",
-    checked: attributes.weeklyWeather !== null,
-    onChange: checked => setAttributes({
-      weeklyWeather: checked ? cachedWeather.weekly : null
-    })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "\u8A73\u7D30\u8A2D\u5B9A"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
-    label: "\u795D\u65E5\u3092\u8868\u793A",
-    checked: showHoliday,
-    onChange: checked => {
-      setShowHoliday(checked);
-      setAttributes({
-        showHoliday: checked
-      });
-    }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.CheckboxControl, {
-    label: "\u964D\u6C34\u78BA\u7387\u3092\u8868\u793A",
-    checked: showPrecipitation,
-    onChange: checked => {
-      setShowPrecipitation(checked);
-      setAttributes({
-        showPrecipitation: checked
-      });
-    }
+    options: cityOptions,
+    onChange: handleCityChange
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_VisibilityControl__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    settings: visibilitySettings
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_UICintrolGroup__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    fontFamily: fontFamily,
+    onChangeFontFamily: onChangeFontFamily,
+    textColor: textColor,
+    setTextColor: setTextColor,
+    selectedOption: selectedOption,
+    setSelectedOption: setSelectedOption,
+    fontBalanceOptions: fontBalanceOptions,
+    attributes: attributes,
+    setAttributes: setAttributes
   }))) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "layout"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "today-and-tomorrow weather-layout"
-  }, attributes.todayWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
-    ...TodayWeatherComponentProps,
+  }, attributes.showTodayWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
+    weather: attributes.todayWeather,
     title: "\u4ECA\u65E5\u306E\u5929\u6C17",
     showHoliday: attributes.showHoliday,
-    showPrecipitation: attributes.showPrecipitation
-  }), attributes.tomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
-    ...TomorrowWeatherComponentProps,
+    showPrecipitation: attributes.showPrecipitation,
+    ...commonProps
+  }), attributes.showTomorrowWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_CurrentWeather__WEBPACK_IMPORTED_MODULE_6__.CurrentWeather, {
+    weather: attributes.tomorrowWeather,
     title: "\u660E\u65E5\u306E\u5929\u6C17",
     showHoliday: attributes.showHoliday,
-    showPrecipitation: attributes.showPrecipitation
-  })), !showSelection && weeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    ...WeeklyWeatherComponentProps
+    showPrecipitation: attributes.showPrecipitation,
+    ...commonProps
+  })), attributes.showWeeklyWeather && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WeekWeather__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    weather: attributes.weeklyWeather,
+    ...commonProps
   }))));
+}
+
+/***/ }),
+
+/***/ "./src/functions/useBackgroundStyles.js":
+/*!**********************************************!*\
+  !*** ./src/functions/useBackgroundStyles.js ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+// useBackgroundStyles.js
+
+function useBackgroundStyles(backgroundStyleType, selectedMedia, backgroundColor, backgroundGradient) {
+  const [backgroundStyles, setBackgroundStyles] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    switch (backgroundStyleType) {
+      case 'image':
+        if (selectedMedia) {
+          setBackgroundStyles({
+            backgroundImage: `url('${selectedMedia}')`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center'
+          });
+        }
+        break;
+      case 'color':
+        if (backgroundColor) {
+          setBackgroundStyles({
+            background: backgroundColor
+          });
+        }
+        break;
+      case 'gradient':
+        if (backgroundGradient) {
+          setBackgroundStyles({
+            background: backgroundGradient
+          });
+        }
+        break;
+      default:
+        // 他のスタイルタイプやデフォルトの処理をここに追加できます。
+        break;
+    }
+  }, [backgroundStyleType, selectedMedia, backgroundColor, backgroundGradient]);
+  return backgroundStyles;
+}
+/* harmony default export */ __webpack_exports__["default"] = (useBackgroundStyles);
+
+/***/ }),
+
+/***/ "./src/functions/useBorderControl.js":
+/*!*******************************************!*\
+  !*** ./src/functions/useBorderControl.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useBorderControl: function() { return /* binding */ useBorderControl; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+function useBorderControl(attributes, setAttributes) {
+  const borderColors = [{
+    name: 'Blue 20',
+    color: '#72aee6'
+  }];
+  const defaultBorder = {
+    color: '#72aee6',
+    style: 'dashed',
+    width: '1px'
+  };
+  const [borders, setBorders] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.borders || {
+    top: defaultBorder,
+    right: defaultBorder,
+    bottom: defaultBorder,
+    left: defaultBorder
+  });
+  const units = [{
+    label: 'Pixels (px)',
+    value: 'px'
+  }, {
+    label: 'Percentage (%)',
+    value: '%'
+  }];
+  const onChangeBorder = newBorders => {
+    const updatedBorders = {
+      top: {
+        ...borders.top,
+        ...newBorders,
+        width: newBorders.width || '0px',
+        color: newBorders.color || '#72AEE6',
+        style: newBorders.style || 'dashed'
+      },
+      right: {
+        ...borders.right,
+        ...newBorders,
+        width: newBorders.width || '0px',
+        color: newBorders.color || '#72AEE6',
+        style: newBorders.style || 'dashed'
+      },
+      bottom: {
+        ...borders.bottom,
+        ...newBorders,
+        width: newBorders.width || '0px',
+        color: newBorders.color || '#72AEE6',
+        style: newBorders.style || 'dashed'
+      },
+      left: {
+        ...borders.left,
+        ...newBorders,
+        width: newBorders.width || '0px',
+        color: newBorders.color || '#72AEE6',
+        style: newBorders.style || 'dashed'
+      }
+    };
+    setAttributes({
+      ...attributes,
+      borders: updatedBorders
+    });
+    setBorders(updatedBorders);
+  };
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (attributes.borders) {
+      setBorders(attributes.borders);
+    }
+  }, [attributes.borders]);
+  const handleRangeChange = newValue => {
+    const currentUnit = attributes.borderRadiusValue?.replace(/[0-9]/g, '') || 'px';
+    if (!isNaN(newValue)) {
+      setAttributes({
+        ...attributes,
+        borderRadiusValue: `${newValue}${currentUnit}`
+      });
+    }
+  };
+  const handleUnitChange = newUnit => {
+    const currentValue = parseInt(attributes.borderRadiusValue || '0', 10);
+    setAttributes({
+      ...attributes,
+      borderRadiusValue: `${currentValue}${newUnit}`
+    });
+  };
+  return {
+    borders,
+    onChangeBorder,
+    handleRangeChange,
+    handleUnitChange,
+    borderColors,
+    units
+  };
+}
+
+/***/ }),
+
+/***/ "./src/functions/useBorderStyles.js":
+/*!******************************************!*\
+  !*** ./src/functions/useBorderStyles.js ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function useBorderStyles(borders) {
+  const [borderStyles, setBorderStyles] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (borders) {
+      setBorderStyles({
+        borderTop: `${borders.top.width} ${borders.top.style} ${borders.top.color}`,
+        borderRight: `${borders.right.width} ${borders.right.style} ${borders.right.color}`,
+        borderBottom: `${borders.bottom.width} ${borders.bottom.style} ${borders.bottom.color}`,
+        borderLeft: `${borders.left.width} ${borders.left.style} ${borders.left.color}`
+      });
+    }
+  }, [borders]);
+  return borderStyles;
+}
+/* harmony default export */ __webpack_exports__["default"] = (useBorderStyles);
+
+/***/ }),
+
+/***/ "./src/functions/useChangeBalance.js":
+/*!*******************************************!*\
+  !*** ./src/functions/useChangeBalance.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useChangeBalance: function() { return /* binding */ useChangeBalance; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+function useChangeBalance(initialOption, setAttributes) {
+  const defaultOption = {
+    label: 'EmphasizeTheWeather',
+    value: "EmphasizeTheWeather"
+  };
+  const [selectedOption, setSelectedOption] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(initialOption || defaultOption);
+  const fontBalanceOptions = [defaultOption, {
+    label: 'EmphasizeTheTemperature',
+    value: 'EmphasizeTheTemperature'
+  }, {
+    label: 'Comfortable',
+    value: 'Comfortable'
+  }, {
+    label: 'data',
+    value: 'data'
+  }, {
+    label: 'Simple',
+    value: 'Simple'
+  }];
+  const applyFontBalance = option => {
+    fontBalanceOptions.forEach(opt => {
+      document.querySelectorAll('.block--current').forEach(article => article.classList.remove(opt.value));
+      document.querySelectorAll('.block--weekly').forEach(ul => ul.classList.remove(opt.value));
+    });
+    if (option.value !== "default") {
+      document.querySelectorAll('.block--current').forEach(article => article.classList.add(option.value));
+      document.querySelectorAll('.block--weekly').forEach(ul => ul.classList.add(option.value));
+    }
+  };
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    applyFontBalance(selectedOption);
+    setAttributes({
+      balanceOption: selectedOption.value
+    }); // ここで属性を更新
+  }, [selectedOption]);
+  return {
+    selectedOption,
+    setSelectedOption,
+    fontBalanceOptions,
+    applyFontBalance
+  };
 }
 
 /***/ }),
@@ -528,22 +1158,76 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _objects_weatherObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../objects/weatherObject */ "./src/objects/weatherObject.js");
-/* harmony import */ var _data_getSpotWeather__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/getSpotWeather */ "./src/data/getSpotWeather.js");
 
 
-
-function useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather) {
+function useChangeCity(selectedCity) {
+  // 天気データを状態として保存します。
+  const [weatherData, setWeatherData] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    today: null,
+    tomorrow: null,
+    weekly: null
+  });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     async function fetchData() {
-      const cityurl = _data_getSpotWeather__WEBPACK_IMPORTED_MODULE_2__.city[selectedCity];
-      if (cityurl) {
-        await (0,_objects_weatherObject__WEBPACK_IMPORTED_MODULE_1__["default"])(cityurl, setTodayWeather, setTomorrowWeather, setWeeklyWeather);
-      } else {
-        console.error(`No URL found for city: ${selectedCity}`);
+      if (!selectedCity || !selectedCity.url) {
+        console.error(`No URL found for city: ${selectedCity ? selectedCity.name : "Unknown city"}`);
+        return; // selectedCityオブジェクトがない、またはURLがない場合、ここで処理を終了します。
       }
+
+      // 'selectedCity'が存在し、URLが含まれている場合、以下の処理を行います。
+      const cityUrl = selectedCity.url;
+      await (0,_objects_weatherObject__WEBPACK_IMPORTED_MODULE_1__["default"])(cityUrl, todayWeather => {
+        setWeatherData(prevData => ({
+          ...prevData,
+          today: todayWeather
+        }));
+      }, tomorrowWeather => {
+        setWeatherData(prevData => ({
+          ...prevData,
+          tomorrow: tomorrowWeather
+        }));
+      }, weeklyWeather => {
+        setWeatherData(prevData => ({
+          ...prevData,
+          weekly: weeklyWeather
+        }));
+      });
     }
     fetchData();
   }, [selectedCity]);
+  return weatherData;
+}
+
+/***/ }),
+
+/***/ "./src/functions/useFontFamilyControl.js":
+/*!***********************************************!*\
+  !*** ./src/functions/useFontFamilyControl.js ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useFontFamilyControl: function() { return /* binding */ useFontFamilyControl; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+function useFontFamilyControl(attributes, setAttributes) {
+  const [fontFamily, setFontFamily] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.fontFamily);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    setFontFamily(attributes.fontFamily);
+  }, [attributes.fontFamily]);
+  const onChangeFontFamily = newFontFamily => {
+    setFontFamily(newFontFamily);
+    setAttributes({
+      fontFamily: newFontFamily
+    });
+  };
+  return {
+    fontFamily,
+    onChangeFontFamily
+  };
 }
 
 /***/ }),
@@ -613,12 +1297,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _objects_weatherObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../objects/weatherObject */ "./src/objects/weatherObject.js");
 
 
-const useWeatherData = setAttributes => {
+const useWeatherData = (setAttributes, addBreak = false) => {
   const [cachedWeather, setCachedWeather] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
     today: null,
     tomorrow: null,
     weekly: null
   });
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    // `cachedWeather` に基づいて属性を更新
+    if (cachedWeather.today) {
+      setAttributes({
+        todayWeather: cachedWeather.today
+      });
+    }
+    if (cachedWeather.tomorrow) {
+      setAttributes({
+        tomorrowWeather: cachedWeather.tomorrow
+      });
+    }
+    if (cachedWeather.weekly && cachedWeather.weekly.length > 0) {
+      setAttributes({
+        weeklyWeather: cachedWeather.weekly
+      });
+    }
+  }, [cachedWeather, setAttributes]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const cityurl = 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&hourly=precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14';
     (0,_objects_weatherObject__WEBPACK_IMPORTED_MODULE_1__["default"])(cityurl, todayData => {
@@ -651,8 +1353,8 @@ const useWeatherData = setAttributes => {
         weeklyWeather: weeklyData,
         showHoliday: weeklyHolidays
       });
-    });
-  }, [setAttributes]);
+    }, addBreak);
+  }, [setAttributes, addBreak]);
   return cachedWeather;
 };
 
@@ -702,25 +1404,19 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
+const defaultBorder = {
+  color: '#72aee6',
+  style: 'dashed',
+  width: '10px'
+};
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
   /**
    * Used to construct a preview for the block to be shown in the block inserter.
    */
+
   example: {
     attributes: {
-      message: 'my-first-plugin',
-      todayWeather: {
-        type: 'object',
-        default: {}
-      },
-      tomorrowWeather: {
-        type: 'object',
-        default: {}
-      },
-      weeklyWeather: {
-        type: 'array',
-        default: []
-      }
+      message: 'my-first-plugin'
     }
   },
   /**
@@ -744,7 +1440,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-const dayWithHoliday = async () => {
+const dayWithHoliday = async (addBreak = false) => {
   async function getHolidays() {
     const response = await fetch('https://holidays-jp.github.io/api/v1/date.json');
     const holidays = await response.json();
@@ -759,7 +1455,7 @@ const dayWithHoliday = async () => {
     }
     return dateArray;
   }
-  async function getOneWeekDatesWithHolidays() {
+  async function getOneWeekDatesWithHolidays(addBreak = false) {
     const today = new Date();
     const sixDaysLater = new Date(today);
     sixDaysLater.setDate(today.getDate() + 6);
@@ -774,7 +1470,12 @@ const dayWithHoliday = async () => {
       const dayOfWeek = weekDays[date.getDay()];
       const formattedDate = `${String(date.getMonth() + 1)}月${String(date.getDate())}日(${dayOfWeek})`;
       return {
-        date: formattedDate,
+        date: {
+          month: `${String(date.getMonth() + 1)}月`,
+          day: `${String(date.getDate())}日`,
+          dayOfWeek: `(${dayOfWeek})`,
+          fullDate: `${String(date.getMonth() + 1)}月${String(date.getDate())}日(${dayOfWeek})`
+        },
         isHoliday: !!holidays[formattedDate],
         // this will be true if the date is a holiday, otherwise false
         holidayName: holidays[formattedDate] || null,
@@ -783,12 +1484,175 @@ const dayWithHoliday = async () => {
         isSunday: date.getDay() === 0
       };
     });
-    console.log(date);
     return oneWeekDatesWithHolidays;
   }
-  return await getOneWeekDatesWithHolidays();
+  return await getOneWeekDatesWithHolidays(addBreak);
 };
 /* harmony default export */ __webpack_exports__["default"] = (dayWithHoliday);
+
+/***/ }),
+
+/***/ "./src/objects/getSpotWeather.js":
+/*!***************************************!*\
+  !*** ./src/objects/getSpotWeather.js ***!
+  \***************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   cities: function() { return /* binding */ cities; }
+/* harmony export */ });
+const cities = {
+  // https://open-meteo.com/en/docs
+  // Daily Weather Variables Weathercode / Maximum Temperature (2 m) / Minimum Temperature (2 m) / Past days 1
+
+  札幌: {
+    name: '札幌',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=43.0667&longitude=141.35&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  },
+  秋田: {
+    name: '秋田',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=39.7167&longitude=140.1167&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  },
+  金沢: {
+    name: '金沢',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=36.6&longitude=136.6167&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  },
+  東京: {
+    name: '東京',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&hourly=precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  },
+  大宮: {
+    name: '大宮',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=35.9635&longitude=139.8305&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  },
+  名古屋: {
+    name: '名古屋',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=35.1815&longitude=136.9064&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  },
+  南堀江: {
+    name: '南堀江',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=34.6711&longitude=135.4942&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  },
+  八尾: {
+    name: '八尾',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=34.6167&longitude=135.6&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  },
+  奈良: {
+    name: '奈良',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=34.685&longitude=135.8049&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  },
+  朝来: {
+    name: '朝来',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=35.2591&longitude=134.8139&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  },
+  福岡: {
+    name: '福岡',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=33.6&longitude=130.4167&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  },
+  佐世保: {
+    name: '佐世保',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=33.1683&longitude=129.725&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  },
+  諸塚: {
+    name: '諸塚',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=32.5601&longitude=131.3198&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  },
+  パリ: {
+    name: 'パリ',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=48.8534&longitude=2.3488&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14'
+  }
+};
+
+// export const city =  {
+//   // https://open-meteo.com/en/docs
+//   // Daily Weather Variables Weathercode / Maximum Temperature (2 m) / Minimum Temperature (2 m) / Past days 1
+
+//   札幌: 'https://api.open-meteo.com/v1/forecast?latitude=43.0667&longitude=141.35&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+//   秋田: 'https://api.open-meteo.com/v1/forecast?latitude=39.7167&longitude=140.1167&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+//   金沢: 'https://api.open-meteo.com/v1/forecast?latitude=36.6&longitude=136.6167&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+//   東京: 'https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&hourly=precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+//   大宮: 'https://api.open-meteo.com/v1/forecast?latitude=35.9635&longitude=139.8305&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+//   名古屋: 'https://api.open-meteo.com/v1/forecast?latitude=35.1815&longitude=136.9064&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+//   南堀江: 'https://api.open-meteo.com/v1/forecast?latitude=34.6711&longitude=135.4942&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+//   八尾: 'https://api.open-meteo.com/v1/forecast?latitude=34.6167&longitude=135.6&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+//   奈良: 'https://api.open-meteo.com/v1/forecast?latitude=34.685&longitude=135.8049&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+//   朝来: 'https://api.open-meteo.com/v1/forecast?latitude=35.2591&longitude=134.8139&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+//   福岡: 'https://api.open-meteo.com/v1/forecast?latitude=33.6&longitude=130.4167&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+//   佐世保: 'https://api.open-meteo.com/v1/forecast?latitude=33.1683&longitude=129.725&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+//   諸塚: 'https://api.open-meteo.com/v1/forecast?latitude=32.5601&longitude=131.3198&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+//   パリ: 'https://api.open-meteo.com/v1/forecast?latitude=48.8534&longitude=2.3488&hourly=temperature_2m,precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14',
+// }
+
+/***/ }),
+
+/***/ "./src/objects/visibilitySettings.js":
+/*!*******************************************!*\
+  !*** ./src/objects/visibilitySettings.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createVisibilitySettings: function() { return /* binding */ createVisibilitySettings; }
+/* harmony export */ });
+const createVisibilitySettings = ({
+  attributes,
+  setAttributes
+}) => {
+  const {
+    showTomorrowWeather,
+    showWeeklyWeather,
+    showTodayWeather,
+    showHoliday,
+    showPrecipitation
+  } = attributes;
+  return [{
+    label: "今日の天気を表示",
+    checked: attributes.showTodayWeather,
+    // 属性から現在の値を取得
+    onChange: isChecked => {
+      // 'showTodayWeather' 属性を更新
+      setAttributes({
+        showTodayWeather: isChecked
+      });
+    }
+  },, {
+    label: '明日の天気を表示',
+    checked: attributes.showTomorrowWeather,
+    onChange: isChecked => {
+      // 'showTodayWeather' 属性を更新
+      setAttributes({
+        showTomorrowWeather: isChecked
+      });
+    }
+  }, {
+    label: '週間天気を表示',
+    checked: attributes.showWeeklyWeather,
+    onChange: isChecked => {
+      // 'showTodayWeather' 属性を更新
+      setAttributes({
+        showWeeklyWeather: isChecked
+      });
+    }
+  }, {
+    label: '祝日を表示',
+    checked: attributes.showHoliday,
+    onChange: checked => {
+      setAttributes({
+        showHoliday: checked
+      });
+    }
+  }, {
+    label: '降水確率を表示',
+    checked: attributes.showPrecipitation,
+    onChange: checked => {
+      setAttributes({
+        showPrecipitation: checked
+      });
+    }
+  }];
+};
 
 /***/ }),
 
@@ -803,7 +1667,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dayWithHoloday__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dayWithHoloday */ "./src/objects/dayWithHoloday.js");
 
 
-const weatherObject = async (cityurl, setTodayWeather, setTomorrowWeather, setWeeklyWeather) => {
+const weatherObject = async (cityurl, setTodayWeather, setTomorrowWeather, setWeeklyWeather, addBreak = false) => {
   try {
     if (!cityurl) {
       throw new Error(`City "${cityurl}" does not exist in the city object.`);
@@ -820,7 +1684,7 @@ const weatherObject = async (cityurl, setTodayWeather, setTomorrowWeather, setWe
     if (!data2 || !data2.daily) {
       throw new Error("Unexpected data format received from the weather API.");
     }
-    const datesForWeek = await (0,_dayWithHoloday__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    const datesForWeek = await (0,_dayWithHoloday__WEBPACK_IMPORTED_MODULE_1__["default"])(addBreak);
     if (!datesForWeek || datesForWeek.length !== 7) {
       throw new Error("Unexpected date array length from dayWithHoliday.");
     }
@@ -926,6 +1790,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ (function(module) {
+
+module.exports = window["React"];
+
+/***/ }),
+
 /***/ "@wordpress/block-editor":
 /*!*************************************!*\
   !*** external ["wp","blockEditor"] ***!
@@ -992,7 +1866,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"showHoliday":{"type":"boolean","default":true},"showPrecipitation":{"type":"boolean","default":true},"tomorrowWeather":{"type":"object","default":{}},"weeklyWeather":{"type":"array","default":[]},"todayWeather":{"type":"object","default":{}}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./style-index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/my-first-plugin","version":"0.1.0","title":"MyfirstPlugin","category":"text","icon":"flag","description":"A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.","attributes":{"selectedCity":{"type":"object","default":{"name":"東京","url":"https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&hourly=precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14"}},"showTomorrowWeather":{"type":"boolean","default":true},"showWeeklyWeather":{"type":"boolean","default":true},"showTodayWeather":{"type":"boolean","default":true},"showHoliday":{"type":"boolean","default":true},"showPrecipitation":{"type":"boolean","default":true},"tomorrowWeather":{"type":"object","default":{}},"weeklyWeather":{"type":"array","default":[]},"todayWeather":{"type":"object","default":{}},"borderRadiusValue":{"type":"string","default":"0px"},"borders":{"type":"object","default":{"top":{"color":"#72aee6","style":"dashed","width":"1px"},"right":{"color":"#72aee6","style":"dashed","width":"1px"},"bottom":{"color":"#72aee6","style":"dashed","width":"1px"},"left":{"color":"#72aee6","style":"dashed","width":"1px"}}},"fontFamily":{"type":"string","default":"Noto Sans JP, sans-serif"},"textColor":{"type":"string","default":"black"},"backgroundStyleType":{"type":"string","default":"color"},"backgroundImage":{"type":"string","default":"http://hoge.local/wp-content/uploads/2023/10/IMG_5308-scaled.jpeg"},"backgroundGradient":{"type":"string","default":"linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)"},"backgroundColor":{"type":"string","default":"#fff"},"balanceOption":{"type":"string","default":"EmphasizeTheWeather"}},"supports":{"html":false},"textdomain":"my-first-plugin","editorScript":"file:./index.js","editorStyle":"file:./style-index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

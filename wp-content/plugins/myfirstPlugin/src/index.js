@@ -29,25 +29,20 @@ import metadata from './block.json';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
+const defaultBorder = {
+	color: '#72aee6',
+	style: 'dashed',
+	width: '10px',
+};
+
 registerBlockType(metadata.name, {
 	/**
 	 * Used to construct a preview for the block to be shown in the block inserter.
 	 */
+
 	example: {
 		attributes: {
 			message: 'my-first-plugin',
-			todayWeather: {
-				type: 'object',
-				default: {}
-			},
-			tomorrowWeather: {
-				type: 'object',
-				default: {}
-			},
-			weeklyWeather: {
-				type: 'array',
-				default: []
-			},
 		},
 	},
 	/**

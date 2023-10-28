@@ -8,6 +8,25 @@
   "icon": "flag",
   "description": "A Gutenberg block to show your pride! This block enables you to type text and style it with the color font Gilbert from Type with Pride.",
   "attributes": {
+    "selectedCity": {
+      "type": "object",
+      "default": {
+        "name": "東京",
+        "url": "https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&hourly=precipitation_probability,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&past_days=1&forecast_days=14"
+      }
+    },
+    "showTomorrowWeather": {
+      "type": "boolean",
+      "default": true
+    },
+    "showWeeklyWeather": {
+      "type": "boolean",
+      "default": true
+    },
+    "showTodayWeather": {
+      "type": "boolean",
+      "default": true
+    },
     "showHoliday": {
       "type": "boolean",
       "default": true
@@ -27,6 +46,63 @@
     "todayWeather": {
       "type": "object",
       "default": {}
+    },
+    "borderRadiusValue": {
+      "type": "string",
+      "default": "0px"
+    },
+    "borders": {
+      "type": "object",
+      "default": {
+        "top": {
+          "color": "#72aee6",
+          "style": "dashed",
+          "width": "1px"
+        },
+        "right": {
+          "color": "#72aee6",
+          "style": "dashed",
+          "width": "1px"
+        },
+        "bottom": {
+          "color": "#72aee6",
+          "style": "dashed",
+          "width": "1px"
+        },
+        "left": {
+          "color": "#72aee6",
+          "style": "dashed",
+          "width": "1px"
+        }
+      }
+    },
+    "fontFamily": {
+      "type": "string",
+      "default": "Noto Sans JP, sans-serif"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "black"
+    },
+    "backgroundStyleType": {
+      "type": "string",
+      "default": "color"
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": "http://hoge.local/wp-content/uploads/2023/10/IMG_5308-scaled.jpeg"
+    },
+    "backgroundGradient": {
+      "type": "string",
+      "default": "linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#fff"
+    },
+    "balanceOption": {
+      "type": "string",
+      "default": "EmphasizeTheWeather"
     }
   },
   "supports": {

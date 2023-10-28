@@ -4,13 +4,13 @@ const Temp = ({ weather }) => {
 
   return (
     <ul className="temp">
-      <li>
-        <p>{weather.highestTemperature}<span className="celsius">℃</span></p>
-        <p>{weather.maximumTemperatureComparison}</p>
+      <li className="highestAndComparison">
+        <p className="highest">{weather.highestTemperature}<span className="celsius">℃</span></p>
+        <p className="comparison">{weather.maximumTemperatureComparison}</p>
       </li>
-      <li>
-        <p>{weather.lowestTemperature}<span className="celsius">℃</span></p>
-        <p>{weather.lowestTemperatureComparison}</p>
+      <li className="lowestAndComparison">
+        <p className="lowest">{weather.lowestTemperature}<span className="celsius">℃</span></p>
+        <p className="comparison">{weather.lowestTemperatureComparison}</p>
       </li>
     </ul>
   )

@@ -1,22 +1,48 @@
-import { useEffect } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import weatherObject from '../objects/weatherObject';
-import { city } from '../data/getSpotWeather';
-export function useChangeCity(selectedCity, setTodayWeather, setTomorrowWeather, setWeeklyWeather) {
+
+export function useChangeCity(selectedCity) {
+  // 天気データを状態として保存します。
+  const [weatherData, setWeatherData] = useState({
+    today: null,
+    tomorrow: null,
+    weekly: null,
+  });
+
   useEffect(() => {
     async function fetchData() {
-      const cityurl = city[selectedCity];
-      if (cityurl) {
-        await weatherObject(
-          cityurl,
-          setTodayWeather,
-          setTomorrowWeather,
-          setWeeklyWeather,
-        );
-      } else {
-        console.error(`No URL found for city: ${selectedCity}`);
+      if (!selectedCity || !selectedCity.url) {
+        console.error(`No URL found for city: ${selectedCity ? selectedCity.name : "Unknown city"}`);
+        return; // selectedCityオブジェクトがない、またはURLがない場合、ここで処理を終了します。
       }
+
+      // 'selectedCity'が存在し、URLが含まれている場合、以下の処理を行います。
+      const cityUrl = selectedCity.url;
+
+      await weatherObject(
+        cityUrl,
+        (todayWeather) => {
+          setWeatherData((prevData) => ({
+            ...prevData,
+            today: todayWeather,
+          }));
+        },
+        (tomorrowWeather) => {
+          setWeatherData((prevData) => ({
+            ...prevData,
+            tomorrow: tomorrowWeather,
+          }));
+        },
+        (weeklyWeather) => {
+          setWeatherData((prevData) => ({
+            ...prevData,
+            weekly: weeklyWeather,
+          }));
+        },
+      );
     }
 
     fetchData();
-  }, [selectedCity]);
+  }, [selectedCity]); 
+  return weatherData;
 }

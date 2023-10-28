@@ -51,7 +51,7 @@ function myfirstplugin_render_block($attr, $content)
   // Attribute Defaults
   $showTodayWeather = $attr['showTodayWeather'] ?? true; // デフォルトはtrue
   $showTomorrowWeather = $attr['showTomorrowWeather'] ?? true; // デフォルトはtrue
-  $showWeeklyWeather = $attr['showWeeklyWeather'] ?? true; 
+  $showWeeklyWeather = $attr['showWeeklyWeather'] ?? true;
   $showHoliday = $attr['showHoliday'] ?? null;
   $showPrecipitation = $attr['showPrecipitation'] ?? null;
   $borders = $attr['borders'] ?? null;
@@ -63,7 +63,6 @@ function myfirstplugin_render_block($attr, $content)
   $selectedBackgroundGradient = $attr['backgroundGradient'] ?? 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)';
   $selectedBackgroundColor = $attr['backgroundColor'] ?? '#fff';
   $selectedBalance = $attr['balanceOption'] ?? 'EmphasizeTheWeather';
-
 
   $colorStyle = 'color: ' . $selectedColor . ';';
   $fontStyle = 'font-family: ' . $selectedFontFamily . ';';
@@ -103,12 +102,8 @@ function myfirstplugin_render_block($attr, $content)
 
   $commonStyle = generateBorderStyle($borders, $borderRadiusValue) . ' ; ' . $colorStyle . ' ; ' . $backgroundStylesString . ' ; ' . $fontStyle . ' ; ';
 
-
-
-
   error_log('Debug: Attributes - ' . print_r($attr['balanceOption'], true));
   error_log('Debug: Attributes - ' . print_r($attr, true));
-
 
   $output = '<div class="wp-block-create-block-my-first-plugin"><div class="layout"><div class="today-and-tomorrow weather-layout">';
 

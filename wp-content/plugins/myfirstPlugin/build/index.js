@@ -345,7 +345,6 @@ function TextColorControl({
   setAttributes
 }) {
   const handleOnChange = newTextColor => {
-    console.log("New Text Color:", newTextColor);
     setTextColor(newTextColor);
     setAttributes({
       textColor: newTextColor
@@ -824,9 +823,7 @@ function Edit({
     }); // ここで新しい値を保存
   };
 
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    console.log("Attributes updated:", attributes);
-  }, [attributes]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {}, [attributes]);
   const {
     selectedOption,
     setSelectedOption,
@@ -1219,11 +1216,9 @@ __webpack_require__.r(__webpack_exports__);
 function useFontFamilyControl(attributes, setAttributes) {
   const [fontFamily, setFontFamily] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.fontFamily);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    console.log("Attributes Font Family Updated:", attributes.fontFamily);
     setFontFamily(attributes.fontFamily);
   }, [attributes.fontFamily]);
   const onChangeFontFamily = newFontFamily => {
-    console.log("New Font Family:", newFontFamily);
     setFontFamily(newFontFamily);
     setAttributes({
       fontFamily: newFontFamily
@@ -1673,7 +1668,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const weatherObject = async (cityurl, setTodayWeather, setTomorrowWeather, setWeeklyWeather, addBreak = false) => {
-  console.log(cityurl);
   try {
     if (!cityurl) {
       throw new Error(`City "${cityurl}" does not exist in the city object.`);
@@ -1738,7 +1732,6 @@ const weatherObject = async (cityurl, setTodayWeather, setTomorrowWeather, setWe
       lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index + 1],
       rainProbability: rainProbability1[index + 1]
     }));
-    console.log(dailyData);
 
     // WordPress REST APIエンドポイントにデータをPOST
     const postResponse = await fetch(apiUrl, {

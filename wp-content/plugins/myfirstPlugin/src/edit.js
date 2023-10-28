@@ -65,7 +65,6 @@ export default function Edit({ attributes, setAttributes }) {
 	};
 
 	useEffect(() => {
-		console.log("Attributes updated:", attributes);
 	}, [attributes]);
 
 	const {

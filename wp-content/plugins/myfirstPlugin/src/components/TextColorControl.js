@@ -3,7 +3,6 @@ import { SelectControl } from '@wordpress/components';
 
 function TextColorControl({ textColor, setTextColor, setAttributes }) {
   const handleOnChange = (newTextColor) => {
-    console.log("New Text Color:", newTextColor);
     setTextColor(newTextColor);
     setAttributes({ textColor: newTextColor });
   };

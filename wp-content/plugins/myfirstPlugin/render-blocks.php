@@ -3,7 +3,6 @@
 // Helper function to set text color based on day properties
 function setTextColor($day)
 {
-  error_log('Debug: モヒカン Weather Data - ' . print_r($day, true));
   if (($day['isHoliday'] ?? false) || ($day['isSunday'] ?? false)) {
     return ' style="color: red"';
   } elseif ($day['isSaturday'] ?? false) {
@@ -32,10 +31,6 @@ function generateBorderStyle($borders, $borderRadiusValue)
 function myfirstplugin_render_block($attr, $content)
 {
   $weather_data = json_decode(get_option('my_weather_data'), true);
-  // error_log('Debug: Weather Data - ' . print_r($weather_data, true));
-
-  // 1. オプションデータの取得デバッグ
-  // error_log('Debug: Weather Data - ' . print_r($weather_data, true));
 
   // 天気データがnullかチェック
   if ($weather_data === null) {
@@ -45,8 +40,6 @@ function myfirstplugin_render_block($attr, $content)
   if (!is_array($weather_data)) {
     return '天気データのフォーマットが不正です。';
   }
-
-  error_log('Debug: モケケ Weather Data - ' . print_r($weather_data, true));
 
   // Attribute Defaults
   $showTodayWeather = $attr['showTodayWeather'] ?? true; // デフォルトはtrue
@@ -101,9 +94,6 @@ function myfirstplugin_render_block($attr, $content)
   $backgroundStylesString = implode('; ', $backgroundStyles);
 
   $commonStyle = generateBorderStyle($borders, $borderRadiusValue) . ' ; ' . $colorStyle . ' ; ' . $backgroundStylesString . ' ; ' . $fontStyle . ' ; ';
-
-  error_log('Debug: Attributes - ' . print_r($attr['balanceOption'], true));
-  error_log('Debug: Attributes - ' . print_r($attr, true));
 
   $output = '<div class="wp-block-create-block-my-first-plugin"><div class="layout"><div class="today-and-tomorrow weather-layout">';
 

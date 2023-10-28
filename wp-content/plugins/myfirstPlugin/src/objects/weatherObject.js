@@ -8,7 +8,6 @@ const weatherObject = async (
   setWeeklyWeather,
   addBreak = false 
 ) => {
-  console.log(cityurl)
   try {
     if (!cityurl) {
       throw new Error(`City "${cityurl}" does not exist in the city object.`);
@@ -88,8 +87,6 @@ const weatherObject = async (
       lowestTemperatureComparison: lowestTemperatureDifferencesForWeek[index + 1],
       rainProbability: rainProbability1[index + 1],
     }));
-
-    console.log(dailyData)
 
     // WordPress REST APIエンドポイントにデータをPOST
     const postResponse = await fetch(apiUrl, {

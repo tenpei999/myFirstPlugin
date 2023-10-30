@@ -21,3 +21,4 @@ debug.log
 /wp-content/index.php
 /wp-content/plugins/*
 !/wp-content/plugins/myfirstPlugin/
+!/wp-content/plugins/JWeatherCustomizer/

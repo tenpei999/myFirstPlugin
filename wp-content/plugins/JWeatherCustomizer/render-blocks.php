@@ -1,6 +1,8 @@
 <?php
 
 // Helper function to set text color based on day properties
+
+    // error_log('hoge');
 function setTextColor($day)
 {
   if (($day['isHoliday'] ?? false) || ($day['isSunday'] ?? false)) {
@@ -28,7 +30,7 @@ function generateBorderStyle($borders, $borderRadiusValue)
   return implode('; ', $styles);
 }
 
-function myfirstplugin_render_block($attr, $content)
+function jWeatherCustomizer_render_block($attr, $content)
 {
   $weather_data = json_decode(get_option('my_weather_data'), true);
 
@@ -95,20 +97,20 @@ function myfirstplugin_render_block($attr, $content)
 
   $commonStyle = generateBorderStyle($borders, $borderRadiusValue) . ' ; ' . $colorStyle . ' ; ' . $backgroundStylesString . ' ; ' . $fontStyle . ' ; ';
 
-  $output = '<div class="wp-block-create-block-my-first-plugin"><div class="layout"><div class="today-and-tomorrow weather-layout">';
+  $output = '<div class="wp-block-create-block-j-weather-customizer"><div class="layout"><div class="today-and-tomorrow weather-layout">';
 
   $time_ranges = ['0-6時', '6-12時', '12-18時', '18-24時'];
 
   if ($showTodayWeather && isset($weather_data[0])) {
     // error_log('Debug: Today Weather Data - ' . print_r($weather_data[0], true));
     $textColor = setTextColor($weather_data[0]['day'] ?? []);
-    $output .= generateWeatherOutput($weather_data[0], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('今日の天気', 'myfirstPlugin'), $commonStyle, $selectedBalance);
+    $output .= generateWeatherOutput($weather_data[0], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('今日の天気', 'j-weather-customizer'), $commonStyle, $selectedBalance);
   }
 
   if ($showTomorrowWeather && isset($weather_data[1])) {
     // error_log('Debug: Tomorrow Weather Data - ' . print_r($weather_data[1], true));
     $textColor = setTextColor($weather_data[1]['day']  ?? []);
-    $output .= generateWeatherOutput($weather_data[1], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('明日の天気', 'myfirstPlugin'), $commonStyle, $selectedBalance);
+    $output .= generateWeatherOutput($weather_data[1], $textColor, $time_ranges, $showHoliday, $showPrecipitation, __('明日の天気', 'j-weather-customizer'), $commonStyle, $selectedBalance);
   }
 
   $output .= '</div>';

@@ -14,12 +14,16 @@
  * @package           create-block
  */
 
+define('J_WEATHER_CUSTOMIZER', 'jWeatherCustomizer');
+define('J_WEATHER_CUSTOMIZER_ROUTE', 'j-weather-customizer');
+define('J_WEATHER_CUSTOMIZER_FUNCTION', J_WEATHER_CUSTOMIZER . '_render_block');
+
 function create_block_gutenpride_block_init()
 {
 	register_block_type(
 		__DIR__ . '/build',
 		[
-			'render_callback' => 'jWeatherCustomizer_render_block',
+			'render_callback' => J_WEATHER_CUSTOMIZER_FUNCTION,
 		]
 	);
 }

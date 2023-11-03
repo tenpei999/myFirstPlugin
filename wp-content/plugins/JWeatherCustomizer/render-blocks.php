@@ -2,7 +2,7 @@
 
 // Helper function to set text color based on day properties
 
-    // error_log('hoge');
+// error_log('hoge');
 function setTextColor($day)
 {
   if (($day['isHoliday'] ?? false) || ($day['isSunday'] ?? false)) {
@@ -30,7 +30,13 @@ function generateBorderStyle($borders, $borderRadiusValue)
   return implode('; ', $styles);
 }
 
-function jWeatherCustomizer_render_block($attr, $content)
+$function_name = J_WEATHER_CUSTOMIZER_FUNCTION;
+
+echo '<pre>';
+var_dump($function_name);
+echo '</pre>';
+
+function J_WEATHER_CUSTOMIZER_FUNCTION($attr, $content)
 {
   $weather_data = json_decode(get_option('my_weather_data'), true);
 

@@ -14,36 +14,48 @@
  * @package           create-block
  */
 
-define('J_WEATHER_CUSTOMIZER', 'jWeatherCustomizer');
-define('J_WEATHER_CUSTOMIZER_ROUTE', 'j-weather-customizer');
-define('J_WEATHER_CUSTOMIZER_FUNCTION', J_WEATHER_CUSTOMIZER . '_render_block');
-
 function create_block_gutenpride_block_init()
 {
 	register_block_type(
 		__DIR__ . '/build',
 		[
-			'render_callback' => J_WEATHER_CUSTOMIZER_FUNCTION,
+			'render_callback' => 'jWeatherCustomizer_render_block',
 		]
 	);
 }
 
 add_action('init', 'create_block_gutenpride_block_init');
 
-function print_my_plugin_data()
+
+function enqueue_my_plugin_script()
 {
+	// スクリプトを登録します。ここでの 'my-plugin-script' はあなたのスクリプトハンドルです。
+	wp_register_script('my-plugin-script', plugins_url('build/index.js', __FILE__), array(), '1.0.0', true);
+
+	// データをローカライズしてセキュアな方法でスクリプトに渡します。
 	$plugin_data = array(
 		'pluginImagePath' => plugins_url('images/', __FILE__),
-		'restUrl' => rest_url('j-weather-customizer/save-data/'),
-		'siteUrl' => get_site_url()  // WordPressのサイトURLを取得
+		'restUrl'         => rest_url('j-weather-customizer/save-data/'),
+		'siteUrl'         => get_site_url(),
 	);
 
-	echo '<script type="text/javascript">';
-	echo 'var myPluginData = ' . json_encode($plugin_data) . ';';
-	echo '</script>';
+	// ローカライズスクリプト
+	wp_localize_script('my-plugin-script', 'myPluginData', $plugin_data);
+
+	// Add an inline script to check if the block is already registered.
+	$inline_script = <<<EOT
+			document.addEventListener('DOMContentLoaded', function(){
+					if (wp.blocks.getBlockType('create-block/j-weather-customizer')) {
+							console.error('Block "create-block/j-weather-customizer" is already registered.');
+					}
+			});
+	EOT;
+
+	// スクリプトをエンキューします。
+	wp_enqueue_script('my-plugin-script');
 }
 
-add_action('admin_footer', 'print_my_plugin_data');
+add_action('admin_enqueue_scripts', 'enqueue_my_plugin_script');
 
 include dirname(__FILE__) . '/render-blocks.php';
 

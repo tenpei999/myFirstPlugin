@@ -4,6 +4,7 @@
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
 import { registerBlockType } from '@wordpress/blocks';
+import { getBlockType } from '@wordpress/blocks'; // 追加した行
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -19,42 +20,29 @@ import './editor.scss';
 /**
  * Internal dependencies
  */
-
 import Edit from './edit';
 // import save from './save';
 import metadata from './block.json';
 
 /**
- * Every block starts by registering a new block type definition.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
+ * Only register block if it's not already registered
  */
-const defaultBorder = {
-	color: '#72aee6',
-	style: 'dashed',
-	width: '10px',
-};
+if (getBlockType(metadata.name) === undefined) {
+    // Block settings
+    const blockSettings = {
+        // Block settings can be defined here as usual
+        example: {
+            attributes: {
+                message: 'j-weather-customizer',
+            },
+        },
+        edit: Edit,
+        save() {
+            // Defines what happens when the block is saved
+            return null; // We return null because save is handled in PHP
+        },
+    };
 
-registerBlockType(metadata.name, {
-	/**
-	 * Used to construct a preview for the block to be shown in the block inserter.
-	 */
+    registerBlockType(metadata.name, blockSettings);
 
-	example: {
-		attributes: {
-			message: 'j-weather-customizer',
-		},
-	},
-	/**
-	 * @see ./edit.js
-	 */
-	edit: Edit,
-
-	/**
-	 * @see ./save.js
-	 */
-	save() {
-		return null;
-	},
-});
-
+}

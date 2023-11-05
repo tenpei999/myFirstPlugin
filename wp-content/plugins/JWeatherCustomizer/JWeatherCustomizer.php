@@ -30,7 +30,7 @@ add_action('init', 'create_block_gutenpride_block_init');
 function enqueue_my_plugin_script()
 {
 	// スクリプトを登録します。ここでの 'my-plugin-script' はあなたのスクリプトハンドルです。
-	wp_register_script('my-plugin-script', plugins_url('build/index.js', __FILE__), array(), '1.0.0', true);
+	wp_register_script('my-plugin-script', plugins_url('build/index.js', __FILE__), array('wp-blocks'), '1.0.0', true);
 
 	// データをローカライズしてセキュアな方法でスクリプトに渡します。
 	$plugin_data = array(

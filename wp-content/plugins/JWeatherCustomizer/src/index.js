@@ -3,8 +3,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-import { registerBlockType } from '@wordpress/blocks';
-import { getBlockType } from '@wordpress/blocks'; // 追加した行
+import { registerBlockType, getBlockType } from '@wordpress/blocks';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -27,22 +26,10 @@ import metadata from './block.json';
 /**
  * Only register block if it's not already registered
  */
-if (getBlockType(metadata.name) === undefined) {
-    // Block settings
-    const blockSettings = {
-        // Block settings can be defined here as usual
-        example: {
-            attributes: {
-                message: 'j-weather-customizer',
-            },
-        },
-        edit: Edit,
-        save() {
-            // Defines what happens when the block is saved
-            return null; // We return null because save is handled in PHP
-        },
-    };
-
-    registerBlockType(metadata.name, blockSettings);
-
+if (!getBlockType(metadata.name)) {
+    registerBlockType(metadata.name, {
+        ...metadata, // メタデータを展開して設定に適用します
+        edit: Edit, // 編集コンポーネントを設定します
+        save: () => null, // PHP側で保存処理を行うので、ここではnullを返します
+    });
 }
